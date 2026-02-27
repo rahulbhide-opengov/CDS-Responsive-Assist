@@ -1,32 +1,65 @@
 /**
- * CDS Extended Button Components
- * Additional button components with CDS tokens applied
+ * CDS Extended Button Components (CDS-First Architecture)
+ * Additional button components with CDS API
+ *
+ * Note: CDSLoadingButton is deprecated - use CDSButton with loading prop instead
  */
 
 import React from 'react';
 import {
   ButtonGroup as MuiButtonGroup,
-  ButtonGroupProps as MuiButtonGroupProps,
   ToggleButton as MuiToggleButton,
-  ToggleButtonProps as MuiToggleButtonProps,
   ToggleButtonGroup as MuiToggleButtonGroup,
-  ToggleButtonGroupProps as MuiToggleButtonGroupProps,
 } from '@mui/material';
-import { LoadingButton as MuiLoadingButton, LoadingButtonProps as MuiLoadingButtonProps } from '@mui/lab';
 import { styled } from '@mui/material/styles';
+
+// ============================================================================
+// CDS BUTTON GROUP
+// ============================================================================
+
+export interface CDSButtonGroupProps {
+  children: React.ReactNode;
+  /**
+   * CDS orientation
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
+   * CDS size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+  /**
+   * Buttons take full width
+   * @default false
+   */
+  fullWidth?: boolean;
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+  className?: string;
+  sx?: any;
+}
 
 /**
  * CDS Button Group
  * Group of related buttons
  *
  * @example
- * <CDSButtonGroup variant="contained">
- *   <CDSButton>One</CDSButton>
- *   <CDSButton>Two</CDSButton>
- *   <CDSButton>Three</CDSButton>
+ * <CDSButtonGroup>
+ *   <CDSButton variant="secondary">One</CDSButton>
+ *   <CDSButton variant="secondary">Two</CDSButton>
+ *   <CDSButton variant="secondary">Three</CDSButton>
  * </CDSButtonGroup>
  */
-export const CDSButtonGroup = styled(MuiButtonGroup)(({ theme }) => ({
+export const CDSButtonGroup = styled(
+  React.forwardRef<HTMLDivElement, CDSButtonGroupProps>((props, ref) => (
+    <MuiButtonGroup ref={ref} {...props} />
+  ))
+)(({ theme }) => ({
+  // CDS styling for grouped buttons
   '& .MuiButton-root': {
     borderRadius: 0,
     '&:first-of-type': {
@@ -40,6 +73,52 @@ export const CDSButtonGroup = styled(MuiButtonGroup)(({ theme }) => ({
   },
 }));
 
+CDSButtonGroup.displayName = 'CDSButtonGroup';
+
+// ============================================================================
+// CDS TOGGLE BUTTON GROUP
+// ============================================================================
+
+export interface CDSToggleButtonGroupProps {
+  children: React.ReactNode;
+  /**
+   * Current value (controlled)
+   */
+  value?: string | string[];
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
+  /**
+   * CDS orientation
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
+   * CDS size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+  /**
+   * Allow multiple selection
+   * @default false
+   */
+  exclusive?: boolean;
+  /**
+   * Buttons take full width
+   * @default false
+   */
+  fullWidth?: boolean;
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+  className?: string;
+  sx?: any;
+  ariaLabel?: string;
+}
+
 /**
  * CDS Toggle Button Group
  * Group of toggle buttons for multi-select or single-select
@@ -51,12 +130,20 @@ export const CDSButtonGroup = styled(MuiButtonGroup)(({ theme }) => ({
  *   <CDSToggleButton value="right">Right</CDSToggleButton>
  * </CDSToggleButtonGroup>
  */
-export const CDSToggleButtonGroup = styled(MuiToggleButtonGroup)(({ theme }) => ({
+export const CDSToggleButtonGroup = styled(
+  React.forwardRef<HTMLDivElement, CDSToggleButtonGroupProps>(
+    ({ ariaLabel, ...props }, ref) => (
+      <MuiToggleButtonGroup ref={ref} aria-label={ariaLabel} {...props} />
+    )
+  )
+)(({ theme }) => ({
+  // CDS styling for toggle group
   '& .MuiToggleButton-root': {
     textTransform: 'none',
     fontWeight: theme.typography.fontWeightMedium,
     padding: theme.spacing(1, 2),
 
+    // CDS selected state
     '&.Mui-selected': {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
@@ -64,24 +151,78 @@ export const CDSToggleButtonGroup = styled(MuiToggleButtonGroup)(({ theme }) => 
         backgroundColor: theme.palette.primary.dark,
       },
     },
+
+    // CDS focus indicator
+    '&:focus-visible': {
+      outline: `2px solid ${theme.palette.primary.main}`,
+      outlineOffset: 2,
+    },
   },
 }));
+
+CDSToggleButtonGroup.displayName = 'CDSToggleButtonGroup';
+
+// ============================================================================
+// CDS TOGGLE BUTTON
+// ============================================================================
+
+export interface CDSToggleButtonProps {
+  children: React.ReactNode;
+  /**
+   * Value of this toggle button
+   */
+  value: string;
+  /**
+   * Click handler
+   */
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  /**
+   * Selected state (controlled)
+   */
+  selected?: boolean;
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * CDS size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+  /**
+   * Buttons take full width
+   * @default false
+   */
+  fullWidth?: boolean;
+  className?: string;
+  sx?: any;
+  ariaLabel?: string;
+}
 
 /**
  * CDS Toggle Button
  * Individual toggle button
  *
  * @example
- * <CDSToggleButton value="bold">
+ * <CDSToggleButton value="bold" ariaLabel="bold">
  *   <FormatBoldIcon />
  * </CDSToggleButton>
  */
-export const CDSToggleButton = styled(MuiToggleButton)(({ theme }) => ({
+export const CDSToggleButton = styled(
+  React.forwardRef<HTMLButtonElement, CDSToggleButtonProps>(
+    ({ ariaLabel, ...props }, ref) => (
+      <MuiToggleButton ref={ref} aria-label={ariaLabel} {...props} />
+    )
+  )
+)(({ theme }) => ({
+  // CDS styling
   textTransform: 'none',
   fontWeight: theme.typography.fontWeightMedium,
   padding: theme.spacing(1, 2),
   minHeight: 40,
 
+  // CDS selected state
   '&.Mui-selected': {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
@@ -90,77 +231,49 @@ export const CDSToggleButton = styled(MuiToggleButton)(({ theme }) => ({
     },
   },
 
+  // CDS focus indicator
   '&:focus-visible': {
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: 2,
   },
+
+  // CDS transitions
+  transition: theme.transitions.create(['background-color', 'color'], {
+    duration: theme.transitions.duration.short,
+  }),
 }));
+
+CDSToggleButton.displayName = 'CDSToggleButton';
+
+// ============================================================================
+// DEPRECATED: CDSLoadingButton
+// ============================================================================
 
 /**
- * CDS Loading Button
- * Button with loading state and spinner
- * From @mui/lab package
+ * @deprecated Use CDSButton with loading prop instead
  *
  * @example
- * <CDSLoadingButton
- *   loading={isLoading}
- *   loadingPosition="start"
- *   startIcon={<SaveIcon />}
- *   variant="contained"
- * >
- *   Save
- * </CDSLoadingButton>
+ * // OLD (deprecated)
+ * <CDSLoadingButton loading={isLoading}>Save</CDSLoadingButton>
+ *
+ * // NEW (use this)
+ * <CDSButton variant="primary" loading={isLoading}>Save</CDSButton>
  */
-export const CDSLoadingButton = styled(MuiLoadingButton)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
-  textTransform: 'none',
-  fontWeight: theme.typography.fontWeightMedium,
+export const CDSLoadingButton = React.forwardRef<any, any>((props, ref) => {
+  console.warn(
+    'CDSLoadingButton is deprecated. Use CDSButton with loading prop instead.'
+  );
 
-  // Responsive padding and sizing
-  padding: theme.spacing(1.5, 3), // 12px 12px mobile
-  minHeight: 38, // 38px mobile
-  fontSize: '0.8125rem', // 13px mobile
+  // Import CDSButton to avoid circular dependency
+  const { CDSButton } = require('./Button');
 
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(1.5, 4), // 12px 32px tablet+
-    minHeight: 40, // 40px tablet+
-    fontSize: '0.875rem', // 14px tablet+
-  },
+  return <CDSButton ref={ref} {...props} />;
+});
 
-  transition: theme.transitions.create(
-    ['background-color', 'box-shadow', 'border-color'],
-    {
-      duration: theme.transitions.duration.short,
-      easing: theme.transitions.easing.easeInOut,
-    }
-  ),
+CDSLoadingButton.displayName = 'CDSLoadingButton (Deprecated)';
 
-  '&.MuiLoadingButton-loading': {
-    opacity: 0.7,
-  },
+// ============================================================================
+// EXPORTS
+// ============================================================================
 
-  '& .MuiLoadingButton-loadingIndicator': {
-    color: 'inherit',
-    // Responsive spinner size
-    '& .MuiCircularProgress-root': {
-      width: '18px !important', // 18px mobile
-      height: '18px !important',
-
-      [theme.breakpoints.up('sm')]: {
-        width: '20px !important', // 20px tablet+
-        height: '20px !important',
-      },
-    },
-  },
-
-  '&:focus-visible': {
-    outline: `3px solid ${theme.palette.primary.light}`,
-    outlineOffset: 2,
-  },
-}));
-
-// Type exports
-export type CDSButtonGroupProps = MuiButtonGroupProps;
-export type CDSToggleButtonGroupProps = MuiToggleButtonGroupProps;
-export type CDSToggleButtonProps = MuiToggleButtonProps;
-export type CDSLoadingButtonProps = MuiLoadingButtonProps;
+export default CDSButtonGroup;
