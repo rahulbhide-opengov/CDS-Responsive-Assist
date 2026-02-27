@@ -140,7 +140,19 @@ export const CDSListItemIcon = styled(MuiListItemIcon)(({ theme }) => ({
  * CDS ListItemText
  * Text in list item with CDS typography
  */
-export const CDSListItemText = MuiListItemText;
+export const CDSListItemText = styled(MuiListItemText)(({ theme }) => ({
+  '& .MuiListItemText-primary': {
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.text.primary,
+  },
+
+  '& .MuiListItemText-secondary': {
+    fontSize: theme.typography.body2.fontSize,
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(0.5),
+  },
+}));
 
 /**
  * CDS Table
@@ -153,8 +165,20 @@ export const CDSTable = styled(MuiTable)(({ theme }) => ({
   },
 }));
 
-export const CDSTableHead = MuiTableHead;
-export const CDSTableBody = MuiTableBody;
+export const CDSTableHead = styled(MuiTableHead)(({ theme }) => ({
+  '& .MuiTableCell-head': {
+    backgroundColor: theme.palette.grey[50],
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.text.primary,
+    borderBottom: `2px solid ${theme.palette.divider}`,
+  },
+}));
+
+export const CDSTableBody = styled(MuiTableBody)(({ theme }) => ({
+  '& .MuiTableRow-root:last-child .MuiTableCell-root': {
+    borderBottom: 'none',
+  },
+}));
 
 export const CDSTableRow = styled(MuiTableRow)(({ theme }) => ({
   '&:hover': {
@@ -182,7 +206,33 @@ export const CDSImageList = styled(MuiImageList)(({ theme }) => ({
   },
 }));
 
-export const CDSImageListItem = MuiImageListItem;
+export const CDSImageListItem = styled(MuiImageListItem)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius,
+  overflow: 'hidden',
+
+  '& img': {
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.standard,
+    }),
+  },
+
+  '&:hover img': {
+    transform: 'scale(1.05)',
+  },
+
+  '& .MuiImageListItemBar-root': {
+    background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+
+  '& .MuiImageListItemBar-title': {
+    fontSize: theme.typography.body2.fontSize,
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+
+  '& .MuiImageListItemBar-subtitle': {
+    fontSize: theme.typography.caption.fontSize,
+  },
+}));
 
 /**
  * CDS Accordion

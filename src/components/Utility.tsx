@@ -18,7 +18,7 @@ import {
   Slide as MuiSlide,
   Zoom as MuiZoom,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 /**
  * CDS Popover
@@ -35,21 +35,52 @@ export const CDSPopover = styled(MuiPopover)(({ theme }) => ({
 
 /**
  * CDS Collapse
- * Expand/collapse animation component
+ * Expand/collapse animation component with CDS transitions
+ *
+ * @example
+ * <CDSCollapse in={expanded}>
+ *   <Typography>Collapsed content</Typography>
+ * </CDSCollapse>
  */
-export const CDSCollapse = MuiCollapse;
+export const CDSCollapse = styled(MuiCollapse)(({ theme }) => ({
+  transition: theme.transitions.create(['height', 'opacity'], {
+    duration: theme.transitions.duration.standard,
+    easing: theme.transitions.easing.easeInOut,
+  }),
+}));
 
 /**
  * CDS Modal
- * Modal overlay component
+ * Modal overlay component with CDS styling
+ *
+ * @example
+ * <CDSModal open={open} onClose={handleClose}>
+ *   <CDSBox sx={{ bgcolor: 'background.paper', p: 4 }}>
+ *     Modal content
+ *   </CDSBox>
+ * </CDSModal>
  */
 export const CDSModal = styled(MuiModal)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  padding: theme.spacing(2),
 
   '& .MuiBackdrop-root': {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    transition: theme.transitions.create('opacity', {
+      duration: theme.transitions.duration.standard,
+    }),
+  },
+
+  // Common modal content styling when used with Box
+  '& > *': {
+    outline: 'none', // Remove default focus outline (use custom focus styling)
+    maxHeight: '90vh',
+    maxWidth: '90vw',
+    overflowY: 'auto',
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[24],
   },
 }));
 
@@ -61,12 +92,52 @@ export const CDSClickAwayListener = MuiClickAwayListener;
 
 /**
  * CDS Transition Components
- * Animation transition components
+ * Animation transition components with CDS timing
+ *
+ * @example
+ * <CDSFade in={visible}>
+ *   <Typography>Fading content</Typography>
+ * </CDSFade>
  */
-export const CDSFade = MuiFade;
-export const CDSGrow = MuiGrow;
-export const CDSSlide = MuiSlide;
-export const CDSZoom = MuiZoom;
+export const CDSFade = (props: any) => {
+  const theme = useTheme();
+  return (
+    <MuiFade
+      {...props}
+      timeout={props.timeout ?? theme.transitions.duration.standard}
+    />
+  );
+};
+
+export const CDSGrow = (props: any) => {
+  const theme = useTheme();
+  return (
+    <MuiGrow
+      {...props}
+      timeout={props.timeout ?? theme.transitions.duration.standard}
+    />
+  );
+};
+
+export const CDSSlide = (props: any) => {
+  const theme = useTheme();
+  return (
+    <MuiSlide
+      {...props}
+      timeout={props.timeout ?? theme.transitions.duration.standard}
+    />
+  );
+};
+
+export const CDSZoom = (props: any) => {
+  const theme = useTheme();
+  return (
+    <MuiZoom
+      {...props}
+      timeout={props.timeout ?? theme.transitions.duration.standard}
+    />
+  );
+};
 
 // Type exports
 export type CDSPopoverProps = MuiPopoverProps;

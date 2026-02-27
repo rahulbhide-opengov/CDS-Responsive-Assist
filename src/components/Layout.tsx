@@ -22,18 +22,31 @@ import { styled } from '@mui/material/styles';
 
 /**
  * CDS Container
- * Max-width content wrapper with responsive breakpoints
+ * Max-width content wrapper with responsive breakpoints and CDS spacing
  *
  * @example
  * <CDSContainer maxWidth="lg">
  *   <YourContent />
  * </CDSContainer>
  */
-export const CDSContainer = MuiContainer; // No custom styling needed
+export const CDSContainer = styled(MuiContainer)(({ theme }) => ({
+  paddingLeft: theme.spacing(2), // 8px mobile
+  paddingRight: theme.spacing(2),
+
+  [theme.breakpoints.up('sm')]: {
+    paddingLeft: theme.spacing(3), // 12px tablet
+    paddingRight: theme.spacing(3),
+  },
+
+  [theme.breakpoints.up('md')]: {
+    paddingLeft: theme.spacing(4), // 16px desktop
+    paddingRight: theme.spacing(4),
+  },
+}));
 
 /**
  * CDS Box
- * Generic container with sx prop for custom styling
+ * Generic container with sx prop for custom styling using CDS tokens
  * Use this for one-off layouts with CDS tokens
  *
  * @example
@@ -41,11 +54,14 @@ export const CDSContainer = MuiContainer; // No custom styling needed
  *   Content
  * </CDSBox>
  */
-export const CDSBox = MuiBox; // No custom styling needed
+export const CDSBox = styled(MuiBox)(({ theme }) => ({
+  // Box is intentionally flexible, only ensuring proper box-sizing
+  boxSizing: 'border-box',
+}));
 
 /**
  * CDS Stack
- * One-dimensional flexbox layout with spacing
+ * One-dimensional flexbox layout with CDS spacing
  *
  * @example
  * <CDSStack spacing={3} direction="column">
@@ -53,11 +69,16 @@ export const CDSBox = MuiBox; // No custom styling needed
  *   <Item />
  * </CDSStack>
  */
-export const CDSStack = MuiStack; // No custom styling needed
+export const CDSStack = styled(MuiStack)(({ theme }) => ({
+  '& > *': {
+    minWidth: 0, // Prevent flex children overflow
+    minHeight: 0,
+  },
+}));
 
 /**
  * CDS Grid
- * 12-column responsive grid system
+ * 12-column responsive grid system with CDS spacing
  *
  * @example
  * <CDSGrid container spacing={3}>
@@ -66,7 +87,18 @@ export const CDSStack = MuiStack; // No custom styling needed
  *   </CDSGrid>
  * </CDSGrid>
  */
-export const CDSGrid = MuiGrid; // No custom styling needed
+export const CDSGrid = styled(MuiGrid)(({ theme }) => ({
+  // Grid container spacing
+  '&.MuiGrid-container': {
+    width: '100%',
+  },
+
+  // Grid item responsive padding
+  '&.MuiGrid-item': {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));
 
 /**
  * CDS Paper

@@ -14,7 +14,7 @@ import {
   RadioGroup as MuiRadioGroup,
   RadioGroupProps as MuiRadioGroupProps,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 /**
  * CDS Slider
@@ -106,13 +106,74 @@ export const CDSRating = styled(MuiRating)(({ theme }) => ({
 /**
  * CDS Autocomplete
  * Autocomplete input with CDS styling
- * This is a component wrapper, not a styled component
+ * Wrapper component that applies CDS tokens
+ *
+ * @example
+ * <CDSAutocomplete
+ *   options={options}
+ *   renderInput={(params) => <CDSTextField {...params} label="Search" />}
+ * />
  */
-export const CDSAutocomplete = MuiAutocomplete;
+export const CDSAutocomplete = <
+  T,
+  Multiple extends boolean | undefined = undefined,
+  DisableClearable extends boolean | undefined = undefined,
+  FreeSolo extends boolean | undefined = undefined
+>(
+  props: MuiAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
+) => {
+  const theme = useTheme();
+
+  return (
+    <MuiAutocomplete
+      {...props}
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          borderRadius: theme.shape.borderRadius,
+          padding: theme.spacing(0.5),
+
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderWidth: 2,
+            borderColor: theme.palette.primary.main,
+          },
+        },
+
+        '& .MuiAutocomplete-tag': {
+          margin: theme.spacing(0.5),
+          borderRadius: theme.shape.borderRadius,
+        },
+
+        '& .MuiAutocomplete-listbox': {
+          padding: theme.spacing(1, 0),
+
+          '& .MuiAutocomplete-option': {
+            padding: theme.spacing(1.5, 2),
+            minHeight: 48,
+
+            '&[aria-selected="true"]': {
+              backgroundColor: theme.palette.action.selected,
+            },
+
+            '&.Mui-focused': {
+              backgroundColor: theme.palette.action.hover,
+            },
+          },
+        },
+
+        '& .MuiAutocomplete-paper': {
+          borderRadius: theme.shape.borderRadius,
+          boxShadow: theme.shadows[8],
+        },
+
+        ...props.sx,
+      }}
+    />
+  );
+};
 
 /**
  * CDS RadioGroup
- * Radio button group with CDS styling
+ * Radio button group with CDS spacing
  *
  * @example
  * <CDSRadioGroup value={value} onChange={handleChange}>
@@ -120,7 +181,20 @@ export const CDSAutocomplete = MuiAutocomplete;
  *   <FormControlLabel value="option2" control={<CDSRadio />} label="Option 2" />
  * </CDSRadioGroup>
  */
-export const CDSRadioGroup = MuiRadioGroup;
+export const CDSRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
+  gap: theme.spacing(1), // 4px gap between items
+
+  '& .MuiFormControlLabel-root': {
+    marginLeft: 0,
+    marginRight: theme.spacing(2), // 8px right margin
+    marginBottom: theme.spacing(0.5), // 2px bottom margin
+
+    '& .MuiFormControlLabel-label': {
+      fontSize: theme.typography.body1.fontSize,
+      color: theme.palette.text.primary,
+    },
+  },
+}));
 
 // Type exports
 export type CDSSliderProps = MuiSliderProps;

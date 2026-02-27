@@ -143,11 +143,59 @@ export const CDSSpeedDialAction = styled(MuiSpeedDialAction)(({ theme }) => ({
 
 /**
  * CDS TreeView
- * Hierarchical tree navigation
+ * Hierarchical tree navigation with CDS styling
  * Requires @mui/x-tree-view package
+ *
+ * @example
+ * <CDSTreeView defaultExpanded={['1']}>
+ *   <CDSTreeItem nodeId="1" label="Parent">
+ *     <CDSTreeItem nodeId="2" label="Child" />
+ *   </CDSTreeItem>
+ * </CDSTreeView>
  */
-export const CDSTreeView = MuiTreeView;
-export const CDSTreeItem = MuiTreeItem;
+export const CDSTreeView = styled(MuiTreeView)(({ theme }) => ({
+  '& .MuiTreeItem-root': {
+    '&:focus > .MuiTreeItem-content': {
+      backgroundColor: theme.palette.action.focus,
+      outline: `2px solid ${theme.palette.primary.main}`,
+      outlineOffset: -2,
+    },
+  },
+
+  '& .MuiTreeItem-content': {
+    padding: theme.spacing(0.5, 1),
+    borderRadius: theme.shape.borderRadius,
+
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+
+    '&.Mui-selected': {
+      backgroundColor: theme.palette.action.selected,
+
+      '&:hover': {
+        backgroundColor: theme.palette.action.selectedHover,
+      },
+    },
+  },
+
+  '& .MuiTreeItem-label': {
+    fontSize: theme.typography.body1.fontSize,
+    padding: theme.spacing(1, 0),
+  },
+}));
+
+export const CDSTreeItem = styled(MuiTreeItem)(({ theme }) => ({
+  '& .MuiTreeItem-iconContainer': {
+    marginRight: theme.spacing(1),
+    width: 24,
+
+    '& svg': {
+      fontSize: 20,
+      color: theme.palette.text.secondary,
+    },
+  },
+}));
 
 /**
  * CDS Stepper
@@ -171,9 +219,58 @@ export const CDSStepper = styled(MuiStepper)(({ theme }) => ({
   },
 }));
 
-export const CDSStep = MuiStep;
-export const CDSStepLabel = MuiStepLabel;
-export const CDSStepContent = MuiStepContent;
+/**
+ * CDS Step Components
+ * Individual step components with CDS styling
+ */
+export const CDSStep = styled(MuiStep)(({ theme }) => ({
+  '& .MuiStepLabel-root': {
+    padding: theme.spacing(1, 0),
+  },
+}));
+
+export const CDSStepLabel = styled(MuiStepLabel)(({ theme }) => ({
+  '& .MuiStepLabel-label': {
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.text.secondary,
+
+    '&.Mui-active': {
+      color: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightBold,
+    },
+
+    '&.Mui-completed': {
+      color: theme.palette.text.primary,
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+  },
+
+  '& .MuiStepLabel-iconContainer': {
+    paddingRight: theme.spacing(1),
+
+    '& .MuiSvgIcon-root': {
+      fontSize: 24,
+
+      '&.Mui-active': {
+        color: theme.palette.primary.main,
+      },
+
+      '&.Mui-completed': {
+        color: theme.palette.success.main,
+      },
+    },
+  },
+}));
+
+export const CDSStepContent = styled(MuiStepContent)(({ theme }) => ({
+  paddingLeft: theme.spacing(4), // 32px
+  paddingRight: theme.spacing(2), // 16px
+  marginLeft: theme.spacing(2), // 24px
+  borderLeft: `1px solid ${theme.palette.divider}`,
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(2),
+}));
 
 // Type exports
 export type CDSMenuProps = MuiMenuProps;
