@@ -1,8 +1,9 @@
 {
   "name": "cds-responsive-assist",
-  "version": "1.4.0",
-  "description": "Component Design System Documentation - Material-UI v6.1.0 with full CDS token integration, WCAG 2.1 Level AA accessibility compliance, and 400+ production-ready code examples",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "Component Design System - Material-UI v6.1.0 with complete theme, pre-built components, documentation, and 400+ production-ready code examples",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "scripts": {
     "docs": "echo 'Open README.md to get started'",
     "search": "echo 'Use COMPONENT-INDEX.md to find components'",
@@ -52,12 +53,16 @@
     "npm": ">=9.0.0"
   },
   "files": [
-    "DESIGN-SYSTEM-DOCUMENTATION-*.md",
+    "src/",
+    "examples/",
     "CDS-*.md",
     "README.md",
+    "README-IMPLEMENTATION.md",
     "COMPONENT-INDEX.md",
     "TOKEN-REFERENCE.md",
     "PATTERN-LIBRARY.md",
+    "PROJECT-STATUS.md",
+    "AUTOMATIC-CDS-USAGE.md",
     ".claude/",
     ".cursorrules"
   ],

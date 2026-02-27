@@ -1,0 +1,52 @@
+{
+  "name": "@your-org/cds-components",
+  "version": "2.0.0",
+  "description": "Component Design System - Pre-built Material-UI components with CDS tokens",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "cds",
+    "design-system",
+    "material-ui",
+    "mui",
+    "react",
+    "components",
+    "typescript",
+    "tokens",
+    "accessibility",
+    "wcag",
+    "responsive"
+  ],
+  "author": "CDS Design System Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "@mui/material": "^6.1.0",
+    "@mui/icons-material": "^6.1.0",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.0"
+  },
+  "files": [
+    "theme/",
+    "components/",
+    "index.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rahulbhide-opengov/CDS-Responsive-Assist.git",
+    "directory": "src"
+  },
+  "bugs": {
+    "url": "https://github.com/rahulbhide-opengov/CDS-Responsive-Assist/issues"
+  }
+}
