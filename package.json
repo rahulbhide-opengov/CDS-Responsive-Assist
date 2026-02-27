@@ -1,0 +1,82 @@
+{
+  "name": "cds-responsive-assist",
+  "version": "1.4.0",
+  "description": "Component Design System Documentation - Material-UI v6.1.0 with full CDS token integration, WCAG 2.1 Level AA accessibility compliance, and 400+ production-ready code examples",
+  "main": "index.js",
+  "scripts": {
+    "docs": "echo 'Open README.md to get started'",
+    "search": "echo 'Use COMPONENT-INDEX.md to find components'",
+    "tokens": "echo 'Refer to TOKEN-REFERENCE.md for token lookup'",
+    "patterns": "echo 'Check PATTERN-LIBRARY.md for common patterns'"
+  },
+  "keywords": [
+    "design-system",
+    "component-library",
+    "material-ui",
+    "mui",
+    "cds",
+    "accessibility",
+    "wcag",
+    "react",
+    "typescript",
+    "documentation",
+    "design-tokens",
+    "responsive"
+  ],
+  "author": "CDS Design System Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/CDS-Responsive-Assist.git"
+  },
+  "dependencies": {
+    "@mui/material": "^6.1.0",
+    "@mui/lab": "^6.0.0-beta.10",
+    "@mui/icons-material": "^6.1.0",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.0"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "files": [
+    "DESIGN-SYSTEM-DOCUMENTATION-*.md",
+    "CDS-*.md",
+    "README.md",
+    "COMPONENT-INDEX.md",
+    "TOKEN-REFERENCE.md",
+    "PATTERN-LIBRARY.md",
+    ".claude/",
+    ".cursorrules"
+  ],
+  "documentation": {
+    "total_components": 70,
+    "completion_rate": "92%",
+    "accessibility_standard": "WCAG 2.1 Level AA",
+    "code_examples": "400+",
+    "common_patterns": "250+",
+    "mui_version": "6.1.0"
+  },
+  "categories": {
+    "foundation": 7,
+    "navigation": 9,
+    "buttons": 6,
+    "forms": 12,
+    "data_display": 13,
+    "feedback": 9,
+    "utility": 6,
+    "advanced": 2
+  }
+}

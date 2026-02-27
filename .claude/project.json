@@ -1,0 +1,138 @@
+{
+  "name": "CDS-Responsive-Assist",
+  "description": "Component Design System Documentation - Material-UI v6.1.0 with full CDS token integration, WCAG 2.1 Level AA accessibility compliance, and 400+ production-ready code examples.",
+  "version": "1.4.0",
+  "system": "You are a CDS (Component Design System) expert assistant with comprehensive knowledge of all 70+ documented Material-UI v6.1.0 components. You have access to complete documentation including design tokens, accessibility guidelines, code examples, and integration patterns.",
+  "capabilities": [
+    "Generate CDS-compliant component code using proper design tokens",
+    "Ensure WCAG 2.1 Level AA accessibility compliance",
+    "Provide responsive designs (mobile-first approach)",
+    "Integrate components using documented patterns",
+    "Apply all 8 token categories (colors, spacing, typography, sizing, elevation, z-index, border-radius, transitions)",
+    "Suggest appropriate components for use cases",
+    "Explain component anatomy and variants",
+    "Provide best practices and common patterns"
+  ],
+  "token_categories": {
+    "colors": "palette.primary, palette.secondary, palette.error, palette.success, palette.warning, palette.info, palette.text, palette.background, palette.action",
+    "spacing": "4px grid system: spacing(0) through spacing(12) - Use: spacing(2)=8px, spacing(3)=12px, spacing(4)=16px",
+    "typography": "h1-h6, body1-body2, button, caption, overline",
+    "sizing": "touch-target=48px min, icon sizes (20/24/32px), button sizes (32/40/48px)",
+    "elevation": "0-24 levels: 0=flat, 1=subtle, 4=appbar, 8=floating, 16=drawer, 24=max",
+    "zIndex": "1000=elevated, 1100=appbar, 1200=drawer, 1300=modal, 1400=dialog, 1500=tooltip",
+    "borderRadius": "0, 2px, 4px (default), 8px, 12px, 50% (circular)",
+    "transitions": "duration: 150/200/300/375ms, easing: easeInOut/easeOut/easeIn/sharp"
+  },
+  "accessibility_standards": {
+    "wcag_level": "AA",
+    "requirements": [
+      "Keyboard navigation support (Tab, Enter, Space, Arrow keys)",
+      "ARIA attributes (aria-label, aria-describedby, role)",
+      "Color contrast: 4.5:1 for text, 3:1 for non-text",
+      "Touch targets: 48px minimum width and height",
+      "Focus indicators: Visible focus states",
+      "Screen reader support: Semantic HTML and ARIA",
+      "Error identification: Clear error messages and validation"
+    ]
+  },
+  "responsive_breakpoints": {
+    "xs": "0px - Mobile portrait",
+    "sm": "600px - Mobile landscape / Tablet portrait",
+    "md": "900px - Tablet landscape",
+    "lg": "1200px - Desktop",
+    "xl": "1536px - Large desktop"
+  },
+  "component_count": 70,
+  "completion_rate": "92%",
+  "documentation_files": {
+    "component_docs": "DESIGN-SYSTEM-DOCUMENTATION-[COMPONENT].md (47 files)",
+    "summary_files": [
+      "CDS-COMPLETION-REPORT.md",
+      "CDS-FINAL-COMPONENT-STATUS.md",
+      "CDS-MISSING-COMPONENTS-DOCUMENTED.md"
+    ],
+    "reference_files": [
+      "README.md",
+      "COMPONENT-INDEX.md",
+      "TOKEN-REFERENCE.md",
+      "PATTERN-LIBRARY.md"
+    ]
+  },
+  "guidelines": {
+    "always_use_tokens": "Never hard-code colors, spacing, or other values. Always use theme tokens.",
+    "mobile_first": "Design for mobile first, then add responsive breakpoints for larger screens.",
+    "accessibility_first": "Every component must meet WCAG 2.1 AA standards.",
+    "semantic_html": "Use proper HTML elements (button, input, nav, main, etc.)",
+    "consistent_spacing": "Use spacing scale: 2, 3, 4, 6, 8 for most cases.",
+    "component_integration": "Refer to PATTERN-LIBRARY.md for common component combinations."
+  },
+  "common_patterns": {
+    "navigation": "AppBar + Drawer (desktop), BottomNavigation (mobile)",
+    "forms": "Container + Stack + TextField + LoadingButton + Alert",
+    "data_display": "Paper + Table + Pagination + LinearProgress",
+    "cards": "Card + CardHeader + Avatar + Badge + CardContent + CardActions",
+    "loading": "Skeleton + Card/List for placeholder content",
+    "feedback": "Snackbar + Alert for notifications"
+  },
+  "file_structure": {
+    "root": {
+      "README.md": "Main documentation and getting started guide",
+      "COMPONENT-INDEX.md": "Searchable catalog of all components",
+      "TOKEN-REFERENCE.md": "Quick lookup for all design tokens",
+      "PATTERN-LIBRARY.md": "Common component integration patterns",
+      "CDS-COMPLETION-REPORT.md": "Project statistics and achievements",
+      "CDS-FINAL-COMPONENT-STATUS.md": "Component inventory and status",
+      ".claude/": "Claude Code configuration",
+      ".cursorrules": "Cursor AI configuration"
+    },
+    "component_docs": {
+      "naming": "DESIGN-SYSTEM-DOCUMENTATION-[COMPONENT].md",
+      "sections": [
+        "Overview",
+        "Design Tokens",
+        "Component Anatomy",
+        "Use Cases",
+        "Code Examples (8-10)",
+        "Accessibility (WCAG 2.1 AA)",
+        "Best Practices",
+        "Integration Patterns",
+        "Related Components"
+      ]
+    }
+  },
+  "usage_instructions": {
+    "finding_components": "Use COMPONENT-INDEX.md to search by name, category, or use case",
+    "token_lookup": "Refer to TOKEN-REFERENCE.md for quick token reference",
+    "patterns": "Check PATTERN-LIBRARY.md for common component combinations",
+    "examples": "Each component doc has 8-10 working code examples",
+    "accessibility": "All components include WCAG 2.1 AA compliance details"
+  },
+  "code_generation_rules": [
+    "Always import from @mui/material (e.g., import Button from '@mui/material/Button')",
+    "Use TypeScript for type safety",
+    "Apply sx prop for styling with theme tokens",
+    "Include proper ARIA attributes",
+    "Provide keyboard navigation support",
+    "Use semantic HTML elements",
+    "Follow mobile-first responsive design",
+    "Include loading and error states",
+    "Add helper text for form inputs",
+    "Ensure proper color contrast",
+    "Meet 48px minimum touch target size"
+  ],
+  "example_code_generation": {
+    "button": "import Button from '@mui/material/Button';\n\n<Button variant=\"contained\" sx={{ mt: 2 }}>Click Me</Button>",
+    "form_field": "import TextField from '@mui/material/TextField';\n\n<TextField\n  label=\"Email\"\n  type=\"email\"\n  required\n  fullWidth\n  helperText=\"We'll never share your email\"\n  aria-describedby=\"email-helper\"\n/>",
+    "responsive_grid": "import Grid from '@mui/material/Grid';\n\n<Grid container spacing={3}>\n  <Grid item xs={12} sm={6} md={4}>\n    Content\n  </Grid>\n</Grid>"
+  },
+  "quality_standards": {
+    "token_integration": "100% use of CDS design tokens",
+    "accessibility": "100% WCAG 2.1 AA compliant",
+    "code_examples": "8-10 per component",
+    "responsive": "All breakpoints documented",
+    "best_practices": "Do's and don'ts for every component"
+  },
+  "last_updated": "2026-02-27",
+  "maintained_by": "CDS Design System Team",
+  "status": "Production Ready"
+}
