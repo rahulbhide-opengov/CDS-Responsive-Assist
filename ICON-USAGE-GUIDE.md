@@ -4,6 +4,21 @@ Complete guide for using Material UI icons with the CDS Component Design System.
 
 ---
 
+## ⚠️ IMPORTANT: Icon Style Restrictions
+
+**CDS permits ONLY 2 icon styles:**
+- ✅ **Outlined** (Primary - use this first)
+- ✅ **Filled** (Secondary - use only when Outlined not suitable)
+
+**❌ NOT ALLOWED:**
+- ❌ Rounded icons
+- ❌ TwoTone icons
+- ❌ Sharp icons
+
+All icons must use CDS colors from `theme.palette`. Never use hardcoded colors.
+
+---
+
 ## Icon Sources
 
 ### Primary: MUI Material Icons (Outlined Theme)
@@ -36,18 +51,17 @@ yarn add @mui/icons-material
 
 ## Icon Theme Variants
 
-Material UI icons come in 5 themes. CDS prioritizes them in this order:
+**CDS supports ONLY 2 icon styles:**
 
-1. **Outlined** (Primary) - Clean, outlined style
-2. **Filled** (Secondary) - Solid filled style
-3. **Rounded** - Rounded edges (use sparingly)
-4. **Two Tone** - Two-color style (use sparingly)
-5. **Sharp** - Sharp edges (use sparingly)
+1. **Outlined** (Primary) - Clean, outlined style - USE THIS FIRST
+2. **Filled** (Secondary) - Solid filled style - Use only when outlined not suitable
+
+**❌ NOT ALLOWED: Rounded, TwoTone, or Sharp variants**
 
 ### Import Examples
 
 ```typescript
-// ✅ PREFERRED: Outlined icons (default export)
+// ✅ PREFERRED: Outlined icons
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -57,10 +71,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 
-// ⚠️ USE SPARINGLY: Other variants
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
-import HomeSharpIcon from '@mui/icons-material/HomeSharp';
+// ❌ NOT ALLOWED: Other variants
+// DO NOT USE: HomeRounded, HomeTwoTone, HomeSharp
 ```
 
 ---
@@ -403,6 +415,8 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 ### ✅ DO
 
 - Always use Outlined icons as first preference
+- Use Filled icons only when Outlined is not suitable
+- Use ONLY Outlined or Filled styles (no Rounded, TwoTone, or Sharp)
 - Use CDS color tokens from `theme.palette`
 - Apply responsive sizing using breakpoints
 - Use semantic colors for status icons (success, error, warning, info)
@@ -412,12 +426,13 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 
 ### ❌ DON'T
 
+- Don't use Rounded, TwoTone, or Sharp icon variants
 - Don't use hardcoded color values like `#000000` or `red`
-- Don't mix icon themes inconsistently (outlined vs filled)
+- Don't mix Outlined and Filled inconsistently in the same component
 - Don't use fixed pixel sizes without responsive breakpoints
 - Don't use colors outside the CDS palette
 - Don't use decorative icons without proper accessibility
-- Don't use multiple icon variants in the same component
+- Don't import icons from non-standard sources
 
 ---
 
@@ -535,11 +550,13 @@ function ActionCard() {
 
 ## Summary
 
-1. **Always use Outlined icons first** (https://mui.com/material-ui/material-icons/?theme=Outlined)
-2. **All icons must use CDS colors** from `theme.palette`
-3. **Apply responsive sizing** using breakpoints
-4. **Follow accessibility guidelines** with proper labels
-5. **Maintain consistency** in icon theme usage across the application
+1. **ONLY use Outlined or Filled icon styles** - No Rounded, TwoTone, or Sharp variants
+2. **Always use Outlined icons first** (https://mui.com/material-ui/material-icons/?theme=Outlined)
+3. **Use Filled icons only when Outlined is not suitable**
+4. **All icons must use CDS colors** from `theme.palette`
+5. **Apply responsive sizing** using breakpoints
+6. **Follow accessibility guidelines** with proper labels
+7. **Maintain consistency** - Don't mix Outlined and Filled in the same component
 
 ---
 

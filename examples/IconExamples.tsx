@@ -2,10 +2,21 @@
  * CDS Icon Usage Examples
  * Demonstrates proper usage of MUI Material Icons with CDS color tokens
  *
- * IMPORTANT: Always prefer Outlined icons first
- * - Primary source: https://mui.com/material-ui/material-icons/?theme=Outlined
- * - Secondary source: https://mui.com/material-ui/material-icons/
+ * ⚠️ ICON STYLE RESTRICTION:
+ * CDS permits ONLY 2 icon styles:
+ * - ✅ Outlined (Primary - use this first)
+ * - ✅ Filled (Secondary - use only when Outlined not suitable)
+ * - ❌ NOT ALLOWED: Rounded, TwoTone, Sharp variants
+ *
+ * IMPORTANT Rules:
+ * - Always prefer Outlined icons first
+ * - Use Filled only when Outlined is not suitable
  * - All icons must use CDS colors from theme.palette
+ * - Never use hardcoded colors
+ *
+ * Icon Sources:
+ * - Primary: https://mui.com/material-ui/material-icons/?theme=Outlined
+ * - Secondary: https://mui.com/material-ui/material-icons/ (Filled)
  */
 
 import React from 'react';
@@ -471,7 +482,22 @@ export function IconExamplesPage() {
 
       <IconAlertExample />
 
-      <Box sx={{ mt: 6, p: 3, bgcolor: 'grey.100', borderRadius: 1 }}>
+      <Box sx={{ mt: 6, p: 3, bgcolor: 'error.light', borderRadius: 1, border: '2px solid', borderColor: 'error.main' }}>
+        <Typography variant="h6" gutterBottom color="error.dark">
+          ⚠️ Icon Style Restriction
+        </Typography>
+        <Typography variant="body2" paragraph color="error.dark">
+          <strong>CDS permits ONLY 2 icon styles:</strong>
+        </Typography>
+        <Typography variant="body2" component="div" color="error.dark">
+          ✅ <strong>Outlined</strong> (Primary - use this first)<br/>
+          ✅ <strong>Filled</strong> (Secondary - use only when Outlined not suitable)<br/>
+          <br/>
+          ❌ <strong>NOT ALLOWED:</strong> Rounded, TwoTone, or Sharp variants
+        </Typography>
+      </Box>
+
+      <Box sx={{ mt: 3, p: 3, bgcolor: 'grey.100', borderRadius: 1 }}>
         <Typography variant="h6" gutterBottom>
           Icon Resources
         </Typography>
@@ -486,7 +512,7 @@ export function IconExamplesPage() {
           </a>
         </Typography>
         <Typography variant="body2">
-          <strong>Secondary:</strong> All Icon Themes -{' '}
+          <strong>Secondary:</strong> Filled Icons -{' '}
           <a
             href="https://mui.com/material-ui/material-icons/"
             target="_blank"

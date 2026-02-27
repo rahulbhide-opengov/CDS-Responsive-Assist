@@ -4,17 +4,30 @@ Quick reference for using Material UI icons with CDS.
 
 ---
 
-## Icon Sources (In Priority Order)
+## ⚠️ ICON STYLE RESTRICTION
+
+**ONLY 2 styles allowed:**
+- ✅ Outlined (Primary)
+- ✅ Filled (Secondary)
+
+**❌ NOT ALLOWED: Rounded, TwoTone, Sharp**
+
+---
+
+## Icon Styles (ONLY 2 Allowed)
 
 ### 1. Outlined Icons (PRIMARY)
 **URL**: https://mui.com/material-ui/material-icons/?theme=Outlined
 
 Use outlined icons as **first preference**.
 
-### 2. Standard Icons (SECONDARY)
+### 2. Filled Icons (SECONDARY)
 **URL**: https://mui.com/material-ui/material-icons/
 
-Use only when outlined versions are not available.
+Use only when outlined versions are not suitable.
+
+### ❌ NOT ALLOWED
+**Rounded, TwoTone, and Sharp variants are NOT permitted in CDS.**
 
 ---
 
@@ -137,14 +150,17 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 ## Rules
 
 ✅ **DO:**
-- Use Outlined icons first
+- Use ONLY Outlined or Filled styles
+- Use Outlined icons first (primary)
+- Use Filled only when Outlined not suitable
 - Use CDS color tokens
 - Add `aria-label` for icon-only buttons
 - Apply responsive sizing
 
 ❌ **DON'T:**
+- Don't use Rounded, TwoTone, or Sharp variants
 - Don't use hardcoded colors
-- Don't mix icon themes
+- Don't mix Outlined and Filled inconsistently
 - Don't use fixed sizes without responsive breakpoints
 
 ---
