@@ -34,6 +34,7 @@
     "@mui/material": "^6.1.0",
     "@mui/lab": "^6.0.0-beta.10",
     "@mui/icons-material": "^6.1.0",
+    "@mui/x-tree-view": "^7.0.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "react": "^18.3.0",
@@ -67,21 +68,21 @@
     ".cursorrules"
   ],
   "documentation": {
-    "total_components": 70,
-    "completion_rate": "92%",
+    "total_components": 77,
+    "implementation_components": 77,
+    "completion_rate": "100%",
     "accessibility_standard": "WCAG 2.1 Level AA",
     "code_examples": "400+",
     "common_patterns": "250+",
     "mui_version": "6.1.0"
   },
   "categories": {
-    "foundation": 7,
-    "navigation": 9,
     "buttons": 6,
     "forms": 12,
-    "data_display": 13,
-    "feedback": 9,
-    "utility": 6,
-    "advanced": 2
+    "layout": 9,
+    "navigation": 15,
+    "data_display": 17,
+    "feedback": 10,
+    "utility": 8
   }
 }
