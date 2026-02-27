@@ -64,6 +64,10 @@
     "PATTERN-LIBRARY.md",
     "PROJECT-STATUS.md",
     "AUTOMATIC-CDS-USAGE.md",
+    "ICON-USAGE-GUIDE.md",
+    "IMPLEMENTATION-COMPLETE.md",
+    "CDS-STYLING-COMPLETE.md",
+    "RESPONSIVE-DESIGN-COMPLETE.md",
     ".claude/",
     ".cursorrules"
   ],
