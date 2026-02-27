@@ -215,8 +215,9 @@
     "component_catalog": "COMPONENT-INDEX.md - Search by name, use case, or keyword",
     "token_reference": "TOKEN-REFERENCE.md - All 8 token categories with values",
     "pattern_library": "PATTERN-LIBRARY.md - Common component combinations",
-    "component_docs": "DESIGN-SYSTEM-DOCUMENTATION-[COMPONENT].md - Detailed component docs",
-    "usage": "Automatically reference these files when generating code"
+    "project_status": "PROJECT-STATUS.md - Project completion report and statistics",
+    "component_docs": "7 consolidated category files - CDS-BUTTONS.md, CDS-FORMS.md, CDS-LAYOUT.md, CDS-NAVIGATION.md, CDS-DATA-DISPLAY.md, CDS-FEEDBACK.md, CDS-UTILITY.md",
+    "usage": "Automatically reference these category files when generating code - much faster than 47 individual files"
   },
   "quality_enforcement": {
     "token_usage": "100% - Never allow hard-coded values",
