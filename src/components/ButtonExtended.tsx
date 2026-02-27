@@ -115,8 +115,17 @@ export const CDSLoadingButton = styled(MuiLoadingButton)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   textTransform: 'none',
   fontWeight: theme.typography.fontWeightMedium,
-  padding: theme.spacing(1.5, 4),
-  minHeight: 40,
+
+  // Responsive padding and sizing
+  padding: theme.spacing(1.5, 3), // 12px 12px mobile
+  minHeight: 38, // 38px mobile
+  fontSize: '0.8125rem', // 13px mobile
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5, 4), // 12px 32px tablet+
+    minHeight: 40, // 40px tablet+
+    fontSize: '0.875rem', // 14px tablet+
+  },
 
   transition: theme.transitions.create(
     ['background-color', 'box-shadow', 'border-color'],
@@ -132,6 +141,16 @@ export const CDSLoadingButton = styled(MuiLoadingButton)(({ theme }) => ({
 
   '& .MuiLoadingButton-loadingIndicator': {
     color: 'inherit',
+    // Responsive spinner size
+    '& .MuiCircularProgress-root': {
+      width: '18px !important', // 18px mobile
+      height: '18px !important',
+
+      [theme.breakpoints.up('sm')]: {
+        width: '20px !important', // 20px tablet+
+        height: '20px !important',
+      },
+    },
   },
 
   '&:focus-visible': {

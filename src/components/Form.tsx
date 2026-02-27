@@ -37,6 +37,19 @@ export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     borderRadius: theme.shape.borderRadius, // 4px
 
+    // Responsive font size
+    fontSize: '0.9375rem', // 15px mobile
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1rem', // 16px tablet+
+    },
+
+    '& .MuiOutlinedInput-input': {
+      padding: theme.spacing(1.5, 1.75), // 12px 14px mobile
+      [theme.breakpoints.up('sm')]: {
+        padding: theme.spacing(2, 1.75), // 16px 14px tablet+
+      },
+    },
+
     // Focus state
     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
       borderWidth: 2,
@@ -50,8 +63,13 @@ export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
     },
   },
 
-  // Label styling
+  // Label styling - responsive font size
   '& .MuiInputLabel-root': {
+    fontSize: '0.9375rem', // 15px mobile
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1rem', // 16px tablet+
+    },
+
     '&.Mui-focused': {
       color: theme.palette.primary.main,
     },
@@ -60,9 +78,14 @@ export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
     },
   },
 
-  // Helper text
+  // Helper text - responsive
   '& .MuiFormHelperText-root': {
     marginTop: theme.spacing(0.5),
+    fontSize: '0.6875rem', // 11px mobile
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '0.75rem', // 12px tablet+
+    },
+
     '&.Mui-error': {
       color: theme.palette.error.main,
     },

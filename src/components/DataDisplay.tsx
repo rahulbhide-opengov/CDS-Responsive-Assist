@@ -52,6 +52,44 @@ export const CDSAvatar = styled(MuiAvatar)(({ theme }) => ({
     backgroundColor: theme.palette.grey[400],
     color: theme.palette.getContrastText(theme.palette.grey[400]),
   },
+
+  // Responsive sizing
+  '&.MuiAvatar-root': {
+    fontSize: '1rem', // Default size
+  },
+
+  // Small avatar - responsive
+  '&.MuiAvatar-small': {
+    width: 24,
+    height: 24,
+    fontSize: '0.875rem', // 14px
+  },
+
+  // Medium avatar - responsive
+  '&.MuiAvatar-medium': {
+    width: 32, // 32px mobile
+    height: 32,
+    fontSize: '1rem', // 16px mobile
+
+    [theme.breakpoints.up('sm')]: {
+      width: 40, // 40px tablet+
+      height: 40,
+      fontSize: '1.125rem', // 18px tablet+
+    },
+  },
+
+  // Large avatar - responsive
+  '&.MuiAvatar-large': {
+    width: 48, // 48px mobile
+    height: 48,
+    fontSize: '1.5rem', // 24px mobile
+
+    [theme.breakpoints.up('sm')]: {
+      width: 56, // 56px tablet+
+      height: 56,
+      fontSize: '1.75rem', // 28px tablet+
+    },
+  },
 }));
 
 /**
@@ -70,17 +108,29 @@ export const CDSAvatarGroup = styled(MuiAvatarGroup)(({ theme }) => ({
  */
 export const CDSBadge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    fontSize: theme.typography.caption.fontSize,
+    fontSize: '0.6875rem', // 11px mobile
     fontWeight: theme.typography.fontWeightMedium,
-    minWidth: 20,
-    height: 20,
-    padding: theme.spacing(0, 0.75),
+    minWidth: 18, // 18px mobile
+    height: 18,
+    padding: theme.spacing(0, 0.5),
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: theme.typography.caption.fontSize, // 12px tablet+
+      minWidth: 20, // 20px tablet+
+      height: 20,
+      padding: theme.spacing(0, 0.75),
+    },
   },
 
   '& .MuiBadge-dot': {
-    width: 8,
-    height: 8,
+    width: 6, // 6px mobile
+    height: 6,
     borderRadius: '50%',
+
+    [theme.breakpoints.up('sm')]: {
+      width: 8, // 8px tablet+
+      height: 8,
+    },
   },
 }));
 
@@ -97,8 +147,17 @@ export const CDSList = styled(MuiList)(({ theme }) => ({
  * Individual list item
  */
 export const CDSListItem = styled(MuiListItem)(({ theme }) => ({
-  padding: theme.spacing(1, 2),
+  // Responsive padding
+  padding: theme.spacing(1, 1.5), // 4px 6px mobile
   minHeight: 48,
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1, 2), // 4px 8px tablet+
+  },
+
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(1.5, 2.5), // 6px 10px desktop
+  },
 }));
 
 /**
@@ -106,9 +165,18 @@ export const CDSListItem = styled(MuiListItem)(({ theme }) => ({
  * Clickable list item button
  */
 export const CDSListItemButton = styled(MuiListItemButton)(({ theme }) => ({
-  padding: theme.spacing(1.5, 2),
+  // Responsive padding
+  padding: theme.spacing(1.5, 1.5), // 12px 6px mobile
   minHeight: 48,
   borderRadius: theme.shape.borderRadius,
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5, 2), // 12px 8px tablet+
+  },
+
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(2, 2.5), // 16px 10px desktop
+  },
 
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
@@ -191,8 +259,21 @@ export const CDSTableRow = styled(MuiTableRow)(({ theme }) => ({
 }));
 
 export const CDSTableCell = styled(MuiTableCell)(({ theme }) => ({
-  padding: theme.spacing(2),
+  // Responsive padding
+  padding: theme.spacing(1.5, 2), // 12px 8px mobile
   borderBottom: `1px solid ${theme.palette.divider}`,
+
+  // Responsive font size
+  fontSize: '0.8125rem', // 13px mobile
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(2), // 16px tablet+
+    fontSize: '0.875rem', // 14px tablet+
+  },
+
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(2, 2.5), // 16px 20px desktop
+  },
 }));
 
 /**
@@ -277,6 +358,33 @@ export const CDSAccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export const CDSChip = styled(MuiChip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   fontWeight: theme.typography.fontWeightMedium,
+
+  // Responsive sizing
+  height: 28, // 28px mobile
+  fontSize: '0.8125rem', // 13px mobile
+
+  [theme.breakpoints.up('sm')]: {
+    height: 32, // 32px tablet+
+    fontSize: '0.875rem', // 14px tablet+
+  },
+
+  '& .MuiChip-label': {
+    padding: theme.spacing(0, 1.5), // 0 12px mobile
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(0, 2), // 0 16px tablet+
+    },
+  },
+
+  '& .MuiChip-icon': {
+    marginLeft: theme.spacing(0.75), // 6px mobile
+    marginRight: theme.spacing(-0.5),
+    fontSize: '1.125rem', // 18px mobile
+
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1), // 8px tablet+
+      fontSize: '1.25rem', // 20px tablet+
+    },
+  },
 
   '&.MuiChip-clickable:focus-visible': {
     outline: `2px solid ${theme.palette.primary.main}`,

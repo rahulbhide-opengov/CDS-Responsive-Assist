@@ -55,8 +55,17 @@ export const CDSMenu = styled(MuiMenu)(({ theme }) => ({
  * <CDSMenuItem onClick={handleClick}>Menu Item</CDSMenuItem>
  */
 export const CDSMenuItem = styled(MuiMenuItem)(({ theme }) => ({
-  padding: theme.spacing(1.5, 2),
+  // Responsive padding
+  padding: theme.spacing(1.5, 1.5), // 12px 6px mobile
   minHeight: 48,
+
+  // Responsive font size
+  fontSize: '0.9375rem', // 15px mobile
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5, 2), // 12px 8px tablet+
+    fontSize: '1rem', // 16px tablet+
+  },
 
   '&:hover': {
     backgroundColor: theme.palette.action.hover,

@@ -142,6 +142,49 @@ export const CDSCard = styled(MuiCard)(({ theme }) => ({
   '&:hover': {
     boxShadow: theme.shadows[4],
   },
+
+  // Responsive padding for card content
+  '& .MuiCardContent-root': {
+    padding: theme.spacing(2), // 8px mobile
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(2.5), // 10px tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(3), // 12px desktop
+    },
+
+    '&:last-child': {
+      paddingBottom: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingBottom: theme.spacing(2.5),
+      },
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: theme.spacing(3),
+      },
+    },
+  },
+
+  // Card header responsive
+  '& .MuiCardHeader-root': {
+    padding: theme.spacing(2), // 8px mobile
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(2.5), // 10px tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(3), // 12px desktop
+    },
+  },
+
+  // Card actions responsive
+  '& .MuiCardActions-root': {
+    padding: theme.spacing(1, 2), // 4px 8px mobile
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1, 2.5), // 4px 10px tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(1, 3), // 4px 12px desktop
+    },
+  },
 }));
 
 /**
@@ -155,12 +198,25 @@ export const CDSCard = styled(MuiCard)(({ theme }) => ({
  * </CDSSection>
  */
 export const CDSSection = styled(MuiBox)(({ theme }) => ({
-  marginBottom: theme.spacing(6), // 24px between sections
+  // Responsive margin between sections
+  marginBottom: theme.spacing(4), // 16px mobile
+  [theme.breakpoints.up('sm')]: {
+    marginBottom: theme.spacing(5), // 20px tablet
+  },
+  [theme.breakpoints.up('md')]: {
+    marginBottom: theme.spacing(6), // 24px desktop
+  },
 
   // Responsive padding
-  padding: theme.spacing(3),
+  padding: theme.spacing(2), // 8px mobile
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(3), // 12px tablet
+  },
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(4), // 16px desktop
+  },
+  [theme.breakpoints.up('lg')]: {
+    padding: theme.spacing(5), // 20px large
   },
 }));
 

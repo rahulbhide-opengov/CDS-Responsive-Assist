@@ -27,8 +27,17 @@ export const CDSButton = styled(MuiButton)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius, // 4px
   textTransform: 'none', // No uppercase
   fontWeight: theme.typography.fontWeightMedium,
-  padding: theme.spacing(1.5, 4), // 12px 32px
-  minHeight: 40,
+
+  // Responsive padding and sizing
+  padding: theme.spacing(1.5, 3), // 12px 12px mobile
+  minHeight: 38, // 38px mobile
+  fontSize: '0.8125rem', // 13px mobile
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5, 4), // 12px 32px tablet+
+    minHeight: 40, // 40px tablet+
+    fontSize: '0.875rem', // 14px tablet+
+  },
 
   // Transitions
   transition: theme.transitions.create(
@@ -39,15 +48,28 @@ export const CDSButton = styled(MuiButton)(({ theme }) => ({
     }
   ),
 
-  // Ensure touch target minimum
+  // Ensure touch target minimum - responsive sizes
   '&.MuiButton-sizeSmall': {
-    minHeight: 32,
+    minHeight: 30, // 30px mobile
     padding: theme.spacing(1, 2), // 8px 16px
+    fontSize: '0.75rem', // 12px mobile
+
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 32, // 32px tablet+
+      fontSize: '0.8125rem', // 13px tablet+
+    },
   },
 
   '&.MuiButton-sizeLarge': {
-    minHeight: 48,
-    padding: theme.spacing(2, 5), // 16px 40px
+    minHeight: 44, // 44px mobile
+    padding: theme.spacing(1.5, 4), // 12px 32px
+    fontSize: '0.9375rem', // 15px mobile
+
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 48, // 48px tablet+
+      padding: theme.spacing(2, 5), // 16px 40px
+      fontSize: '1rem', // 16px tablet+
+    },
   },
 
   // Accessible focus indicator

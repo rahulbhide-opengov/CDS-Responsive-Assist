@@ -33,14 +33,41 @@ export const CDSAppBar = styled(MuiAppBar)(({ theme }) => ({
   // Default elevation
   boxShadow: theme.shadows[4],
 
-  // Height
-  minHeight: 64,
-  [theme.breakpoints.down('sm')]: {
-    minHeight: 56,
+  // Responsive height
+  minHeight: 56, // 56px mobile
+  [theme.breakpoints.up('sm')]: {
+    minHeight: 60, // 60px tablet
+  },
+  [theme.breakpoints.up('md')]: {
+    minHeight: 64, // 64px desktop
   },
 
   // Z-index
   zIndex: theme.zIndex.appBar, // 1100
+
+  // Toolbar responsive styling
+  '& .MuiToolbar-root': {
+    minHeight: 56, // 56px mobile
+    padding: theme.spacing(0, 2), // 0 8px mobile
+
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 60, // 60px tablet
+      padding: theme.spacing(0, 3), // 0 12px tablet
+    },
+
+    [theme.breakpoints.up('md')]: {
+      minHeight: 64, // 64px desktop
+      padding: theme.spacing(0, 4), // 0 16px desktop
+    },
+  },
+
+  // Typography responsive sizing
+  '& .MuiTypography-h6': {
+    fontSize: '1.125rem', // 18px mobile
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.25rem', // 20px tablet+
+    },
+  },
 }));
 
 /**
@@ -165,10 +192,22 @@ export const CDSTab = styled(MuiTab)(({ theme }) => ({
 
   // Proper touch target
   minHeight: 48,
-  minWidth: 90,
+  minWidth: 80, // 80px mobile
 
-  // Padding
-  padding: theme.spacing(1.5, 2),
+  // Responsive padding and font size
+  padding: theme.spacing(1.5, 1.5), // 12px 6px mobile
+  fontSize: '0.8125rem', // 13px mobile
+
+  [theme.breakpoints.up('sm')]: {
+    minWidth: 90, // 90px tablet+
+    padding: theme.spacing(1.5, 2), // 12px 8px tablet+
+    fontSize: '0.875rem', // 14px tablet+
+  },
+
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(2, 3), // 16px 12px desktop
+    fontSize: '0.9375rem', // 15px desktop
+  },
 
   // Transitions
   transition: theme.transitions.create(['color', 'background-color'], {
