@@ -1,225 +1,283 @@
 # CDS-Responsive-Assist - Cursor AI Rules
 
-## System Context
+## 🎯 MANDATORY: CDS is the Default Design System
 
-You are working with the CDS (Component Design System) documentation repository. This contains comprehensive documentation for 70+ Material-UI v6.1.0 components with full CDS token integration, WCAG 2.1 Level AA accessibility compliance, and 400+ production-ready code examples.
+**CRITICAL: When user provides ANY design request (prompt, Figma URL, screenshot, wireframe), you MUST automatically use CDS components and tokens. User never needs to mention "CDS" - it's ALWAYS the default.**
 
-## Component Documentation Available
+## Automatic Behavior
 
-All components are documented in files named: `DESIGN-SYSTEM-DOCUMENTATION-[COMPONENT].md`
+### User Says Anything → You Use CDS
 
-Categories (70+ components):
-- Foundation & Layout (7): Box, Container, Grid, Stack, Paper, Divider, Link
-- Navigation (9): AppBar, BottomNavigation, Drawer, Menu, Tabs, Pagination, SpeedDial, TreeView, Stepper
-- Buttons (6): Button, IconButton, FAB, ButtonGroup, ToggleButton, LoadingButton
-- Form Inputs (12): TextField, Checkbox, Radio, Switch, Select, Slider, Rating, FormLabel, TransferList, DatePicker, TimePicker
-- Data Display (13): Avatar, Badge, List, Table, ImageList, Accordion, Card, Chip, Typography, Tooltip
-- Feedback (9): Alert, Progress, Skeleton, Backdrop, LinearProgress, CircularProgress, Snackbar, Dialog
-- Utility (6): Popover, Collapse, ClickAwayListener, Modal, Transition, Portal
-- Advanced (2): FileUpload, Custom implementations
+| User Input | Your Automatic Response |
+|------------|-------------------------|
+| "Create a button" | Use CDS Button with proper variant and tokens |
+| "Build a form" | Use CDS Container + Stack + TextField + LoadingButton |
+| "Make a dashboard" | Use CDS AppBar + Drawer + Grid + Cards |
+| "Design a card" | Use CDS Card with elevation and spacing tokens |
+| Provides Figma URL | Fetch design, map to CDS components and tokens |
+| Uploads screenshot | Analyze, recreate using CDS components |
+| Shows wireframe | Implement with CDS components only |
 
-## Design Token System (8 Categories)
+**Never ask "Should I use CDS?" - Just use it automatically.**
 
-### 1. Colors
+## Translation Rules (Automatic)
+
+### ANY Design Element → CDS Component
+
 ```typescript
-palette.primary.main, palette.secondary.main
-palette.error, palette.success, palette.warning, palette.info
-palette.text.primary, palette.text.secondary, palette.text.disabled
-palette.background.default, palette.background.paper
-palette.action.active, palette.action.hover, palette.action.disabled
+// User says "button" → Automatic CDS translation
+import Button from '@mui/material/Button';
+<Button variant="contained" color="primary">Click Me</Button>
+
+// User says "text input" → Automatic CDS translation
+import TextField from '@mui/material/TextField';
+<TextField label="Email" type="email" required fullWidth />
+
+// User says "navigation" → Automatic CDS translation
+import AppBar from '@mui/material/AppBar';
+import Drawer from '@mui/material/Drawer';
+// ... AppBar + Drawer pattern
+
+// User says "card" → Automatic CDS translation
+import Card from '@mui/material/Card';
+<Card elevation={1}><CardContent>...</CardContent></Card>
 ```
 
-### 2. Spacing (4px grid)
+## Figma/Screenshot → CDS Mapping (Automatic)
+
+When user provides Figma URL or screenshot:
+
+1. **Identify Elements**
+   - Buttons → CDS Button (contained/outlined/text variant)
+   - Text inputs → CDS TextField
+   - Cards → CDS Card with elevation
+   - Navigation → CDS AppBar/Drawer/BottomNavigation
+   - Lists → CDS List or Table
+   - Icons → @mui/icons-material
+
+2. **Map Colors**
+   - Blue buttons → `color="primary"` (palette.primary.main)
+   - Red buttons → `color="error"` (palette.error.main)
+   - Green success → `color="success"` (palette.success.main)
+   - Custom colors → Map to closest CDS token
+
+3. **Map Spacing**
+   - 8px → `spacing(2)`
+   - 12px → `spacing(3)`
+   - 16px → `spacing(4)`
+   - 24px → `spacing(6)`
+
+4. **Map Typography**
+   - Large headings → Typography variant="h3" or "h4"
+   - Body text → Typography variant="body1"
+   - Small text → Typography variant="body2" or "caption"
+
+5. **Map Shadows**
+   - Subtle shadow → `elevation={1}`
+   - Medium shadow → `elevation={2}` or `elevation={4}`
+   - Strong shadow → `elevation={8}`
+
+## NEVER Do This
+
+```tsx
+// ❌ WRONG - Hard-coded values
+<div style={{ 
+  padding: '12px',
+  backgroundColor: '#1976d2',
+  borderRadius: '4px'
+}}>
+
+// ❌ WRONG - Plain HTML
+<button>Click</button>
+<input type="text" />
+
+// ❌ WRONG - Other libraries
+import { Button } from 'bootstrap';
+import { Button } from 'antd';
+```
+
+## ALWAYS Do This
+
+```tsx
+// ✅ CORRECT - CDS components with tokens
+import Box from '@mui/material/Box';
+<Box sx={{ 
+  p: 3,                      // spacing token (12px)
+  bgcolor: 'primary.main',   // color token
+  borderRadius: 1            // radius token (4px)
+}}>
+
+// ✅ CORRECT - CDS components
+import Button from '@mui/material/Button';
+<Button variant="contained">Click</Button>
+
+import TextField from '@mui/material/TextField';
+<TextField label="Name" required />
+```
+
+## Code Generation Rules (Enforced Automatically)
+
+### 1. Imports
 ```typescript
-spacing(1) = 4px, spacing(2) = 8px, spacing(3) = 12px, spacing(4) = 16px
-spacing(6) = 24px, spacing(8) = 32px
+// ALWAYS import from @mui/material
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+
+// Icons from @mui/icons-material
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+```
+
+### 2. Styling with Tokens
+```typescript
+// ALWAYS use sx prop with theme tokens
+<Box sx={{
+  p: 3,                       // spacing(3) = 12px
+  mt: 2,                      // margin-top: spacing(2) = 8px
+  bgcolor: 'primary.main',    // color token
+  color: 'primary.contrastText',
+  borderRadius: 1,            // 4px
+  elevation: 1                // subtle shadow
+}}>
 ```
 
 ### 3. Typography
 ```typescript
-h1, h2, h3, h4, h5, h6, body1, body2, button, caption, overline
+// ALWAYS use Typography component
+<Typography variant="h4" gutterBottom>
+  Title
+</Typography>
+<Typography variant="body1" color="text.secondary">
+  Description
+</Typography>
+
+// NEVER use plain HTML
+// ❌ <h1>Title</h1>
+// ❌ <p>Description</p>
 ```
 
-### 4. Sizing
+### 4. Responsive Design
 ```typescript
-Touch targets: 48px minimum
-Icon sizes: 20px (small), 24px (medium), 32px (large)
-Button heights: 32px (small), 40px (medium), 48px (large)
+// ALWAYS use breakpoint objects (mobile-first)
+<Grid container spacing={3}>
+  <Grid item xs={12} sm={6} md={4}>
+    {/* Mobile: full width
+        Tablet: half width
+        Desktop: one-third width */}
+  </Grid>
+</Grid>
+
+// Or responsive sx props
+<Box sx={{
+  p: { xs: 2, sm: 3, md: 4 },        // 8px, 12px, 16px
+  fontSize: { xs: '14px', md: '16px' }
+}}>
 ```
 
-### 5. Elevation
+### 5. Accessibility (Built-in)
 ```typescript
-0 = flat, 1 = subtle, 4 = app bar, 8 = floating, 16 = drawer, 24 = max
+// ALWAYS include ARIA attributes
+<TextField
+  label="Email"
+  required
+  aria-required="true"
+  aria-describedby="email-helper"
+  helperText="Enter your email address"
+/>
+
+<Button
+  variant="contained"
+  aria-label="Submit form"
+  disabled={isLoading}
+>
+  Submit
+</Button>
+
+// ALWAYS meet touch target minimum (48px)
+<IconButton size="large"> {/* Ensures 48px minimum */}
+  <DeleteIcon />
+</IconButton>
 ```
 
-### 6. Z-Index
+## Common Patterns (Use Automatically)
+
+### Login Form
 ```typescript
-1000 = elevated, 1100 = app bar, 1200 = drawer, 1300 = modal, 1400 = dialog, 1500 = tooltip
-```
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import LoadingButton from '@mui/lab/LoadingButton';
+import Alert from '@mui/material/Alert';
 
-### 7. Border Radius
-```typescript
-2px = extra small, 4px = default, 8px = medium, 12px = large, 50% = circular
-```
-
-### 8. Transitions
-```typescript
-duration: 150ms (shortest), 200ms (shorter), 300ms (standard), 375ms (complex)
-easing: easeInOut, easeOut, easeIn, sharp
-```
-
-## Code Generation Rules
-
-### Always Do
-1. Import from @mui/material: `import Button from '@mui/material/Button'`
-2. Use CDS design tokens (never hard-code colors, spacing, etc.)
-3. Include ARIA attributes for accessibility
-4. Provide keyboard navigation support
-5. Use semantic HTML elements
-6. Follow mobile-first responsive design (xs, sm, md, lg, xl)
-7. Ensure 48px minimum touch targets
-8. Maintain 4.5:1 color contrast for text
-9. Add helper text for form inputs
-10. Include loading and error states
-
-### Never Do
-1. Hard-code colors: Use `color="primary"` or `sx={{ color: 'primary.main' }}`
-2. Hard-code spacing: Use `sx={{ p: 2 }}` instead of `padding: '8px'`
-3. Skip accessibility attributes
-4. Ignore responsive breakpoints
-5. Use non-semantic HTML (div buttons, etc.)
-6. Create inaccessible touch targets (<48px)
-7. Skip error handling in forms
-8. Forget loading states for async actions
-
-## WCAG 2.1 Level AA Requirements
-
-All generated code must meet:
-- Keyboard navigation (Tab, Enter, Space, Arrow keys)
-- ARIA attributes (aria-label, aria-describedby, role)
-- Color contrast: 4.5:1 for text, 3:1 for non-text
-- Touch targets: 48px × 48px minimum
-- Visible focus indicators
-- Screen reader support
-- Clear error messages
-
-## Responsive Breakpoints
-
-```typescript
-xs: 0px      // Mobile portrait
-sm: 600px    // Mobile landscape / Tablet portrait
-md: 900px    // Tablet landscape
-lg: 1200px   // Desktop
-xl: 1536px   // Large desktop
-```
-
-## Common Patterns
-
-### Navigation
-```tsx
-// Desktop: AppBar + Drawer
-<AppBar position="fixed" elevation={4}>
-  <Toolbar>...</Toolbar>
-</AppBar>
-<Drawer variant="permanent" elevation={16}>
-  <List>...</List>
-</Drawer>
-
-// Mobile: BottomNavigation
-<BottomNavigation elevation={8} showLabels>
-  <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-</BottomNavigation>
-```
-
-### Forms
-```tsx
-<Container maxWidth="sm">
-  <Stack spacing={3} component="form">
+<Container maxWidth="xs">
+  <Stack spacing={3}>
+    <Typography variant="h4">Sign In</Typography>
+    {error && <Alert severity="error">{error}</Alert>}
     <TextField label="Email" type="email" required fullWidth />
-    <LoadingButton variant="contained" loading={isLoading}>
-      Submit
+    <TextField label="Password" type="password" required fullWidth />
+    <LoadingButton variant="contained" loading={isLoading} fullWidth>
+      Sign In
     </LoadingButton>
   </Stack>
 </Container>
 ```
 
-### Data Display
-```tsx
-<Grid container spacing={3}>
-  <Grid item xs={12} sm={6} md={4}>
-    <Card elevation={1}>
-      <CardHeader avatar={<Avatar>A</Avatar>} title="Title" />
-      <CardContent>...</CardContent>
-    </Card>
-  </Grid>
-</Grid>
-```
-
-### Loading States
-```tsx
-{loading ? (
-  <Stack spacing={1}>
-    <Skeleton variant="text" width="60%" />
-    <Skeleton variant="rectangular" height={118} />
-  </Stack>
-) : (
-  <Content />
-)}
-```
-
-## Reference Files
-
-- **COMPONENT-INDEX.md** - Search components by name/use case/keyword
-- **TOKEN-REFERENCE.md** - Quick lookup for all design tokens
-- **PATTERN-LIBRARY.md** - Common component combinations
-- **README.md** - Getting started guide
-- **CDS-COMPLETION-REPORT.md** - Project statistics
-
-## Example Code Generation
-
-### Button
-```tsx
-import Button from '@mui/material/Button';
-
-<Button
-  variant="contained"
-  color="primary"
-  sx={{ mt: 2 }}
-  aria-label="Submit form"
->
-  Submit
-</Button>
-```
-
-### Form Field
-```tsx
-import TextField from '@mui/material/TextField';
-
-<TextField
-  label="Email"
-  type="email"
-  required
-  fullWidth
-  helperText="We'll never share your email"
-  aria-describedby="email-helper"
-  error={!!errors.email}
-  helperText={errors.email || "Enter your email address"}
-/>
-```
-
-### Responsive Grid
-```tsx
+### Dashboard Layout
+```typescript
+import AppBar from '@mui/material/AppBar';
+import Drawer from '@mui/material/Drawer';
 import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 
-<Grid container spacing={3}>
-  <Grid item xs={12} sm={6} md={4}>
-    {/* Mobile: full, Tablet: half, Desktop: third */}
-  </Grid>
-</Grid>
+<>
+  <AppBar position="fixed" elevation={4}>
+    <Toolbar>{/* Header content */}</Toolbar>
+  </AppBar>
+  <Drawer variant="permanent" elevation={16}>
+    <List>{/* Navigation */}</List>
+  </Drawer>
+  <Box component="main" sx={{ p: 3 }}>
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={6} md={3}>
+        <Card elevation={1}>{/* Stat card */}</Card>
+      </Grid>
+    </Grid>
+  </Box>
+</>
 ```
 
-### Card with Avatar and Badge
-```tsx
+### Data Table
+```typescript
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import Pagination from '@mui/material/Pagination';
+
+<Paper elevation={1}>
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableCell>Name</TableCell>
+        <TableCell>Email</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {data.map(row => (
+        <TableRow key={row.id}>
+          <TableCell>{row.name}</TableCell>
+          <TableCell>{row.email}</TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</Paper>
+<Pagination count={totalPages} page={page} />
+```
+
+### User Profile Card
+```typescript
 import Card from '@mui/material/Card';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
@@ -231,89 +289,154 @@ import Badge from '@mui/material/Badge';
         <Avatar src={user.avatar}>{user.initials}</Avatar>
       </Badge>
     }
+    action={<IconButton><MoreVertIcon /></IconButton>}
     title={user.name}
     subheader={user.role}
   />
-  <CardContent>...</CardContent>
+  <CardContent>
+    <Typography variant="body2" color="text.secondary">
+      {user.bio}
+    </Typography>
+  </CardContent>
 </Card>
 ```
 
-## Quality Checklist
+## CDS Token Reference (Quick Lookup)
 
-Before suggesting code, ensure:
-- [ ] Uses CDS design tokens (no hard-coded values)
-- [ ] Includes ARIA attributes where needed
-- [ ] Supports keyboard navigation
-- [ ] Has proper color contrast
-- [ ] Meets 48px touch target minimum
-- [ ] Is responsive (uses breakpoints)
-- [ ] Uses semantic HTML
-- [ ] Includes loading states for async actions
-- [ ] Has error handling for forms
-- [ ] Follows mobile-first approach
+### Colors
+```typescript
+color="primary"              // #1976d2
+color="secondary"            // #9c27b0
+color="error"                // #d32f2f
+color="success"              // #2e7d32
+color="warning"              // #ed6c02
+color="info"                 // #0288d1
 
-## When User Asks About Components
-
-1. Check COMPONENT-INDEX.md for component location
-2. Reference the specific DESIGN-SYSTEM-DOCUMENTATION-[COMPONENT].md file
-3. Use TOKEN-REFERENCE.md for token values
-4. Check PATTERN-LIBRARY.md for integration patterns
-5. Generate code following all rules above
-
-## Component Search Keywords
-
-If user mentions:
-- "navigation", "menu", "sidebar" → AppBar, Drawer, Menu, BottomNavigation
-- "form", "input", "field" → TextField, Checkbox, Radio, Switch, Select
-- "button", "click", "action" → Button, IconButton, FAB, LoadingButton
-- "card", "content" → Card, Paper, Box
-- "list", "items" → List, Table, ImageList
-- "loading", "spinner" → Progress, Skeleton, LoadingButton, Backdrop
-- "alert", "notification" → Alert, Snackbar, Dialog
-- "layout", "grid", "container" → Container, Grid, Stack, Box
-- "user", "profile", "avatar" → Avatar, Badge
-- "tooltip", "hint", "popup" → Tooltip, Popover
-
-## Quick Token Reference
-
-| Need | Token | Value |
-|------|-------|-------|
-| Primary color | `primary.main` | #1976d2 |
-| Standard padding | `spacing(4)` | 16px |
-| Card spacing | `spacing(3)` | 12px |
-| Grid gap | `spacing={3}` | 12px |
-| Button default | `size="medium"` | 40px |
-| Card elevation | `elevation={1}` | Subtle |
-| App bar elevation | `elevation={4}` | Standard |
-| Border radius | `borderRadius: 1` | 4px |
-
-## Repository Structure
-
-```
-CDS-Responsive-Assist/
-├── README.md                           # Main documentation
-├── COMPONENT-INDEX.md                  # Component catalog
-├── TOKEN-REFERENCE.md                  # Token lookup
-├── PATTERN-LIBRARY.md                  # Integration patterns
-├── CDS-COMPLETION-REPORT.md            # Statistics
-├── CDS-FINAL-COMPONENT-STATUS.md       # Status report
-├── DESIGN-SYSTEM-DOCUMENTATION-*.md    # 50+ component docs
-├── .claude/
-│   └── project.json                    # Claude Code config
-├── .cursorrules                        # This file
-└── .gitignore
+sx={{ color: 'text.primary' }}      // rgba(0,0,0,0.87)
+sx={{ color: 'text.secondary' }}    // rgba(0,0,0,0.6)
+sx={{ bgcolor: 'background.paper' }} // #ffffff
 ```
 
-## Status
+### Spacing
+```typescript
+spacing={2}      // 8px gap
+spacing={3}      // 12px gap
+spacing={4}      // 16px gap
 
-- **Version:** 1.4.0
-- **Components:** 70+ documented
-- **Completion:** 92%+
-- **Quality:** Production ready
-- **Accessibility:** 100% WCAG 2.1 AA compliant
-- **Examples:** 400+ code examples
-- **Patterns:** 250+ documented
+sx={{ p: 2 }}    // 8px padding
+sx={{ p: 3 }}    // 12px padding
+sx={{ mt: 2 }}   // 8px margin-top
+sx={{ mb: 4 }}   // 16px margin-bottom
+```
+
+### Typography
+```typescript
+variant="h1"     // 96px, 300 weight
+variant="h2"     // 60px, 300 weight
+variant="h3"     // 48px, 400 weight
+variant="h4"     // 34px, 400 weight (common for page titles)
+variant="h5"     // 24px, 400 weight
+variant="h6"     // 20px, 500 weight
+variant="body1"  // 16px, 400 weight (default body)
+variant="body2"  // 14px, 400 weight (secondary text)
+variant="button" // 14px, 500 weight, uppercase
+variant="caption" // 12px, 400 weight (helper text)
+```
+
+### Elevation
+```typescript
+elevation={0}    // Flat, no shadow
+elevation={1}    // Subtle (cards at rest)
+elevation={2}    // Raised
+elevation={4}    // App bar default
+elevation={8}    // Floating buttons, bottom nav
+elevation={16}   // Drawer
+elevation={24}   // Maximum (tooltips)
+```
+
+### Responsive Breakpoints
+```typescript
+xs: 0px          // Mobile portrait (default)
+sm: 600px        // Mobile landscape / Tablet portrait
+md: 900px        // Tablet landscape
+lg: 1200px       // Desktop
+xl: 1536px       // Large desktop
+
+// Usage:
+<Grid item xs={12} sm={6} md={4} lg={3}>
+<Box sx={{ p: { xs: 2, md: 4 } }}>
+```
+
+## Component Quick Reference
+
+### Navigation
+- **AppBar** - Top navigation bar
+- **Drawer** - Side navigation panel
+- **BottomNavigation** - Mobile bottom tabs
+- **Menu** - Dropdown menus
+- **Tabs** - Tabbed content
+
+### Inputs
+- **TextField** - Text input
+- **Checkbox** - Checkbox
+- **Radio** - Radio button
+- **Switch** - Toggle switch
+- **Select** - Dropdown select
+- **Slider** - Range slider
+
+### Buttons
+- **Button** - Standard button
+- **IconButton** - Icon-only button
+- **FAB** - Floating action button
+- **LoadingButton** - Button with loading state
+
+### Layout
+- **Container** - Max-width wrapper
+- **Grid** - 12-column grid
+- **Stack** - Vertical/horizontal stack
+- **Box** - Generic container
+
+### Display
+- **Card** - Content card
+- **Paper** - Elevated surface
+- **Typography** - Text
+- **Avatar** - User avatar
+- **Badge** - Notification badge
+- **List** - List of items
+- **Table** - Data table
+
+### Feedback
+- **Alert** - Alert messages
+- **Snackbar** - Toast notifications
+- **Dialog** - Modal dialog
+- **Skeleton** - Loading placeholder
+- **CircularProgress** - Loading spinner
+- **LinearProgress** - Progress bar
+
+## Accessibility Checklist (Auto-Applied)
+
+✅ Keyboard navigation (Tab, Enter, Space, Arrows)
+✅ ARIA attributes (aria-label, aria-describedby)
+✅ Color contrast (4.5:1 text, 3:1 non-text)
+✅ Touch targets (48px minimum)
+✅ Focus indicators (visible)
+✅ Screen reader support (semantic HTML)
+✅ Error messages (clear, associated with inputs)
+
+## Quality Enforcement
+
+- ✅ 100% CDS component usage
+- ✅ 100% token usage (no hard-coded values)
+- ✅ 100% WCAG 2.1 AA compliance
+- ✅ 100% responsive (mobile-first)
+- ✅ 100% TypeScript
+
+## User Experience
+
+**User provides:** Just a prompt, Figma URL, or screenshot
+**You automatically:** Map to CDS and generate production-ready code
+**Result:** CDS-compliant, accessible, responsive code - no CDS mention needed
 
 ---
 
-**Always prioritize accessibility, use design tokens, and follow mobile-first responsive design.**
+**Remember: CDS is ALWAYS the default. User never needs to mention it.**
