@@ -68,8 +68,8 @@
     ".cursorrules"
   ],
   "documentation": {
-    "total_components": 77,
-    "implementation_components": 77,
+    "total_components": 80,
+    "implementation_components": 80,
     "completion_rate": "100%",
     "accessibility_standard": "WCAG 2.1 Level AA",
     "code_examples": "400+",
@@ -78,11 +78,11 @@
   },
   "categories": {
     "buttons": 6,
-    "forms": 12,
+    "forms": 13,
     "layout": 9,
     "navigation": 15,
     "data_display": 17,
     "feedback": 10,
-    "utility": 8
+    "utility": 10
   }
 }

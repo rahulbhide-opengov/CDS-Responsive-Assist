@@ -40,7 +40,7 @@ export {
   type CDSLoadingButtonProps,
 } from './components/ButtonExtended';
 
-// ===== FORM COMPONENTS (12) =====
+// ===== FORM COMPONENTS (13) =====
 export {
   CDSTextField,
   CDSCheckbox,
@@ -66,6 +66,12 @@ export {
   type CDSAutocompleteProps,
   type CDSRadioGroupProps,
 } from './components/FormExtended';
+
+export {
+  CDSTransferList,
+  type CDSTransferListProps,
+  type TransferListItem,
+} from './components/FormAdvanced';
 
 // ===== LAYOUT COMPONENTS (9) =====
 export {
@@ -185,7 +191,7 @@ export {
   type CDSBackdropProps,
 } from './components/Feedback';
 
-// ===== UTILITY COMPONENTS (8) =====
+// ===== UTILITY COMPONENTS (10) =====
 export {
   CDSPopover,
   CDSCollapse,
@@ -200,6 +206,17 @@ export {
   type CDSModalProps,
   type CDSClickAwayListenerProps,
 } from './components/Utility';
+
+export {
+  CDSPortal,
+  type CDSPortalProps,
+} from './components/UtilityExtended';
+
+export {
+  CDSFileUpload,
+  type CDSFileUploadProps,
+  type FileUploadFile,
+} from './components/FileUpload';
 
 // ===== MUI COMPONENT RE-EXPORTS (for convenience) =====
 export {
@@ -230,14 +247,14 @@ export { ThemeProvider } from '@mui/material/styles';
 /**
  * Component Count Summary:
  * - Buttons: 6 components
- * - Forms: 12 components
+ * - Forms: 13 components (includes TransferList)
  * - Layout: 9 components
  * - Navigation: 15 components
  * - Data Display: 17 components
  * - Feedback: 10 components
- * - Utility: 8 components
+ * - Utility: 10 components (includes Portal, FileUpload)
  *
- * Total: 77 CDS Components
+ * Total: 80 CDS Components
  *
  * All components include:
  * - CDS token integration
@@ -245,4 +262,6 @@ export { ThemeProvider } from '@mui/material/styles';
  * - Responsive design
  * - TypeScript support
  * - Production-ready code
+ *
+ * 🎉 100% Complete - All documented components implemented!
  */
