@@ -4,6 +4,23 @@
 
 A comprehensive Material-UI v6.1.0 component documentation system with full CDS token integration, WCAG 2.1 Level AA accessibility compliance, and 400+ production-ready code examples.
 
+## 🎉 NEW: Automatic CDS Usage - No Explicit Mention Needed!
+
+**CDS is now the DEFAULT design system.** Just describe what you want, provide a Figma URL, or upload a screenshot - the system automatically uses CDS components and tokens!
+
+### Quick Examples
+
+**You say:** `"Create a login page"`
+**You get:** Full CDS implementation with Container, Stack, TextField, LoadingButton, and Alert - all with proper tokens, accessibility, and responsive design.
+
+**You provide:** Figma URL
+**System automatically:** Fetches design, maps to CDS components, applies tokens, generates production code.
+
+**You upload:** Screenshot
+**System automatically:** Analyzes layout, recreates with CDS components, applies proper styling and accessibility.
+
+**👉 See [AUTOMATIC-CDS-USAGE.md](AUTOMATIC-CDS-USAGE.md) for complete guide**
+
 ## 📊 System Overview
 
 - **Total Components Documented:** 70 components
