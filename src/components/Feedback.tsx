@@ -707,17 +707,17 @@ const StyledMuiBackdrop = styled(MuiBackdrop)(({ theme }) => ({
  *
  * @example
  * // Success alert
- * <CDSAlert severity="success">
+ * <Alert severity="success">
  *   Operation completed successfully
- * </CDSAlert>
+ * </Alert>
  *
  * @example
  * // Error alert with close button
- * <CDSAlert severity="error" onClose={handleClose}>
+ * <Alert severity="error" onClose={handleClose}>
  *   An error occurred
- * </CDSAlert>
+ * </Alert>
  */
-export const CDSAlert = React.forwardRef<HTMLDivElement, AlertProps>(
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   (
     {
       severity = 'info',
@@ -750,7 +750,7 @@ export const CDSAlert = React.forwardRef<HTMLDivElement, AlertProps>(
   }
 );
 
-CDSAlert.displayName = 'CDSAlert';
+Alert.displayName = 'Alert';
 
 /**
  * CDS Snackbar Component
@@ -758,7 +758,7 @@ CDSAlert.displayName = 'CDSAlert';
  * Toast notification with auto-hide
  *
  * @example
- * <CDSSnackbar
+ * <Snackbar
  *   open={open}
  *   onClose={handleClose}
  *   message="Item saved successfully"
@@ -767,13 +767,13 @@ CDSAlert.displayName = 'CDSAlert';
  *
  * @example
  * // With custom Alert content
- * <CDSSnackbar open={open} onClose={handleClose}>
- *   <CDSAlert severity="success" onClose={handleClose}>
+ * <Snackbar open={open} onClose={handleClose}>
+ *   <Alert severity="success" onClose={handleClose}>
  *     Operation successful
- *   </CDSAlert>
- * </CDSSnackbar>
+ *   </Alert>
+ * </Snackbar>
  */
-export const CDSSnackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
+export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
   (
     {
       open,
@@ -806,7 +806,7 @@ export const CDSSnackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
   }
 );
 
-CDSSnackbar.displayName = 'CDSSnackbar';
+Snackbar.displayName = 'Snackbar';
 
 /**
  * CDS Dialog Component
@@ -815,30 +815,30 @@ CDSSnackbar.displayName = 'CDSSnackbar';
  *
  * @example
  * // Medium dialog (default)
- * <CDSDialog open={open} onClose={handleClose}>
- *   <CDSDialogTitle>Confirm Action</CDSDialogTitle>
- *   <CDSDialogContent>Are you sure?</CDSDialogContent>
- *   <CDSDialogActions>
- *     <CDSButton onClick={handleClose}>Cancel</CDSButton>
- *     <CDSButton onClick={handleConfirm}>Confirm</CDSButton>
- *   </CDSDialogActions>
- * </CDSDialog>
+ * <Dialog open={open} onClose={handleClose}>
+ *   <DialogTitle>Confirm Action</DialogTitle>
+ *   <DialogContent>Are you sure?</DialogContent>
+ *   <DialogActions>
+ *     <Button onClick={handleClose}>Cancel</Button>
+ *     <Button onClick={handleConfirm}>Confirm</Button>
+ *   </DialogActions>
+ * </Dialog>
  *
  * @example
  * // Large dialog
- * <CDSDialog open={open} onClose={handleClose} size="lg">
- *   <CDSDialogTitle>Settings</CDSDialogTitle>
- *   <CDSDialogContent>...</CDSDialogContent>
- * </CDSDialog>
+ * <Dialog open={open} onClose={handleClose} size="lg">
+ *   <DialogTitle>Settings</DialogTitle>
+ *   <DialogContent>...</DialogContent>
+ * </Dialog>
  *
  * @example
  * // Fullscreen on mobile
- * <CDSDialog open={open} onClose={handleClose} fullScreenMobile>
- *   <CDSDialogTitle>Mobile Form</CDSDialogTitle>
- *   <CDSDialogContent>...</CDSDialogContent>
- * </CDSDialog>
+ * <Dialog open={open} onClose={handleClose} fullScreenMobile>
+ *   <DialogTitle>Mobile Form</DialogTitle>
+ *   <DialogContent>...</DialogContent>
+ * </Dialog>
  */
-export const CDSDialog = React.forwardRef<HTMLDivElement, DialogProps>(
+export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
   (
     {
       open,
@@ -882,15 +882,15 @@ export const CDSDialog = React.forwardRef<HTMLDivElement, DialogProps>(
   }
 );
 
-CDSDialog.displayName = 'CDSDialog';
+Dialog.displayName = 'Dialog';
 
 /**
  * CDS DialogTitle Component
  *
  * @example
- * <CDSDialogTitle id="dialog-title">Confirm Action</CDSDialogTitle>
+ * <DialogTitle id="dialog-title">Confirm Action</DialogTitle>
  */
-export const CDSDialogTitle = React.forwardRef<HTMLDivElement, DialogTitleProps>(
+export const DialogTitle = React.forwardRef<HTMLDivElement, DialogTitleProps>(
   ({ children, id, className, sx }, ref) => {
     return (
       <StyledMuiDialogTitle ref={ref} id={id} className={className} sx={sx}>
@@ -900,17 +900,17 @@ export const CDSDialogTitle = React.forwardRef<HTMLDivElement, DialogTitleProps>
   }
 );
 
-CDSDialogTitle.displayName = 'CDSDialogTitle';
+DialogTitle.displayName = 'DialogTitle';
 
 /**
  * CDS DialogContent Component
  *
  * @example
- * <CDSDialogContent>
+ * <DialogContent>
  *   Are you sure you want to proceed?
- * </CDSDialogContent>
+ * </DialogContent>
  */
-export const CDSDialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
+export const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
   ({ children, id, dividers = false, className, sx }, ref) => {
     return (
       <StyledMuiDialogContent ref={ref} id={id} dividers={dividers} className={className} sx={sx}>
@@ -920,20 +920,20 @@ export const CDSDialogContent = React.forwardRef<HTMLDivElement, DialogContentPr
   }
 );
 
-CDSDialogContent.displayName = 'CDSDialogContent';
+DialogContent.displayName = 'DialogContent';
 
 /**
  * CDS DialogActions Component
  *
  * @example
- * <CDSDialogActions>
- *   <CDSButton onClick={handleClose}>Cancel</CDSButton>
- *   <CDSButton variant="contained" onClick={handleConfirm}>
+ * <DialogActions>
+ *   <Button onClick={handleClose}>Cancel</Button>
+ *   <Button variant="primary" onClick={handleConfirm}>
  *     Confirm
- *   </CDSButton>
- * </CDSDialogActions>
+ *   </Button>
+ * </DialogActions>
  */
-export const CDSDialogActions = React.forwardRef<HTMLDivElement, DialogActionsProps>(
+export const DialogActions = React.forwardRef<HTMLDivElement, DialogActionsProps>(
   ({ children, className, sx }, ref) => {
     return (
       <StyledMuiDialogActions ref={ref} className={className} sx={sx}>
@@ -943,7 +943,7 @@ export const CDSDialogActions = React.forwardRef<HTMLDivElement, DialogActionsPr
   }
 );
 
-CDSDialogActions.displayName = 'CDSDialogActions';
+DialogActions.displayName = 'DialogActions';
 
 /**
  * CDS CircularProgress Component
@@ -952,17 +952,17 @@ CDSDialogActions.displayName = 'CDSDialogActions';
  *
  * @example
  * // Indeterminate spinner
- * <CDSCircularProgress />
+ * <CircularProgress />
  *
  * @example
  * // Determinate with value
- * <CDSCircularProgress variant="determinate" value={75} />
+ * <CircularProgress variant="determinate" value={75} />
  *
  * @example
  * // Custom size
- * <CDSCircularProgress size="large" />
+ * <CircularProgress size="large" />
  */
-export const CDSCircularProgress = React.forwardRef<HTMLSpanElement, CircularProgressProps>(
+export const CircularProgress = React.forwardRef<HTMLSpanElement, CircularProgressProps>(
   (
     {
       size = 'medium',
@@ -992,7 +992,7 @@ export const CDSCircularProgress = React.forwardRef<HTMLSpanElement, CircularPro
   }
 );
 
-CDSCircularProgress.displayName = 'CDSCircularProgress';
+CircularProgress.displayName = 'CircularProgress';
 
 /**
  * CDS LinearProgress Component
@@ -1001,13 +1001,13 @@ CDSCircularProgress.displayName = 'CDSCircularProgress';
  *
  * @example
  * // Indeterminate loading bar
- * <CDSLinearProgress />
+ * <LinearProgress />
  *
  * @example
  * // Determinate with value
- * <CDSLinearProgress variant="determinate" value={50} />
+ * <LinearProgress variant="determinate" value={50} />
  */
-export const CDSLinearProgress = React.forwardRef<HTMLSpanElement, LinearProgressProps>(
+export const LinearProgress = React.forwardRef<HTMLSpanElement, LinearProgressProps>(
   (
     {
       variant = 'indeterminate',
@@ -1033,7 +1033,7 @@ export const CDSLinearProgress = React.forwardRef<HTMLSpanElement, LinearProgres
   }
 );
 
-CDSLinearProgress.displayName = 'CDSLinearProgress';
+LinearProgress.displayName = 'LinearProgress';
 
 /**
  * CDS Skeleton Component
@@ -1042,17 +1042,17 @@ CDSLinearProgress.displayName = 'CDSLinearProgress';
  *
  * @example
  * // Text skeleton
- * <CDSSkeleton variant="text" width={200} />
+ * <Skeleton variant="text" width={200} />
  *
  * @example
  * // Rectangular skeleton
- * <CDSSkeleton variant="rectangular" width={300} height={200} />
+ * <Skeleton variant="rectangular" width={300} height={200} />
  *
  * @example
  * // Circular avatar skeleton
- * <CDSSkeleton variant="circular" width={40} height={40} />
+ * <Skeleton variant="circular" width={40} height={40} />
  */
-export const CDSSkeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(
+export const Skeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(
   (
     {
       variant = 'text',
@@ -1081,7 +1081,7 @@ export const CDSSkeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(
   }
 );
 
-CDSSkeleton.displayName = 'CDSSkeleton';
+Skeleton.displayName = 'Skeleton';
 
 /**
  * CDS Backdrop Component
@@ -1089,11 +1089,11 @@ CDSSkeleton.displayName = 'CDSSkeleton';
  * Full-screen overlay
  *
  * @example
- * <CDSBackdrop open={loading} onClick={handleClose}>
- *   <CDSCircularProgress color="inherit" />
- * </CDSBackdrop>
+ * <Backdrop open={loading} onClick={handleClose}>
+ *   <CircularProgress color="inherit" />
+ * </Backdrop>
  */
-export const CDSBackdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
+export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
   (
     {
       open,
@@ -1120,4 +1120,4 @@ export const CDSBackdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
   }
 );
 
-CDSBackdrop.displayName = 'CDSBackdrop';
+Backdrop.displayName = 'Backdrop';

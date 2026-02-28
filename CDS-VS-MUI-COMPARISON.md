@@ -10,28 +10,28 @@ Visual comparison showing why CDS-first approach is superior for design systems.
 
 ```tsx
 // Current implementation (Button.tsx)
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
 // Developer uses MUI concepts
-<CDSButton variant="contained" color="primary">
+<Button variant="contained" color="primary">
   Save Changes
-</CDSButton>
+</Button>
 
-<CDSButton variant="contained" color="error">
+<Button variant="contained" color="error">
   Delete
-</CDSButton>
+</Button>
 
-<CDSButton variant="outlined" color="primary">
+<Button variant="outlined" color="primary">
   Cancel
-</CDSButton>
+</Button>
 
-<CDSButton variant="text" color="primary">
+<Button variant="text" color="primary">
   Learn More
-</CDSButton>
+</Button>
 
-<CDSButton startIcon={<SaveIcon />} variant="contained" color="primary">
+<Button startIcon={<SaveIcon />} variant="contained" color="primary">
   Save
-</CDSButton>
+</Button>
 ```
 
 **Problems:**
@@ -45,28 +45,28 @@ import { CDSButton } from './cds';
 
 ```tsx
 // New implementation (ButtonCDSFirst.tsx)
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
 // Developer uses CDS design language
-<CDSButton variant="primary">
+<Button variant="primary">
   Save Changes
-</CDSButton>
+</Button>
 
-<CDSButton variant="danger">
+<Button variant="danger">
   Delete
-</CDSButton>
+</Button>
 
-<CDSButton variant="secondary">
+<Button variant="secondary">
   Cancel
-</CDSButton>
+</Button>
 
-<CDSButton variant="tertiary">
+<Button variant="tertiary">
   Learn More
-</CDSButton>
+</Button>
 
-<CDSButton variant="primary" leftIcon={<SaveOutlinedIcon />}>
+<Button variant="primary" leftIcon={<SaveOutlinedIcon />}>
   Save
-</CDSButton>
+</Button>
 ```
 
 **Benefits:**
@@ -113,7 +113,7 @@ import { CDSButton } from './cds';
 
 ```typescript
 // Exposes MUI types directly
-export type CDSButtonProps = MuiButtonProps;
+export type ButtonProps = MuiButtonProps;
 
 // Developer sees all MUI props:
 // - variant: "text" | "outlined" | "contained"
@@ -125,7 +125,7 @@ export type CDSButtonProps = MuiButtonProps;
 
 ```typescript
 // CDS-specific interface
-export interface CDSButtonProps {
+export interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'success' | 'ghost' | 'link';
   size?: 'small' | 'medium' | 'large';
   leftIcon?: React.ReactNode;
@@ -145,8 +145,8 @@ export interface CDSButtonProps {
 ### MUI-Centric:
 
 ```tsx
-<CDSButton startIcon={<Icon />}>Text</CDSButton>
-<CDSButton endIcon={<Icon />}>Text</CDSButton>
+<Button startIcon={<Icon />}>Text</Button>
+<Button endIcon={<Icon />}>Text</Button>
 
 // MUI naming (start/end for RTL support)
 ```
@@ -154,8 +154,8 @@ export interface CDSButtonProps {
 ### CDS-First:
 
 ```tsx
-<CDSButton leftIcon={<Icon />}>Text</CDSButton>
-<CDSButton rightIcon={<Icon />}>Text</CDSButton>
+<Button leftIcon={<Icon />}>Text</Button>
+<Button rightIcon={<Icon />}>Text</Button>
 
 // More intuitive (left/right)
 // CDS handles RTL internally if needed
@@ -169,11 +169,11 @@ export interface CDSButtonProps {
 
 ```tsx
 // Need to use separate LoadingButton component
-import { CDSLoadingButton } from './cds';
+import { LoadingButton } from './cds';
 
-<CDSLoadingButton loading={isLoading} loadingPosition="start">
+<LoadingButton loading={isLoading} loadingPosition="start">
   Save
-</CDSLoadingButton>
+</LoadingButton>
 
 // Different component, MUI concepts
 ```
@@ -181,10 +181,10 @@ import { CDSLoadingButton } from './cds';
 ### CDS-First:
 
 ```tsx
-// Built into CDSButton
-<CDSButton variant="primary" loading={isLoading}>
+// Built into Button
+<Button variant="primary" loading={isLoading}>
   Save
-</CDSButton>
+</Button>
 
 // Single component, simple prop
 ```
@@ -200,29 +200,29 @@ function EditForm() {
   return (
     <form>
       {/* Developer needs to know MUI combinations */}
-      <CDSButton
+      <Button
         variant="contained"
         color="primary"
         startIcon={<SaveIcon />}
         type="submit"
       >
         Save Changes
-      </CDSButton>
+      </Button>
 
-      <CDSButton
+      <Button
         variant="outlined"
         color="primary"
       >
         Cancel
-      </CDSButton>
+      </Button>
 
-      <CDSButton
+      <Button
         variant="contained"
         color="error"
         startIcon={<DeleteIcon />}
       >
         Delete
-      </CDSButton>
+      </Button>
     </form>
   );
 }
@@ -235,24 +235,24 @@ function EditForm() {
   return (
     <form>
       {/* Clear, semantic, self-documenting */}
-      <CDSButton
+      <Button
         variant="primary"
         leftIcon={<SaveOutlinedIcon />}
         type="submit"
       >
         Save Changes
-      </CDSButton>
+      </Button>
 
-      <CDSButton variant="secondary">
+      <Button variant="secondary">
         Cancel
-      </CDSButton>
+      </Button>
 
-      <CDSButton
+      <Button
         variant="danger"
         leftIcon={<DeleteOutlineIcon />}
       >
         Delete
-      </CDSButton>
+      </Button>
     </form>
   );
 }
@@ -265,9 +265,9 @@ function EditForm() {
 ### MUI-Centric:
 
 ```tsx
-<CDSIconButton aria-label="delete">
+<IconButton aria-label="delete">
   <DeleteIcon />
-</CDSIconButton>
+</IconButton>
 
 // Kebab-case (HTML attribute style)
 ```
@@ -275,9 +275,9 @@ function EditForm() {
 ### CDS-First:
 
 ```tsx
-<CDSIconButton ariaLabel="delete">
+<IconButton ariaLabel="delete">
   <DeleteOutlineIcon />
-</CDSIconButton>
+</IconButton>
 
 // CamelCase (React prop style)
 // More consistent with React conventions
@@ -290,7 +290,7 @@ function EditForm() {
 ### MUI-Centric Documentation:
 
 ```markdown
-## CDSButton Props
+## Button Props
 
 Extends all MuiButton props. See:
 https://mui.com/material-ui/api/button/
@@ -311,7 +311,7 @@ Common combinations:
 ### CDS-First Documentation:
 
 ```markdown
-## CDSButton Props
+## Button Props
 
 ### variant
 - 'primary' - Main call-to-action
@@ -370,7 +370,7 @@ const getMuiProps = (variant) => {
 
 ```typescript
 // Exports all MUI props and types
-export type CDSButtonProps = MuiButtonProps;
+export type ButtonProps = MuiButtonProps;
 
 // Developer might accidentally use:
 disableRipple, disableElevation, disableFocusRipple, etc.
@@ -382,9 +382,9 @@ disableRipple, disableElevation, disableFocusRipple, etc.
 
 ```typescript
 // Only exports CDS props
-export interface CDSButtonProps {
-  variant?: CDSButtonVariant;
-  size?: CDSButtonSize;
+export interface ButtonProps {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   // ... 10 focused props
 }
 

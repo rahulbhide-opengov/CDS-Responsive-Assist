@@ -1346,30 +1346,30 @@ const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme }) => ({
  *
  * @example
  * // Default state
- * <CDSTextField label="Email" type="email" />
+ * <TextField label="Email" type="email" />
  *
  * // Error state
- * <CDSTextField
+ * <TextField
  *   label="Email"
  *   state="error"
  *   helperText="Email is required"
  * />
  *
  * // Success state
- * <CDSTextField
+ * <TextField
  *   label="Email"
  *   state="success"
  *   helperText="Email is valid"
  * />
  *
  * // With adornments
- * <CDSTextField
+ * <TextField
  *   label="Password"
  *   type="password"
  *   startAdornment={<LockOutlinedIcon />}
  * />
  */
-export const CDSTextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
+export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
   (
     {
       label,
@@ -1446,19 +1446,19 @@ export const CDSTextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
   }
 );
 
-CDSTextField.displayName = 'CDSTextField';
+TextField.displayName = 'TextField';
 
 /**
  * CDS Checkbox Component
  *
  * @example
- * <CDSCheckbox
+ * <Checkbox
  *   checked={checked}
  *   onChange={handleChange}
  *   ariaLabel="Accept terms"
  * />
  */
-export const CDSCheckbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
+export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
   (
     {
       checked,
@@ -1502,19 +1502,19 @@ export const CDSCheckbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
   }
 );
 
-CDSCheckbox.displayName = 'CDSCheckbox';
+Checkbox.displayName = 'Checkbox';
 
 /**
  * CDS Radio Component
  *
  * @example
- * <CDSRadio
+ * <Radio
  *   checked={value === 'option1'}
  *   value="option1"
  *   ariaLabel="Option 1"
  * />
  */
-export const CDSRadio = React.forwardRef<HTMLButtonElement, RadioProps>(
+export const Radio = React.forwardRef<HTMLButtonElement, RadioProps>(
   (
     {
       checked,
@@ -1554,18 +1554,18 @@ export const CDSRadio = React.forwardRef<HTMLButtonElement, RadioProps>(
   }
 );
 
-CDSRadio.displayName = 'CDSRadio';
+Radio.displayName = 'Radio';
 
 /**
  * CDS RadioGroup Component
  *
  * @example
- * <CDSRadioGroup value={value} onChange={handleChange}>
- *   <CDSFormControlLabel value="option1" control={<CDSRadio />} label="Option 1" />
- *   <CDSFormControlLabel value="option2" control={<CDSRadio />} label="Option 2" />
- * </CDSRadioGroup>
+ * <RadioGroup value={value} onChange={handleChange}>
+ *   <FormControlLabel value="option1" control={<Radio />} label="Option 1" />
+ *   <FormControlLabel value="option2" control={<Radio />} label="Option 2" />
+ * </RadioGroup>
  */
-export const CDSRadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
+export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   (
     {
       value,
@@ -1596,19 +1596,19 @@ export const CDSRadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   }
 );
 
-CDSRadioGroup.displayName = 'CDSRadioGroup';
+RadioGroup.displayName = 'RadioGroup';
 
 /**
  * CDS Switch Component
  *
  * @example
- * <CDSSwitch
+ * <Switch
  *   checked={enabled}
  *   onChange={handleToggle}
  *   ariaLabel="Enable notifications"
  * />
  */
-export const CDSSwitch = React.forwardRef<HTMLButtonElement, SwitchProps>(
+export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
   (
     {
       checked,
@@ -1650,22 +1650,22 @@ export const CDSSwitch = React.forwardRef<HTMLButtonElement, SwitchProps>(
   }
 );
 
-CDSSwitch.displayName = 'CDSSwitch';
+Switch.displayName = 'Switch';
 
 /**
  * CDS Select Component
  *
  * @example
- * <CDSSelect
+ * <Select
  *   value={value}
  *   onChange={handleChange}
  *   label="Country"
  * >
  *   <MenuItem value="us">United States</MenuItem>
  *   <MenuItem value="uk">United Kingdom</MenuItem>
- * </CDSSelect>
+ * </Select>
  */
-export const CDSSelect = React.forwardRef<HTMLDivElement, SelectProps>(
+export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
   (
     {
       value,
@@ -1717,18 +1717,18 @@ export const CDSSelect = React.forwardRef<HTMLDivElement, SelectProps>(
   }
 );
 
-CDSSelect.displayName = 'CDSSelect';
+Select.displayName = 'Select';
 
 /**
  * CDS FormControl Component
  *
  * @example
- * <CDSFormControl fullWidth>
- *   <CDSFormLabel>Email</CDSFormLabel>
- *   <CDSTextField />
- * </CDSFormControl>
+ * <FormControl fullWidth>
+ *   <FormLabel>Email</FormLabel>
+ *   <TextField />
+ * </FormControl>
  */
-export const CDSFormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
+export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
   (
     {
       children,
@@ -1759,15 +1759,15 @@ export const CDSFormControl = React.forwardRef<HTMLDivElement, FormControlProps>
   }
 );
 
-CDSFormControl.displayName = 'CDSFormControl';
+FormControl.displayName = 'FormControl';
 
 /**
  * CDS FormLabel Component
  *
  * @example
- * <CDSFormLabel required>Email Address</CDSFormLabel>
+ * <FormLabel required>Email Address</FormLabel>
  */
-export const CDSFormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
+export const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
   (
     {
       children,
@@ -1798,18 +1798,18 @@ export const CDSFormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
   }
 );
 
-CDSFormLabel.displayName = 'CDSFormLabel';
+FormLabel.displayName = 'FormLabel';
 
 /**
  * CDS FormControlLabel Component
  *
  * @example
- * <CDSFormControlLabel
- *   control={<CDSCheckbox />}
+ * <FormControlLabel
+ *   control={<Checkbox />}
  *   label="Accept terms"
  * />
  */
-export const CDSFormControlLabel = React.forwardRef<HTMLLabelElement, FormControlLabelProps>(
+export const FormControlLabel = React.forwardRef<HTMLLabelElement, FormControlLabelProps>(
   (
     {
       control,
@@ -1839,15 +1839,15 @@ export const CDSFormControlLabel = React.forwardRef<HTMLLabelElement, FormContro
   }
 );
 
-CDSFormControlLabel.displayName = 'CDSFormControlLabel';
+FormControlLabel.displayName = 'FormControlLabel';
 
 /**
  * CDS FormHelperText Component
  *
  * @example
- * <CDSFormHelperText error>This field is required</CDSFormHelperText>
+ * <FormHelperText error>This field is required</FormHelperText>
  */
-export const CDSFormHelperText = React.forwardRef<HTMLParagraphElement, FormHelperTextProps>(
+export const FormHelperText = React.forwardRef<HTMLParagraphElement, FormHelperTextProps>(
   (
     {
       children,
@@ -1874,18 +1874,18 @@ export const CDSFormHelperText = React.forwardRef<HTMLParagraphElement, FormHelp
   }
 );
 
-CDSFormHelperText.displayName = 'CDSFormHelperText';
+FormHelperText.displayName = 'FormHelperText';
 
 /**
  * CDS FormGroup Component
  *
  * @example
- * <CDSFormGroup direction="row">
- *   <CDSFormControlLabel control={<CDSCheckbox />} label="Option 1" />
- *   <CDSFormControlLabel control={<CDSCheckbox />} label="Option 2" />
- * </CDSFormGroup>
+ * <FormGroup direction="row">
+ *   <FormControlLabel control={<Checkbox />} label="Option 1" />
+ *   <FormControlLabel control={<Checkbox />} label="Option 2" />
+ * </FormGroup>
  */
-export const CDSFormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
+export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
   (
     {
       children,
@@ -1908,15 +1908,15 @@ export const CDSFormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
   }
 );
 
-CDSFormGroup.displayName = 'CDSFormGroup';
+FormGroup.displayName = 'FormGroup';
 
 /**
  * CDS InputLabel Component
  *
  * @example
- * <CDSInputLabel htmlFor="email" required>Email</CDSInputLabel>
+ * <InputLabel htmlFor="email" required>Email</InputLabel>
  */
-export const CDSInputLabel = React.forwardRef<HTMLLabelElement, InputLabelProps>(
+export const InputLabel = React.forwardRef<HTMLLabelElement, InputLabelProps>(
   (
     {
       children,
@@ -1949,19 +1949,19 @@ export const CDSInputLabel = React.forwardRef<HTMLLabelElement, InputLabelProps>
   }
 );
 
-CDSInputLabel.displayName = 'CDSInputLabel';
+InputLabel.displayName = 'InputLabel';
 
 /**
  * CDS OutlinedInput Component
  *
  * @example
- * <CDSOutlinedInput
+ * <OutlinedInput
  *   value={value}
  *   onChange={handleChange}
  *   placeholder="Enter text"
  * />
  */
-export const CDSOutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputProps>(
+export const OutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputProps>(
   (
     {
       value,
@@ -2015,10 +2015,10 @@ export const CDSOutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputPr
   }
 );
 
-CDSOutlinedInput.displayName = 'CDSOutlinedInput';
+OutlinedInput.displayName = 'OutlinedInput';
 
 // ============================================================================
 // EXPORTS
 // ============================================================================
 
-export default CDSTextField;
+export default TextField;

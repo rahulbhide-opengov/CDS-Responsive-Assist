@@ -96,9 +96,9 @@ import HomeSharpIcon from '@mui/icons-material/HomeSharp';
 </Alert>
 
 // Primary action button with emphasis
-<CDSButton variant="contained" startIcon={<StarIcon />}>
+<Button variant="contained" startIcon={<StarIcon />}>
   Featured Action
-</CDSButton>
+</Button>
 ```
 
 ---

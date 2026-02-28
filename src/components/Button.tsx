@@ -24,7 +24,7 @@ import { styled } from '@mui/material/styles';
 /**
  * CDS Button Variants (Design Language)
  */
-export type CDSButtonVariant =
+export type ButtonVariant =
   | 'primary'    // Solid, high emphasis - main CTA
   | 'secondary'  // Outlined, medium emphasis
   | 'tertiary'   // Text only, low emphasis
@@ -36,23 +36,23 @@ export type CDSButtonVariant =
 /**
  * CDS Button Sizes
  */
-export type CDSButtonSize = 'small' | 'medium' | 'large';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 /**
  * CDS Button Props (CDS API)
  */
-export interface CDSButtonProps {
+export interface ButtonProps {
   /**
    * CDS button variant - defines visual style and emphasis
    * @default 'primary'
    */
-  variant?: CDSButtonVariant;
+  variant?: ButtonVariant;
 
   /**
    * Button size (responsive across breakpoints)
    * @default 'medium'
    */
-  size?: CDSButtonSize;
+  size?: ButtonSize;
 
   /**
    * Button takes full width of container
@@ -152,7 +152,7 @@ export interface CDSButtonProps {
  * Maps CDS variant to MUI props
  * THIS IS INTERNAL - developers never see this
  */
-const getMuiPropsFromCDSVariant = (variant: CDSButtonVariant) => {
+const getMuiPropsFromCDSVariant = (variant: ButtonVariant) => {
   switch (variant) {
     case 'primary':
       return { variant: 'contained' as const, color: 'primary' as const };
@@ -284,21 +284,21 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
  *
  * @example
  * // CDS Way (CORRECT)
- * <CDSButton variant="primary">Save</CDSButton>
- * <CDSButton variant="danger">Delete</CDSButton>
- * <CDSButton variant="secondary">Cancel</CDSButton>
+ * <Button variant="primary">Save</Button>
+ * <Button variant="danger">Delete</Button>
+ * <Button variant="secondary">Cancel</Button>
  *
  * // With icons (CDS props)
- * <CDSButton variant="primary" leftIcon={<SaveOutlinedIcon />}>
+ * <Button variant="primary" leftIcon={<SaveOutlinedIcon />}>
  *   Save
- * </CDSButton>
+ * </Button>
  *
  * // Loading state
- * <CDSButton variant="primary" loading>
+ * <Button variant="primary" loading>
  *   Saving...
- * </CDSButton>
+ * </Button>
  */
-export const CDSButton = React.forwardRef<HTMLButtonElement, CDSButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = 'primary',
@@ -366,13 +366,13 @@ export const CDSButton = React.forwardRef<HTMLButtonElement, CDSButtonProps>(
   }
 );
 
-CDSButton.displayName = 'CDSButton';
+Button.displayName = 'Button';
 
 // ============================================================================
 // CDS ICON BUTTON
 // ============================================================================
 
-export interface CDSIconButtonProps {
+export interface IconButtonProps {
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
@@ -391,12 +391,12 @@ export interface CDSIconButtonProps {
  * Icon-only button with proper WCAG touch targets
  *
  * @example
- * <CDSIconButton ariaLabel="delete">
+ * <IconButton ariaLabel="delete">
  *   <DeleteOutlineIcon />
- * </CDSIconButton>
+ * </IconButton>
  */
-export const CDSIconButton = styled(
-  React.forwardRef<HTMLButtonElement, CDSIconButtonProps>(
+export const IconButton = styled(
+  React.forwardRef<HTMLButtonElement, IconButtonProps>(
     ({ ariaLabel, ...props }, ref) => (
       <MuiIconButton ref={ref} aria-label={ariaLabel} {...props} />
     )
@@ -423,13 +423,13 @@ export const CDSIconButton = styled(
   },
 }));
 
-CDSIconButton.displayName = 'CDSIconButton';
+IconButton.displayName = 'IconButton';
 
 // ============================================================================
 // CDS FAB (Floating Action Button)
 // ============================================================================
 
-export interface CDSFABProps {
+export interface FABProps {
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
@@ -446,12 +446,12 @@ export interface CDSFABProps {
  * Prominent circular button for primary actions
  *
  * @example
- * <CDSFAB ariaLabel="add" color="primary">
+ * <FAB ariaLabel="add" color="primary">
  *   <AddOutlinedIcon />
- * </CDSFAB>
+ * </FAB>
  */
-export const CDSFAB = styled(
-  React.forwardRef<HTMLButtonElement, CDSFABProps>(
+export const FAB = styled(
+  React.forwardRef<HTMLButtonElement, FABProps>(
     ({ ariaLabel, position, sx, ...props }, ref) => (
       <MuiFab
         ref={ref}
@@ -509,10 +509,10 @@ export const CDSFAB = styled(
   }),
 }));
 
-CDSFAB.displayName = 'CDSFAB';
+FAB.displayName = 'FAB';
 
 // ============================================================================
 // EXPORTS
 // ============================================================================
 
-export default CDSButton;
+export default Button;

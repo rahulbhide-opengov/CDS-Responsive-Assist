@@ -8,12 +8,12 @@
 
 ### Current (MUI-Centric):
 ```tsx
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
 // Developer uses MUI concepts
-<CDSButton variant="contained" color="primary">Click Me</CDSButton>
-<CDSButton variant="outlined" color="secondary">Cancel</CDSButton>
-<CDSButton variant="text" color="error">Delete</CDSButton>
+<Button variant="contained" color="primary">Click Me</Button>
+<Button variant="outlined" color="secondary">Cancel</Button>
+<Button variant="text" color="error">Delete</Button>
 ```
 
 **Issues:**
@@ -29,14 +29,14 @@ import { CDSButton } from './cds';
 
 ### Proper CDS API:
 ```tsx
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
 // Developer uses CDS concepts
-<CDSButton variant="primary">Click Me</CDSButton>
-<CDSButton variant="secondary">Cancel</CDSButton>
-<CDSButton variant="danger">Delete</CDSButton>
-<CDSButton variant="ghost">Close</CDSButton>
-<CDSButton variant="link">Learn More</CDSButton>
+<Button variant="primary">Click Me</Button>
+<Button variant="secondary">Cancel</Button>
+<Button variant="danger">Delete</Button>
+<Button variant="ghost">Close</Button>
+<Button variant="link">Learn More</Button>
 ```
 
 **Benefits:**
@@ -84,7 +84,7 @@ const variantMap = {
 
 ```typescript
 // CDS-specific prop interface
-export interface CDSButtonProps {
+export interface ButtonProps {
   // CDS variants
   variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'success' | 'ghost' | 'link';
 
@@ -118,7 +118,7 @@ export interface CDSButtonProps {
 ### Step 2: Map CDS Props to MUI Internally
 
 ```typescript
-export const CDSButton = React.forwardRef<HTMLButtonElement, CDSButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = 'primary',
@@ -208,10 +208,10 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
 ### Before (MUI-Centric):
 ```tsx
 // Developer needs to know MUI concepts
-<CDSButton variant="contained" color="primary">Primary</CDSButton>
-<CDSButton variant="contained" color="error">Delete</CDSButton>
-<CDSButton variant="outlined" color="primary">Secondary</CDSButton>
-<CDSButton variant="text" color="primary">Tertiary</CDSButton>
+<Button variant="contained" color="primary">Primary</Button>
+<Button variant="contained" color="error">Delete</Button>
+<Button variant="outlined" color="primary">Secondary</Button>
+<Button variant="text" color="primary">Tertiary</Button>
 
 // Confusing: which combination for what purpose?
 ```
@@ -219,10 +219,10 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
 ### After (CDS-First):
 ```tsx
 // Developer thinks in CDS design language
-<CDSButton variant="primary">Primary</CDSButton>
-<CDSButton variant="danger">Delete</CDSButton>
-<CDSButton variant="secondary">Secondary</CDSButton>
-<CDSButton variant="tertiary">Tertiary</CDSButton>
+<Button variant="primary">Primary</Button>
+<Button variant="danger">Delete</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="tertiary">Tertiary</Button>
 
 // Clear, semantic, self-documenting
 ```
@@ -233,14 +233,14 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
 
 ### Before (MUI):
 ```tsx
-<CDSButton startIcon={<SaveIcon />}>Save</CDSButton>
-<CDSButton endIcon={<ArrowIcon />}>Next</CDSButton>
+<Button startIcon={<SaveIcon />}>Save</Button>
+<Button endIcon={<ArrowIcon />}>Next</Button>
 ```
 
 ### After (CDS):
 ```tsx
-<CDSButton leftIcon={<SaveOutlinedIcon />}>Save</CDSButton>
-<CDSButton rightIcon={<ArrowOutlinedIcon />}>Next</CDSButton>
+<Button leftIcon={<SaveOutlinedIcon />}>Save</Button>
+<Button rightIcon={<ArrowOutlinedIcon />}>Next</Button>
 
 // More intuitive naming
 ```
@@ -266,7 +266,7 @@ If a developer needs MUI-specific features:
 
 ```tsx
 // Still possible, but marked as advanced
-<CDSButton
+<Button
   variant="primary"
   muiProps={{
     variant: 'outlined', // Override if needed
@@ -274,22 +274,22 @@ If a developer needs MUI-specific features:
   }}
 >
   Advanced
-</CDSButton>
+</Button>
 ```
 
 Or create a separate advanced component:
 
 ```tsx
 // Advanced use case - explicitly marked
-import { CDSButtonAdvanced } from './cds/advanced';
+import { ButtonAdvanced } from './cds/advanced';
 
-<CDSButtonAdvanced
+<ButtonAdvanced
   variant="contained"
   color="primary"
   disableRipple
 >
   Custom
-</CDSButtonAdvanced>
+</ButtonAdvanced>
 ```
 
 ---
@@ -299,8 +299,8 @@ import { CDSButtonAdvanced } from './cds/advanced';
 ### Forms:
 ```tsx
 // CDS-first
-<CDSTextField variant="outlined" /> // CDS variant
-<CDSSelect variant="filled" /> // CDS variant
+<TextField variant="outlined" /> // CDS variant
+<Select variant="filled" /> // CDS variant
 
 // NOT: MUI variants
 ```
@@ -308,8 +308,8 @@ import { CDSButtonAdvanced } from './cds/advanced';
 ### Cards:
 ```tsx
 // CDS-first
-<CDSCard elevation="low" /> // CDS elevation
-<CDSCard elevation="high" />
+<Card elevation="low" /> // CDS elevation
+<Card elevation="high" />
 
 // NOT: elevation={2} (MUI shadow number)
 ```
@@ -317,8 +317,8 @@ import { CDSButtonAdvanced } from './cds/advanced';
 ### Alerts:
 ```tsx
 // CDS-first
-<CDSAlert severity="error" /> // OK - semantic
-<CDSAlert severity="success" />
+<Alert severity="error" /> // OK - semantic
+<Alert severity="success" />
 
 // This is fine because it's semantic
 ```
@@ -330,8 +330,8 @@ import { CDSButtonAdvanced } from './cds/advanced';
 ### Phase 1: Add CDS Props (Alongside MUI)
 ```tsx
 // Support both during transition
-<CDSButton variant="primary" /> // CDS way (preferred)
-<CDSButton variant="contained" color="primary" /> // MUI way (deprecated)
+<Button variant="primary" /> // CDS way (preferred)
+<Button variant="contained" color="primary" /> // MUI way (deprecated)
 ```
 
 ### Phase 2: Document CDS Way
@@ -342,10 +342,10 @@ import { CDSButtonAdvanced } from './cds/advanced';
 ### Phase 3: Remove MUI Props (Breaking Change)
 ```tsx
 // Only CDS way supported
-<CDSButton variant="primary" />
+<Button variant="primary" />
 
 // MUI way throws TypeScript error
-<CDSButton variant="contained" color="primary" /> // ❌ Error
+<Button variant="contained" color="primary" /> // ❌ Error
 ```
 
 ---
@@ -382,7 +382,7 @@ import { CDSButtonAdvanced } from './cds/advanced';
 ```
 ┌─────────────────────────────────────┐
 │          Developer Code             │
-│   <CDSButton variant="primary" />   │ ← CDS API only
+│   <Button variant="primary" />   │ ← CDS API only
 └─────────────────────────────────────┘
                   │
                   ▼

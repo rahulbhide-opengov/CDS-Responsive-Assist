@@ -166,15 +166,15 @@ function MyComponent() {
 ### 3. Icon in Button (CDS Pattern)
 
 ```tsx
-import { CDSButton } from './cds';
+import { Button } from './cds';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 
-<CDSButton
+<Button
   variant="contained"
   startIcon={<SaveOutlinedIcon />}
 >
   Save
-</CDSButton>
+</Button>
 
 // Icon automatically inherits button's color
 // No need to set icon color explicitly
@@ -183,7 +183,7 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 ### 4. Icon in AppBar
 
 ```tsx
-import { CDSAppBar } from './cds';
+import { AppBar } from './cds';
 import { Toolbar, IconButton, Typography } from '@mui/material';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { useTheme } from '@mui/material/styles';
@@ -192,7 +192,7 @@ function MyAppBar() {
   const theme = useTheme();
 
   return (
-    <CDSAppBar position="fixed">
+    <AppBar position="fixed">
       <Toolbar>
         <IconButton
           edge="start"
@@ -205,7 +205,7 @@ function MyAppBar() {
         </IconButton>
         <Typography variant="h6">My App</Typography>
       </Toolbar>
-    </CDSAppBar>
+    </AppBar>
   );
 }
 ```
@@ -213,7 +213,7 @@ function MyAppBar() {
 ### 5. Icon in List Item
 
 ```tsx
-import { CDSListItem, CDSListItemIcon, CDSListItemText } from './cds';
+import { ListItem, ListItemIcon, ListItemText } from './cds';
 import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
 import { useTheme } from '@mui/material/styles';
 
@@ -221,14 +221,14 @@ function MyList() {
   const theme = useTheme();
 
   return (
-    <CDSListItem>
-      <CDSListItemIcon>
+    <ListItem>
+      <ListItemIcon>
         <InboxOutlinedIcon
           sx={{ color: theme.palette.action.active }}  // CDS color
         />
-      </CDSListItemIcon>
-      <CDSListItemText primary="Inbox" />
-    </CDSListItem>
+      </ListItemIcon>
+      <ListItemText primary="Inbox" />
+    </ListItem>
   );
 }
 ```
@@ -274,7 +274,7 @@ function StatusIcons() {
 ### 7. Icon in Avatar
 
 ```tsx
-import { CDSAvatar } from './cds';
+import { Avatar } from './cds';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { useTheme } from '@mui/material/styles';
 
@@ -282,9 +282,9 @@ function UserAvatar() {
   const theme = useTheme();
 
   return (
-    <CDSAvatar sx={{ bgcolor: theme.palette.primary.main }}>
+    <Avatar sx={{ bgcolor: theme.palette.primary.main }}>
       <PersonOutlineIcon sx={{ color: theme.palette.primary.contrastText }} />
-    </CDSAvatar>
+    </Avatar>
   );
 }
 ```
@@ -474,10 +474,10 @@ import { IconButton } from '@mui/material';
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
-  CDSCard,
-  CDSCardContent,
-  CDSCardActions,
-  CDSButton,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
 } from './cds';
 import {
   SaveOutlinedIcon,
@@ -489,8 +489,8 @@ function ActionCard() {
   const theme = useTheme();
 
   return (
-    <CDSCard>
-      <CDSCardContent>
+    <Card>
+      <CardContent>
         {/* Icon with CDS color */}
         <EditOutlinedIcon
           sx={{
@@ -503,26 +503,26 @@ function ActionCard() {
         <Typography variant="body2" color="text.secondary">
           Make changes to your document
         </Typography>
-      </CDSCardContent>
+      </CardContent>
 
-      <CDSCardActions>
+      <CardActions>
         {/* Icons automatically inherit button colors */}
-        <CDSButton
+        <Button
           variant="contained"
           startIcon={<SaveOutlinedIcon />}
         >
           Save
-        </CDSButton>
+        </Button>
 
-        <CDSButton
+        <Button
           variant="outlined"
           color="error"
           startIcon={<DeleteOutlineIcon />}
         >
           Delete
-        </CDSButton>
-      </CDSCardActions>
-    </CDSCard>
+        </Button>
+      </CardActions>
+    </Card>
   );
 }
 ```

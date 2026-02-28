@@ -2,7 +2,7 @@
  * CDS Extended Button Components (CDS-First Architecture)
  * Additional button components with CDS API
  *
- * Note: CDSLoadingButton is deprecated - use CDSButton with loading prop instead
+ * Note: LoadingButton is deprecated - use Button with loading prop instead
  */
 
 import React from 'react';
@@ -17,7 +17,7 @@ import { styled } from '@mui/material/styles';
 // CDS BUTTON GROUP
 // ============================================================================
 
-export interface CDSButtonGroupProps {
+export interface ButtonGroupProps {
   children: React.ReactNode;
   /**
    * CDS orientation
@@ -48,14 +48,14 @@ export interface CDSButtonGroupProps {
  * Group of related buttons
  *
  * @example
- * <CDSButtonGroup>
- *   <CDSButton variant="secondary">One</CDSButton>
- *   <CDSButton variant="secondary">Two</CDSButton>
- *   <CDSButton variant="secondary">Three</CDSButton>
- * </CDSButtonGroup>
+ * <ButtonGroup>
+ *   <Button variant="secondary">One</Button>
+ *   <Button variant="secondary">Two</Button>
+ *   <Button variant="secondary">Three</Button>
+ * </ButtonGroup>
  */
-export const CDSButtonGroup = styled(
-  React.forwardRef<HTMLDivElement, CDSButtonGroupProps>((props, ref) => (
+export const ButtonGroup = styled(
+  React.forwardRef<HTMLDivElement, ButtonGroupProps>((props, ref) => (
     <MuiButtonGroup ref={ref} {...props} />
   ))
 )(({ theme }) => ({
@@ -73,13 +73,13 @@ export const CDSButtonGroup = styled(
   },
 }));
 
-CDSButtonGroup.displayName = 'CDSButtonGroup';
+ButtonGroup.displayName = 'ButtonGroup';
 
 // ============================================================================
 // CDS TOGGLE BUTTON GROUP
 // ============================================================================
 
-export interface CDSToggleButtonGroupProps {
+export interface ToggleButtonGroupProps {
   children: React.ReactNode;
   /**
    * Current value (controlled)
@@ -124,14 +124,14 @@ export interface CDSToggleButtonGroupProps {
  * Group of toggle buttons for multi-select or single-select
  *
  * @example
- * <CDSToggleButtonGroup value={value} onChange={handleChange}>
- *   <CDSToggleButton value="left">Left</CDSToggleButton>
- *   <CDSToggleButton value="center">Center</CDSToggleButton>
- *   <CDSToggleButton value="right">Right</CDSToggleButton>
- * </CDSToggleButtonGroup>
+ * <ToggleButtonGroup value={value} onChange={handleChange}>
+ *   <ToggleButton value="left">Left</ToggleButton>
+ *   <ToggleButton value="center">Center</ToggleButton>
+ *   <ToggleButton value="right">Right</ToggleButton>
+ * </ToggleButtonGroup>
  */
-export const CDSToggleButtonGroup = styled(
-  React.forwardRef<HTMLDivElement, CDSToggleButtonGroupProps>(
+export const ToggleButtonGroup = styled(
+  React.forwardRef<HTMLDivElement, ToggleButtonGroupProps>(
     ({ ariaLabel, ...props }, ref) => (
       <MuiToggleButtonGroup ref={ref} aria-label={ariaLabel} {...props} />
     )
@@ -160,13 +160,13 @@ export const CDSToggleButtonGroup = styled(
   },
 }));
 
-CDSToggleButtonGroup.displayName = 'CDSToggleButtonGroup';
+ToggleButtonGroup.displayName = 'ToggleButtonGroup';
 
 // ============================================================================
 // CDS TOGGLE BUTTON
 // ============================================================================
 
-export interface CDSToggleButtonProps {
+export interface ToggleButtonProps {
   children: React.ReactNode;
   /**
    * Value of this toggle button
@@ -205,12 +205,12 @@ export interface CDSToggleButtonProps {
  * Individual toggle button
  *
  * @example
- * <CDSToggleButton value="bold" ariaLabel="bold">
+ * <ToggleButton value="bold" ariaLabel="bold">
  *   <FormatBoldIcon />
- * </CDSToggleButton>
+ * </ToggleButton>
  */
-export const CDSToggleButton = styled(
-  React.forwardRef<HTMLButtonElement, CDSToggleButtonProps>(
+export const ToggleButton = styled(
+  React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
     ({ ariaLabel, ...props }, ref) => (
       <MuiToggleButton ref={ref} aria-label={ariaLabel} {...props} />
     )
@@ -243,37 +243,37 @@ export const CDSToggleButton = styled(
   }),
 }));
 
-CDSToggleButton.displayName = 'CDSToggleButton';
+ToggleButton.displayName = 'ToggleButton';
 
 // ============================================================================
-// DEPRECATED: CDSLoadingButton
+// DEPRECATED: LoadingButton
 // ============================================================================
 
 /**
- * @deprecated Use CDSButton with loading prop instead
+ * @deprecated Use Button with loading prop instead
  *
  * @example
  * // OLD (deprecated)
- * <CDSLoadingButton loading={isLoading}>Save</CDSLoadingButton>
+ * <LoadingButton loading={isLoading}>Save</LoadingButton>
  *
  * // NEW (use this)
- * <CDSButton variant="primary" loading={isLoading}>Save</CDSButton>
+ * <Button variant="primary" loading={isLoading}>Save</Button>
  */
-export const CDSLoadingButton = React.forwardRef<any, any>((props, ref) => {
+export const LoadingButton = React.forwardRef<any, any>((props, ref) => {
   console.warn(
-    'CDSLoadingButton is deprecated. Use CDSButton with loading prop instead.'
+    'LoadingButton is deprecated. Use Button with loading prop instead.'
   );
 
-  // Import CDSButton to avoid circular dependency
-  const { CDSButton } = require('./Button');
+  // Import Button to avoid circular dependency
+  const { Button } = require('./Button');
 
-  return <CDSButton ref={ref} {...props} />;
+  return <Button ref={ref} {...props} />;
 });
 
-CDSLoadingButton.displayName = 'CDSLoadingButton (Deprecated)';
+LoadingButton.displayName = 'LoadingButton (Deprecated)';
 
 // ============================================================================
 // EXPORTS
 // ============================================================================
 
-export default CDSButtonGroup;
+export default ButtonGroup;

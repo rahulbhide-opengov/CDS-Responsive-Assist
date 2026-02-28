@@ -10,7 +10,7 @@ Complete refactoring of all 80 components to use CDS-first approach.
 2. **MUI is Implementation** - MUI used internally only
 3. **CDS Styling Priority** - CDS tokens override MUI defaults
 4. **Semantic Naming** - Use purpose-based names, not visual descriptions
-5. **Same Component Names** - Keep CDSButton, CDSTextField, etc.
+5. **Same Component Names** - Keep Button, TextField, etc.
 6. **MUI as Fallback** - Use MUI only when CDS doesn't define something
 
 ---
@@ -20,51 +20,51 @@ Complete refactoring of all 80 components to use CDS-first approach.
 ### Component Priority Groups
 
 #### Group 1: Buttons (Highest Priority)
-- **CDSButton** - primary, secondary, tertiary, danger, success, ghost, link
-- **CDSIconButton** - CDS sizes and colors
-- **CDSFAB** - CDS sizes and positioning
-- **CDSLoadingButton** - Merge into CDSButton with loading prop
-- **CDSButtonGroup** - CDS styling
-- **CDSToggleButton** - CDS variants
+- **Button** - primary, secondary, tertiary, danger, success, ghost, link
+- **IconButton** - CDS sizes and colors
+- **FAB** - CDS sizes and positioning
+- **LoadingButton** - Merge into Button with loading prop
+- **ButtonGroup** - CDS styling
+- **ToggleButton** - CDS variants
 
 #### Group 2: Forms (High Priority)
-- **CDSTextField** - CDS variants (outlined, filled, standard)
-- **CDSSelect** - CDS variants
-- **CDSCheckbox** - CDS sizes and colors
-- **CDSRadio** - CDS sizes and colors
-- **CDSSwitch** - CDS sizes and colors
-- **CDSSlider** - CDS sizes and marks
-- **CDSRating** - CDS sizes and precision
-- **CDSAutocomplete** - CDS variants
+- **TextField** - CDS variants (outlined, filled, standard)
+- **Select** - CDS variants
+- **Checkbox** - CDS sizes and colors
+- **Radio** - CDS sizes and colors
+- **Switch** - CDS sizes and colors
+- **Slider** - CDS sizes and marks
+- **Rating** - CDS sizes and precision
+- **Autocomplete** - CDS variants
 
 #### Group 3: Layout (Medium Priority)
-- **CDSCard** - CDS elevation (low, medium, high, none)
-- **CDSContainer** - CDS max widths
-- **CDSBox** - Keep simple (no changes needed)
-- **CDSStack** - Keep simple (no changes needed)
-- **CDSGrid** - Keep simple (no changes needed)
-- **CDSSection** - CDS spacing variants
+- **Card** - CDS elevation (low, medium, high, none)
+- **Container** - CDS max widths
+- **Box** - Keep simple (no changes needed)
+- **Stack** - Keep simple (no changes needed)
+- **Grid** - Keep simple (no changes needed)
+- **Section** - CDS spacing variants
 
 #### Group 4: Navigation (Medium Priority)
-- **CDSAppBar** - CDS position and elevation
-- **CDSDrawer** - CDS variants (permanent, temporary, persistent)
-- **CDSTabs** - CDS variants (standard, scrollable, fullwidth)
-- **CDSTab** - CDS states
-- **CDSBottomNavigation** - CDS styling
-- **CDSMenu** - CDS variants
+- **AppBar** - CDS position and elevation
+- **Drawer** - CDS variants (permanent, temporary, persistent)
+- **Tabs** - CDS variants (standard, scrollable, fullwidth)
+- **Tab** - CDS states
+- **BottomNavigation** - CDS styling
+- **Menu** - CDS variants
 
 #### Group 5: Data Display (Medium Priority)
-- **CDSAvatar** - CDS sizes (xs, sm, md, lg, xl)
-- **CDSBadge** - CDS variants (standard, dot)
-- **CDSChip** - CDS variants (filled, outlined)
-- **CDSTable** - CDS variants (simple, compact, comfortable)
-- **CDSList** - CDS variants
-- **CDSTooltip** - CDS placement
+- **Avatar** - CDS sizes (xs, sm, md, lg, xl)
+- **Badge** - CDS variants (standard, dot)
+- **Chip** - CDS variants (filled, outlined)
+- **Table** - CDS variants (simple, compact, comfortable)
+- **List** - CDS variants
+- **Tooltip** - CDS placement
 
 #### Group 6: Feedback (Medium Priority)
-- **CDSAlert** - CDS severity (info, success, warning, error)
-- **CDSDialog** - CDS sizes (sm, md, lg, xl, fullscreen)
-- **CDSSnackbar** - CDS positions
+- **Alert** - CDS severity (info, success, warning, error)
+- **Dialog** - CDS sizes (sm, md, lg, xl, fullscreen)
+- **Snackbar** - CDS positions
 - **CDSProgress** - CDS variants
 
 ---
@@ -236,20 +236,20 @@ styled(MuiButton)(({ theme }) => ({
 
 ---
 
-## Example Refactor: CDSTextField
+## Example Refactor: TextField
 
 ### Before (MUI-Centric):
 ```typescript
-export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
+export const TextField = styled(MuiTextField)(({ theme }) => ({
   // Just styling, exposes all MUI props
 }));
 
-export type CDSTextFieldProps = MuiTextFieldProps;
+export type TextFieldProps = MuiTextFieldProps;
 ```
 
 ### After (CDS-First):
 ```typescript
-export interface CDSTextFieldProps {
+export interface TextFieldProps {
   variant?: 'outlined' | 'filled' | 'standard';
   label?: string;
   value?: string;
@@ -268,7 +268,7 @@ export interface CDSTextFieldProps {
   // ... CDS props only
 }
 
-export const CDSTextField = forwardRef<HTMLInputElement, CDSTextFieldProps>(
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
     const { state = 'default', leftIcon, rightIcon, ...rest } = props;
 
@@ -323,14 +323,14 @@ export const CDSTextField = forwardRef<HTMLInputElement, CDSTextFieldProps>(
 ### What Breaks:
 ```typescript
 // OLD: MUI props
-<CDSButton variant="contained" color="primary" />
-<CDSTextField error helperText="Error" />
-<CDSCard elevation={2} />
+<Button variant="contained" color="primary" />
+<TextField error helperText="Error" />
+<Card elevation={2} />
 
 // NEW: CDS props
-<CDSButton variant="primary" />
-<CDSTextField state="error" helperText="Error" />
-<CDSCard elevation="low" />
+<Button variant="primary" />
+<TextField state="error" helperText="Error" />
+<Card elevation="low" />
 ```
 
 ### Migration Guide:

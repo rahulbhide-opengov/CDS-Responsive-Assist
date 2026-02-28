@@ -94,7 +94,7 @@ icon: {
 
 ### Buttons (6 components)
 
-#### CDSButton
+#### Button
 **Mobile (xs):**
 - Height: 38px
 - Padding: 12px horizontal
@@ -112,23 +112,23 @@ icon: {
 
 ```tsx
 // Responsive button adapts to screen size
-<CDSButton variant="contained">
+<Button variant="contained">
   Click Me
-</CDSButton>
+</Button>
 
 // Mobile: 38px tall, 13px font
 // Tablet+: 40px tall, 14px font
 ```
 
-#### CDSLoadingButton
-Same responsive sizing as CDSButton, plus:
+#### LoadingButton
+Same responsive sizing as Button, plus:
 - Spinner size: 18px → 20px
 
 ---
 
 ### Forms (13 components)
 
-#### CDSTextField
+#### TextField
 **Mobile (xs):**
 - Input padding: 12px vertical
 - Font size: 15px
@@ -142,7 +142,7 @@ Same responsive sizing as CDSButton, plus:
 - Helper text: 12px
 
 ```tsx
-<CDSTextField label="Email" fullWidth />
+<TextField label="Email" fullWidth />
 
 // Mobile: 15px font, 12px padding, 11px helper
 // Tablet: 16px font, 16px padding, 12px helper
@@ -152,13 +152,13 @@ Same responsive sizing as CDSButton, plus:
 
 ### Layout (9 components)
 
-#### CDSContainer
+#### Container
 **Responsive horizontal padding:**
 - Mobile (xs): 8px
 - Tablet (sm): 12px
 - Desktop (md): 16px
 
-#### CDSCard
+#### Card
 **Responsive padding for all card parts:**
 
 **Card Content:**
@@ -177,14 +177,14 @@ Same responsive sizing as CDSButton, plus:
 - Desktop (md): 4px 12px
 
 ```tsx
-<CDSCard>
-  <CDSCardContent>
+<Card>
+  <CardContent>
     {/* Padding adapts: 8px → 10px → 12px */}
-  </CDSCardContent>
-</CDSCard>
+  </CardContent>
+</Card>
 ```
 
-#### CDSSection
+#### Section
 **Responsive margin and padding:**
 
 **Margin Bottom:**
@@ -202,7 +202,7 @@ Same responsive sizing as CDSButton, plus:
 
 ### Navigation (15 components)
 
-#### CDSAppBar
+#### AppBar
 **Responsive height and padding:**
 
 **AppBar Height:**
@@ -220,16 +220,16 @@ Same responsive sizing as CDSButton, plus:
 - Tablet+ (sm): 20px
 
 ```tsx
-<CDSAppBar position="fixed">
+<AppBar position="fixed">
   <Toolbar>
     <Typography variant="h6">App</Typography>
     {/* Height: 56px → 60px → 64px */}
     {/* Title: 18px → 20px */}
   </Toolbar>
-</CDSAppBar>
+</AppBar>
 ```
 
-#### CDSTab
+#### Tab
 **Responsive sizing:**
 
 **Tab Width:**
@@ -247,15 +247,15 @@ Same responsive sizing as CDSButton, plus:
 - Desktop (md): 15px
 
 ```tsx
-<CDSTabs value={value}>
-  <CDSTab label="Tab 1" />
-  <CDSTab label="Tab 2" />
+<Tabs value={value}>
+  <Tab label="Tab 1" />
+  <Tab label="Tab 2" />
   {/* Width: 80px → 90px */}
   {/* Font: 13px → 14px → 15px */}
-</CDSTabs>
+</Tabs>
 ```
 
-#### CDSMenuItem
+#### MenuItem
 **Responsive padding and font:**
 - Mobile (xs): 12px 6px padding, 15px font
 - Tablet+ (sm): 12px 8px padding, 16px font
@@ -264,7 +264,7 @@ Same responsive sizing as CDSButton, plus:
 
 ### Data Display (17 components)
 
-#### CDSAvatar
+#### Avatar
 **Responsive sizing by variant:**
 
 **Medium Avatar:**
@@ -276,27 +276,27 @@ Same responsive sizing as CDSButton, plus:
 - Tablet+ (sm): 56px × 56px, 28px font
 
 ```tsx
-<CDSAvatar>AB</CDSAvatar>
+<Avatar>AB</Avatar>
 
 // Mobile: 32px size, 16px font
 // Tablet: 40px size, 18px font
 ```
 
-#### CDSBadge
+#### Badge
 **Responsive sizing:**
 - Badge size: 18px → 20px
 - Font size: 11px → 12px
 - Dot size: 6px → 8px
 
 ```tsx
-<CDSBadge badgeContent={4}>
+<Badge badgeContent={4}>
   <MailIcon />
   {/* Badge: 18px → 20px */}
   {/* Font: 11px → 12px */}
-</CDSBadge>
+</Badge>
 ```
 
-#### CDSChip
+#### Chip
 **Responsive sizing:**
 - Height: 28px → 32px
 - Font size: 13px → 14px
@@ -304,19 +304,19 @@ Same responsive sizing as CDSButton, plus:
 - Icon size: 18px → 20px
 
 ```tsx
-<CDSChip label="Tag" />
+<Chip label="Tag" />
 
 // Mobile: 28px tall, 13px font
 // Tablet: 32px tall, 14px font
 ```
 
-#### CDSTableCell
+#### TableCell
 **Responsive padding and font:**
 - Mobile (xs): 12px 8px padding, 13px font
 - Tablet (sm): 16px padding, 14px font
 - Desktop (md): 16px 20px padding
 
-#### CDSListItem & CDSListItemButton
+#### ListItem & ListItemButton
 **Responsive padding:**
 
 **ListItem:**
@@ -333,7 +333,7 @@ Same responsive sizing as CDSButton, plus:
 
 ### Feedback (10 components)
 
-#### CDSDialog
+#### Dialog
 **Responsive sizing:**
 
 **Dialog Paper:**
@@ -342,28 +342,28 @@ Same responsive sizing as CDSButton, plus:
 - Margin: 8px → 16px → 24px
 
 ```tsx
-<CDSDialog open={open}>
+<Dialog open={open}>
   {/* Width: 280px → 320px → 400px */}
   {/* Padding: 6px → 8px → 12px */}
-</CDSDialog>
+</Dialog>
 ```
 
-#### CDSDialogTitle
+#### DialogTitle
 **Responsive padding and font:**
 - Padding: 12px 8px → 16px 12px → 20px 14px
 - Font size: 18px → 20px → 24px
 
-#### CDSDialogContent
+#### DialogContent
 **Responsive padding and font:**
 - Padding: 8px → 8px 12px → 12px 14px
 - Font size: 15px → 16px
 
-#### CDSDialogActions
+#### DialogActions
 **Responsive padding and gap:**
 - Padding: 12px 8px → 16px 12px → 20px 14px
 - Gap: 4px → 6px → 8px
 
-#### CDSAlert
+#### Alert
 **Responsive padding and sizing:**
 - Padding: 4px 6px → 12px 8px
 - Icon margin: 4px → 6px
@@ -371,11 +371,11 @@ Same responsive sizing as CDSButton, plus:
 - Message font: 13px → 14px
 
 ```tsx
-<CDSAlert severity="info">
+<Alert severity="info">
   Message here
   {/* Mobile: 20px icon, 13px font */}
   {/* Tablet: 24px icon, 14px font */}
-</CDSAlert>
+</Alert>
 ```
 
 ---
@@ -478,11 +478,11 @@ styled(Component)(({ theme }) => ({
 
 ### Responsive Button
 ```tsx
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
-<CDSButton variant="contained" size="large">
+<Button variant="contained" size="large">
   Submit
-</CDSButton>
+</Button>
 
 // Mobile (xs): 44px tall, 15px font, 12px horizontal padding
 // Tablet (sm): 48px tall, 16px font, 16px horizontal padding
@@ -490,14 +490,14 @@ import { CDSButton } from './cds';
 
 ### Responsive Card
 ```tsx
-import { CDSCard, CDSCardContent } from './cds';
+import { Card, CardContent } from './cds';
 
-<CDSCard>
-  <CDSCardContent>
+<Card>
+  <CardContent>
     <Typography variant="h6">Card Title</Typography>
     <Typography>Content here</Typography>
-  </CDSCardContent>
-</CDSCard>
+  </CardContent>
+</Card>
 
 // Mobile (xs): 8px padding
 // Tablet (sm): 10px padding
@@ -506,13 +506,13 @@ import { CDSCard, CDSCardContent } from './cds';
 
 ### Responsive AppBar
 ```tsx
-import { CDSAppBar, Toolbar, Typography } from './cds';
+import { AppBar, Toolbar, Typography } from './cds';
 
-<CDSAppBar position="fixed">
+<AppBar position="fixed">
   <Toolbar>
     <Typography variant="h6">My App</Typography>
   </Toolbar>
-</CDSAppBar>
+</AppBar>
 
 // Mobile (xs): 56px height, 18px title
 // Tablet (sm): 60px height, 20px title
@@ -522,21 +522,21 @@ import { CDSAppBar, Toolbar, Typography } from './cds';
 ### Responsive Dialog
 ```tsx
 import {
-  CDSDialog,
-  CDSDialogTitle,
-  CDSDialogContent,
-  CDSDialogActions,
-  CDSButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
 } from './cds';
 
-<CDSDialog open={open}>
-  <CDSDialogTitle>Title</CDSDialogTitle>
-  <CDSDialogContent>Content</CDSDialogContent>
-  <CDSDialogActions>
-    <CDSButton>Cancel</CDSButton>
-    <CDSButton variant="contained">Confirm</CDSButton>
-  </CDSDialogActions>
-</CDSDialog>
+<Dialog open={open}>
+  <DialogTitle>Title</DialogTitle>
+  <DialogContent>Content</DialogContent>
+  <DialogActions>
+    <Button>Cancel</Button>
+    <Button variant="contained">Confirm</Button>
+  </DialogActions>
+</Dialog>
 
 // Mobile (xs): 280px width, 18px title, compact spacing
 // Tablet (sm): 320px width, 20px title, medium spacing

@@ -83,12 +83,12 @@ theme.palette.text.disabled   // Light (38%)
 
 ### Icon in Button
 ```tsx
-<CDSButton
+<Button
   variant="contained"
   startIcon={<SaveOutlinedIcon />}
 >
   Save
-</CDSButton>
+</Button>
 ```
 
 ### Icon Button

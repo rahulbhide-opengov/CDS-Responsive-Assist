@@ -31,7 +31,7 @@ import { styled } from '@mui/material/styles';
 /**
  * CDS Elevation Levels (Design Language)
  */
-export type CDSElevation = 'none' | 'low' | 'medium' | 'high';
+export type Elevation = 'none' | 'low' | 'medium' | 'high';
 
 /**
  * CDS Container Props (CDS API)
@@ -249,7 +249,7 @@ export interface PaperProps {
    * CDS elevation level - defines shadow depth
    * @default 'low'
    */
-  elevation?: CDSElevation;
+  elevation?: Elevation;
 
   /**
    * Square corners (no border radius)
@@ -297,7 +297,7 @@ export interface CardProps {
    * CDS elevation level - defines shadow depth
    * @default 'low'
    */
-  elevation?: CDSElevation;
+  elevation?: Elevation;
 
   /**
    * Raised state (enhanced elevation on hover)
@@ -581,7 +581,7 @@ export interface DividerProps {
  * Maps CDS elevation to MUI numeric elevation
  * THIS IS INTERNAL - developers never see this
  */
-const getMuiElevationFromCDS = (elevation?: CDSElevation): number => {
+const getMuiElevationFromCDS = (elevation?: Elevation): number => {
   switch (elevation) {
     case 'none':
       return 0;
@@ -837,11 +837,11 @@ const StyledMuiDivider = styled(MuiDivider)(({ theme }) => ({
  * Max-width content wrapper with responsive breakpoints
  *
  * @example
- * <CDSContainer maxWidth="lg">
+ * <Container maxWidth="lg">
  *   <YourContent />
- * </CDSContainer>
+ * </Container>
  */
-export const CDSContainer = React.forwardRef<HTMLDivElement, ContainerProps>(
+export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   (
     {
       maxWidth = 'lg',
@@ -872,7 +872,7 @@ export const CDSContainer = React.forwardRef<HTMLDivElement, ContainerProps>(
   }
 );
 
-CDSContainer.displayName = 'CDSContainer';
+Container.displayName = 'Container';
 
 /**
  * CDS Box Component
@@ -881,11 +881,11 @@ CDSContainer.displayName = 'CDSContainer';
  * Use this for one-off layouts with CDS tokens
  *
  * @example
- * <CDSBox sx={{ p: 3, bgcolor: 'primary.main' }}>
+ * <Box sx={{ p: 3, bgcolor: 'primary.main' }}>
  *   Content
- * </CDSBox>
+ * </Box>
  */
-export const CDSBox = React.forwardRef<HTMLDivElement, BoxProps>(
+export const Box = React.forwardRef<HTMLDivElement, BoxProps>(
   (
     {
       children,
@@ -910,7 +910,7 @@ export const CDSBox = React.forwardRef<HTMLDivElement, BoxProps>(
   }
 );
 
-CDSBox.displayName = 'CDSBox';
+Box.displayName = 'Box';
 
 /**
  * CDS Stack Component
@@ -918,12 +918,12 @@ CDSBox.displayName = 'CDSBox';
  * One-dimensional flexbox layout with CDS spacing
  *
  * @example
- * <CDSStack spacing={3} direction="column">
+ * <Stack spacing={3} direction="column">
  *   <Item />
  *   <Item />
- * </CDSStack>
+ * </Stack>
  */
-export const CDSStack = React.forwardRef<HTMLDivElement, StackProps>(
+export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
   (
     {
       children,
@@ -958,7 +958,7 @@ export const CDSStack = React.forwardRef<HTMLDivElement, StackProps>(
   }
 );
 
-CDSStack.displayName = 'CDSStack';
+Stack.displayName = 'Stack';
 
 /**
  * CDS Grid Component
@@ -966,13 +966,13 @@ CDSStack.displayName = 'CDSStack';
  * 12-column responsive grid system with CDS spacing
  *
  * @example
- * <CDSGrid container spacing={3}>
- *   <CDSGrid item xs={12} sm={6} md={4}>
+ * <Grid container spacing={3}>
+ *   <Grid item xs={12} sm={6} md={4}>
  *     <Card />
- *   </CDSGrid>
- * </CDSGrid>
+ *   </Grid>
+ * </Grid>
  */
-export const CDSGrid = React.forwardRef<HTMLDivElement, GridProps>(
+export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   (
     {
       children,
@@ -1013,7 +1013,7 @@ export const CDSGrid = React.forwardRef<HTMLDivElement, GridProps>(
   }
 );
 
-CDSGrid.displayName = 'CDSGrid';
+Grid.displayName = 'Grid';
 
 /**
  * CDS Paper Component
@@ -1024,15 +1024,15 @@ CDSGrid.displayName = 'CDSGrid';
  *
  * @example
  * // CDS Way (CORRECT)
- * <CDSPaper elevation="low" sx={{ p: 3 }}>
+ * <Paper elevation="low" sx={{ p: 3 }}>
  *   Content
- * </CDSPaper>
+ * </Paper>
  *
- * <CDSPaper elevation="high" sx={{ p: 3 }}>
+ * <Paper elevation="high" sx={{ p: 3 }}>
  *   Important Content
- * </CDSPaper>
+ * </Paper>
  */
-export const CDSPaper = React.forwardRef<HTMLDivElement, PaperProps>(
+export const Paper = React.forwardRef<HTMLDivElement, PaperProps>(
   (
     {
       elevation = 'low',
@@ -1066,7 +1066,7 @@ export const CDSPaper = React.forwardRef<HTMLDivElement, PaperProps>(
   }
 );
 
-CDSPaper.displayName = 'CDSPaper';
+Paper.displayName = 'Paper';
 
 /**
  * CDS Card Component
@@ -1077,20 +1077,20 @@ CDSPaper.displayName = 'CDSPaper';
  *
  * @example
  * // CDS Way (CORRECT)
- * <CDSCard elevation="low">
- *   <CDSCardHeader title="Card Title" />
- *   <CDSCardContent>Content here</CDSCardContent>
- *   <CDSCardActions>
- *     <CDSButton>Action</CDSButton>
- *   </CDSCardActions>
- * </CDSCard>
+ * <Card elevation="low">
+ *   <CardHeader title="Card Title" />
+ *   <CardContent>Content here</CardContent>
+ *   <CardActions>
+ *     <Button>Action</Button>
+ *   </CardActions>
+ * </Card>
  *
  * // High elevation card
- * <CDSCard elevation="high" raised>
+ * <Card elevation="high" raised>
  *   Important content
- * </CDSCard>
+ * </Card>
  */
-export const CDSCard = React.forwardRef<HTMLDivElement, CardProps>(
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (
     {
       elevation = 'low',
@@ -1122,7 +1122,7 @@ export const CDSCard = React.forwardRef<HTMLDivElement, CardProps>(
   }
 );
 
-CDSCard.displayName = 'CDSCard';
+Card.displayName = 'Card';
 
 /**
  * CDS CardHeader Component
@@ -1130,14 +1130,14 @@ CDSCard.displayName = 'CDSCard';
  * Card header with title, subtitle, avatar, and action
  *
  * @example
- * <CDSCardHeader
+ * <CardHeader
  *   title="Card Title"
  *   subtitle="Card subtitle"
  *   avatar={<Avatar>A</Avatar>}
  *   action={<IconButton><MoreVertIcon /></IconButton>}
  * />
  */
-export const CDSCardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
+export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   (
     {
       title,
@@ -1165,7 +1165,7 @@ export const CDSCardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   }
 );
 
-CDSCardHeader.displayName = 'CDSCardHeader';
+CardHeader.displayName = 'CardHeader';
 
 /**
  * CDS CardContent Component
@@ -1173,11 +1173,11 @@ CDSCardHeader.displayName = 'CDSCardHeader';
  * Card content area
  *
  * @example
- * <CDSCardContent>
+ * <CardContent>
  *   <Typography>Card content goes here</Typography>
- * </CDSCardContent>
+ * </CardContent>
  */
-export const CDSCardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
+export const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   (
     {
       children,
@@ -1202,7 +1202,7 @@ export const CDSCardContent = React.forwardRef<HTMLDivElement, CardContentProps>
   }
 );
 
-CDSCardContent.displayName = 'CDSCardContent';
+CardContent.displayName = 'CardContent';
 
 /**
  * CDS CardActions Component
@@ -1210,12 +1210,12 @@ CDSCardContent.displayName = 'CDSCardContent';
  * Card actions area (typically buttons)
  *
  * @example
- * <CDSCardActions>
- *   <CDSButton variant="primary">Save</CDSButton>
- *   <CDSButton variant="secondary">Cancel</CDSButton>
- * </CDSCardActions>
+ * <CardActions>
+ *   <Button variant="primary">Save</Button>
+ *   <Button variant="secondary">Cancel</Button>
+ * </CardActions>
  */
-export const CDSCardActions = React.forwardRef<HTMLDivElement, CardActionsProps>(
+export const CardActions = React.forwardRef<HTMLDivElement, CardActionsProps>(
   (
     {
       children,
@@ -1240,7 +1240,7 @@ export const CDSCardActions = React.forwardRef<HTMLDivElement, CardActionsProps>
   }
 );
 
-CDSCardActions.displayName = 'CDSCardActions';
+CardActions.displayName = 'CardActions';
 
 /**
  * CDS CardMedia Component
@@ -1248,14 +1248,14 @@ CDSCardActions.displayName = 'CDSCardActions';
  * Card media area (images, videos)
  *
  * @example
- * <CDSCardMedia
+ * <CardMedia
  *   component="img"
  *   height={200}
  *   image="/path/to/image.jpg"
  *   alt="Image description"
  * />
  */
-export const CDSCardMedia = React.forwardRef<HTMLDivElement, CardMediaProps>(
+export const CardMedia = React.forwardRef<HTMLDivElement, CardMediaProps>(
   (
     {
       image,
@@ -1290,7 +1290,7 @@ export const CDSCardMedia = React.forwardRef<HTMLDivElement, CardMediaProps>(
   }
 );
 
-CDSCardMedia.displayName = 'CDSCardMedia';
+CardMedia.displayName = 'CardMedia';
 
 /**
  * CDS Section Component
@@ -1298,12 +1298,12 @@ CDSCardMedia.displayName = 'CDSCardMedia';
  * Page section with consistent spacing
  *
  * @example
- * <CDSSection>
+ * <Section>
  *   <Typography variant="h4">Section Title</Typography>
  *   <Typography>Content...</Typography>
- * </CDSSection>
+ * </Section>
  */
-export const CDSSection = React.forwardRef<HTMLDivElement, SectionProps>(
+export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
   (
     {
       children,
@@ -1328,7 +1328,7 @@ export const CDSSection = React.forwardRef<HTMLDivElement, SectionProps>(
   }
 );
 
-CDSSection.displayName = 'CDSSection';
+Section.displayName = 'Section';
 
 /**
  * CDS PageContainer Component
@@ -1336,12 +1336,12 @@ CDSSection.displayName = 'CDSSection';
  * Full-page container with consistent padding
  *
  * @example
- * <CDSPageContainer>
+ * <PageContainer>
  *   <Typography variant="h3">Page Title</Typography>
- *   <CDSSection>...</CDSSection>
- * </CDSPageContainer>
+ *   <Section>...</Section>
+ * </PageContainer>
  */
-export const CDSPageContainer = React.forwardRef<HTMLDivElement, ContainerProps>(
+export const PageContainer = React.forwardRef<HTMLDivElement, ContainerProps>(
   (
     {
       maxWidth = 'lg',
@@ -1372,7 +1372,7 @@ export const CDSPageContainer = React.forwardRef<HTMLDivElement, ContainerProps>
   }
 );
 
-CDSPageContainer.displayName = 'CDSPageContainer';
+PageContainer.displayName = 'PageContainer';
 
 /**
  * CDS Divider Component
@@ -1381,15 +1381,15 @@ CDSPageContainer.displayName = 'CDSPageContainer';
  *
  * @example
  * // Horizontal divider
- * <CDSDivider />
+ * <Divider />
  *
  * // Vertical divider
- * <CDSDivider orientation="vertical" />
+ * <Divider orientation="vertical" />
  *
  * // Divider with text
- * <CDSDivider>OR</CDSDivider>
+ * <Divider>OR</Divider>
  */
-export const CDSDivider = React.forwardRef<HTMLHRElement, DividerProps>(
+export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(
   (
     {
       orientation = 'horizontal',
@@ -1424,10 +1424,10 @@ export const CDSDivider = React.forwardRef<HTMLHRElement, DividerProps>(
   }
 );
 
-CDSDivider.displayName = 'CDSDivider';
+Divider.displayName = 'Divider';
 
 // ============================================================================
 // EXPORTS
 // ============================================================================
 
-export default CDSContainer;
+export default Container;

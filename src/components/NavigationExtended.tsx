@@ -824,11 +824,11 @@ const StyledStepContent = styled(MuiStepContent)(({ theme }) => ({
  * CDS Menu Component
  *
  * @example
- * <CDSMenu anchorEl={anchorEl} open={open} onClose={handleClose}>
- *   <CDSMenuItem onClick={handleClick}>Profile</CDSMenuItem>
- * </CDSMenu>
+ * <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+ *   <MenuItem onClick={handleClick}>Profile</MenuItem>
+ * </Menu>
  */
-export const CDSMenu = React.forwardRef<HTMLDivElement, MenuProps>(
+export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
   (
     {
       anchorEl,
@@ -861,15 +861,15 @@ export const CDSMenu = React.forwardRef<HTMLDivElement, MenuProps>(
   }
 );
 
-CDSMenu.displayName = 'CDSMenu';
+Menu.displayName = 'Menu';
 
 /**
  * CDS MenuItem Component
  *
  * @example
- * <CDSMenuItem onClick={handleClick}>Menu Item</CDSMenuItem>
+ * <MenuItem onClick={handleClick}>Menu Item</MenuItem>
  */
-export const CDSMenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
+export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
   (
     {
       children,
@@ -898,15 +898,15 @@ export const CDSMenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
   }
 );
 
-CDSMenuItem.displayName = 'CDSMenuItem';
+MenuItem.displayName = 'MenuItem';
 
 /**
  * CDS Pagination Component
  *
  * @example
- * <CDSPagination count={10} page={page} onChange={handleChange} />
+ * <Pagination count={10} page={page} onChange={handleChange} />
  */
-export const CDSPagination = React.forwardRef<HTMLElement, PaginationProps>(
+export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
   (
     {
       count,
@@ -946,17 +946,17 @@ export const CDSPagination = React.forwardRef<HTMLElement, PaginationProps>(
   }
 );
 
-CDSPagination.displayName = 'CDSPagination';
+Pagination.displayName = 'Pagination';
 
 /**
  * CDS SpeedDial Component
  *
  * @example
- * <CDSSpeedDial ariaLabel="Actions" icon={<SpeedDialIcon />}>
- *   <CDSSpeedDialAction icon={<FileCopyIcon />} tooltipTitle="Copy" />
- * </CDSSpeedDial>
+ * <SpeedDial ariaLabel="Actions" icon={<SpeedDialIcon />}>
+ *   <SpeedDialAction icon={<FileCopyIcon />} tooltipTitle="Copy" />
+ * </SpeedDial>
  */
-export const CDSSpeedDial = React.forwardRef<HTMLButtonElement, SpeedDialProps>(
+export const SpeedDial = React.forwardRef<HTMLButtonElement, SpeedDialProps>(
   (
     {
       ariaLabel,
@@ -995,15 +995,15 @@ export const CDSSpeedDial = React.forwardRef<HTMLButtonElement, SpeedDialProps>(
   }
 );
 
-CDSSpeedDial.displayName = 'CDSSpeedDial';
+SpeedDial.displayName = 'SpeedDial';
 
 /**
  * CDS SpeedDialAction Component
  *
  * @example
- * <CDSSpeedDialAction icon={<FileCopyIcon />} tooltipTitle="Copy" />
+ * <SpeedDialAction icon={<FileCopyIcon />} tooltipTitle="Copy" />
  */
-export const CDSSpeedDialAction = React.forwardRef<HTMLButtonElement, SpeedDialActionProps>(
+export const SpeedDialAction = React.forwardRef<HTMLButtonElement, SpeedDialActionProps>(
   (
     {
       icon,
@@ -1031,19 +1031,19 @@ export const CDSSpeedDialAction = React.forwardRef<HTMLButtonElement, SpeedDialA
   }
 );
 
-CDSSpeedDialAction.displayName = 'CDSSpeedDialAction';
+SpeedDialAction.displayName = 'SpeedDialAction';
 
 /**
  * CDS TreeView Component
  *
  * @example
- * <CDSTreeView defaultExpanded={['1']}>
- *   <CDSTreeItem nodeId="1" label="Parent">
- *     <CDSTreeItem nodeId="2" label="Child" />
- *   </CDSTreeItem>
- * </CDSTreeView>
+ * <TreeView defaultExpanded={['1']}>
+ *   <TreeItem nodeId="1" label="Parent">
+ *     <TreeItem nodeId="2" label="Child" />
+ *   </TreeItem>
+ * </TreeView>
  */
-export const CDSTreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
+export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
   (
     {
       defaultExpanded,
@@ -1082,15 +1082,15 @@ export const CDSTreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
   }
 );
 
-CDSTreeView.displayName = 'CDSTreeView';
+TreeView.displayName = 'TreeView';
 
 /**
  * CDS TreeItem Component
  *
  * @example
- * <CDSTreeItem nodeId="1" label="Parent" />
+ * <TreeItem nodeId="1" label="Parent" />
  */
-export const CDSTreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
+export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
   (
     {
       nodeId,
@@ -1117,17 +1117,17 @@ export const CDSTreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
   }
 );
 
-CDSTreeItem.displayName = 'CDSTreeItem';
+TreeItem.displayName = 'TreeItem';
 
 /**
  * CDS Stepper Component
  *
  * @example
- * <CDSStepper activeStep={activeStep}>
- *   <CDSStep><CDSStepLabel>Step 1</CDSStepLabel></CDSStep>
- * </CDSStepper>
+ * <Stepper activeStep={activeStep}>
+ *   <Step><StepLabel>Step 1</StepLabel></Step>
+ * </Stepper>
  */
-export const CDSStepper = React.forwardRef<HTMLDivElement, StepperProps>(
+export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
   (
     {
       activeStep = 0,
@@ -1159,15 +1159,15 @@ export const CDSStepper = React.forwardRef<HTMLDivElement, StepperProps>(
   }
 );
 
-CDSStepper.displayName = 'CDSStepper';
+Stepper.displayName = 'Stepper';
 
 /**
  * CDS Step Component
  *
  * @example
- * <CDSStep><CDSStepLabel>Step 1</CDSStepLabel></CDSStep>
+ * <Step><StepLabel>Step 1</StepLabel></Step>
  */
-export const CDSStep = React.forwardRef<HTMLDivElement, StepProps>(
+export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   (
     {
       children,
@@ -1194,15 +1194,15 @@ export const CDSStep = React.forwardRef<HTMLDivElement, StepProps>(
   }
 );
 
-CDSStep.displayName = 'CDSStep';
+Step.displayName = 'Step';
 
 /**
  * CDS StepLabel Component
  *
  * @example
- * <CDSStepLabel>Step 1</CDSStepLabel>
+ * <StepLabel>Step 1</StepLabel>
  */
-export const CDSStepLabel = React.forwardRef<HTMLSpanElement, StepLabelProps>(
+export const StepLabel = React.forwardRef<HTMLSpanElement, StepLabelProps>(
   (
     {
       children,
@@ -1231,15 +1231,15 @@ export const CDSStepLabel = React.forwardRef<HTMLSpanElement, StepLabelProps>(
   }
 );
 
-CDSStepLabel.displayName = 'CDSStepLabel';
+StepLabel.displayName = 'StepLabel';
 
 /**
  * CDS StepContent Component
  *
  * @example
- * <CDSStepContent>Step content here</CDSStepContent>
+ * <StepContent>Step content here</StepContent>
  */
-export const CDSStepContent = React.forwardRef<HTMLDivElement, StepContentProps>(
+export const StepContent = React.forwardRef<HTMLDivElement, StepContentProps>(
   (
     {
       children,
@@ -1262,20 +1262,20 @@ export const CDSStepContent = React.forwardRef<HTMLDivElement, StepContentProps>
   }
 );
 
-CDSStepContent.displayName = 'CDSStepContent';
+StepContent.displayName = 'StepContent';
 
 // ============================================================================
 // EXPORTS
 // ============================================================================
 
-export type CDSMenuProps = MenuProps;
-export type CDSMenuItemProps = MenuItemProps;
-export type CDSPaginationProps = PaginationProps;
-export type CDSSpeedDialProps = SpeedDialProps;
-export type CDSSpeedDialActionProps = SpeedDialActionProps;
-export type CDSTreeViewProps = TreeViewProps;
-export type CDSTreeItemProps = TreeItemProps;
-export type CDSStepperProps = StepperProps;
-export type CDSStepProps = StepProps;
-export type CDSStepLabelProps = StepLabelProps;
-export type CDSStepContentProps = StepContentProps;
+export type MenuProps = MenuProps;
+export type MenuItemProps = MenuItemProps;
+export type PaginationProps = PaginationProps;
+export type SpeedDialProps = SpeedDialProps;
+export type SpeedDialActionProps = SpeedDialActionProps;
+export type TreeViewProps = TreeViewProps;
+export type TreeItemProps = TreeItemProps;
+export type StepperProps = StepperProps;
+export type StepProps = StepProps;
+export type StepLabelProps = StepLabelProps;
+export type StepContentProps = StepContentProps;

@@ -13,10 +13,10 @@ This guide shows you how to use the CDS theme and pre-built components in your p
 - **`src/theme/tokens.ts`** - All token definitions (colors, spacing, typography, etc.)
 
 ### ✅ Pre-Built Components
-- **`src/components/Button.tsx`** - CDSButton, CDSIconButton, CDSFAB
-- **`src/components/Form.tsx`** - CDSTextField, CDSCheckbox, CDSRadio, CDSSwitch, CDSSelect, CDSFormLabel
-- **`src/components/Layout.tsx`** - CDSContainer, CDSBox, CDSStack, CDSGrid, CDSPaper, CDSCard
-- **`src/components/Navigation.tsx`** - CDSAppBar, CDSDrawer, CDSBottomNavigation, CDSTabs, CDSTab
+- **`src/components/Button.tsx`** - Button, IconButton, FAB
+- **`src/components/Form.tsx`** - TextField, Checkbox, Radio, Switch, Select, FormLabel
+- **`src/components/Layout.tsx`** - Container, Box, Stack, Grid, Paper, Card
+- **`src/components/Navigation.tsx`** - AppBar, Drawer, BottomNavigation, Tabs, Tab
 
 ### ✅ Usage Examples
 - **`examples/basic-usage.tsx`** - Simple component usage
@@ -41,12 +41,12 @@ This guide shows you how to use the CDS theme and pre-built components in your p
 3. **Import and use**
    ```tsx
    import { ThemeProvider } from '@mui/material/styles';
-   import { cdsTheme, CDSButton } from './cds';
+   import { cdsTheme, Button } from './cds';
 
    function App() {
      return (
        <ThemeProvider theme={cdsTheme}>
-         <CDSButton variant="contained">Click Me</CDSButton>
+         <Button variant="contained">Click Me</Button>
        </ThemeProvider>
      );
    }
@@ -89,80 +89,80 @@ If you want to use MUI components directly with CDS tokens:
 
 ### Basic Button
 ```tsx
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
-<CDSButton variant="contained" color="primary">
+<Button variant="contained" color="primary">
   Primary Action
-</CDSButton>
+</Button>
 ```
 
 ### Form with Validation
 ```tsx
-import { CDSTextField, CDSButton, CDSStack } from './cds';
+import { TextField, Button, Stack } from './cds';
 
 function ContactForm() {
   return (
-    <CDSStack spacing={3}>
-      <CDSTextField
+    <Stack spacing={3}>
+      <TextField
         label="Email"
         type="email"
         required
         fullWidth
         helperText="We'll never share your email"
       />
-      <CDSTextField
+      <TextField
         label="Message"
         multiline
         rows={4}
         required
         fullWidth
       />
-      <CDSButton variant="contained" fullWidth>
+      <Button variant="contained" fullWidth>
         Send Message
-      </CDSButton>
-    </CDSStack>
+      </Button>
+    </Stack>
   );
 }
 ```
 
 ### Responsive Grid Layout
 ```tsx
-import { CDSGrid, CDSCard, CDSCardContent } from './cds';
+import { Grid, Card, CardContent } from './cds';
 
 function Gallery() {
   return (
-    <CDSGrid container spacing={3}>
-      <CDSGrid item xs={12} sm={6} md={4}>
-        <CDSCard>
-          <CDSCardContent>Card 1</CDSCardContent>
-        </CDSCard>
-      </CDSGrid>
-      <CDSGrid item xs={12} sm={6} md={4}>
-        <CDSCard>
-          <CDSCardContent>Card 2</CDSCardContent>
-        </CDSCard>
-      </CDSGrid>
-    </CDSGrid>
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={6} md={4}>
+        <Card>
+          <CardContent>Card 1</CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <Card>
+          <CardContent>Card 2</CardContent>
+        </Card>
+      </Grid>
+    </Grid>
   );
 }
 ```
 
 ### Navigation with AppBar and Drawer
 ```tsx
-import { CDSAppBar, CDSDrawer, Typography, Toolbar } from './cds';
+import { AppBar, Drawer, Typography, Toolbar } from './cds';
 
 function Layout() {
   return (
     <>
-      <CDSAppBar position="fixed">
+      <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6">My App</Typography>
         </Toolbar>
-      </CDSAppBar>
+      </AppBar>
 
-      <CDSDrawer variant="permanent">
+      <Drawer variant="permanent">
         {/* Navigation items */}
-      </CDSDrawer>
+      </Drawer>
     </>
   );
 }
@@ -266,35 +266,35 @@ xl: 1536px   // Large desktop
 ## 🎯 Component List
 
 ### Buttons
-- `CDSButton` - Standard button with variants
-- `CDSIconButton` - Icon-only button
-- `CDSFAB` - Floating action button
+- `Button` - Standard button with variants
+- `IconButton` - Icon-only button
+- `FAB` - Floating action button
 
 ### Forms
-- `CDSTextField` - Text input with validation
-- `CDSCheckbox` - Checkbox input
-- `CDSRadio` - Radio button
-- `CDSSwitch` - Toggle switch
-- `CDSSelect` - Dropdown select
-- `CDSFormLabel` - Form label
+- `TextField` - Text input with validation
+- `Checkbox` - Checkbox input
+- `Radio` - Radio button
+- `Switch` - Toggle switch
+- `Select` - Dropdown select
+- `FormLabel` - Form label
 
 ### Layout
-- `CDSContainer` - Max-width wrapper
-- `CDSBox` - Generic container
-- `CDSStack` - Vertical/horizontal layout
-- `CDSGrid` - 12-column grid
-- `CDSPaper` - Elevated surface
-- `CDSCard` - Content card
-- `CDSSection` - Page section
-- `CDSPageContainer` - Page wrapper
+- `Container` - Max-width wrapper
+- `Box` - Generic container
+- `Stack` - Vertical/horizontal layout
+- `Grid` - 12-column grid
+- `Paper` - Elevated surface
+- `Card` - Content card
+- `Section` - Page section
+- `PageContainer` - Page wrapper
 
 ### Navigation
-- `CDSAppBar` - Top navigation bar
-- `CDSDrawer` - Side navigation
-- `CDSBottomNavigation` - Mobile bottom nav
-- `CDSTabs` - Tabbed navigation
-- `CDSTab` - Individual tab
-- `CDSNavLink` - Navigation link
+- `AppBar` - Top navigation bar
+- `Drawer` - Side navigation
+- `BottomNavigation` - Mobile bottom nav
+- `Tabs` - Tabbed navigation
+- `Tab` - Individual tab
+- `NavLink` - Navigation link
 
 ---
 
@@ -353,9 +353,9 @@ const customTheme = createTheme(cdsTheme, {
 ### Create Custom Components
 ```tsx
 import { styled } from '@mui/material/styles';
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
-const DangerButton = styled(CDSButton)(({ theme }) => ({
+const DangerButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.error.main,
   color: theme.palette.error.contrastText,
   '&:hover': {

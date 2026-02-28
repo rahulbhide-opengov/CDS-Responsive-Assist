@@ -11,37 +11,37 @@ Implementation progress for refactoring all components to use CDS-first architec
 ### ✅ Completed Components
 
 #### Group 1: Buttons (100% Complete - 6/6)
-1. ✅ **CDSButton** - CDS variants (primary, secondary, tertiary, danger, success, ghost, link)
-2. ✅ **CDSIconButton** - CDS props with required ariaLabel
-3. ✅ **CDSFAB** - CDS sizing and positioning
-4. ✅ **CDSButtonGroup** - CDS styling and props
-5. ✅ **CDSToggleButtonGroup** - CDS styling and props
-6. ✅ **CDSToggleButton** - CDS styling and props
+1. ✅ **Button** - CDS variants (primary, secondary, tertiary, danger, success, ghost, link)
+2. ✅ **IconButton** - CDS props with required ariaLabel
+3. ✅ **FAB** - CDS sizing and positioning
+4. ✅ **ButtonGroup** - CDS styling and props
+5. ✅ **ToggleButtonGroup** - CDS styling and props
+6. ✅ **ToggleButton** - CDS styling and props
 
-**Note**: CDSLoadingButton deprecated - use CDSButton with `loading` prop
+**Note**: LoadingButton deprecated - use Button with `loading` prop
 
 ---
 
 ## CDS-First Changes Implemented
 
-### CDSButton
+### Button
 
 **Old (MUI-Centric)**:
 ```tsx
-<CDSButton variant="contained" color="primary">Save</CDSButton>
-<CDSButton variant="outlined" color="primary">Cancel</CDSButton>
-<CDSButton variant="contained" color="error" startIcon={<DeleteIcon />}>
+<Button variant="contained" color="primary">Save</Button>
+<Button variant="outlined" color="primary">Cancel</Button>
+<Button variant="contained" color="error" startIcon={<DeleteIcon />}>
   Delete
-</CDSButton>
+</Button>
 ```
 
 **New (CDS-First)**:
 ```tsx
-<CDSButton variant="primary">Save</CDSButton>
-<CDSButton variant="secondary">Cancel</CDSButton>
-<CDSButton variant="danger" leftIcon={<DeleteOutlineIcon />}>
+<Button variant="primary">Save</Button>
+<Button variant="secondary">Cancel</Button>
+<Button variant="danger" leftIcon={<DeleteOutlineIcon />}>
   Delete
-</CDSButton>
+</Button>
 ```
 
 ### CDS Button Variants
@@ -69,11 +69,11 @@ Implementation progress for refactoring all components to use CDS-first architec
 
 ### Built-in Features
 
-✅ **Loading State**: Built into CDSButton
+✅ **Loading State**: Built into Button
 ```tsx
-<CDSButton variant="primary" loading={isLoading}>
+<Button variant="primary" loading={isLoading}>
   {isLoading ? 'Saving...' : 'Save'}
-</CDSButton>
+</Button>
 ```
 
 ✅ **Responsive Sizing**: All sizes adapt across breakpoints
@@ -97,92 +97,92 @@ Implementation progress for refactoring all components to use CDS-first architec
 ## Remaining Components (74/80)
 
 ### Group 2: Forms (0/13)
-- [ ] CDSTextField
-- [ ] CDSSelect
-- [ ] CDSCheckbox
-- [ ] CDSRadio
-- [ ] CDSSwitch
-- [ ] CDSSlider
-- [ ] CDSRating
-- [ ] CDSAutocomplete
+- [ ] TextField
+- [ ] Select
+- [ ] Checkbox
+- [ ] Radio
+- [ ] Switch
+- [ ] Slider
+- [ ] Rating
+- [ ] Autocomplete
 - [ ] CDSDatePicker
 - [ ] CDSTimePicker
 - [ ] CDSDateTimePicker
-- [ ] CDSTransferList
-- [ ] CDSFileUpload
+- [ ] TransferList
+- [ ] FileUpload
 
 ### Group 3: Layout (0/9)
-- [ ] CDSCard (elevation: 'none' | 'low' | 'medium' | 'high')
-- [ ] CDSCardHeader
-- [ ] CDSCardContent
-- [ ] CDSCardActions
-- [ ] CDSContainer
-- [ ] CDSBox (keep simple)
-- [ ] CDSStack (keep simple)
-- [ ] CDSGrid (keep simple)
-- [ ] CDSSection
+- [ ] Card (elevation: 'none' | 'low' | 'medium' | 'high')
+- [ ] CardHeader
+- [ ] CardContent
+- [ ] CardActions
+- [ ] Container
+- [ ] Box (keep simple)
+- [ ] Stack (keep simple)
+- [ ] Grid (keep simple)
+- [ ] Section
 
 ### Group 4: Navigation (0/15)
-- [ ] CDSAppBar
-- [ ] CDSDrawer
-- [ ] CDSTabs
-- [ ] CDSTab
-- [ ] CDSBottomNavigation
-- [ ] CDSBottomNavigationAction
-- [ ] CDSMenu
-- [ ] CDSMenuItem
-- [ ] CDSPagination
-- [ ] CDSSpeedDial
-- [ ] CDSSpeedDialAction
-- [ ] CDSTreeView
-- [ ] CDSTreeItem
-- [ ] CDSStepper
-- [ ] CDSStep
+- [ ] AppBar
+- [ ] Drawer
+- [ ] Tabs
+- [ ] Tab
+- [ ] BottomNavigation
+- [ ] BottomNavigationAction
+- [ ] Menu
+- [ ] MenuItem
+- [ ] Pagination
+- [ ] SpeedDial
+- [ ] SpeedDialAction
+- [ ] TreeView
+- [ ] TreeItem
+- [ ] Stepper
+- [ ] Step
 
 ### Group 5: Data Display (0/17)
-- [ ] CDSAvatar (size: 'xs' | 'sm' | 'md' | 'lg' | 'xl')
-- [ ] CDSBadge
-- [ ] CDSChip
-- [ ] CDSTable (density: 'comfortable' | 'standard' | 'compact')
-- [ ] CDSTableCell
-- [ ] CDSTableRow
-- [ ] CDSTableHead
-- [ ] CDSTableBody
-- [ ] CDSList
-- [ ] CDSListItem
-- [ ] CDSListItemButton
-- [ ] CDSListItemIcon
-- [ ] CDSListItemText
-- [ ] CDSTooltip
-- [ ] CDSDivider
-- [ ] CDSTypography
-- [ ] CDSImageList
+- [ ] Avatar (size: 'xs' | 'sm' | 'md' | 'lg' | 'xl')
+- [ ] Badge
+- [ ] Chip
+- [ ] Table (density: 'comfortable' | 'standard' | 'compact')
+- [ ] TableCell
+- [ ] TableRow
+- [ ] TableHead
+- [ ] TableBody
+- [ ] List
+- [ ] ListItem
+- [ ] ListItemButton
+- [ ] ListItemIcon
+- [ ] ListItemText
+- [ ] Tooltip
+- [ ] Divider
+- [ ] Typography
+- [ ] ImageList
 
 ### Group 6: Feedback (0/10)
-- [ ] CDSAlert (severity: 'info' | 'success' | 'warning' | 'error')
-- [ ] CDSDialog (size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen')
-- [ ] CDSDialogTitle
-- [ ] CDSDialogContent
-- [ ] CDSDialogActions
-- [ ] CDSSnackbar
-- [ ] CDSCircularProgress
-- [ ] CDSLinearProgress
-- [ ] CDSSkeleton
-- [ ] CDSBackdrop
+- [ ] Alert (severity: 'info' | 'success' | 'warning' | 'error')
+- [ ] Dialog (size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen')
+- [ ] DialogTitle
+- [ ] DialogContent
+- [ ] DialogActions
+- [ ] Snackbar
+- [ ] CircularProgress
+- [ ] LinearProgress
+- [ ] Skeleton
+- [ ] Backdrop
 
 ### Group 7: Utility (0/10)
-- [ ] CDSModal
-- [ ] CDSPopover
-- [ ] CDSMenu (duplicate? see Navigation)
-- [ ] CDSAccordion
-- [ ] CDSAccordionSummary
-- [ ] CDSAccordionDetails
-- [ ] CDSCollapse
-- [ ] CDSFade
-- [ ] CDSGrow
-- [ ] CDSSlide
-- [ ] CDSZoom
-- [ ] CDSPortal
+- [ ] Modal
+- [ ] Popover
+- [ ] Menu (duplicate? see Navigation)
+- [ ] Accordion
+- [ ] AccordionSummary
+- [ ] AccordionDetails
+- [ ] Collapse
+- [ ] Fade
+- [ ] Grow
+- [ ] Slide
+- [ ] Zoom
+- [ ] Portal
 
 ---
 
@@ -235,15 +235,15 @@ styled(MuiComponent)(({ theme }) => ({
 
 ### Component API Changes
 
-**CDSButton**:
+**Button**:
 - ❌ REMOVED: `variant="contained"` + `color="primary"` combination
 - ✅ NEW: `variant="primary"`
 - ❌ REMOVED: `startIcon` / `endIcon`
 - ✅ NEW: `leftIcon` / `rightIcon`
 
-**CDSLoadingButton**:
+**LoadingButton**:
 - ❌ REMOVED: Separate component
-- ✅ NEW: Use `<CDSButton loading={true} />`
+- ✅ NEW: Use `<Button loading={true} />`
 
 ### Migration Examples
 
@@ -251,19 +251,19 @@ styled(MuiComponent)(({ theme }) => ({
 // OLD → NEW
 
 // Button variants
-<CDSButton variant="contained" color="primary">
+<Button variant="contained" color="primary">
   ↓
-<CDSButton variant="primary">
+<Button variant="primary">
 
 // Icons
-<CDSButton startIcon={<Icon />}>
+<Button startIcon={<Icon />}>
   ↓
-<CDSButton leftIcon={<Icon />}>
+<Button leftIcon={<Icon />}>
 
 // Loading
-<CDSLoadingButton loading={true}>
+<LoadingButton loading={true}>
   ↓
-<CDSButton loading={true}>
+<Button loading={true}>
 ```
 
 ---
@@ -272,7 +272,7 @@ styled(MuiComponent)(({ theme }) => ({
 
 ### Modified:
 1. `src/components/Button.tsx` - Complete CDS-first refactor
-2. `src/components/ButtonExtended.tsx` - CDS-first props, deprecated CDSLoadingButton
+2. `src/components/ButtonExtended.tsx` - CDS-first props, deprecated LoadingButton
 
 ### Created:
 1. `CDS-FIRST-REFACTOR-PLAN.md` - Complete refactoring plan
@@ -299,17 +299,17 @@ For each completed component:
 ## Next Steps
 
 ### Phase 1 (Priority: High)
-1. Refactor Form components (CDSTextField, CDSSelect, etc.)
+1. Refactor Form components (TextField, Select, etc.)
 2. Update all examples to use CDS API
 3. Create migration guide
 
 ### Phase 2 (Priority: Medium)
-4. Refactor Layout components (CDSCard with elevation variants)
-5. Refactor Navigation components (CDSAppBar, CDSTabs)
-6. Refactor Data Display (CDSAvatar with size variants)
+4. Refactor Layout components (Card with elevation variants)
+5. Refactor Navigation components (AppBar, Tabs)
+6. Refactor Data Display (Avatar with size variants)
 
 ### Phase 3 (Priority: Low)
-7. Refactor Feedback components (CDSDialog with size variants)
+7. Refactor Feedback components (Dialog with size variants)
 8. Refactor Utility components
 9. Remove ButtonCDSFirst.tsx example file
 

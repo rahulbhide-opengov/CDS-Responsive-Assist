@@ -8,14 +8,14 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   cdsTheme,
-  CDSAppBar,
-  CDSDrawer,
-  CDSBox,
-  CDSGrid,
-  CDSCard,
-  CDSCardContent,
-  CDSButton,
-  CDSIconButton,
+  AppBar,
+  Drawer,
+  Box,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+  IconButton,
   Typography,
   Toolbar,
   List,
@@ -55,11 +55,11 @@ function DashboardExample() {
   return (
     <ThemeProvider theme={cdsTheme}>
       <CssBaseline />
-      <CDSBox sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex' }}>
         {/* App Bar */}
-        <CDSAppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
           <Toolbar>
-            <CDSIconButton
+            <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
@@ -67,26 +67,26 @@ function DashboardExample() {
               sx={{ mr: 2, display: { sm: 'none' } }}
             >
               <MenuIcon />
-            </CDSIconButton>
+            </IconButton>
 
             <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
               CDS Dashboard
             </Typography>
 
-            <CDSIconButton color="inherit" aria-label="notifications">
+            <IconButton color="inherit" aria-label="notifications">
               <Badge badgeContent={4} color="error">
                 <NotificationsIcon />
               </Badge>
-            </CDSIconButton>
+            </IconButton>
 
             <Avatar sx={{ ml: 2, bgcolor: 'secondary.main' }}>
               JD
             </Avatar>
           </Toolbar>
-        </CDSAppBar>
+        </AppBar>
 
         {/* Drawer */}
-        <CDSDrawer
+        <Drawer
           variant="temporary"
           open={drawerOpen}
           onClose={handleDrawerToggle}
@@ -137,10 +137,10 @@ function DashboardExample() {
               </ListItemButton>
             </ListItem>
           </List>
-        </CDSDrawer>
+        </Drawer>
 
         {/* Main Content */}
-        <CDSBox
+        <Box
           component="main"
           sx={{
             flexGrow: 1,
@@ -153,11 +153,11 @@ function DashboardExample() {
             Dashboard Overview
           </Typography>
 
-          <CDSGrid container spacing={3}>
+          <Grid container spacing={3}>
             {/* Stat Cards */}
-            <CDSGrid item xs={12} sm={6} md={3}>
-              <CDSCard>
-                <CDSCardContent>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card>
+                <CardContent>
                   <Typography color="text.secondary" gutterBottom>
                     Total Users
                   </Typography>
@@ -167,13 +167,13 @@ function DashboardExample() {
                   <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
                     +12% from last month
                   </Typography>
-                </CDSCardContent>
-              </CDSCard>
-            </CDSGrid>
+                </CardContent>
+              </Card>
+            </Grid>
 
-            <CDSGrid item xs={12} sm={6} md={3}>
-              <CDSCard>
-                <CDSCardContent>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card>
+                <CardContent>
                   <Typography color="text.secondary" gutterBottom>
                     Revenue
                   </Typography>
@@ -183,13 +183,13 @@ function DashboardExample() {
                   <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
                     +8% from last month
                   </Typography>
-                </CDSCardContent>
-              </CDSCard>
-            </CDSGrid>
+                </CardContent>
+              </Card>
+            </Grid>
 
-            <CDSGrid item xs={12} sm={6} md={3}>
-              <CDSCard>
-                <CDSCardContent>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card>
+                <CardContent>
                   <Typography color="text.secondary" gutterBottom>
                     Active Projects
                   </Typography>
@@ -199,13 +199,13 @@ function DashboardExample() {
                   <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                     3 completed this week
                   </Typography>
-                </CDSCardContent>
-              </CDSCard>
-            </CDSGrid>
+                </CardContent>
+              </Card>
+            </Grid>
 
-            <CDSGrid item xs={12} sm={6} md={3}>
-              <CDSCard>
-                <CDSCardContent>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card>
+                <CardContent>
                   <Typography color="text.secondary" gutterBottom>
                     Tasks
                   </Typography>
@@ -215,30 +215,30 @@ function DashboardExample() {
                   <Typography variant="body2" color="warning.main" sx={{ mt: 1 }}>
                     18 overdue
                   </Typography>
-                </CDSCardContent>
-              </CDSCard>
-            </CDSGrid>
+                </CardContent>
+              </Card>
+            </Grid>
 
             {/* Main Chart Area */}
-            <CDSGrid item xs={12} md={8}>
-              <CDSCard>
-                <CDSCardContent>
+            <Grid item xs={12} md={8}>
+              <Card>
+                <CardContent>
                   <Typography variant="h6" gutterBottom>
                     Analytics Overview
                   </Typography>
-                  <CDSBox sx={{ height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Box sx={{ height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Typography color="text.secondary">
                       Chart component would go here
                     </Typography>
-                  </CDSBox>
-                </CDSCardContent>
-              </CDSCard>
-            </CDSGrid>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
 
             {/* Recent Activity */}
-            <CDSGrid item xs={12} md={4}>
-              <CDSCard>
-                <CDSCardContent>
+            <Grid item xs={12} md={4}>
+              <Card>
+                <CardContent>
                   <Typography variant="h6" gutterBottom>
                     Recent Activity
                   </Typography>
@@ -264,15 +264,15 @@ function DashboardExample() {
                       />
                     </ListItem>
                   </List>
-                  <CDSButton fullWidth sx={{ mt: 2 }}>
+                  <Button variant="tertiary" fullWidth sx={{ mt: 2 }}>
                     View All Activity
-                  </CDSButton>
-                </CDSCardContent>
-              </CDSCard>
-            </CDSGrid>
-          </CDSGrid>
-        </CDSBox>
-      </CDSBox>
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }

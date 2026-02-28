@@ -70,79 +70,79 @@ A comprehensive cross-reference was performed between:
 ## All Implemented Components
 
 ### Buttons (6)
-1. CDSButton
-2. CDSIconButton
-3. CDSFAB
-4. CDSButtonGroup
-5. CDSToggleButton / CDSToggleButtonGroup
-6. CDSLoadingButton
+1. Button
+2. IconButton
+3. FAB
+4. ButtonGroup
+5. ToggleButton / ToggleButtonGroup
+6. LoadingButton
 
 ### Forms (13)
-1. CDSTextField
-2. CDSCheckbox
-3. CDSRadio / CDSRadioGroup
-4. CDSSwitch
-5. CDSSelect
-6. CDSFormLabel
-7. CDSSlider
-8. CDSRating
-9. CDSAutocomplete
-10. **CDSTransferList** ✨ NEW
+1. TextField
+2. Checkbox
+3. Radio / RadioGroup
+4. Switch
+5. Select
+6. FormLabel
+7. Slider
+8. Rating
+9. Autocomplete
+10. **TransferList** ✨ NEW
 
 ### Layout (9)
-1. CDSContainer
-2. CDSBox
-3. CDSStack
-4. CDSGrid
-5. CDSPaper
-6. CDSCard
-7. CDSSection
-8. CDSPageContainer
-9. CDSDivider
-10. CDSLink
+1. Container
+2. Box
+3. Stack
+4. Grid
+5. Paper
+6. Card
+7. Section
+8. PageContainer
+9. Divider
+10. Link
 
 ### Navigation (15)
-1. CDSAppBar
-2. CDSDrawer
-3. CDSBottomNavigation
-4. CDSTabs / CDSTab
-5. CDSNavLink
-6. CDSMenu / CDSMenuItem
-7. CDSPagination
-8. CDSSpeedDial / CDSSpeedDialAction
-9. CDSTreeView / CDSTreeItem
-10. CDSStepper / CDSStep / CDSStepLabel / CDSStepContent
+1. AppBar
+2. Drawer
+3. BottomNavigation
+4. Tabs / Tab
+5. NavLink
+6. Menu / MenuItem
+7. Pagination
+8. SpeedDial / SpeedDialAction
+9. TreeView / TreeItem
+10. Stepper / Step / StepLabel / StepContent
 
 ### Data Display (17)
-1. CDSAvatar / CDSAvatarGroup
-2. CDSBadge
-3. CDSList / CDSListItem / CDSListItemButton / CDSListItemIcon / CDSListItemText
-4. CDSTable / CDSTableHead / CDSTableBody / CDSTableRow / CDSTableCell
-5. CDSImageList / CDSImageListItem
-6. CDSAccordion / CDSAccordionSummary / CDSAccordionDetails
-7. CDSChip
-8. CDSTooltip
+1. Avatar / AvatarGroup
+2. Badge
+3. List / ListItem / ListItemButton / ListItemIcon / ListItemText
+4. Table / TableHead / TableBody / TableRow / TableCell
+5. ImageList / ImageListItem
+6. Accordion / AccordionSummary / AccordionDetails
+7. Chip
+8. Tooltip
 
 ### Feedback (10)
-1. CDSAlert
-2. CDSSnackbar
-3. CDSDialog / CDSDialogTitle / CDSDialogContent / CDSDialogActions
-4. CDSCircularProgress
-5. CDSLinearProgress
-6. CDSSkeleton
-7. CDSBackdrop
+1. Alert
+2. Snackbar
+3. Dialog / DialogTitle / DialogContent / DialogActions
+4. CircularProgress
+5. LinearProgress
+6. Skeleton
+7. Backdrop
 
 ### Utility (10)
-1. CDSPopover
-2. CDSCollapse
-3. CDSModal
-4. CDSClickAwayListener
-5. CDSFade
-6. CDSGrow
-7. CDSSlide
-8. CDSZoom
-9. **CDSPortal** ✨ NEW
-10. **CDSFileUpload** ✨ NEW
+1. Popover
+2. Collapse
+3. Modal
+4. ClickAwayListener
+5. Fade
+6. Grow
+7. Slide
+8. Zoom
+9. **Portal** ✨ NEW
+10. **FileUpload** ✨ NEW
 
 ---
 
@@ -227,12 +227,12 @@ import {
   ThemeProvider,
 
   // Any component
-  CDSButton,
-  CDSTextField,
-  CDSCard,
-  CDSTransferList, // ✨ NEW
-  CDSPortal,       // ✨ NEW
-  CDSFileUpload,   // ✨ NEW
+  Button,
+  TextField,
+  Card,
+  TransferList, // ✨ NEW
+  Portal,       // ✨ NEW
+  FileUpload,   // ✨ NEW
   // ... all 80 available
 } from './cds';
 
@@ -240,8 +240,8 @@ import {
 function App() {
   return (
     <ThemeProvider theme={cdsTheme}>
-      <CDSButton>Click Me</CDSButton>
-      <CDSFileUpload
+      <Button>Click Me</Button>
+      <FileUpload
         accept="image/*"
         maxSize={5242880}
         multiple
@@ -284,7 +284,7 @@ function App() {
 
 4. **Start using**
    ```tsx
-   import { cdsTheme, CDSButton } from './cds';
+   import { cdsTheme, Button } from './cds';
    ```
 
 ---

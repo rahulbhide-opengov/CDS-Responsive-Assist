@@ -12,17 +12,17 @@ import { Portal as MuiPortal, PortalProps as MuiPortalProps } from '@mui/materia
  * Useful for modals, tooltips, and escaping overflow/z-index issues
  *
  * @example
- * <CDSPortal>
+ * <Portal>
  *   <div>This content renders outside the parent DOM</div>
- * </CDSPortal>
+ * </Portal>
  *
  * @example
  * // With custom container
- * <CDSPortal container={customContainer}>
+ * <Portal container={customContainer}>
  *   <div>Rendered in custom container</div>
- * </CDSPortal>
+ * </Portal>
  */
-export const CDSPortal = MuiPortal;
+export const Portal = MuiPortal;
 
 // Type exports
-export type CDSPortalProps = MuiPortalProps;
+export type PortalProps = MuiPortalProps;

@@ -568,13 +568,13 @@ const StyledNavLink = styled('a')<{ active?: boolean }>(({ theme, active }) => (
  * CDS AppBar Component
  *
  * @example
- * <CDSAppBar position="fixed">
+ * <AppBar position="fixed">
  *   <Toolbar>
  *     <Typography variant="h6">App Name</Typography>
  *   </Toolbar>
- * </CDSAppBar>
+ * </AppBar>
  */
-export const CDSAppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
+export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
   (
     {
       position = 'fixed',
@@ -603,17 +603,17 @@ export const CDSAppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
   }
 );
 
-CDSAppBar.displayName = 'CDSAppBar';
+AppBar.displayName = 'AppBar';
 
 /**
  * CDS Drawer Component
  *
  * @example
- * <CDSDrawer variant="permanent" open={open} onClose={handleClose}>
+ * <Drawer variant="permanent" open={open} onClose={handleClose}>
  *   <List>...</List>
- * </CDSDrawer>
+ * </Drawer>
  */
-export const CDSDrawer = React.forwardRef<HTMLDivElement, DrawerProps>(
+export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   (
     {
       variant = 'temporary',
@@ -646,17 +646,17 @@ export const CDSDrawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   }
 );
 
-CDSDrawer.displayName = 'CDSDrawer';
+Drawer.displayName = 'Drawer';
 
 /**
  * CDS Bottom Navigation Component
  *
  * @example
- * <CDSBottomNavigation value={value} onChange={handleChange}>
+ * <BottomNavigation value={value} onChange={handleChange}>
  *   <BottomNavigationAction label="Home" icon={<HomeIcon />} />
- * </CDSBottomNavigation>
+ * </BottomNavigation>
  */
-export const CDSBottomNavigation = React.forwardRef<HTMLDivElement, BottomNavigationProps>(
+export const BottomNavigation = React.forwardRef<HTMLDivElement, BottomNavigationProps>(
   (
     {
       value,
@@ -685,18 +685,18 @@ export const CDSBottomNavigation = React.forwardRef<HTMLDivElement, BottomNaviga
   }
 );
 
-CDSBottomNavigation.displayName = 'CDSBottomNavigation';
+BottomNavigation.displayName = 'BottomNavigation';
 
 /**
  * CDS Tabs Component
  *
  * @example
- * <CDSTabs value={value} onChange={handleChange}>
- *   <CDSTab label="Overview" />
- *   <CDSTab label="Details" />
- * </CDSTabs>
+ * <Tabs value={value} onChange={handleChange}>
+ *   <Tab label="Overview" />
+ *   <Tab label="Details" />
+ * </Tabs>
  */
-export const CDSTabs = React.forwardRef<HTMLDivElement, TabsProps>(
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   (
     {
       value,
@@ -737,15 +737,15 @@ export const CDSTabs = React.forwardRef<HTMLDivElement, TabsProps>(
   }
 );
 
-CDSTabs.displayName = 'CDSTabs';
+Tabs.displayName = 'Tabs';
 
 /**
  * CDS Tab Component
  *
  * @example
- * <CDSTab label="Tab Label" icon={<Icon />} />
+ * <Tab label="Tab Label" icon={<Icon />} />
  */
-export const CDSTab = React.forwardRef<HTMLDivElement, TabProps>(
+export const Tab = React.forwardRef<HTMLDivElement, TabProps>(
   (
     {
       label,
@@ -781,15 +781,15 @@ export const CDSTab = React.forwardRef<HTMLDivElement, TabProps>(
   }
 );
 
-CDSTab.displayName = 'CDSTab';
+Tab.displayName = 'Tab';
 
 /**
  * CDS NavLink Component
  *
  * @example
- * <CDSNavLink href="/about">About Us</CDSNavLink>
+ * <NavLink href="/about">About Us</NavLink>
  */
-export const CDSNavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
+export const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
   (
     {
       href,
@@ -820,15 +820,15 @@ export const CDSNavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
   }
 );
 
-CDSNavLink.displayName = 'CDSNavLink';
+NavLink.displayName = 'NavLink';
 
 // ============================================================================
 // EXPORTS
 // ============================================================================
 
-export type CDSAppBarProps = AppBarProps;
-export type CDSDrawerProps = DrawerProps;
-export type CDSBottomNavigationProps = BottomNavigationProps;
-export type CDSTabsProps = TabsProps;
-export type CDSTabProps = TabProps;
-export type CDSNavLinkProps = NavLinkProps;
+export type AppBarProps = AppBarProps;
+export type DrawerProps = DrawerProps;
+export type BottomNavigationProps = BottomNavigationProps;
+export type TabsProps = TabsProps;
+export type TabProps = TabProps;
+export type NavLinkProps = NavLinkProps;

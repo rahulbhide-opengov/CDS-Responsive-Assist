@@ -51,35 +51,35 @@ function App() {
 import { cdsTheme } from './cds';
 
 // Buttons
-import { CDSButton, CDSIconButton, CDSFAB } from './cds';
+import { Button, IconButton, FAB } from './cds';
 
 // Forms
 import {
-  CDSTextField,
-  CDSCheckbox,
-  CDSRadio,
-  CDSSwitch,
-  CDSSelect,
-  CDSFormLabel
+  TextField,
+  Checkbox,
+  Radio,
+  Switch,
+  Select,
+  FormLabel
 } from './cds';
 
 // Layout
 import {
-  CDSContainer,
-  CDSBox,
-  CDSStack,
-  CDSGrid,
-  CDSPaper,
-  CDSCard
+  Container,
+  Box,
+  Stack,
+  Grid,
+  Paper,
+  Card
 } from './cds';
 
 // Navigation
 import {
-  CDSAppBar,
-  CDSDrawer,
-  CDSBottomNavigation,
-  CDSTabs,
-  CDSTab
+  AppBar,
+  Drawer,
+  BottomNavigation,
+  Tabs,
+  Tab
 } from './cds';
 
 // MUI Components (re-exported for convenience)
@@ -104,64 +104,64 @@ import {
 
 ### Basic Button
 ```tsx
-import { CDSButton } from './cds';
+import { Button } from './cds';
 
-<CDSButton variant="contained" color="primary">
+<Button variant="contained" color="primary">
   Click Me
-</CDSButton>
+</Button>
 ```
 
 ### Form
 ```tsx
-import { CDSTextField, CDSButton, CDSStack } from './cds';
+import { TextField, Button, Stack } from './cds';
 
-<CDSStack spacing={3}>
-  <CDSTextField label="Email" type="email" required fullWidth />
-  <CDSTextField label="Password" type="password" required fullWidth />
-  <CDSButton variant="contained" fullWidth>Sign In</CDSButton>
-</CDSStack>
+<Stack spacing={3}>
+  <TextField label="Email" type="email" required fullWidth />
+  <TextField label="Password" type="password" required fullWidth />
+  <Button variant="contained" fullWidth>Sign In</Button>
+</Stack>
 ```
 
 ### Card
 ```tsx
-import { CDSCard, CDSCardContent, Typography } from './cds';
+import { Card, CardContent, Typography } from './cds';
 
-<CDSCard>
-  <CDSCardContent>
+<Card>
+  <CardContent>
     <Typography variant="h6">Card Title</Typography>
     <Typography variant="body2">Card content goes here</Typography>
-  </CDSCardContent>
-</CDSCard>
+  </CardContent>
+</Card>
 ```
 
 ### Grid Layout
 ```tsx
-import { CDSGrid, CDSCard } from './cds';
+import { Grid, Card } from './cds';
 
-<CDSGrid container spacing={3}>
-  <CDSGrid item xs={12} sm={6} md={4}>
-    <CDSCard>Item 1</CDSCard>
-  </CDSGrid>
-  <CDSGrid item xs={12} sm={6} md={4}>
-    <CDSCard>Item 2</CDSCard>
-  </CDSGrid>
-</CDSGrid>
+<Grid container spacing={3}>
+  <Grid item xs={12} sm={6} md={4}>
+    <Card>Item 1</Card>
+  </Grid>
+  <Grid item xs={12} sm={6} md={4}>
+    <Card>Item 2</Card>
+  </Grid>
+</Grid>
 ```
 
 ### AppBar + Drawer
 ```tsx
-import { CDSAppBar, CDSDrawer, Toolbar, Typography } from './cds';
+import { AppBar, Drawer, Toolbar, Typography } from './cds';
 
 <>
-  <CDSAppBar position="fixed">
+  <AppBar position="fixed">
     <Toolbar>
       <Typography variant="h6">App Name</Typography>
     </Toolbar>
-  </CDSAppBar>
+  </AppBar>
 
-  <CDSDrawer variant="permanent">
+  <Drawer variant="permanent">
     {/* Navigation */}
-  </CDSDrawer>
+  </Drawer>
 </>
 ```
 
@@ -244,7 +244,7 @@ After setup, verify:
 - [ ] ThemeProvider wraps your app
 - [ ] CssBaseline is included
 - [ ] You can import `cdsTheme`
-- [ ] You can import `CDSButton`
+- [ ] You can import `Button`
 - [ ] Components render with CDS styling
 
 ---

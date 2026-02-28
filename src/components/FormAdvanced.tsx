@@ -112,7 +112,7 @@ const TransferListControls = styled(Grid)(({ theme }) => ({
  *
  * @example
  * // Basic transfer list
- * <CDSTransferList
+ * <TransferList
  *   leftTitle="Available"
  *   rightTitle="Selected"
  *   leftItems={[
@@ -127,7 +127,7 @@ const TransferListControls = styled(Grid)(({ theme }) => ({
  *
  * @example
  * // With disabled items
- * <CDSTransferList
+ * <TransferList
  *   leftItems={[
  *     { id: 1, label: 'Item 1' },
  *     { id: 2, label: 'Item 2', disabled: true }
@@ -136,7 +136,7 @@ const TransferListControls = styled(Grid)(({ theme }) => ({
  *   onChange={handleChange}
  * />
  */
-export const CDSTransferList: React.FC<TransferListProps> = ({
+export const TransferList: React.FC<TransferListProps> = ({
   leftTitle = 'Available',
   rightTitle = 'Selected',
   leftItems: initialLeft,

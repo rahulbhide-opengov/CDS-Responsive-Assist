@@ -23,15 +23,15 @@ import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Box, Typography, Stack, Divider, IconButton } from '@mui/material';
 import {
-  CDSButton,
-  CDSCard,
-  CDSCardContent,
-  CDSCardActions,
-  CDSListItem,
-  CDSListItemIcon,
-  CDSListItemText,
-  CDSAvatar,
-  CDSAlert,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Avatar,
+  Alert,
 } from '../src';
 
 // OUTLINED ICONS (Primary preference)
@@ -117,42 +117,40 @@ export function IconButtonsExample() {
 
       <Stack direction="row" spacing={2} sx={{ mt: 2, flexWrap: 'wrap', gap: 2 }}>
         {/* Icons automatically inherit button color */}
-        <CDSButton
-          variant="contained"
-          startIcon={<SaveOutlinedIcon />}
+        <Button
+          variant="primary"
+          leftIcon={<SaveOutlinedIcon />}
         >
           Save
-        </CDSButton>
+        </Button>
 
-        <CDSButton
-          variant="outlined"
-          startIcon={<AddOutlinedIcon />}
+        <Button
+          variant="secondary"
+          leftIcon={<AddOutlinedIcon />}
         >
           Add New
-        </CDSButton>
+        </Button>
 
-        <CDSButton
-          variant="text"
-          startIcon={<EditOutlinedIcon />}
+        <Button
+          variant="tertiary"
+          leftIcon={<EditOutlinedIcon />}
         >
           Edit
-        </CDSButton>
+        </Button>
 
-        <CDSButton
-          variant="contained"
-          color="error"
-          startIcon={<DeleteOutlineIcon />}
+        <Button
+          variant="danger"
+          leftIcon={<DeleteOutlineIcon />}
         >
           Delete
-        </CDSButton>
+        </Button>
 
-        <CDSButton
-          variant="outlined"
-          color="secondary"
-          endIcon={<ShareOutlinedIcon />}
+        <Button
+          variant="secondary"
+          rightIcon={<ShareOutlinedIcon />}
         >
           Share
-        </CDSButton>
+        </Button>
       </Stack>
     </Box>
   );
@@ -278,32 +276,32 @@ export function IconListExample() {
       </Typography>
 
       <Stack spacing={1} sx={{ mt: 2 }}>
-        <CDSListItem>
-          <CDSListItemIcon>
+        <ListItem>
+          <ListItemIcon>
             <FolderOutlinedIcon
               sx={{ color: theme.palette.primary.main }}
             />
-          </CDSListItemIcon>
-          <CDSListItemText primary="Documents" secondary="25 files" />
-        </CDSListItem>
+          </ListItemIcon>
+          <ListItemText primary="Documents" secondary="25 files" />
+        </ListItem>
 
-        <CDSListItem>
-          <CDSListItemIcon>
+        <ListItem>
+          <ListItemIcon>
             <EmailOutlinedIcon
               sx={{ color: theme.palette.secondary.main }}
             />
-          </CDSListItemIcon>
-          <CDSListItemText primary="Messages" secondary="12 unread" />
-        </CDSListItem>
+          </ListItemIcon>
+          <ListItemText primary="Messages" secondary="12 unread" />
+        </ListItem>
 
-        <CDSListItem>
-          <CDSListItemIcon>
+        <ListItem>
+          <ListItemIcon>
             <AttachFileOutlinedIcon
               sx={{ color: theme.palette.text.secondary }}
             />
-          </CDSListItemIcon>
-          <CDSListItemText primary="Attachments" secondary="8 files" />
-        </CDSListItem>
+          </ListItemIcon>
+          <ListItemText primary="Attachments" secondary="8 files" />
+        </ListItem>
       </Stack>
     </Box>
   );
@@ -322,8 +320,8 @@ export function IconCardExample() {
       </Typography>
 
       <Stack direction="row" spacing={2} sx={{ mt: 2, flexWrap: 'wrap', gap: 2 }}>
-        <CDSCard sx={{ minWidth: 250 }}>
-          <CDSCardContent>
+        <Card elevation="low" sx={{ minWidth: 250 }}>
+          <CardContent>
             {/* Large icon as feature */}
             <DownloadOutlinedIcon
               sx={{
@@ -338,19 +336,19 @@ export function IconCardExample() {
             <Typography variant="body2" color="text.secondary">
               Access and download your documents
             </Typography>
-          </CDSCardContent>
-          <CDSCardActions>
-            <CDSButton
+          </CardContent>
+          <CardActions>
+            <Button
               size="small"
-              startIcon={<DownloadOutlinedIcon />}
+              leftIcon={<DownloadOutlinedIcon />}
             >
               Download
-            </CDSButton>
-          </CDSCardActions>
-        </CDSCard>
+            </Button>
+          </CardActions>
+        </Card>
 
-        <CDSCard sx={{ minWidth: 250 }}>
-          <CDSCardContent>
+        <Card elevation="low" sx={{ minWidth: 250 }}>
+          <CardContent>
             <ShareOutlinedIcon
               sx={{
                 color: theme.palette.secondary.main,
@@ -364,16 +362,16 @@ export function IconCardExample() {
             <Typography variant="body2" color="text.secondary">
               Share with your team members
             </Typography>
-          </CDSCardContent>
-          <CDSCardActions>
-            <CDSButton
+          </CardContent>
+          <CardActions>
+            <Button
               size="small"
-              startIcon={<ShareOutlinedIcon />}
+              leftIcon={<ShareOutlinedIcon />}
             >
               Share
-            </CDSButton>
-          </CDSCardActions>
-        </CDSCard>
+            </Button>
+          </CardActions>
+        </Card>
       </Stack>
     </Box>
   );
@@ -392,21 +390,21 @@ export function IconAvatarExample() {
       </Typography>
 
       <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-        <CDSAvatar sx={{ bgcolor: theme.palette.primary.main }}>
+        <Avatar sx={{ bgcolor: theme.palette.primary.main }}>
           <PersonOutlineIcon sx={{ color: theme.palette.primary.contrastText }} />
-        </CDSAvatar>
+        </Avatar>
 
-        <CDSAvatar sx={{ bgcolor: theme.palette.secondary.main }}>
+        <Avatar sx={{ bgcolor: theme.palette.secondary.main }}>
           <EmailOutlinedIcon sx={{ color: theme.palette.secondary.contrastText }} />
-        </CDSAvatar>
+        </Avatar>
 
-        <CDSAvatar sx={{ bgcolor: theme.palette.success.main }}>
+        <Avatar sx={{ bgcolor: theme.palette.success.main }}>
           <CheckCircleOutlineIcon sx={{ color: theme.palette.success.contrastText }} />
-        </CDSAvatar>
+        </Avatar>
 
-        <CDSAvatar sx={{ bgcolor: theme.palette.error.main }}>
+        <Avatar sx={{ bgcolor: theme.palette.error.main }}>
           <ErrorOutlineIcon sx={{ color: theme.palette.error.contrastText }} />
-        </CDSAvatar>
+        </Avatar>
       </Stack>
     </Box>
   );
@@ -424,21 +422,21 @@ export function IconAlertExample() {
 
       <Stack spacing={2} sx={{ mt: 2 }}>
         {/* Icons automatically provided by Alert severity */}
-        <CDSAlert severity="success">
+        <Alert severity="success">
           This is a success alert with icon
-        </CDSAlert>
+        </Alert>
 
-        <CDSAlert severity="error">
+        <Alert severity="error">
           This is an error alert with icon
-        </CDSAlert>
+        </Alert>
 
-        <CDSAlert severity="warning">
+        <Alert severity="warning">
           This is a warning alert with icon
-        </CDSAlert>
+        </Alert>
 
-        <CDSAlert severity="info">
+        <Alert severity="info">
           This is an info alert with icon
-        </CDSAlert>
+        </Alert>
       </Stack>
     </Box>
   );

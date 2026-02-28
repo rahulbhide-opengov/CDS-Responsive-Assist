@@ -27,278 +27,278 @@ npm install @mui/material @mui/lab @mui/icons-material @mui/x-tree-view @emotion
 
 ```tsx
 import {
-  CDSButton,
-  CDSIconButton,
-  CDSFAB,
-  CDSButtonGroup,
-  CDSToggleButton,
-  CDSToggleButtonGroup,
-  CDSLoadingButton,
+  Button,
+  IconButton,
+  FAB,
+  ButtonGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+  LoadingButton,
 } from './cds';
 
 // Usage
-<CDSButton variant="contained">Click Me</CDSButton>
-<CDSIconButton><DeleteIcon /></CDSIconButton>
-<CDSFAB color="primary"><AddIcon /></CDSFAB>
-<CDSButtonGroup>
-  <CDSButton>One</CDSButton>
-  <CDSButton>Two</CDSButton>
-</CDSButtonGroup>
-<CDSLoadingButton loading={isLoading}>Save</CDSLoadingButton>
+<Button variant="contained">Click Me</Button>
+<IconButton><DeleteIcon /></IconButton>
+<FAB color="primary"><AddIcon /></FAB>
+<ButtonGroup>
+  <Button>One</Button>
+  <Button>Two</Button>
+</ButtonGroup>
+<LoadingButton loading={isLoading}>Save</LoadingButton>
 ```
 
 ### Form Components (12)
 
 ```tsx
 import {
-  CDSTextField,
-  CDSCheckbox,
-  CDSRadio,
-  CDSRadioGroup,
-  CDSSwitch,
-  CDSSelect,
-  CDSFormLabel,
-  CDSSlider,
-  CDSRating,
-  CDSAutocomplete,
+  TextField,
+  Checkbox,
+  Radio,
+  RadioGroup,
+  Switch,
+  Select,
+  FormLabel,
+  Slider,
+  Rating,
+  Autocomplete,
 } from './cds';
 
 // Usage
-<CDSTextField label="Email" required fullWidth />
-<CDSCheckbox checked={checked} onChange={handleChange} />
-<CDSRadioGroup value={value}>
-  <FormControlLabel value="1" control={<CDSRadio />} label="Option 1" />
-</CDSRadioGroup>
-<CDSSwitch checked={enabled} onChange={handleToggle} />
-<CDSSelect value={value} onChange={handleChange}>
+<TextField label="Email" required fullWidth />
+<Checkbox checked={checked} onChange={handleChange} />
+<RadioGroup value={value}>
+  <FormControlLabel value="1" control={<Radio />} label="Option 1" />
+</RadioGroup>
+<Switch checked={enabled} onChange={handleToggle} />
+<Select value={value} onChange={handleChange}>
   <MenuItem value="1">Option 1</MenuItem>
-</CDSSelect>
-<CDSSlider value={value} onChange={handleChange} />
-<CDSRating value={rating} onChange={handleRating} />
+</Select>
+<Slider value={value} onChange={handleChange} />
+<Rating value={rating} onChange={handleRating} />
 ```
 
 ### Layout Components (9)
 
 ```tsx
 import {
-  CDSContainer,
-  CDSBox,
-  CDSStack,
-  CDSGrid,
-  CDSPaper,
-  CDSCard,
-  CDSSection,
-  CDSPageContainer,
-  CDSDivider,
-  CDSLink,
+  Container,
+  Box,
+  Stack,
+  Grid,
+  Paper,
+  Card,
+  Section,
+  PageContainer,
+  Divider,
+  Link,
 } from './cds';
 
 // Usage
-<CDSContainer maxWidth="lg">
-  <CDSStack spacing={3}>
-    <CDSCard>
-      <CDSCardContent>Content</CDSCardContent>
-    </CDSCard>
-    <CDSDivider />
-    <CDSLink href="/about">About</CDSLink>
-  </CDSStack>
-</CDSContainer>
+<Container maxWidth="lg">
+  <Stack spacing={3}>
+    <Card>
+      <CardContent>Content</CardContent>
+    </Card>
+    <Divider />
+    <Link href="/about">About</Link>
+  </Stack>
+</Container>
 ```
 
 ### Navigation Components (15)
 
 ```tsx
 import {
-  CDSAppBar,
-  CDSDrawer,
-  CDSBottomNavigation,
-  CDSTabs,
-  CDSTab,
-  CDSNavLink,
-  CDSMenu,
-  CDSMenuItem,
-  CDSPagination,
-  CDSSpeedDial,
-  CDSSpeedDialAction,
-  CDSTreeView,
-  CDSTreeItem,
-  CDSStepper,
-  CDSStep,
-  CDSStepLabel,
+  AppBar,
+  Drawer,
+  BottomNavigation,
+  Tabs,
+  Tab,
+  NavLink,
+  Menu,
+  MenuItem,
+  Pagination,
+  SpeedDial,
+  SpeedDialAction,
+  TreeView,
+  TreeItem,
+  Stepper,
+  Step,
+  StepLabel,
 } from './cds';
 
 // Usage
-<CDSAppBar position="fixed">
+<AppBar position="fixed">
   <Toolbar>
     <Typography variant="h6">App Name</Typography>
   </Toolbar>
-</CDSAppBar>
+</AppBar>
 
-<CDSDrawer variant="permanent">
-  <CDSList>
-    <CDSListItemButton>
-      <CDSListItemText primary="Home" />
-    </CDSListItemButton>
-  </CDSList>
-</CDSDrawer>
+<Drawer variant="permanent">
+  <List>
+    <ListItemButton>
+      <ListItemText primary="Home" />
+    </ListItemButton>
+  </List>
+</Drawer>
 
-<CDSTabs value={tabValue}>
-  <CDSTab label="Overview" />
-  <CDSTab label="Details" />
-</CDSTabs>
+<Tabs value={tabValue}>
+  <Tab label="Overview" />
+  <Tab label="Details" />
+</Tabs>
 
-<CDSPagination count={10} page={page} />
+<Pagination count={10} page={page} />
 
-<CDSStepper activeStep={activeStep}>
-  <CDSStep><CDSStepLabel>Step 1</CDSStepLabel></CDSStep>
-  <CDSStep><CDSStepLabel>Step 2</CDSStepLabel></CDSStep>
-</CDSStepper>
+<Stepper activeStep={activeStep}>
+  <Step><StepLabel>Step 1</StepLabel></Step>
+  <Step><StepLabel>Step 2</StepLabel></Step>
+</Stepper>
 ```
 
 ### Data Display Components (17)
 
 ```tsx
 import {
-  CDSAvatar,
-  CDSAvatarGroup,
-  CDSBadge,
-  CDSList,
-  CDSListItem,
-  CDSListItemButton,
-  CDSListItemIcon,
-  CDSListItemText,
-  CDSTable,
-  CDSTableHead,
-  CDSTableBody,
-  CDSTableRow,
-  CDSTableCell,
-  CDSImageList,
-  CDSImageListItem,
-  CDSAccordion,
-  CDSAccordionSummary,
-  CDSAccordionDetails,
-  CDSChip,
-  CDSTooltip,
+  Avatar,
+  AvatarGroup,
+  Badge,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  ImageList,
+  ImageListItem,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Chip,
+  Tooltip,
 } from './cds';
 
 // Usage
-<CDSAvatar>JD</CDSAvatar>
-<CDSAvatarGroup max={4}>
-  <CDSAvatar>A</CDSAvatar>
-  <CDSAvatar>B</CDSAvatar>
-</CDSAvatarGroup>
+<Avatar>JD</Avatar>
+<AvatarGroup max={4}>
+  <Avatar>A</Avatar>
+  <Avatar>B</Avatar>
+</AvatarGroup>
 
-<CDSBadge badgeContent={4} color="primary">
+<Badge badgeContent={4} color="primary">
   <MailIcon />
-</CDSBadge>
+</Badge>
 
-<CDSList>
-  <CDSListItemButton>
-    <CDSListItemIcon><InboxIcon /></CDSListItemIcon>
-    <CDSListItemText primary="Inbox" />
-  </CDSListItemButton>
-</CDSList>
+<List>
+  <ListItemButton>
+    <ListItemIcon><InboxIcon /></ListItemIcon>
+    <ListItemText primary="Inbox" />
+  </ListItemButton>
+</List>
 
-<CDSTable>
-  <CDSTableHead>
-    <CDSTableRow>
-      <CDSTableCell>Name</CDSTableCell>
-      <CDSTableCell>Age</CDSTableCell>
-    </CDSTableRow>
-  </CDSTableHead>
-  <CDSTableBody>
-    <CDSTableRow>
-      <CDSTableCell>John</CDSTableCell>
-      <CDSTableCell>30</CDSTableCell>
-    </CDSTableRow>
-  </CDSTableBody>
-</CDSTable>
+<Table>
+  <TableHead>
+    <TableRow>
+      <TableCell>Name</TableCell>
+      <TableCell>Age</TableCell>
+    </TableRow>
+  </TableHead>
+  <TableBody>
+    <TableRow>
+      <TableCell>John</TableCell>
+      <TableCell>30</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
 
-<CDSAccordion>
-  <CDSAccordionSummary>
+<Accordion>
+  <AccordionSummary>
     <Typography>Section 1</Typography>
-  </CDSAccordionSummary>
-  <CDSAccordionDetails>
+  </AccordionSummary>
+  <AccordionDetails>
     <Typography>Content here</Typography>
-  </CDSAccordionDetails>
-</CDSAccordion>
+  </AccordionDetails>
+</Accordion>
 
-<CDSChip label="Tag" onDelete={handleDelete} />
-<CDSTooltip title="Tooltip text"><IconButton /></CDSTooltip>
+<Chip label="Tag" onDelete={handleDelete} />
+<Tooltip title="Tooltip text"><IconButton /></Tooltip>
 ```
 
 ### Feedback Components (10)
 
 ```tsx
 import {
-  CDSAlert,
-  CDSSnackbar,
-  CDSDialog,
-  CDSDialogTitle,
-  CDSDialogContent,
-  CDSDialogActions,
-  CDSCircularProgress,
-  CDSLinearProgress,
-  CDSSkeleton,
-  CDSBackdrop,
+  Alert,
+  Snackbar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  CircularProgress,
+  LinearProgress,
+  Skeleton,
+  Backdrop,
 } from './cds';
 
 // Usage
-<CDSAlert severity="success">Success message</CDSAlert>
+<Alert severity="success">Success message</Alert>
 
-<CDSSnackbar open={open} autoHideDuration={6000}>
-  <CDSAlert>Notification</CDSAlert>
-</CDSSnackbar>
+<Snackbar open={open} autoHideDuration={6000}>
+  <Alert>Notification</Alert>
+</Snackbar>
 
-<CDSDialog open={open} onClose={handleClose}>
-  <CDSDialogTitle>Dialog Title</CDSDialogTitle>
-  <CDSDialogContent>Content here</CDSDialogContent>
-  <CDSDialogActions>
-    <CDSButton onClick={handleClose}>Cancel</CDSButton>
-    <CDSButton onClick={handleConfirm}>Confirm</CDSButton>
-  </CDSDialogActions>
-</CDSDialog>
+<Dialog open={open} onClose={handleClose}>
+  <DialogTitle>Dialog Title</DialogTitle>
+  <DialogContent>Content here</DialogContent>
+  <DialogActions>
+    <Button onClick={handleClose}>Cancel</Button>
+    <Button onClick={handleConfirm}>Confirm</Button>
+  </DialogActions>
+</Dialog>
 
-<CDSCircularProgress />
-<CDSLinearProgress />
-<CDSSkeleton variant="rectangular" width={210} height={60} />
-<CDSBackdrop open={open}><CDSCircularProgress /></CDSBackdrop>
+<CircularProgress />
+<LinearProgress />
+<Skeleton variant="rectangular" width={210} height={60} />
+<Backdrop open={open}><CircularProgress /></Backdrop>
 ```
 
 ### Utility Components (8)
 
 ```tsx
 import {
-  CDSPopover,
-  CDSCollapse,
-  CDSModal,
-  CDSClickAwayListener,
-  CDSFade,
-  CDSGrow,
-  CDSSlide,
-  CDSZoom,
+  Popover,
+  Collapse,
+  Modal,
+  ClickAwayListener,
+  Fade,
+  Grow,
+  Slide,
+  Zoom,
 } from './cds';
 
 // Usage
-<CDSPopover
+<Popover
   open={open}
   anchorEl={anchorEl}
   onClose={handleClose}
 >
   <Typography>Popover content</Typography>
-</CDSPopover>
+</Popover>
 
-<CDSCollapse in={expanded}>
+<Collapse in={expanded}>
   <Typography>Collapsed content</Typography>
-</CDSCollapse>
+</Collapse>
 
-<CDSModal open={open} onClose={handleClose}>
-  <CDSBox>Modal content</CDSBox>
-</CDSModal>
+<Modal open={open} onClose={handleClose}>
+  <Box>Modal content</Box>
+</Modal>
 
-<CDSFade in={visible}>
+<Fade in={visible}>
   <Typography>Fading content</Typography>
-</CDSFade>
+</Fade>
 ```
 
 ---
@@ -314,75 +314,75 @@ import {
   ThemeProvider,
 
   // Buttons (6)
-  CDSButton,
-  CDSIconButton,
-  CDSFAB,
-  CDSButtonGroup,
-  CDSToggleButton,
-  CDSLoadingButton,
+  Button,
+  IconButton,
+  FAB,
+  ButtonGroup,
+  ToggleButton,
+  LoadingButton,
 
   // Forms (12)
-  CDSTextField,
-  CDSCheckbox,
-  CDSRadio,
-  CDSRadioGroup,
-  CDSSwitch,
-  CDSSelect,
-  CDSFormLabel,
-  CDSSlider,
-  CDSRating,
-  CDSAutocomplete,
+  TextField,
+  Checkbox,
+  Radio,
+  RadioGroup,
+  Switch,
+  Select,
+  FormLabel,
+  Slider,
+  Rating,
+  Autocomplete,
 
   // Layout (9)
-  CDSContainer,
-  CDSBox,
-  CDSStack,
-  CDSGrid,
-  CDSPaper,
-  CDSCard,
-  CDSDivider,
-  CDSLink,
+  Container,
+  Box,
+  Stack,
+  Grid,
+  Paper,
+  Card,
+  Divider,
+  Link,
 
   // Navigation (15)
-  CDSAppBar,
-  CDSDrawer,
-  CDSBottomNavigation,
-  CDSTabs,
-  CDSTab,
-  CDSMenu,
-  CDSMenuItem,
-  CDSPagination,
-  CDSStepper,
+  AppBar,
+  Drawer,
+  BottomNavigation,
+  Tabs,
+  Tab,
+  Menu,
+  MenuItem,
+  Pagination,
+  Stepper,
 
   // Data Display (17)
-  CDSAvatar,
-  CDSBadge,
-  CDSList,
-  CDSListItem,
-  CDSListItemButton,
-  CDSTable,
-  CDSTableHead,
-  CDSTableBody,
-  CDSTableRow,
-  CDSTableCell,
-  CDSChip,
-  CDSTooltip,
-  CDSAccordion,
+  Avatar,
+  Badge,
+  List,
+  ListItem,
+  ListItemButton,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Chip,
+  Tooltip,
+  Accordion,
 
   // Feedback (10)
-  CDSAlert,
-  CDSDialog,
-  CDSDialogTitle,
-  CDSDialogContent,
-  CDSDialogActions,
-  CDSCircularProgress,
-  CDSLinearProgress,
-  CDSSkeleton,
+  Alert,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  CircularProgress,
+  LinearProgress,
+  Skeleton,
 
   // Utility (8)
-  CDSPopover,
-  CDSCollapse,
-  CDSModal,
+  Popover,
+  Collapse,
+  Modal,
 
   // MUI Components
   Typography,
@@ -400,86 +400,86 @@ import {
 ### Component Checklist
 
 #### Buttons (6)
-- [x] CDSButton
-- [x] CDSIconButton
-- [x] CDSFAB
-- [x] CDSButtonGroup
-- [x] CDSToggleButton
-- [x] CDSLoadingButton
+- [x] Button
+- [x] IconButton
+- [x] FAB
+- [x] ButtonGroup
+- [x] ToggleButton
+- [x] LoadingButton
 
 #### Forms (12)
-- [x] CDSTextField
-- [x] CDSCheckbox
-- [x] CDSRadio
-- [x] CDSRadioGroup
-- [x] CDSSwitch
-- [x] CDSSelect
-- [x] CDSFormLabel
-- [x] CDSSlider
-- [x] CDSRating
-- [x] CDSAutocomplete
+- [x] TextField
+- [x] Checkbox
+- [x] Radio
+- [x] RadioGroup
+- [x] Switch
+- [x] Select
+- [x] FormLabel
+- [x] Slider
+- [x] Rating
+- [x] Autocomplete
 
 #### Layout (9)
-- [x] CDSContainer
-- [x] CDSBox
-- [x] CDSStack
-- [x] CDSGrid
-- [x] CDSPaper
-- [x] CDSCard
-- [x] CDSSection
-- [x] CDSPageContainer
-- [x] CDSDivider
-- [x] CDSLink
+- [x] Container
+- [x] Box
+- [x] Stack
+- [x] Grid
+- [x] Paper
+- [x] Card
+- [x] Section
+- [x] PageContainer
+- [x] Divider
+- [x] Link
 
 #### Navigation (15)
-- [x] CDSAppBar
-- [x] CDSDrawer
-- [x] CDSBottomNavigation
-- [x] CDSTabs
-- [x] CDSTab
-- [x] CDSNavLink
-- [x] CDSMenu
-- [x] CDSMenuItem
-- [x] CDSPagination
-- [x] CDSSpeedDial
-- [x] CDSTreeView
-- [x] CDSStepper
-- [x] CDSStep
-- [x] CDSStepLabel
+- [x] AppBar
+- [x] Drawer
+- [x] BottomNavigation
+- [x] Tabs
+- [x] Tab
+- [x] NavLink
+- [x] Menu
+- [x] MenuItem
+- [x] Pagination
+- [x] SpeedDial
+- [x] TreeView
+- [x] Stepper
+- [x] Step
+- [x] StepLabel
 
 #### Data Display (17)
-- [x] CDSAvatar
-- [x] CDSAvatarGroup
-- [x] CDSBadge
-- [x] CDSList
-- [x] CDSListItem
-- [x] CDSListItemButton
-- [x] CDSListItemIcon
-- [x] CDSListItemText
-- [x] CDSTable (with Head/Body/Row/Cell)
-- [x] CDSImageList
-- [x] CDSAccordion
-- [x] CDSChip
-- [x] CDSTooltip
+- [x] Avatar
+- [x] AvatarGroup
+- [x] Badge
+- [x] List
+- [x] ListItem
+- [x] ListItemButton
+- [x] ListItemIcon
+- [x] ListItemText
+- [x] Table (with Head/Body/Row/Cell)
+- [x] ImageList
+- [x] Accordion
+- [x] Chip
+- [x] Tooltip
 
 #### Feedback (10)
-- [x] CDSAlert
-- [x] CDSSnackbar
-- [x] CDSDialog (with Title/Content/Actions)
-- [x] CDSCircularProgress
-- [x] CDSLinearProgress
-- [x] CDSSkeleton
-- [x] CDSBackdrop
+- [x] Alert
+- [x] Snackbar
+- [x] Dialog (with Title/Content/Actions)
+- [x] CircularProgress
+- [x] LinearProgress
+- [x] Skeleton
+- [x] Backdrop
 
 #### Utility (8)
-- [x] CDSPopover
-- [x] CDSCollapse
-- [x] CDSModal
-- [x] CDSClickAwayListener
-- [x] CDSFade
-- [x] CDSGrow
-- [x] CDSSlide
-- [x] CDSZoom
+- [x] Popover
+- [x] Collapse
+- [x] Modal
+- [x] ClickAwayListener
+- [x] Fade
+- [x] Grow
+- [x] Slide
+- [x] Zoom
 
 ---
 

@@ -331,16 +331,16 @@ const StyledMuiModal = styled(MuiModal)(({ theme }) => ({
  * Positioned floating content
  *
  * @example
- * <CDSPopover
+ * <Popover
  *   open={open}
  *   onClose={handleClose}
  *   anchorEl={anchorEl}
  *   anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
  * >
- *   <CDSBox sx={{ p: 2 }}>Popover content</CDSBox>
- * </CDSPopover>
+ *   <Box sx={{ p: 2 }}>Popover content</Box>
+ * </Popover>
  */
-export const CDSPopover = React.forwardRef<HTMLDivElement, PopoverProps>(
+export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (
     {
       open,
@@ -377,7 +377,7 @@ export const CDSPopover = React.forwardRef<HTMLDivElement, PopoverProps>(
   }
 );
 
-CDSPopover.displayName = 'CDSPopover';
+Popover.displayName = 'Popover';
 
 /**
  * CDS Collapse Component
@@ -385,11 +385,11 @@ CDSPopover.displayName = 'CDSPopover';
  * Expand/collapse animation
  *
  * @example
- * <CDSCollapse in={expanded}>
- *   <CDSTypography>Collapsed content</CDSTypography>
- * </CDSCollapse>
+ * <Collapse in={expanded}>
+ *   <Typography>Collapsed content</Typography>
+ * </Collapse>
  */
-export const CDSCollapse = React.forwardRef<HTMLDivElement, CollapseProps>(
+export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
   (
     {
       in: inProp,
@@ -416,7 +416,7 @@ export const CDSCollapse = React.forwardRef<HTMLDivElement, CollapseProps>(
   }
 );
 
-CDSCollapse.displayName = 'CDSCollapse';
+Collapse.displayName = 'Collapse';
 
 /**
  * CDS Modal Component
@@ -424,13 +424,13 @@ CDSCollapse.displayName = 'CDSCollapse';
  * Modal overlay
  *
  * @example
- * <CDSModal open={open} onClose={handleClose}>
- *   <CDSBox sx={{ bgcolor: 'background.paper', p: 4 }}>
+ * <Modal open={open} onClose={handleClose}>
+ *   <Box sx={{ bgcolor: 'background.paper', p: 4 }}>
  *     Modal content
- *   </CDSBox>
- * </CDSModal>
+ *   </Box>
+ * </Modal>
  */
-export const CDSModal = React.forwardRef<HTMLDivElement, ModalProps>(
+export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (
     {
       open,
@@ -465,7 +465,7 @@ export const CDSModal = React.forwardRef<HTMLDivElement, ModalProps>(
   }
 );
 
-CDSModal.displayName = 'CDSModal';
+Modal.displayName = 'Modal';
 
 /**
  * CDS ClickAwayListener Component
@@ -473,11 +473,11 @@ CDSModal.displayName = 'CDSModal';
  * Utility to detect clicks outside an element
  *
  * @example
- * <CDSClickAwayListener onClickAway={handleClickAway}>
+ * <ClickAwayListener onClickAway={handleClickAway}>
  *   <div>Click outside me</div>
- * </CDSClickAwayListener>
+ * </ClickAwayListener>
  */
-export const CDSClickAwayListener: React.FC<ClickAwayListenerProps> = ({
+export const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({
   onClickAway,
   children,
   mouseEvent = 'onClick',
@@ -500,11 +500,11 @@ export const CDSClickAwayListener: React.FC<ClickAwayListenerProps> = ({
  * Fade in/out transition
  *
  * @example
- * <CDSFade in={visible}>
- *   <CDSTypography>Fading content</CDSTypography>
- * </CDSFade>
+ * <Fade in={visible}>
+ *   <Typography>Fading content</Typography>
+ * </Fade>
  */
-export const CDSFade: React.FC<TransitionProps> = ({
+export const Fade: React.FC<TransitionProps> = ({
   in: inProp,
   children,
   timeout,
@@ -530,11 +530,11 @@ export const CDSFade: React.FC<TransitionProps> = ({
  * Grow in/out transition
  *
  * @example
- * <CDSGrow in={visible}>
- *   <CDSBox>Growing content</CDSBox>
- * </CDSGrow>
+ * <Grow in={visible}>
+ *   <Box>Growing content</Box>
+ * </Grow>
  */
-export const CDSGrow: React.FC<TransitionProps> = ({
+export const Grow: React.FC<TransitionProps> = ({
   in: inProp,
   children,
   timeout,
@@ -560,11 +560,11 @@ export const CDSGrow: React.FC<TransitionProps> = ({
  * Slide in/out transition
  *
  * @example
- * <CDSSlide in={visible} direction="left">
- *   <CDSBox>Sliding content</CDSBox>
- * </CDSSlide>
+ * <Slide in={visible} direction="left">
+ *   <Box>Sliding content</Box>
+ * </Slide>
  */
-export const CDSSlide: React.FC<SlideProps> = ({
+export const Slide: React.FC<SlideProps> = ({
   in: inProp,
   children,
   timeout,
@@ -594,11 +594,11 @@ export const CDSSlide: React.FC<SlideProps> = ({
  * Zoom in/out transition
  *
  * @example
- * <CDSZoom in={visible}>
- *   <CDSBox>Zooming content</CDSBox>
- * </CDSZoom>
+ * <Zoom in={visible}>
+ *   <Box>Zooming content</Box>
+ * </Zoom>
  */
-export const CDSZoom: React.FC<TransitionProps> = ({
+export const Zoom: React.FC<TransitionProps> = ({
   in: inProp,
   children,
   timeout,

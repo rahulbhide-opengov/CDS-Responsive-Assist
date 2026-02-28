@@ -458,7 +458,7 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
  *
  * @example
  * // Basic slider
- * <CDSSlider
+ * <Slider
  *   value={value}
  *   onChange={(e, val) => setValue(val)}
  *   min={0}
@@ -467,7 +467,7 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
  *
  * @example
  * // Slider with marks and value label
- * <CDSSlider
+ * <Slider
  *   value={value}
  *   onChange={handleChange}
  *   min={0}
@@ -479,7 +479,7 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
  *
  * @example
  * // Range slider
- * <CDSSlider
+ * <Slider
  *   value={[20, 80]}
  *   onChange={handleChange}
  *   min={0}
@@ -487,7 +487,7 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
  *   showValueLabel="on"
  * />
  */
-export const CDSSlider = React.forwardRef<HTMLSpanElement, SliderProps>(
+export const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(
   (
     {
       value,
@@ -535,7 +535,7 @@ export const CDSSlider = React.forwardRef<HTMLSpanElement, SliderProps>(
   }
 );
 
-CDSSlider.displayName = 'CDSSlider';
+Slider.displayName = 'Slider';
 
 /**
  * CDS Rating Component
@@ -544,14 +544,14 @@ CDSSlider.displayName = 'CDSSlider';
  *
  * @example
  * // Basic rating
- * <CDSRating
+ * <Rating
  *   value={rating}
  *   onChange={(e, val) => setRating(val)}
  * />
  *
  * @example
  * // Half-star precision
- * <CDSRating
+ * <Rating
  *   value={rating}
  *   onChange={handleChange}
  *   precision={0.5}
@@ -559,9 +559,9 @@ CDSSlider.displayName = 'CDSSlider';
  *
  * @example
  * // Read-only display
- * <CDSRating value={4.5} readOnly precision={0.5} />
+ * <Rating value={4.5} readOnly precision={0.5} />
  */
-export const CDSRating = React.forwardRef<HTMLSpanElement, RatingProps>(
+export const Rating = React.forwardRef<HTMLSpanElement, RatingProps>(
   (
     {
       value,
@@ -607,7 +607,7 @@ export const CDSRating = React.forwardRef<HTMLSpanElement, RatingProps>(
   }
 );
 
-CDSRating.displayName = 'CDSRating';
+Rating.displayName = 'Rating';
 
 /**
  * CDS Autocomplete Component
@@ -616,30 +616,30 @@ CDSRating.displayName = 'CDSRating';
  *
  * @example
  * // Basic autocomplete
- * <CDSAutocomplete
+ * <Autocomplete
  *   options={['Option 1', 'Option 2', 'Option 3']}
- *   renderInput={(params) => <CDSTextField {...params} label="Search" />}
+ *   renderInput={(params) => <TextField {...params} label="Search" />}
  *   onChange={(e, val) => setValue(val)}
  * />
  *
  * @example
  * // Multiple selection
- * <CDSAutocomplete
+ * <Autocomplete
  *   multiple
  *   options={countries}
  *   getOptionLabel={(option) => option.name}
- *   renderInput={(params) => <CDSTextField {...params} label="Countries" />}
+ *   renderInput={(params) => <TextField {...params} label="Countries" />}
  * />
  *
  * @example
  * // Free solo (custom values)
- * <CDSAutocomplete
+ * <Autocomplete
  *   freeSolo
  *   options={suggestions}
- *   renderInput={(params) => <CDSTextField {...params} label="Tags" />}
+ *   renderInput={(params) => <TextField {...params} label="Tags" />}
  * />
  */
-export const CDSAutocomplete = <T,>(props: AutocompleteProps<T>) => {
+export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
   const theme = useTheme();
 
   const {
@@ -732,19 +732,19 @@ export const CDSAutocomplete = <T,>(props: AutocompleteProps<T>) => {
  * Radio button group container
  *
  * @example
- * <CDSRadioGroup value={value} onChange={handleChange}>
- *   <CDSFormControlLabel value="option1" control={<CDSRadio />} label="Option 1" />
- *   <CDSFormControlLabel value="option2" control={<CDSRadio />} label="Option 2" />
- * </CDSRadioGroup>
+ * <RadioGroup value={value} onChange={handleChange}>
+ *   <FormControlLabel value="option1" control={<Radio />} label="Option 1" />
+ *   <FormControlLabel value="option2" control={<Radio />} label="Option 2" />
+ * </RadioGroup>
  *
  * @example
  * // Horizontal layout
- * <CDSRadioGroup value={value} onChange={handleChange} direction="row">
- *   <CDSFormControlLabel value="yes" control={<CDSRadio />} label="Yes" />
- *   <CDSFormControlLabel value="no" control={<CDSRadio />} label="No" />
- * </CDSRadioGroup>
+ * <RadioGroup value={value} onChange={handleChange} direction="row">
+ *   <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+ *   <FormControlLabel value="no" control={<Radio />} label="No" />
+ * </RadioGroup>
  */
-export const CDSRadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
+export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   (
     {
       value,
@@ -775,4 +775,4 @@ export const CDSRadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   }
 );
 
-CDSRadioGroup.displayName = 'CDSRadioGroup';
+RadioGroup.displayName = 'RadioGroup';

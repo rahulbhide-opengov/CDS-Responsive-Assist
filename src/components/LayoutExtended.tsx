@@ -2,7 +2,7 @@
  * CDS Extended Layout Components
  * Additional layout components with CDS tokens
  *
- * NOTE: CDSDivider has been moved to Layout.tsx as part of CDS-first refactor
+ * NOTE: Divider has been moved to Layout.tsx as part of CDS-first refactor
  */
 
 import React from 'react';
@@ -17,10 +17,10 @@ import { styled } from '@mui/material/styles';
  * Styled link component with CDS tokens
  *
  * @example
- * <CDSLink href="/about">About Us</CDSLink>
- * <CDSLink href="https://example.com" target="_blank">External Link</CDSLink>
+ * <Link href="/about">About Us</Link>
+ * <Link href="https://example.com" target="_blank">External Link</Link>
  */
-export const CDSLink = styled(MuiLink)(({ theme }) => ({
+export const Link = styled(MuiLink)(({ theme }) => ({
   color: theme.palette.primary.main,
   textDecoration: 'none',
   fontWeight: theme.typography.fontWeightMedium,
@@ -46,4 +46,4 @@ export const CDSLink = styled(MuiLink)(({ theme }) => ({
 }));
 
 // Type exports
-export type CDSLinkProps = MuiLinkProps;
+export type LinkProps = MuiLinkProps;

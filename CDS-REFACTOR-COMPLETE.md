@@ -9,7 +9,7 @@
 All components have been refactored to follow CDS-first architecture where:
 - Developers use CDS API, not MUI API
 - MUI is an internal implementation detail
-- Component names remain the same (CDSButton, CDSTextField, etc.)
+- Component names remain the same (Button, TextField, etc.)
 - Type names are clean without "CDS" prefix (ButtonProps, TextFieldProps)
 
 ---
@@ -17,114 +17,114 @@ All components have been refactored to follow CDS-first architecture where:
 ## ✅ Components Refactored by Category
 
 ### Buttons (6 components) ✅
-1. CDSButton - CDS variants (primary, secondary, tertiary, danger, success, ghost, link)
-2. CDSIconButton - Required ariaLabel
-3. CDSFAB - CDS positioning
-4. CDSButtonGroup - CDS styling
-5. CDSToggleButtonGroup - CDS props
-6. CDSToggleButton - CDS props
+1. Button - CDS variants (primary, secondary, tertiary, danger, success, ghost, link)
+2. IconButton - Required ariaLabel
+3. FAB - CDS positioning
+4. ButtonGroup - CDS styling
+5. ToggleButtonGroup - CDS props
+6. ToggleButton - CDS props
 
 ### Forms (13 components) ✅
-1. CDSTextField - Added `state` prop (default, error, success, warning)
-2. CDSSelect - Added `state` prop
-3. CDSCheckbox - CDS sizing
-4. CDSRadio - CDS sizing
-5. CDSRadioGroup - Added `direction` prop
-6. CDSSwitch - CDS styling
-7. CDSFormControl - CDS props
-8. CDSFormLabel - CDS styling
-9. CDSFormControlLabel - CDS styling
-10. CDSFormHelperText - CDS styling
-11. CDSFormGroup - CDS styling
-12. CDSInputLabel - CDS styling
-13. CDSOutlinedInput - CDS styling
+1. TextField - Added `state` prop (default, error, success, warning)
+2. Select - Added `state` prop
+3. Checkbox - CDS sizing
+4. Radio - CDS sizing
+5. RadioGroup - Added `direction` prop
+6. Switch - CDS styling
+7. FormControl - CDS props
+8. FormLabel - CDS styling
+9. FormControlLabel - CDS styling
+10. FormHelperText - CDS styling
+11. FormGroup - CDS styling
+12. InputLabel - CDS styling
+13. OutlinedInput - CDS styling
 
 ### Layout (13 components) ✅
-1. CDSContainer - CDS max widths
-2. CDSBox - Utility component
-3. CDSStack - Flexbox layout
-4. CDSGrid - 12-column grid
-5. CDSPaper - Added semantic `elevation` prop (none, low, medium, high)
-6. CDSCard - Added semantic `elevation` prop
-7. CDSCardHeader - Complete card suite
-8. CDSCardContent - Complete card suite
-9. CDSCardActions - Complete card suite
-10. CDSCardMedia - Complete card suite
-11. CDSSection - Page section
-12. CDSPageContainer - Full-page wrapper
-13. CDSDivider - Visual separator
+1. Container - CDS max widths
+2. Box - Utility component
+3. Stack - Flexbox layout
+4. Grid - 12-column grid
+5. Paper - Added semantic `elevation` prop (none, low, medium, high)
+6. Card - Added semantic `elevation` prop
+7. CardHeader - Complete card suite
+8. CardContent - Complete card suite
+9. CardActions - Complete card suite
+10. CardMedia - Complete card suite
+11. Section - Page section
+12. PageContainer - Full-page wrapper
+13. Divider - Visual separator
 
 ### Navigation (16 components) ✅
-1. CDSAppBar - Responsive heights
-2. CDSDrawer - Side navigation
-3. CDSBottomNavigation - Mobile bottom nav
-4. CDSTabs - Tab navigation
-5. CDSTab - Individual tab
-6. CDSNavLink - Navigation link
-7. CDSMenu - Dropdown menu
-8. CDSMenuItem - Menu item
-9. CDSPagination - Page navigation
-10. CDSSpeedDial - Floating action
-11. CDSSpeedDialAction - Speed dial action
-12. CDSTreeView - Tree navigation
-13. CDSTreeItem - Tree node
-14. CDSStepper - Multi-step navigation
-15. CDSStep - Individual step
-16. CDSStepLabel - Step label
+1. AppBar - Responsive heights
+2. Drawer - Side navigation
+3. BottomNavigation - Mobile bottom nav
+4. Tabs - Tab navigation
+5. Tab - Individual tab
+6. NavLink - Navigation link
+7. Menu - Dropdown menu
+8. MenuItem - Menu item
+9. Pagination - Page navigation
+10. SpeedDial - Floating action
+11. SpeedDialAction - Speed dial action
+12. TreeView - Tree navigation
+13. TreeItem - Tree node
+14. Stepper - Multi-step navigation
+15. Step - Individual step
+16. StepLabel - Step label
 
 ### Data Display (19 components) ✅
-1. CDSAvatar - Added semantic `size` prop (xs, sm, md, lg, xl)
-2. CDSAvatarGroup - Avatar grouping
-3. CDSBadge - Notification badge
-4. CDSChip - Chip component
-5. CDSTooltip - Hover tooltip
-6. CDSTable - Data table
-7. CDSTableHead - Table header
-8. CDSTableBody - Table body
-9. CDSTableRow - Table row
-10. CDSTableCell - Added `density` prop (comfortable, standard, compact)
-11. CDSList - List container
-12. CDSListItem - List item
-13. CDSListItemButton - Interactive list item
-14. CDSListItemIcon - List item icon
-15. CDSListItemText - List item text
-16. CDSListItemAvatar - List item avatar
-17. CDSImageList - Image grid
-18. CDSImageListItem - Image item
-19. CDSTypography - Typography component
+1. Avatar - Added semantic `size` prop (xs, sm, md, lg, xl)
+2. AvatarGroup - Avatar grouping
+3. Badge - Notification badge
+4. Chip - Chip component
+5. Tooltip - Hover tooltip
+6. Table - Data table
+7. TableHead - Table header
+8. TableBody - Table body
+9. TableRow - Table row
+10. TableCell - Added `density` prop (comfortable, standard, compact)
+11. List - List container
+12. ListItem - List item
+13. ListItemButton - Interactive list item
+14. ListItemIcon - List item icon
+15. ListItemText - List item text
+16. ListItemAvatar - List item avatar
+17. ImageList - Image grid
+18. ImageListItem - Image item
+19. Typography - Typography component
 
 ### Feedback (10 components) ✅
-1. CDSAlert - Semantic severity prop
-2. CDSSnackbar - Toast notification
-3. CDSDialog - Added semantic `size` prop (xs, sm, md, lg, xl, fullscreen)
-4. CDSDialogTitle - Dialog title
-5. CDSDialogContent - Dialog content
-6. CDSDialogActions - Dialog actions
-7. CDSCircularProgress - Loading spinner
-8. CDSLinearProgress - Progress bar
-9. CDSSkeleton - Loading placeholder
-10. CDSBackdrop - Full-screen overlay
+1. Alert - Semantic severity prop
+2. Snackbar - Toast notification
+3. Dialog - Added semantic `size` prop (xs, sm, md, lg, xl, fullscreen)
+4. DialogTitle - Dialog title
+5. DialogContent - Dialog content
+6. DialogActions - Dialog actions
+7. CircularProgress - Loading spinner
+8. LinearProgress - Progress bar
+9. Skeleton - Loading placeholder
+10. Backdrop - Full-screen overlay
 
 ### Form Extended (4 components) ✅
-1. CDSSlider - Added `showValueLabel` prop
-2. CDSRating - Star rating
-3. CDSAutocomplete - Autocomplete input
-4. CDSTransferList - Dual list selector
+1. Slider - Added `showValueLabel` prop
+2. Rating - Star rating
+3. Autocomplete - Autocomplete input
+4. TransferList - Dual list selector
 
 ### Utility (8 components) ✅
-1. CDSModal - Modal dialog
-2. CDSPopover - Popover overlay
-3. CDSCollapse - Collapse animation
-4. CDSClickAwayListener - Click outside detector
-5. CDSFade - Fade transition
-6. CDSGrow - Grow transition
-7. CDSSlide - Slide transition
-8. CDSZoom - Zoom transition
+1. Modal - Modal dialog
+2. Popover - Popover overlay
+3. Collapse - Collapse animation
+4. ClickAwayListener - Click outside detector
+5. Fade - Fade transition
+6. Grow - Grow transition
+7. Slide - Slide transition
+8. Zoom - Zoom transition
 
 ### Special Components (3 components) ✅
-1. CDSFileUpload - File upload with drag-and-drop
-2. CDSPortal - Render outside DOM hierarchy
-3. CDSAccordion - Accordion component (if present)
+1. FileUpload - File upload with drag-and-drop
+2. Portal - Render outside DOM hierarchy
+3. Accordion - Accordion component (if present)
 
 ---
 
@@ -133,22 +133,22 @@ All components have been refactored to follow CDS-first architecture where:
 ### 1. CDS API First
 **Before (MUI-centric):**
 ```tsx
-<CDSButton variant="contained" color="primary" startIcon={<Icon />}>
+<Button variant="contained" color="primary" startIcon={<Icon />}>
   Save
-</CDSButton>
-<CDSCard elevation={2}>Content</CDSCard>
-<CDSAvatar sx={{ width: 40, height: 40 }}>JD</CDSAvatar>
-<CDSTextField error helperText="Required" />
+</Button>
+<Card elevation={2}>Content</Card>
+<Avatar sx={{ width: 40, height: 40 }}>JD</Avatar>
+<TextField error helperText="Required" />
 ```
 
 **After (CDS-first):**
 ```tsx
-<CDSButton variant="primary" leftIcon={<Icon />}>
+<Button variant="primary" leftIcon={<Icon />}>
   Save
-</CDSButton>
-<CDSCard elevation="low">Content</CDSCard>
-<CDSAvatar size="md">JD</CDSAvatar>
-<CDSTextField state="error" helperText="Required" />
+</Button>
+<Card elevation="low">Content</Card>
+<Avatar size="md">JD</Avatar>
+<TextField state="error" helperText="Required" />
 ```
 
 ### 2. Semantic Props
@@ -168,9 +168,9 @@ All components have been refactored to follow CDS-first architecture where:
 - `direction` (not boolean `row`)
 
 ### 4. Type Definitions
-**Component names:** CDSButton, CDSTextField, CDSCard
+**Component names:** Button, TextField, Card
 **Type names:** ButtonProps, TextFieldProps, CardProps (clean, no "CDS" prefix)
-**Export aliases:** CDSButtonProps, CDSTextFieldProps (for convenience)
+**Export aliases:** ButtonProps, TextFieldProps (for convenience)
 
 ---
 
@@ -230,7 +230,7 @@ CDSComponent.displayName = 'CDSComponent';
 
 ## 📊 Prop Mapping Examples
 
-### CDSButton Variants
+### Button Variants
 ```typescript
 'primary'    → variant: 'contained', color: 'primary'
 'secondary'  → variant: 'outlined', color: 'primary'
@@ -241,7 +241,7 @@ CDSComponent.displayName = 'CDSComponent';
 'link'       → variant: 'text', color: 'primary' + underline
 ```
 
-### CDSCard/CDSPaper Elevation
+### Card/Paper Elevation
 ```typescript
 'none'    → elevation: 0
 'low'     → elevation: 2
@@ -249,7 +249,7 @@ CDSComponent.displayName = 'CDSComponent';
 'high'    → elevation: 8
 ```
 
-### CDSAvatar Size
+### Avatar Size
 ```typescript
 'xs'  → width: 24, height: 24
 'sm'  → width: 32, height: 32
@@ -258,7 +258,7 @@ CDSComponent.displayName = 'CDSComponent';
 'xl'  → width: 72, height: 72
 ```
 
-### CDSDialog Size
+### Dialog Size
 ```typescript
 'xs'         → maxWidth: 280-320px
 'sm'         → maxWidth: 400-480px
@@ -268,14 +268,14 @@ CDSComponent.displayName = 'CDSComponent';
 'fullscreen' → width: 100%, height: 100%
 ```
 
-### CDSTableCell Density
+### TableCell Density
 ```typescript
 'comfortable' → padding: 24-28px (generous)
 'standard'    → padding: 16-20px (normal)
 'compact'     → padding: 12-16px (tight)
 ```
 
-### CDSTextField State
+### TextField State
 ```typescript
 'default' → normal styling
 'error'   → red border, error color
@@ -355,21 +355,21 @@ CDSComponent.displayName = 'CDSComponent';
 ### Basic Components
 ```tsx
 // Button with semantic variant
-<CDSButton variant="primary">Save</CDSButton>
-<CDSButton variant="danger" leftIcon={<DeleteOutlineIcon />}>
+<Button variant="primary">Save</Button>
+<Button variant="danger" leftIcon={<DeleteOutlineIcon />}>
   Delete
-</CDSButton>
+</Button>
 
 // Card with semantic elevation
-<CDSCard elevation="low">
-  <CDSCardContent>Content</CDSCardContent>
-</CDSCard>
+<Card elevation="low">
+  <CardContent>Content</CardContent>
+</Card>
 
 // Avatar with semantic size
-<CDSAvatar size="lg">JD</CDSAvatar>
+<Avatar size="lg">JD</Avatar>
 
 // TextField with state
-<CDSTextField
+<TextField
   state="error"
   helperText="Required"
 />
@@ -378,23 +378,23 @@ CDSComponent.displayName = 'CDSComponent';
 ### Advanced Components
 ```tsx
 // Dialog with size
-<CDSDialog open={open} size="lg">
-  <CDSDialogTitle>Title</CDSDialogTitle>
-  <CDSDialogContent>Content</CDSDialogContent>
-  <CDSDialogActions>
-    <CDSButton variant="secondary">Cancel</CDSButton>
-    <CDSButton variant="primary">Confirm</CDSButton>
-  </CDSDialogActions>
-</CDSDialog>
+<Dialog open={open} size="lg">
+  <DialogTitle>Title</DialogTitle>
+  <DialogContent>Content</DialogContent>
+  <DialogActions>
+    <Button variant="secondary">Cancel</Button>
+    <Button variant="primary">Confirm</Button>
+  </DialogActions>
+</Dialog>
 
 // Table with density
-<CDSTable>
-  <CDSTableHead>
-    <CDSTableRow>
-      <CDSTableCell density="compact">Header</CDSTableCell>
-    </CDSTableRow>
-  </CDSTableHead>
-</CDSTable>
+<Table>
+  <TableHead>
+    <TableRow>
+      <TableCell density="compact">Header</TableCell>
+    </TableRow>
+  </TableHead>
+</Table>
 ```
 
 ---
@@ -404,28 +404,28 @@ CDSComponent.displayName = 'CDSComponent';
 ### Button Changes
 ```tsx
 // v2.x (OLD)
-<CDSButton variant="contained" color="primary" startIcon={<Icon />}>
+<Button variant="contained" color="primary" startIcon={<Icon />}>
 
 // v3.0 (NEW)
-<CDSButton variant="primary" leftIcon={<Icon />}>
+<Button variant="primary" leftIcon={<Icon />}>
 ```
 
 ### Card Changes
 ```tsx
 // v2.x (OLD)
-<CDSCard elevation={2}>
+<Card elevation={2}>
 
 // v3.0 (NEW)
-<CDSCard elevation="low">
+<Card elevation="low">
 ```
 
 ### TextField Changes
 ```tsx
 // v2.x (OLD)
-<CDSTextField error helperText="Required" />
+<TextField error helperText="Required" />
 
 // v3.0 (NEW)
-<CDSTextField state="error" helperText="Required" />
+<TextField state="error" helperText="Required" />
 ```
 
 ---

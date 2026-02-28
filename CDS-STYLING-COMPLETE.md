@@ -71,7 +71,7 @@ All 80 components now use these CDS design tokens:
 
 ### Layout Components (4)
 
-#### **CDSContainer**
+#### **Container**
 **Before:** Direct re-export, used default MUI padding
 **After:**
 ```typescript
@@ -92,7 +92,7 @@ styled(MuiContainer)(({ theme }) => ({
 
 ---
 
-#### **CDSBox**
+#### **Box**
 **Before:** Direct re-export
 **After:**
 ```typescript
@@ -104,7 +104,7 @@ styled(MuiBox)(({ theme }) => ({
 
 ---
 
-#### **CDSStack**
+#### **Stack**
 **Before:** Direct re-export
 **After:**
 ```typescript
@@ -119,7 +119,7 @@ styled(MuiStack)(({ theme }) => ({
 
 ---
 
-#### **CDSGrid**
+#### **Grid**
 **Before:** Direct re-export
 **After:**
 ```typescript
@@ -139,7 +139,7 @@ styled(MuiGrid)(({ theme }) => ({
 
 ### Form Components (2)
 
-#### **CDSAutocomplete**
+#### **Autocomplete**
 **Before:** Direct re-export
 **After:** Wrapper component with sx prop
 ```typescript
@@ -171,7 +171,7 @@ styled(MuiGrid)(({ theme }) => ({
 
 ---
 
-#### **CDSRadioGroup**
+#### **RadioGroup**
 **Before:** Direct re-export
 **After:**
 ```typescript
@@ -194,11 +194,11 @@ styled(MuiRadioGroup)(({ theme }) => ({
 
 ### Navigation Components (5)
 
-#### **CDSTreeView & CDSTreeItem**
+#### **TreeView & TreeItem**
 **Before:** Direct re-exports
 **After:**
 ```typescript
-// CDSTreeView
+// TreeView
 styled(MuiTreeView)(({ theme }) => ({
   '& .MuiTreeItem-content': {
     padding: theme.spacing(0.5, 1),
@@ -216,7 +216,7 @@ styled(MuiTreeView)(({ theme }) => ({
   },
 }));
 
-// CDSTreeItem
+// TreeItem
 styled(MuiTreeItem)(({ theme }) => ({
   '& .MuiTreeItem-iconContainer': {
     marginRight: theme.spacing(1),
@@ -232,18 +232,18 @@ styled(MuiTreeItem)(({ theme }) => ({
 
 ---
 
-#### **CDSStep, CDSStepLabel, CDSStepContent**
+#### **Step, StepLabel, StepContent**
 **Before:** Direct re-exports
 **After:**
 ```typescript
-// CDSStep
+// Step
 styled(MuiStep)(({ theme }) => ({
   '& .MuiStepLabel-root': {
     padding: theme.spacing(1, 0),
   },
 }));
 
-// CDSStepLabel
+// StepLabel
 styled(MuiStepLabel)(({ theme }) => ({
   '& .MuiStepLabel-label': {
     fontSize: theme.typography.body1.fontSize,
@@ -271,7 +271,7 @@ styled(MuiStepLabel)(({ theme }) => ({
   },
 }));
 
-// CDSStepContent
+// StepContent
 styled(MuiStepContent)(({ theme }) => ({
   paddingLeft: theme.spacing(4),   // 32px
   paddingRight: theme.spacing(2),  // 16px
@@ -287,7 +287,7 @@ styled(MuiStepContent)(({ theme }) => ({
 
 ### Data Display Components (4)
 
-#### **CDSListItemText**
+#### **ListItemText**
 **Before:** Direct re-export
 **After:**
 ```typescript
@@ -308,11 +308,11 @@ styled(MuiListItemText)(({ theme }) => ({
 
 ---
 
-#### **CDSTableHead & CDSTableBody**
+#### **TableHead & TableBody**
 **Before:** Direct re-exports
 **After:**
 ```typescript
-// CDSTableHead
+// TableHead
 styled(MuiTableHead)(({ theme }) => ({
   '& .MuiTableCell-head': {
     backgroundColor: theme.palette.grey[50],
@@ -322,7 +322,7 @@ styled(MuiTableHead)(({ theme }) => ({
   },
 }));
 
-// CDSTableBody
+// TableBody
 styled(MuiTableBody)(({ theme }) => ({
   '& .MuiTableRow-root:last-child .MuiTableCell-root': {
     borderBottom: 'none',
@@ -333,7 +333,7 @@ styled(MuiTableBody)(({ theme }) => ({
 
 ---
 
-#### **CDSImageListItem**
+#### **ImageListItem**
 **Before:** Direct re-export
 **After:**
 ```typescript
@@ -366,7 +366,7 @@ styled(MuiImageListItem)(({ theme }) => ({
 
 ### Utility Components (8)
 
-#### **CDSCollapse**
+#### **Collapse**
 **Before:** Direct re-export
 **After:**
 ```typescript
@@ -381,7 +381,7 @@ styled(MuiCollapse)(({ theme }) => ({
 
 ---
 
-#### **CDSModal**
+#### **Modal**
 **Before:** Basic positioning only
 **After:**
 ```typescript
@@ -410,11 +410,11 @@ styled(MuiModal)(({ theme }) => ({
 
 ---
 
-#### **CDSFade, CDSGrow, CDSSlide, CDSZoom**
+#### **Fade, Grow, Slide, Zoom**
 **Before:** Direct re-exports
 **After:** Wrapper components that inject CDS transition timing
 ```typescript
-export const CDSFade = (props: any) => {
+export const Fade = (props: any) => {
   const theme = useTheme();
   return (
     <MuiFade
@@ -423,7 +423,7 @@ export const CDSFade = (props: any) => {
     />
   );
 };
-// Similar for CDSGrow, CDSSlide, CDSZoom
+// Similar for Grow, Slide, Zoom
 ```
 **CDS Tokens:** Transitions (duration)
 

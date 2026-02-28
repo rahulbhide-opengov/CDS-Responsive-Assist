@@ -8,12 +8,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   cdsTheme,
-  CDSButton,
-  CDSTextField,
-  CDSStack,
-  CDSContainer,
-  CDSCard,
-  CDSCardContent,
+  Button,
+  TextField,
+  Stack,
+  Container,
+  Card,
+  CardContent,
   Typography,
 } from '../src';
 
@@ -27,8 +27,8 @@ function BasicExample() {
       {/* CssBaseline for consistent baseline styles */}
       <CssBaseline />
 
-      <CDSContainer maxWidth="sm" sx={{ py: 4 }}>
-        <CDSStack spacing={3}>
+      <Container maxWidth="sm" sx={{ py: 4 }}>
+        <Stack spacing={3}>
           {/* Typography with CDS variants */}
           <Typography variant="h3" gutterBottom>
             CDS Components
@@ -39,54 +39,54 @@ function BasicExample() {
           </Typography>
 
           {/* Buttons */}
-          <CDSCard>
-            <CDSCardContent>
+          <Card>
+            <CardContent>
               <Typography variant="h6" gutterBottom>
                 Buttons
               </Typography>
-              <CDSStack direction="row" spacing={2}>
-                <CDSButton variant="contained" color="primary">
+              <Stack direction="row" spacing={2}>
+                <Button variant="primary">
                   Primary
-                </CDSButton>
-                <CDSButton variant="outlined" color="secondary">
+                </Button>
+                <Button variant="secondary">
                   Secondary
-                </CDSButton>
-                <CDSButton variant="text">
-                  Text
-                </CDSButton>
-              </CDSStack>
-            </CDSCardContent>
-          </CDSCard>
+                </Button>
+                <Button variant="tertiary">
+                  Tertiary
+                </Button>
+              </Stack>
+            </CardContent>
+          </Card>
 
           {/* Form Inputs */}
-          <CDSCard>
-            <CDSCardContent>
+          <Card>
+            <CardContent>
               <Typography variant="h6" gutterBottom>
                 Form Inputs
               </Typography>
-              <CDSStack spacing={2}>
-                <CDSTextField
+              <Stack spacing={2}>
+                <TextField
                   label="Email"
                   type="email"
                   required
                   fullWidth
                   helperText="Enter your email address"
                 />
-                <CDSTextField
+                <TextField
                   label="Message"
                   multiline
                   rows={4}
                   fullWidth
                   helperText="Enter your message"
                 />
-                <CDSButton variant="contained" fullWidth>
+                <Button variant="primary" fullWidth>
                   Submit
-                </CDSButton>
-              </CDSStack>
-            </CDSCardContent>
-          </CDSCard>
-        </CDSStack>
-      </CDSContainer>
+                </Button>
+              </Stack>
+            </CardContent>
+          </Card>
+        </Stack>
+      </Container>
     </ThemeProvider>
   );
 }

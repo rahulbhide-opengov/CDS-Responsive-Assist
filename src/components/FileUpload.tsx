@@ -143,7 +143,7 @@ const DropZone = styled(Box)(({ theme }) => ({
  *
  * @example
  * // Basic file upload
- * <CDSFileUpload
+ * <FileUpload
  *   accept="image/*"
  *   maxSize={5242880} // 5MB
  *   multiple
@@ -152,7 +152,7 @@ const DropZone = styled(Box)(({ theme }) => ({
  *
  * @example
  * // With async upload handler
- * <CDSFileUpload
+ * <FileUpload
  *   accept=".pdf,.doc,.docx"
  *   onUpload={async (files) => {
  *     await uploadToServer(files);
@@ -161,13 +161,13 @@ const DropZone = styled(Box)(({ theme }) => ({
  *
  * @example
  * // Custom drop zone text
- * <CDSFileUpload
+ * <FileUpload
  *   accept="image/*"
  *   dropZoneText="Drop your images here"
  *   showFileList={false}
  * />
  */
-export const CDSFileUpload: React.FC<FileUploadProps> = ({
+export const FileUpload: React.FC<FileUploadProps> = ({
   accept,
   maxSize = 10485760, // 10MB default
   multiple = false,

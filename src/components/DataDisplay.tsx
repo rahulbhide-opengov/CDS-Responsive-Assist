@@ -2,8 +2,8 @@
  * CDS Data Display Components (CDS-First Architecture)
  * Components for displaying data with CDS API - MUI is an implementation detail
  *
- * Developer uses: <CDSAvatar size="md" />
- * NOT: <CDSAvatar sx={{ width: 40, height: 40 }} />
+ * Developer uses: <Avatar size="md" />
+ * NOT: <Avatar sx={{ width: 40, height: 40 }} />
  */
 
 import React from 'react';
@@ -178,13 +178,13 @@ const StyledMuiAvatar = styled(MuiAvatar)(({ theme }) => ({
  *
  * @example
  * // CDS Way (CORRECT)
- * <CDSAvatar size="md" src="/user.jpg" alt="John Doe" />
- * <CDSAvatar size="lg">JD</CDSAvatar>
- * <CDSAvatar size="sm" />
+ * <Avatar size="md" src="/user.jpg" alt="John Doe" />
+ * <Avatar size="lg">JD</Avatar>
+ * <Avatar size="sm" />
  *
- * // NOT: <CDSAvatar sx={{ width: 40, height: 40 }} />
+ * // NOT: <Avatar sx={{ width: 40, height: 40 }} />
  */
-export const CDSAvatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   (
     {
       size = 'md',
@@ -219,7 +219,7 @@ export const CDSAvatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   }
 );
 
-CDSAvatar.displayName = 'CDSAvatar';
+Avatar.displayName = 'Avatar';
 
 // ============================================================================
 // CDS AVATAR GROUP
@@ -271,13 +271,13 @@ const StyledMuiAvatarGroup = styled(MuiAvatarGroup)(({ theme }) => ({
  * CDS Avatar Group Component
  *
  * @example
- * <CDSAvatarGroup max={3} size="sm">
- *   <CDSAvatar src="/user1.jpg" />
- *   <CDSAvatar src="/user2.jpg" />
- *   <CDSAvatar>AB</CDSAvatar>
- * </CDSAvatarGroup>
+ * <AvatarGroup max={3} size="sm">
+ *   <Avatar src="/user1.jpg" />
+ *   <Avatar src="/user2.jpg" />
+ *   <Avatar>AB</Avatar>
+ * </AvatarGroup>
  */
-export const CDSAvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
+export const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   ({ children, max = 5, size = 'md', spacing, className, sx }, ref) => {
     return (
       <StyledMuiAvatarGroup
@@ -293,7 +293,7 @@ export const CDSAvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>
   }
 );
 
-CDSAvatarGroup.displayName = 'CDSAvatarGroup';
+AvatarGroup.displayName = 'AvatarGroup';
 
 // ============================================================================
 // CDS BADGE
@@ -395,15 +395,15 @@ const StyledMuiBadge = styled(MuiBadge)(({ theme }) => ({
  * CDS Badge Component
  *
  * @example
- * <CDSBadge content={4} color="error">
+ * <Badge content={4} color="error">
  *   <MailIcon />
- * </CDSBadge>
+ * </Badge>
  *
- * <CDSBadge variant="dot" color="success">
+ * <Badge variant="dot" color="success">
  *   <Avatar />
- * </CDSBadge>
+ * </Badge>
  */
-export const CDSBadge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (
     {
       content,
@@ -445,7 +445,7 @@ export const CDSBadge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   }
 );
 
-CDSBadge.displayName = 'CDSBadge';
+Badge.displayName = 'Badge';
 
 // ============================================================================
 // CDS CHIP
@@ -562,11 +562,11 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
  * CDS Chip Component
  *
  * @example
- * <CDSChip label="New" color="primary" />
- * <CDSChip label="Delete" variant="outlined" onDelete={handleDelete} />
- * <CDSChip label="Status" icon={<CheckIcon />} />
+ * <Chip label="New" color="primary" />
+ * <Chip label="Delete" variant="outlined" onDelete={handleDelete} />
+ * <Chip label="Status" icon={<CheckIcon />} />
  */
-export const CDSChip = React.forwardRef<HTMLDivElement, ChipProps>(
+export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
   (
     {
       label,
@@ -603,7 +603,7 @@ export const CDSChip = React.forwardRef<HTMLDivElement, ChipProps>(
   }
 );
 
-CDSChip.displayName = 'CDSChip';
+Chip.displayName = 'Chip';
 
 // ============================================================================
 // CDS TOOLTIP
@@ -689,17 +689,17 @@ const StyledMuiTooltip = styled(MuiTooltip)(({ theme }) => ({
  * CDS Tooltip Component
  *
  * @example
- * <CDSTooltip title="Delete item">
+ * <Tooltip title="Delete item">
  *   <IconButton>
  *     <DeleteIcon />
  *   </IconButton>
- * </CDSTooltip>
+ * </Tooltip>
  *
- * <CDSTooltip title="Information" placement="right" arrow>
+ * <Tooltip title="Information" placement="right" arrow>
  *   <Button>Hover me</Button>
- * </CDSTooltip>
+ * </Tooltip>
  */
-export const CDSTooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
+export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   (
     {
       title,
@@ -735,7 +735,7 @@ export const CDSTooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   }
 );
 
-CDSTooltip.displayName = 'CDSTooltip';
+Tooltip.displayName = 'Tooltip';
 
 // ============================================================================
 // CDS TABLE
@@ -781,22 +781,22 @@ const StyledMuiTable = styled(MuiTable)(({ theme }) => ({
  * CDS Table Component
  *
  * @example
- * <CDSTable>
- *   <CDSTableHead>
- *     <CDSTableRow>
- *       <CDSTableCell>Name</CDSTableCell>
- *       <CDSTableCell>Email</CDSTableCell>
- *     </CDSTableRow>
- *   </CDSTableHead>
- *   <CDSTableBody>
- *     <CDSTableRow>
- *       <CDSTableCell>John Doe</CDSTableCell>
- *       <CDSTableCell>john@example.com</CDSTableCell>
- *     </CDSTableRow>
- *   </CDSTableBody>
- * </CDSTable>
+ * <Table>
+ *   <TableHead>
+ *     <TableRow>
+ *       <TableCell>Name</TableCell>
+ *       <TableCell>Email</TableCell>
+ *     </TableRow>
+ *   </TableHead>
+ *   <TableBody>
+ *     <TableRow>
+ *       <TableCell>John Doe</TableCell>
+ *       <TableCell>john@example.com</TableCell>
+ *     </TableRow>
+ *   </TableBody>
+ * </Table>
  */
-export const CDSTable = React.forwardRef<HTMLTableElement, TableProps>(
+export const Table = React.forwardRef<HTMLTableElement, TableProps>(
   ({ children, size = 'medium', className, sx, stickyHeader = false }, ref) => {
     return (
       <StyledMuiTable
@@ -812,7 +812,7 @@ export const CDSTable = React.forwardRef<HTMLTableElement, TableProps>(
   }
 );
 
-CDSTable.displayName = 'CDSTable';
+Table.displayName = 'Table';
 
 // ============================================================================
 // CDS TABLE HEAD
@@ -833,7 +833,7 @@ const StyledMuiTableHead = styled(MuiTableHead)(({ theme }) => ({
   },
 }));
 
-export const CDSTableHead = React.forwardRef<HTMLTableSectionElement, TableHeadProps>(
+export const TableHead = React.forwardRef<HTMLTableSectionElement, TableHeadProps>(
   ({ children, className, sx }, ref) => {
     return (
       <StyledMuiTableHead ref={ref} className={className} sx={sx}>
@@ -843,7 +843,7 @@ export const CDSTableHead = React.forwardRef<HTMLTableSectionElement, TableHeadP
   }
 );
 
-CDSTableHead.displayName = 'CDSTableHead';
+TableHead.displayName = 'TableHead';
 
 // ============================================================================
 // CDS TABLE BODY
@@ -861,7 +861,7 @@ const StyledMuiTableBody = styled(MuiTableBody)(({ theme }) => ({
   },
 }));
 
-export const CDSTableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
+export const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
   ({ children, className, sx }, ref) => {
     return (
       <StyledMuiTableBody ref={ref} className={className} sx={sx}>
@@ -871,7 +871,7 @@ export const CDSTableBody = React.forwardRef<HTMLTableSectionElement, TableBodyP
   }
 );
 
-CDSTableBody.displayName = 'CDSTableBody';
+TableBody.displayName = 'TableBody';
 
 // ============================================================================
 // CDS TABLE ROW
@@ -904,7 +904,7 @@ const StyledMuiTableRow = styled(MuiTableRow)(({ theme }) => ({
   }),
 }));
 
-export const CDSTableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
+export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   ({ children, onClick, selected, hover = true, className, sx }, ref) => {
     return (
       <StyledMuiTableRow
@@ -921,7 +921,7 @@ export const CDSTableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   }
 );
 
-CDSTableRow.displayName = 'CDSTableRow';
+TableRow.displayName = 'TableRow';
 
 // ============================================================================
 // CDS TABLE CELL
@@ -1009,10 +1009,10 @@ const StyledMuiTableCell = styled(MuiTableCell, {
  * CDS Table Cell Component
  *
  * @example
- * <CDSTableCell density="compact">Compact cell</CDSTableCell>
- * <CDSTableCell density="comfortable" align="center">Spacious</CDSTableCell>
+ * <TableCell density="compact">Compact cell</TableCell>
+ * <TableCell density="comfortable" align="center">Spacious</TableCell>
  */
-export const CDSTableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
+export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
   (
     {
       children,
@@ -1041,7 +1041,7 @@ export const CDSTableCell = React.forwardRef<HTMLTableCellElement, TableCellProp
   }
 );
 
-CDSTableCell.displayName = 'CDSTableCell';
+TableCell.displayName = 'TableCell';
 
 // ============================================================================
 // CDS LIST
@@ -1066,13 +1066,13 @@ const StyledMuiList = styled(MuiList)(({ theme }) => ({
  * CDS List Component
  *
  * @example
- * <CDSList>
- *   <CDSListItem>
- *     <CDSListItemText primary="Item 1" />
- *   </CDSListItem>
- * </CDSList>
+ * <List>
+ *   <ListItem>
+ *     <ListItemText primary="Item 1" />
+ *   </ListItem>
+ * </List>
  */
-export const CDSList = React.forwardRef<HTMLUListElement, ListProps>(
+export const List = React.forwardRef<HTMLUListElement, ListProps>(
   ({ children, dense = false, className, sx }, ref) => {
     return (
       <StyledMuiList ref={ref} dense={dense} className={className} sx={sx}>
@@ -1082,7 +1082,7 @@ export const CDSList = React.forwardRef<HTMLUListElement, ListProps>(
   }
 );
 
-CDSList.displayName = 'CDSList';
+List.displayName = 'List';
 
 // ============================================================================
 // CDS LIST ITEM
@@ -1114,7 +1114,7 @@ const StyledMuiListItem = styled(MuiListItem)(({ theme }) => ({
   }),
 }));
 
-export const CDSListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
+export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   ({ children, onClick, selected, disabled, className, sx }, ref) => {
     return (
       <StyledMuiListItem
@@ -1131,7 +1131,7 @@ export const CDSListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   }
 );
 
-CDSListItem.displayName = 'CDSListItem';
+ListItem.displayName = 'ListItem';
 
 // ============================================================================
 // CDS LIST ITEM BUTTON
@@ -1184,14 +1184,14 @@ const StyledMuiListItemButton = styled(MuiListItemButton)(({ theme }) => ({
  * CDS List Item Button Component
  *
  * @example
- * <CDSListItemButton onClick={handleClick}>
- *   <CDSListItemIcon>
+ * <ListItemButton onClick={handleClick}>
+ *   <ListItemIcon>
  *     <InboxIcon />
- *   </CDSListItemIcon>
- *   <CDSListItemText primary="Inbox" />
- * </CDSListItemButton>
+ *   </ListItemIcon>
+ *   <ListItemText primary="Inbox" />
+ * </ListItemButton>
  */
-export const CDSListItemButton = React.forwardRef<HTMLDivElement, ListItemButtonProps>(
+export const ListItemButton = React.forwardRef<HTMLDivElement, ListItemButtonProps>(
   ({ children, onClick, selected, disabled, className, sx }, ref) => {
     return (
       <StyledMuiListItemButton
@@ -1208,7 +1208,7 @@ export const CDSListItemButton = React.forwardRef<HTMLDivElement, ListItemButton
   }
 );
 
-CDSListItemButton.displayName = 'CDSListItemButton';
+ListItemButton.displayName = 'ListItemButton';
 
 // ============================================================================
 // CDS LIST ITEM ICON
@@ -1225,7 +1225,7 @@ const StyledMuiListItemIcon = styled(MuiListItemIcon)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export const CDSListItemIcon = React.forwardRef<HTMLDivElement, ListItemIconProps>(
+export const ListItemIcon = React.forwardRef<HTMLDivElement, ListItemIconProps>(
   ({ children, className, sx }, ref) => {
     return (
       <StyledMuiListItemIcon ref={ref} className={className} sx={sx}>
@@ -1235,7 +1235,7 @@ export const CDSListItemIcon = React.forwardRef<HTMLDivElement, ListItemIconProp
   }
 );
 
-CDSListItemIcon.displayName = 'CDSListItemIcon';
+ListItemIcon.displayName = 'ListItemIcon';
 
 // ============================================================================
 // CDS LIST ITEM TEXT
@@ -1272,9 +1272,9 @@ const StyledMuiListItemText = styled(MuiListItemText)(({ theme }) => ({
  * CDS List Item Text Component
  *
  * @example
- * <CDSListItemText primary="John Doe" secondary="Software Engineer" />
+ * <ListItemText primary="John Doe" secondary="Software Engineer" />
  */
-export const CDSListItemText = React.forwardRef<HTMLDivElement, ListItemTextProps>(
+export const ListItemText = React.forwardRef<HTMLDivElement, ListItemTextProps>(
   ({ primary, secondary, className, sx }, ref) => {
     return (
       <StyledMuiListItemText
@@ -1288,7 +1288,7 @@ export const CDSListItemText = React.forwardRef<HTMLDivElement, ListItemTextProp
   }
 );
 
-CDSListItemText.displayName = 'CDSListItemText';
+ListItemText.displayName = 'ListItemText';
 
 // ============================================================================
 // CDS LIST ITEM AVATAR
@@ -1304,7 +1304,7 @@ const StyledMuiListItemAvatar = styled(MuiListItemAvatar)(({ theme }) => ({
   minWidth: 56,
 }));
 
-export const CDSListItemAvatar = React.forwardRef<HTMLDivElement, ListItemAvatarProps>(
+export const ListItemAvatar = React.forwardRef<HTMLDivElement, ListItemAvatarProps>(
   ({ children, className, sx }, ref) => {
     return (
       <StyledMuiListItemAvatar ref={ref} className={className} sx={sx}>
@@ -1314,7 +1314,7 @@ export const CDSListItemAvatar = React.forwardRef<HTMLDivElement, ListItemAvatar
   }
 );
 
-CDSListItemAvatar.displayName = 'CDSListItemAvatar';
+ListItemAvatar.displayName = 'ListItemAvatar';
 
 // ============================================================================
 // CDS IMAGE LIST
@@ -1352,13 +1352,13 @@ const StyledMuiImageList = styled(MuiImageList)(({ theme }) => ({
  * CDS Image List Component
  *
  * @example
- * <CDSImageList cols={3} gap={8}>
- *   <CDSImageListItem>
+ * <ImageList cols={3} gap={8}>
+ *   <ImageListItem>
  *     <img src="/photo1.jpg" alt="Photo 1" />
- *   </CDSImageListItem>
- * </CDSImageList>
+ *   </ImageListItem>
+ * </ImageList>
  */
-export const CDSImageList = React.forwardRef<HTMLUListElement, ImageListProps>(
+export const ImageList = React.forwardRef<HTMLUListElement, ImageListProps>(
   ({ children, cols = 2, gap = 8, rowHeight = 'auto', className, sx }, ref) => {
     return (
       <StyledMuiImageList
@@ -1375,7 +1375,7 @@ export const CDSImageList = React.forwardRef<HTMLUListElement, ImageListProps>(
   }
 );
 
-CDSImageList.displayName = 'CDSImageList';
+ImageList.displayName = 'ImageList';
 
 // ============================================================================
 // CDS IMAGE LIST ITEM
@@ -1426,7 +1426,7 @@ const StyledMuiImageListItem = styled(MuiImageListItem)(({ theme }) => ({
   },
 }));
 
-export const CDSImageListItem = React.forwardRef<HTMLLIElement, ImageListItemProps>(
+export const ImageListItem = React.forwardRef<HTMLLIElement, ImageListItemProps>(
   ({ children, cols = 1, rows = 1, className, sx }, ref) => {
     return (
       <StyledMuiImageListItem
@@ -1442,7 +1442,7 @@ export const CDSImageListItem = React.forwardRef<HTMLLIElement, ImageListItemPro
   }
 );
 
-CDSImageListItem.displayName = 'CDSImageListItem';
+ImageListItem.displayName = 'ImageListItem';
 
 // ============================================================================
 // CDS TYPOGRAPHY
@@ -1488,12 +1488,12 @@ const StyledMuiTypography = styled(MuiTypography)(({ theme }) => ({
  * Simple, semantic text component
  *
  * @example
- * <CDSTypography variant="h1">Page Title</CDSTypography>
- * <CDSTypography variant="body1" color="textSecondary">
+ * <Typography variant="h1">Page Title</Typography>
+ * <Typography variant="body1" color="textSecondary">
  *   Body text
- * </CDSTypography>
+ * </Typography>
  */
-export const CDSTypography = React.forwardRef<HTMLElement, TypographyProps>(
+export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
   (
     {
       variant = 'body1',
@@ -1524,10 +1524,10 @@ export const CDSTypography = React.forwardRef<HTMLElement, TypographyProps>(
   }
 );
 
-CDSTypography.displayName = 'CDSTypography';
+Typography.displayName = 'Typography';
 
 // ============================================================================
 // EXPORTS
 // ============================================================================
 
-export default CDSAvatar;
+export default Avatar;
