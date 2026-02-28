@@ -1,22 +1,21 @@
 /**
- * CDS Extended Navigation Components
- * Additional navigation components with CDS tokens
+ * CDS Extended Navigation Components (CDS-First Architecture)
+ * Additional navigation components with CDS API - MUI is an implementation detail
+ *
+ * Developer uses CDS design language:
+ * - Intuitive prop names (ariaLabel not aria-label)
+ * - Semantic props aligned with design system
+ * - CDS token styling with full accessibility
  */
 
 import React from 'react';
 import {
   Menu as MuiMenu,
-  MenuProps as MuiMenuProps,
   MenuItem as MuiMenuItem,
-  MenuItemProps as MuiMenuItemProps,
   Pagination as MuiPagination,
-  PaginationProps as MuiPaginationProps,
   SpeedDial as MuiSpeedDial,
-  SpeedDialProps as MuiSpeedDialProps,
   SpeedDialAction as MuiSpeedDialAction,
-  SpeedDialActionProps as MuiSpeedDialActionProps,
   Stepper as MuiStepper,
-  StepperProps as MuiStepperProps,
   Step as MuiStep,
   StepLabel as MuiStepLabel,
   StepContent as MuiStepContent,
@@ -24,17 +23,559 @@ import {
 import { TreeView as MuiTreeView, TreeItem as MuiTreeItem } from '@mui/x-tree-view';
 import { styled } from '@mui/material/styles';
 
+// ============================================================================
+// CDS-FIRST TYPE DEFINITIONS
+// ============================================================================
+
 /**
- * CDS Menu
- * Dropdown menu with CDS styling
- *
- * @example
- * <CDSMenu anchorEl={anchorEl} open={open} onClose={handleClose}>
- *   <CDSMenuItem onClick={handleClick}>Profile</CDSMenuItem>
- *   <CDSMenuItem onClick={handleClick}>Settings</CDSMenuItem>
- * </CDSMenu>
+ * CDS Menu Props
  */
-export const CDSMenu = styled(MuiMenu)(({ theme }) => ({
+export interface MenuProps {
+  /**
+   * Anchor element
+   */
+  anchorEl?: HTMLElement | null;
+
+  /**
+   * Open state
+   */
+  open: boolean;
+
+  /**
+   * Close handler
+   */
+  onClose?: () => void;
+
+  /**
+   * Menu content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Anchor origin
+   */
+  anchorOrigin?: {
+    vertical: 'top' | 'center' | 'bottom';
+    horizontal: 'left' | 'center' | 'right';
+  };
+
+  /**
+   * Transform origin
+   */
+  transformOrigin?: {
+    vertical: 'top' | 'center' | 'bottom';
+    horizontal: 'left' | 'center' | 'right';
+  };
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS MenuItem Props
+ */
+export interface MenuItemProps {
+  /**
+   * Menu item content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Click handler
+   */
+  onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
+
+  /**
+   * Selected state
+   * @default false
+   */
+  selected?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS Pagination Props
+ */
+export interface PaginationProps {
+  /**
+   * Total page count
+   */
+  count: number;
+
+  /**
+   * Current page (1-indexed)
+   * @default 1
+   */
+  page?: number;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<unknown>, page: number) => void;
+
+  /**
+   * Pagination variant
+   * @default 'text'
+   */
+  variant?: 'text' | 'outlined';
+
+  /**
+   * Pagination shape
+   * @default 'circular'
+   */
+  shape?: 'circular' | 'rounded';
+
+  /**
+   * Pagination size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+
+  /**
+   * Pagination color
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary' | 'standard';
+
+  /**
+   * Show first button
+   * @default false
+   */
+  showFirstButton?: boolean;
+
+  /**
+   * Show last button
+   * @default false
+   */
+  showLastButton?: boolean;
+
+  /**
+   * Accessible label
+   */
+  ariaLabel?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS SpeedDial Props
+ */
+export interface SpeedDialProps {
+  /**
+   * Accessible label (required)
+   */
+  ariaLabel: string;
+
+  /**
+   * Speed dial icon
+   */
+  icon: React.ReactNode;
+
+  /**
+   * Open state
+   */
+  open?: boolean;
+
+  /**
+   * Click handler
+   */
+  onClick?: () => void;
+
+  /**
+   * Open handler
+   */
+  onOpen?: () => void;
+
+  /**
+   * Close handler
+   */
+  onClose?: () => void;
+
+  /**
+   * Speed dial direction
+   * @default 'up'
+   */
+  direction?: 'up' | 'down' | 'left' | 'right';
+
+  /**
+   * Hidden state
+   * @default false
+   */
+  hidden?: boolean;
+
+  /**
+   * Speed dial actions
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS SpeedDialAction Props
+ */
+export interface SpeedDialActionProps {
+  /**
+   * Action icon
+   */
+  icon: React.ReactNode;
+
+  /**
+   * Tooltip title
+   */
+  tooltipTitle: string;
+
+  /**
+   * Click handler
+   */
+  onClick?: () => void;
+
+  /**
+   * Tooltip open state
+   */
+  tooltipOpen?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS TreeView Props
+ */
+export interface TreeViewProps {
+  /**
+   * Default expanded nodes
+   */
+  defaultExpanded?: string[];
+
+  /**
+   * Expanded nodes (controlled)
+   */
+  expanded?: string[];
+
+  /**
+   * Selected nodes
+   */
+  selected?: string | string[];
+
+  /**
+   * Default selected nodes
+   */
+  defaultSelected?: string | string[];
+
+  /**
+   * Node toggle handler
+   */
+  onNodeToggle?: (event: React.SyntheticEvent, nodeIds: string[]) => void;
+
+  /**
+   * Node select handler
+   */
+  onNodeSelect?: (event: React.SyntheticEvent, nodeIds: string | string[]) => void;
+
+  /**
+   * Multi-select
+   * @default false
+   */
+  multiSelect?: boolean;
+
+  /**
+   * Tree content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Accessible label
+   */
+  ariaLabel?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS TreeItem Props
+ */
+export interface TreeItemProps {
+  /**
+   * Node ID (required)
+   */
+  nodeId: string;
+
+  /**
+   * Node label
+   */
+  label: React.ReactNode;
+
+  /**
+   * Child nodes
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS Stepper Props
+ */
+export interface StepperProps {
+  /**
+   * Active step index (0-indexed)
+   * @default 0
+   */
+  activeStep?: number;
+
+  /**
+   * Stepper orientation
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
+
+  /**
+   * Stepper variant
+   * @default 'elevation'
+   */
+  variant?: 'elevation' | 'outlined';
+
+  /**
+   * Non-linear steps
+   * @default false
+   */
+  nonLinear?: boolean;
+
+  /**
+   * Alternative label
+   * @default false
+   */
+  alternativeLabel?: boolean;
+
+  /**
+   * Steps content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS Step Props
+ */
+export interface StepProps {
+  /**
+   * Step content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Completed state
+   * @default false
+   */
+  completed?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS StepLabel Props
+ */
+export interface StepLabelProps {
+  /**
+   * Step label content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Optional label
+   */
+  optional?: React.ReactNode;
+
+  /**
+   * Step icon
+   */
+  icon?: React.ReactNode;
+
+  /**
+   * Error state
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS StepContent Props
+ */
+export interface StepContentProps {
+  /**
+   * Step content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+// ============================================================================
+// STYLED COMPONENTS (CDS Styling Priority)
+// ============================================================================
+
+/**
+ * CDS Menu - Dropdown menu with CDS styling
+ */
+const StyledMenu = styled(MuiMenu)(({ theme }) => ({
   '& .MuiPaper-root': {
     borderRadius: theme.shape.borderRadius,
     marginTop: theme.spacing(1),
@@ -48,29 +589,25 @@ export const CDSMenu = styled(MuiMenu)(({ theme }) => ({
 }));
 
 /**
- * CDS MenuItem
- * Individual menu item with CDS styling
- *
- * @example
- * <CDSMenuItem onClick={handleClick}>Menu Item</CDSMenuItem>
+ * CDS MenuItem - Individual menu item with responsive sizing
  */
-export const CDSMenuItem = styled(MuiMenuItem)(({ theme }) => ({
-  // Responsive padding
-  padding: theme.spacing(1.5, 1.5), // 12px 6px mobile
+const StyledMenuItem = styled(MuiMenuItem)(({ theme }) => ({
+  // Responsive padding (mobile-first)
+  padding: theme.spacing(1.5, 1.5),
   minHeight: 48,
-
-  // Responsive font size
-  fontSize: '0.9375rem', // 15px mobile
+  fontSize: '0.9375rem',
 
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(1.5, 2), // 12px 8px tablet+
-    fontSize: '1rem', // 16px tablet+
+    padding: theme.spacing(1.5, 2),
+    fontSize: '1rem',
   },
 
+  // Hover state
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
   },
 
+  // Selected state
   '&.Mui-selected': {
     backgroundColor: theme.palette.action.selected,
     '&:hover': {
@@ -78,25 +615,25 @@ export const CDSMenuItem = styled(MuiMenuItem)(({ theme }) => ({
     },
   },
 
+  // Focus state (WCAG compliant)
   '&:focus-visible': {
     backgroundColor: theme.palette.action.focus,
+    outline: `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: -2,
   },
 }));
 
 /**
- * CDS Pagination
- * Page navigation component with CDS styling
- *
- * @example
- * <CDSPagination count={10} page={page} onChange={handleChange} />
+ * CDS Pagination - Page navigation with CDS styling
  */
-export const CDSPagination = styled(MuiPagination)(({ theme }) => ({
+const StyledPagination = styled(MuiPagination)(({ theme }) => ({
   '& .MuiPaginationItem-root': {
     minWidth: 32,
     minHeight: 32,
     margin: theme.spacing(0, 0.5),
     borderRadius: theme.shape.borderRadius,
 
+    // Selected state
     '&.Mui-selected': {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
@@ -105,6 +642,7 @@ export const CDSPagination = styled(MuiPagination)(({ theme }) => ({
       },
     },
 
+    // Focus state (WCAG compliant)
     '&:focus-visible': {
       outline: `2px solid ${theme.palette.primary.main}`,
       outlineOffset: 2,
@@ -113,16 +651,9 @@ export const CDSPagination = styled(MuiPagination)(({ theme }) => ({
 }));
 
 /**
- * CDS SpeedDial
- * Floating action button with expandable actions
- *
- * @example
- * <CDSSpeedDial ariaLabel="Actions" icon={<SpeedDialIcon />}>
- *   <CDSSpeedDialAction icon={<FileCopyIcon />} tooltipTitle="Copy" />
- *   <CDSSpeedDialAction icon={<SaveIcon />} tooltipTitle="Save" />
- * </CDSSpeedDial>
+ * CDS SpeedDial - Floating action button with expandable actions
  */
-export const CDSSpeedDial = styled(MuiSpeedDial)(({ theme }) => ({
+const StyledSpeedDial = styled(MuiSpeedDial)(({ theme }) => ({
   '& .MuiSpeedDial-fab': {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
@@ -132,37 +663,40 @@ export const CDSSpeedDial = styled(MuiSpeedDial)(({ theme }) => ({
       backgroundColor: theme.palette.primary.dark,
       boxShadow: theme.shadows[8],
     },
+
+    // Focus state (WCAG compliant)
+    '&:focus-visible': {
+      outline: `3px solid ${theme.palette.primary.light}`,
+      outlineOffset: 2,
+    },
   },
 }));
 
 /**
- * CDS SpeedDialAction
- * Individual speed dial action
+ * CDS SpeedDialAction - Individual speed dial action
  */
-export const CDSSpeedDialAction = styled(MuiSpeedDialAction)(({ theme }) => ({
+const StyledSpeedDialAction = styled(MuiSpeedDialAction)(({ theme }) => ({
   '& .MuiSpeedDialAction-fab': {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[2],
 
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
+      boxShadow: theme.shadows[4],
+    },
+
+    // Focus state (WCAG compliant)
+    '&:focus-visible': {
+      outline: `2px solid ${theme.palette.primary.main}`,
+      outlineOffset: 2,
     },
   },
 }));
 
 /**
- * CDS TreeView
- * Hierarchical tree navigation with CDS styling
- * Requires @mui/x-tree-view package
- *
- * @example
- * <CDSTreeView defaultExpanded={['1']}>
- *   <CDSTreeItem nodeId="1" label="Parent">
- *     <CDSTreeItem nodeId="2" label="Child" />
- *   </CDSTreeItem>
- * </CDSTreeView>
+ * CDS TreeView - Hierarchical tree navigation
  */
-export const CDSTreeView = styled(MuiTreeView)(({ theme }) => ({
+const StyledTreeView = styled(MuiTreeView)(({ theme }) => ({
   '& .MuiTreeItem-root': {
     '&:focus > .MuiTreeItem-content': {
       backgroundColor: theme.palette.action.focus,
@@ -194,7 +728,10 @@ export const CDSTreeView = styled(MuiTreeView)(({ theme }) => ({
   },
 }));
 
-export const CDSTreeItem = styled(MuiTreeItem)(({ theme }) => ({
+/**
+ * CDS TreeItem - Individual tree node
+ */
+const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
   '& .MuiTreeItem-iconContainer': {
     marginRight: theme.spacing(1),
     width: 24,
@@ -207,16 +744,9 @@ export const CDSTreeItem = styled(MuiTreeItem)(({ theme }) => ({
 }));
 
 /**
- * CDS Stepper
- * Multi-step navigation component
- *
- * @example
- * <CDSStepper activeStep={activeStep}>
- *   <CDSStep><CDSStepLabel>Step 1</CDSStepLabel></CDSStep>
- *   <CDSStep><CDSStepLabel>Step 2</CDSStepLabel></CDSStep>
- * </CDSStepper>
+ * CDS Stepper - Multi-step navigation
  */
-export const CDSStepper = styled(MuiStepper)(({ theme }) => ({
+const StyledStepper = styled(MuiStepper)(({ theme }) => ({
   padding: theme.spacing(3, 0),
 
   '& .MuiStepConnector-line': {
@@ -229,16 +759,18 @@ export const CDSStepper = styled(MuiStepper)(({ theme }) => ({
 }));
 
 /**
- * CDS Step Components
- * Individual step components with CDS styling
+ * CDS Step - Individual step
  */
-export const CDSStep = styled(MuiStep)(({ theme }) => ({
+const StyledStep = styled(MuiStep)(({ theme }) => ({
   '& .MuiStepLabel-root': {
     padding: theme.spacing(1, 0),
   },
 }));
 
-export const CDSStepLabel = styled(MuiStepLabel)(({ theme }) => ({
+/**
+ * CDS StepLabel - Step label with icon
+ */
+const StyledStepLabel = styled(MuiStepLabel)(({ theme }) => ({
   '& .MuiStepLabel-label': {
     fontSize: theme.typography.body1.fontSize,
     fontWeight: theme.typography.fontWeightMedium,
@@ -272,19 +804,478 @@ export const CDSStepLabel = styled(MuiStepLabel)(({ theme }) => ({
   },
 }));
 
-export const CDSStepContent = styled(MuiStepContent)(({ theme }) => ({
-  paddingLeft: theme.spacing(4), // 32px
-  paddingRight: theme.spacing(2), // 16px
-  marginLeft: theme.spacing(2), // 24px
+/**
+ * CDS StepContent - Step content area
+ */
+const StyledStepContent = styled(MuiStepContent)(({ theme }) => ({
+  paddingLeft: theme.spacing(4),
+  paddingRight: theme.spacing(2),
+  marginLeft: theme.spacing(2),
   borderLeft: `1px solid ${theme.palette.divider}`,
   paddingTop: theme.spacing(1),
   paddingBottom: theme.spacing(2),
 }));
 
-// Type exports
-export type CDSMenuProps = MuiMenuProps;
-export type CDSMenuItemProps = MuiMenuItemProps;
-export type CDSPaginationProps = MuiPaginationProps;
-export type CDSSpeedDialProps = MuiSpeedDialProps;
-export type CDSSpeedDialActionProps = MuiSpeedDialActionProps;
-export type CDSStepperProps = MuiStepperProps;
+// ============================================================================
+// CDS COMPONENTS
+// ============================================================================
+
+/**
+ * CDS Menu Component
+ *
+ * @example
+ * <CDSMenu anchorEl={anchorEl} open={open} onClose={handleClose}>
+ *   <CDSMenuItem onClick={handleClick}>Profile</CDSMenuItem>
+ * </CDSMenu>
+ */
+export const CDSMenu = React.forwardRef<HTMLDivElement, MenuProps>(
+  (
+    {
+      anchorEl,
+      open,
+      onClose,
+      children,
+      anchorOrigin,
+      transformOrigin,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMenu
+        ref={ref}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={onClose}
+        anchorOrigin={anchorOrigin}
+        transformOrigin={transformOrigin}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledMenu>
+    );
+  }
+);
+
+CDSMenu.displayName = 'CDSMenu';
+
+/**
+ * CDS MenuItem Component
+ *
+ * @example
+ * <CDSMenuItem onClick={handleClick}>Menu Item</CDSMenuItem>
+ */
+export const CDSMenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
+  (
+    {
+      children,
+      onClick,
+      selected = false,
+      disabled = false,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMenuItem
+        ref={ref}
+        onClick={onClick}
+        selected={selected}
+        disabled={disabled}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledMenuItem>
+    );
+  }
+);
+
+CDSMenuItem.displayName = 'CDSMenuItem';
+
+/**
+ * CDS Pagination Component
+ *
+ * @example
+ * <CDSPagination count={10} page={page} onChange={handleChange} />
+ */
+export const CDSPagination = React.forwardRef<HTMLElement, PaginationProps>(
+  (
+    {
+      count,
+      page = 1,
+      onChange,
+      variant = 'text',
+      shape = 'circular',
+      size = 'medium',
+      color = 'primary',
+      showFirstButton = false,
+      showLastButton = false,
+      ariaLabel,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledPagination
+        ref={ref}
+        count={count}
+        page={page}
+        onChange={onChange}
+        variant={variant}
+        shape={shape}
+        size={size}
+        color={color}
+        showFirstButton={showFirstButton}
+        showLastButton={showLastButton}
+        aria-label={ariaLabel}
+        className={className}
+        sx={sx}
+        id={id}
+      />
+    );
+  }
+);
+
+CDSPagination.displayName = 'CDSPagination';
+
+/**
+ * CDS SpeedDial Component
+ *
+ * @example
+ * <CDSSpeedDial ariaLabel="Actions" icon={<SpeedDialIcon />}>
+ *   <CDSSpeedDialAction icon={<FileCopyIcon />} tooltipTitle="Copy" />
+ * </CDSSpeedDial>
+ */
+export const CDSSpeedDial = React.forwardRef<HTMLButtonElement, SpeedDialProps>(
+  (
+    {
+      ariaLabel,
+      icon,
+      open,
+      onClick,
+      onOpen,
+      onClose,
+      direction = 'up',
+      hidden = false,
+      children,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledSpeedDial
+        ref={ref}
+        ariaLabel={ariaLabel}
+        icon={icon}
+        open={open}
+        onClick={onClick}
+        onOpen={onOpen}
+        onClose={onClose}
+        direction={direction}
+        hidden={hidden}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledSpeedDial>
+    );
+  }
+);
+
+CDSSpeedDial.displayName = 'CDSSpeedDial';
+
+/**
+ * CDS SpeedDialAction Component
+ *
+ * @example
+ * <CDSSpeedDialAction icon={<FileCopyIcon />} tooltipTitle="Copy" />
+ */
+export const CDSSpeedDialAction = React.forwardRef<HTMLButtonElement, SpeedDialActionProps>(
+  (
+    {
+      icon,
+      tooltipTitle,
+      onClick,
+      tooltipOpen,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledSpeedDialAction
+        ref={ref}
+        icon={icon}
+        tooltipTitle={tooltipTitle}
+        onClick={onClick}
+        tooltipOpen={tooltipOpen}
+        className={className}
+        sx={sx}
+        id={id}
+      />
+    );
+  }
+);
+
+CDSSpeedDialAction.displayName = 'CDSSpeedDialAction';
+
+/**
+ * CDS TreeView Component
+ *
+ * @example
+ * <CDSTreeView defaultExpanded={['1']}>
+ *   <CDSTreeItem nodeId="1" label="Parent">
+ *     <CDSTreeItem nodeId="2" label="Child" />
+ *   </CDSTreeItem>
+ * </CDSTreeView>
+ */
+export const CDSTreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
+  (
+    {
+      defaultExpanded,
+      expanded,
+      selected,
+      defaultSelected,
+      onNodeToggle,
+      onNodeSelect,
+      multiSelect = false,
+      children,
+      ariaLabel,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledTreeView
+        ref={ref}
+        defaultExpanded={defaultExpanded}
+        expanded={expanded}
+        selected={selected}
+        defaultSelected={defaultSelected}
+        onNodeToggle={onNodeToggle}
+        onNodeSelect={onNodeSelect}
+        multiSelect={multiSelect}
+        aria-label={ariaLabel}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledTreeView>
+    );
+  }
+);
+
+CDSTreeView.displayName = 'CDSTreeView';
+
+/**
+ * CDS TreeItem Component
+ *
+ * @example
+ * <CDSTreeItem nodeId="1" label="Parent" />
+ */
+export const CDSTreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
+  (
+    {
+      nodeId,
+      label,
+      children,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledTreeItem
+        ref={ref}
+        nodeId={nodeId}
+        label={label}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledTreeItem>
+    );
+  }
+);
+
+CDSTreeItem.displayName = 'CDSTreeItem';
+
+/**
+ * CDS Stepper Component
+ *
+ * @example
+ * <CDSStepper activeStep={activeStep}>
+ *   <CDSStep><CDSStepLabel>Step 1</CDSStepLabel></CDSStep>
+ * </CDSStepper>
+ */
+export const CDSStepper = React.forwardRef<HTMLDivElement, StepperProps>(
+  (
+    {
+      activeStep = 0,
+      orientation = 'horizontal',
+      variant = 'elevation',
+      nonLinear = false,
+      alternativeLabel = false,
+      children,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledStepper
+        ref={ref}
+        activeStep={activeStep}
+        orientation={orientation}
+        nonLinear={nonLinear}
+        alternativeLabel={alternativeLabel}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledStepper>
+    );
+  }
+);
+
+CDSStepper.displayName = 'CDSStepper';
+
+/**
+ * CDS Step Component
+ *
+ * @example
+ * <CDSStep><CDSStepLabel>Step 1</CDSStepLabel></CDSStep>
+ */
+export const CDSStep = React.forwardRef<HTMLDivElement, StepProps>(
+  (
+    {
+      children,
+      completed = false,
+      disabled = false,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledStep
+        ref={ref}
+        completed={completed}
+        disabled={disabled}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledStep>
+    );
+  }
+);
+
+CDSStep.displayName = 'CDSStep';
+
+/**
+ * CDS StepLabel Component
+ *
+ * @example
+ * <CDSStepLabel>Step 1</CDSStepLabel>
+ */
+export const CDSStepLabel = React.forwardRef<HTMLSpanElement, StepLabelProps>(
+  (
+    {
+      children,
+      optional,
+      icon,
+      error = false,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledStepLabel
+        ref={ref}
+        optional={optional}
+        icon={icon}
+        error={error}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledStepLabel>
+    );
+  }
+);
+
+CDSStepLabel.displayName = 'CDSStepLabel';
+
+/**
+ * CDS StepContent Component
+ *
+ * @example
+ * <CDSStepContent>Step content here</CDSStepContent>
+ */
+export const CDSStepContent = React.forwardRef<HTMLDivElement, StepContentProps>(
+  (
+    {
+      children,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledStepContent
+        ref={ref}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledStepContent>
+    );
+  }
+);
+
+CDSStepContent.displayName = 'CDSStepContent';
+
+// ============================================================================
+// EXPORTS
+// ============================================================================
+
+export type CDSMenuProps = MenuProps;
+export type CDSMenuItemProps = MenuItemProps;
+export type CDSPaginationProps = PaginationProps;
+export type CDSSpeedDialProps = SpeedDialProps;
+export type CDSSpeedDialActionProps = SpeedDialActionProps;
+export type CDSTreeViewProps = TreeViewProps;
+export type CDSTreeItemProps = TreeItemProps;
+export type CDSStepperProps = StepperProps;
+export type CDSStepProps = StepProps;
+export type CDSStepLabelProps = StepLabelProps;
+export type CDSStepContentProps = StepContentProps;

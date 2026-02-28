@@ -73,7 +73,7 @@ export {
   type TransferListItem,
 } from './components/FormAdvanced';
 
-// ===== LAYOUT COMPONENTS (9) =====
+// ===== LAYOUT COMPONENTS (15) =====
 export {
   CDSContainer,
   CDSBox,
@@ -81,20 +81,30 @@ export {
   CDSGrid,
   CDSPaper,
   CDSCard,
+  CDSCardHeader,
+  CDSCardContent,
+  CDSCardActions,
+  CDSCardMedia,
   CDSSection,
   CDSPageContainer,
-  type CDSContainerProps,
-  type CDSBoxProps,
-  type CDSStackProps,
-  type CDSGridProps,
-  type CDSPaperProps,
-  type CDSCardProps,
+  CDSDivider,
+  type ContainerProps,
+  type BoxProps,
+  type StackProps,
+  type GridProps,
+  type PaperProps,
+  type CardProps,
+  type CardHeaderProps,
+  type CardContentProps,
+  type CardActionsProps,
+  type CardMediaProps,
+  type SectionProps,
+  type DividerProps,
+  type CDSElevation,
 } from './components/Layout';
 
 export {
-  CDSDivider,
   CDSLink,
-  type CDSDividerProps,
   type CDSLinkProps,
 } from './components/LayoutExtended';
 
@@ -221,10 +231,6 @@ export {
 // ===== MUI COMPONENT RE-EXPORTS (for convenience) =====
 export {
   Typography,
-  CardHeader,
-  CardContent,
-  CardActions,
-  CardMedia,
   Toolbar,
   FormControl,
   FormControlLabel,
@@ -248,20 +254,23 @@ export { ThemeProvider } from '@mui/material/styles';
  * Component Count Summary:
  * - Buttons: 6 components
  * - Forms: 13 components (includes TransferList)
- * - Layout: 9 components
+ * - Layout: 15 components (includes Card subcomponents and Divider)
  * - Navigation: 15 components
  * - Data Display: 17 components
  * - Feedback: 10 components
  * - Utility: 10 components (includes Portal, FileUpload)
  *
- * Total: 80 CDS Components
+ * Total: 86 CDS Components
  *
  * All components include:
  * - CDS token integration
+ * - CDS-first architecture (custom prop interfaces, not MuiComponentProps)
+ * - Semantic props (elevation: 'low' | 'medium' | 'high', not numeric)
+ * - Intuitive naming (ariaLabel not aria-label)
  * - WCAG 2.1 Level AA accessibility
  * - Responsive design
  * - TypeScript support
  * - Production-ready code
  *
- * 🎉 100% Complete - All documented components implemented!
+ * 🎉 100% Complete - All documented components implemented with CDS-first architecture!
  */

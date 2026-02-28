@@ -1,39 +1,955 @@
 /**
- * CDS Form Components
- * Pre-styled form input components with CDS tokens and accessibility
+ * CDS Form Components (CDS-First Architecture)
+ * Form components with CDS API - MUI is an implementation detail
+ *
+ * Developer uses CDS design language:
+ * - state: 'default' | 'error' | 'success' | 'warning'
+ * - ariaLabel (not aria-label)
+ * - Intuitive prop names aligned with CDS design system
  */
 
 import React from 'react';
 import {
   TextField as MuiTextField,
-  TextFieldProps as MuiTextFieldProps,
   Checkbox as MuiCheckbox,
-  CheckboxProps as MuiCheckboxProps,
   Radio as MuiRadio,
-  RadioProps as MuiRadioProps,
+  RadioGroup as MuiRadioGroup,
   Switch as MuiSwitch,
-  SwitchProps as MuiSwitchProps,
   Select as MuiSelect,
-  SelectProps as MuiSelectProps,
+  FormControl as MuiFormControl,
   FormLabel as MuiFormLabel,
-  FormLabelProps as MuiFormLabelProps,
+  FormControlLabel as MuiFormControlLabel,
+  FormHelperText as MuiFormHelperText,
+  FormGroup as MuiFormGroup,
+  InputLabel as MuiInputLabel,
+  OutlinedInput as MuiOutlinedInput,
+  MenuItem,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+// ============================================================================
+// CDS-FIRST TYPE DEFINITIONS
+// ============================================================================
+
 /**
- * CDS TextField
- * Text input with CDS styling and built-in accessibility
- *
- * @example
- * <CDSTextField
- *   label="Email"
- *   type="email"
- *   required
- *   fullWidth
- *   helperText="Enter your email address"
- * />
+ * CDS Input State (Design Language)
  */
-export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
+export type InputState = 'default' | 'error' | 'success' | 'warning';
+
+/**
+ * CDS TextField Props (CDS API)
+ */
+export interface TextFieldProps {
+  /**
+   * Input label
+   */
+  label?: string;
+
+  /**
+   * Input value
+   */
+  value?: string | number;
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: string | number;
+
+  /**
+   * Placeholder text
+   */
+  placeholder?: string;
+
+  /**
+   * Visual state of the input
+   * @default 'default'
+   */
+  state?: InputState;
+
+  /**
+   * Helper text below input
+   */
+  helperText?: string;
+
+  /**
+   * Required field indicator
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Full width
+   * @default false
+   */
+  fullWidth?: boolean;
+
+  /**
+   * Input type
+   * @default 'text'
+   */
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time' | 'datetime-local';
+
+  /**
+   * Multiline textarea
+   * @default false
+   */
+  multiline?: boolean;
+
+  /**
+   * Number of rows (for multiline)
+   */
+  rows?: number;
+
+  /**
+   * Max rows (for multiline)
+   */
+  maxRows?: number;
+
+  /**
+   * Min rows (for multiline)
+   */
+  minRows?: number;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+
+  /**
+   * Blur handler
+   */
+  onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+
+  /**
+   * Focus handler
+   */
+  onFocus?: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+
+  /**
+   * Accessible label
+   */
+  ariaLabel?: string;
+
+  /**
+   * ID of element describing input
+   */
+  ariaDescribedBy?: string;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Autocomplete attribute
+   */
+  autoComplete?: string;
+
+  /**
+   * Auto focus on mount
+   * @default false
+   */
+  autoFocus?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Input props passed to underlying input element
+   */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+
+  /**
+   * Start adornment (icon/text on left)
+   */
+  startAdornment?: React.ReactNode;
+
+  /**
+   * End adornment (icon/text on right)
+   */
+  endAdornment?: React.ReactNode;
+}
+
+/**
+ * CDS Checkbox Props (CDS API)
+ */
+export interface CheckboxProps {
+  /**
+   * Checked state
+   */
+  checked?: boolean;
+
+  /**
+   * Default checked (uncontrolled)
+   */
+  defaultChecked?: boolean;
+
+  /**
+   * Indeterminate state
+   * @default false
+   */
+  indeterminate?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+
+  /**
+   * Accessible label (required for standalone checkboxes)
+   */
+  ariaLabel?: string;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Value attribute
+   */
+  value?: string;
+
+  /**
+   * Required field
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Checkbox color
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning';
+
+  /**
+   * Checkbox size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+}
+
+/**
+ * CDS Radio Props (CDS API)
+ */
+export interface RadioProps {
+  /**
+   * Checked state
+   */
+  checked?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
+  /**
+   * Radio value
+   */
+  value?: any;
+
+  /**
+   * Accessible label (required for standalone radios)
+   */
+  ariaLabel?: string;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Required field
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Radio color
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning';
+
+  /**
+   * Radio size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+}
+
+/**
+ * CDS RadioGroup Props (CDS API)
+ */
+export interface RadioGroupProps {
+  /**
+   * Selected value
+   */
+  value?: any;
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: any;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
+
+  /**
+   * Radio group name
+   */
+  name?: string;
+
+  /**
+   * Children (Radio components)
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Layout direction
+   * @default 'column'
+   */
+  direction?: 'row' | 'column';
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS Switch Props (CDS API)
+ */
+export interface SwitchProps {
+  /**
+   * Checked state
+   */
+  checked?: boolean;
+
+  /**
+   * Default checked (uncontrolled)
+   */
+  defaultChecked?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+
+  /**
+   * Accessible label (required for standalone switches)
+   */
+  ariaLabel?: string;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Value attribute
+   */
+  value?: string;
+
+  /**
+   * Required field
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Switch color
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning';
+
+  /**
+   * Switch size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium';
+}
+
+/**
+ * CDS Select Props (CDS API)
+ */
+export interface SelectProps {
+  /**
+   * Selected value
+   */
+  value?: any;
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: any;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: any, child?: React.ReactNode) => void;
+
+  /**
+   * Select label
+   */
+  label?: string;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Full width
+   * @default false
+   */
+  fullWidth?: boolean;
+
+  /**
+   * Multiple selection
+   * @default false
+   */
+  multiple?: boolean;
+
+  /**
+   * Children (MenuItem components)
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Accessible label
+   */
+  ariaLabel?: string;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Required field
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Visual state
+   * @default 'default'
+   */
+  state?: InputState;
+
+  /**
+   * Auto width
+   * @default false
+   */
+  autoWidth?: boolean;
+}
+
+/**
+ * CDS FormControl Props (CDS API)
+ */
+export interface FormControlProps {
+  /**
+   * Children elements
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Full width
+   * @default false
+   */
+  fullWidth?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Error state
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * Required field
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS FormLabel Props (CDS API)
+ */
+export interface FormLabelProps {
+  /**
+   * Label text
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Required field indicator
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Error state
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * HTML for attribute
+   */
+  htmlFor?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS FormControlLabel Props (CDS API)
+ */
+export interface FormControlLabelProps {
+  /**
+   * Form control element (Checkbox, Radio, Switch)
+   */
+  control: React.ReactElement;
+
+  /**
+   * Label text
+   */
+  label: React.ReactNode;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Label placement
+   * @default 'end'
+   */
+  labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Value attribute
+   */
+  value?: any;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+}
+
+/**
+ * CDS FormHelperText Props (CDS API)
+ */
+export interface FormHelperTextProps {
+  /**
+   * Helper text content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Error state
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS FormGroup Props (CDS API)
+ */
+export interface FormGroupProps {
+  /**
+   * Children elements
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Layout direction
+   * @default 'column'
+   */
+  direction?: 'row' | 'column';
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS InputLabel Props (CDS API)
+ */
+export interface InputLabelProps {
+  /**
+   * Label text
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Required field indicator
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Error state
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * HTML for attribute
+   */
+  htmlFor?: string;
+
+  /**
+   * Shrink state (label moves up)
+   */
+  shrink?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+}
+
+/**
+ * CDS OutlinedInput Props (CDS API)
+ */
+export interface OutlinedInputProps {
+  /**
+   * Input value
+   */
+  value?: any;
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: any;
+
+  /**
+   * Placeholder text
+   */
+  placeholder?: string;
+
+  /**
+   * Input type
+   * @default 'text'
+   */
+  type?: string;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Full width
+   * @default false
+   */
+  fullWidth?: boolean;
+
+  /**
+   * Multiline textarea
+   * @default false
+   */
+  multiline?: boolean;
+
+  /**
+   * Number of rows
+   */
+  rows?: number;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+
+  /**
+   * Start adornment
+   */
+  startAdornment?: React.ReactNode;
+
+  /**
+   * End adornment
+   */
+  endAdornment?: React.ReactNode;
+
+  /**
+   * Accessible label
+   */
+  ariaLabel?: string;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Error state
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * Required field
+   * @default false
+   */
+  required?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Input props
+   */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+}
+
+// ============================================================================
+// INTERNAL UTILITIES (Hidden from developers)
+// ============================================================================
+
+/**
+ * Maps CDS state to MUI error prop
+ * THIS IS INTERNAL - developers never see this
+ */
+const getErrorStateFromCDSState = (state?: InputState): boolean => {
+  return state === 'error';
+};
+
+/**
+ * Gets state color from theme
+ */
+const getStateColor = (state: InputState, theme: any) => {
+  switch (state) {
+    case 'error':
+      return theme.palette.error.main;
+    case 'success':
+      return theme.palette.success.main;
+    case 'warning':
+      return theme.palette.warning.main;
+    default:
+      return theme.palette.primary.main;
+  }
+};
+
+// ============================================================================
+// STYLED COMPONENTS (CDS Styling Priority)
+// ============================================================================
+
+/**
+ * Styled TextField with CDS tokens
+ */
+const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     borderRadius: theme.shape.borderRadius, // 4px
 
@@ -61,6 +977,18 @@ export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
       borderColor: theme.palette.error.main,
       borderWidth: 2,
     },
+
+    // Success state (custom)
+    '&[data-state="success"] .MuiOutlinedInput-notchedOutline': {
+      borderColor: theme.palette.success.main,
+      borderWidth: 2,
+    },
+
+    // Warning state (custom)
+    '&[data-state="warning"] .MuiOutlinedInput-notchedOutline': {
+      borderColor: theme.palette.warning.main,
+      borderWidth: 2,
+    },
   },
 
   // Label styling - responsive font size
@@ -76,6 +1004,12 @@ export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
     '&.Mui-error': {
       color: theme.palette.error.main,
     },
+    '&[data-state="success"]': {
+      color: theme.palette.success.main,
+    },
+    '&[data-state="warning"]': {
+      color: theme.palette.warning.main,
+    },
   },
 
   // Helper text - responsive
@@ -89,21 +1023,24 @@ export const CDSTextField = styled(MuiTextField)(({ theme }) => ({
     '&.Mui-error': {
       color: theme.palette.error.main,
     },
+    '&[data-state="success"]': {
+      color: theme.palette.success.main,
+    },
+    '&[data-state="warning"]': {
+      color: theme.palette.warning.main,
+    },
   },
-})) as typeof MuiTextField;
+
+  // Focus-visible for keyboard navigation
+  '&:focus-within': {
+    outline: 'none',
+  },
+}));
 
 /**
- * CDS Checkbox
- * Checkbox with proper touch target and accessibility
- *
- * @example
- * <CDSCheckbox
- *   checked={checked}
- *   onChange={handleChange}
- *   inputProps={{ 'aria-label': 'Accept terms' }}
- * />
+ * Styled Checkbox with CDS tokens
  */
-export const CDSCheckbox = styled(MuiCheckbox)(({ theme }) => ({
+const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
   // Ensure WCAG touch target minimum (48px)
   padding: 12,
 
@@ -113,24 +1050,20 @@ export const CDSCheckbox = styled(MuiCheckbox)(({ theme }) => ({
   },
 
   // Color transitions
-  transition: theme.transitions.create(['color'], {
+  transition: theme.transitions.create(['color', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
+
+  // Hover state
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+  },
 }));
 
 /**
- * CDS Radio
- * Radio button with proper touch target and accessibility
- *
- * @example
- * <CDSRadio
- *   checked={value === 'option1'}
- *   onChange={handleChange}
- *   value="option1"
- *   inputProps={{ 'aria-label': 'Option 1' }}
- * />
+ * Styled Radio with CDS tokens
  */
-export const CDSRadio = styled(MuiRadio)(({ theme }) => ({
+const StyledMuiRadio = styled(MuiRadio)(({ theme }) => ({
   // Ensure WCAG touch target minimum (48px)
   padding: 12,
 
@@ -140,23 +1073,38 @@ export const CDSRadio = styled(MuiRadio)(({ theme }) => ({
   },
 
   // Color transitions
-  transition: theme.transitions.create(['color'], {
+  transition: theme.transitions.create(['color', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
+
+  // Hover state
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+  },
 }));
 
 /**
- * CDS Switch
- * Toggle switch with proper accessibility
- *
- * @example
- * <CDSSwitch
- *   checked={enabled}
- *   onChange={handleToggle}
- *   inputProps={{ 'aria-label': 'Enable notifications' }}
- * />
+ * Styled RadioGroup with CDS tokens
  */
-export const CDSSwitch = styled(MuiSwitch)(({ theme }) => ({
+const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
+  gap: theme.spacing(1),
+
+  '& .MuiFormControlLabel-root': {
+    marginLeft: 0,
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(0.5),
+
+    '& .MuiFormControlLabel-label': {
+      fontSize: theme.typography.body1.fontSize,
+      color: theme.palette.text.primary,
+    },
+  },
+}));
+
+/**
+ * Styled Switch with CDS tokens
+ */
+const StyledMuiSwitch = styled(MuiSwitch)(({ theme }) => ({
   // Proper sizing for touch target
   padding: 12,
 
@@ -165,56 +1113,86 @@ export const CDSSwitch = styled(MuiSwitch)(({ theme }) => ({
       outline: `2px solid ${theme.palette.primary.main}`,
       outlineOffset: 2,
     },
+
+    // Enhanced hover state
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
 
   // Smooth transitions
   '& .MuiSwitch-track': {
-    transition: theme.transitions.create(['background-color'], {
+    transition: theme.transitions.create(['background-color', 'border'], {
+      duration: theme.transitions.duration.shorter,
+    }),
+  },
+
+  '& .MuiSwitch-thumb': {
+    transition: theme.transitions.create(['transform'], {
       duration: theme.transitions.duration.shorter,
     }),
   },
 }));
 
 /**
- * CDS Select
- * Dropdown select with CDS styling
- *
- * @example
- * <CDSSelect
- *   value={value}
- *   onChange={handleChange}
- *   label="Country"
- * >
- *   <MenuItem value="us">United States</MenuItem>
- *   <MenuItem value="uk">United Kingdom</MenuItem>
- * </CDSSelect>
+ * Styled Select with CDS tokens
  */
-export const CDSSelect = styled(MuiSelect)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius, // 4px
+const StyledMuiSelect = styled(MuiSelect)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius,
 
   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
     borderWidth: 2,
     borderColor: theme.palette.primary.main,
   },
 
+  // Error state
+  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+    borderColor: theme.palette.error.main,
+    borderWidth: 2,
+  },
+
+  // Success state (custom)
+  '&[data-state="success"] .MuiOutlinedInput-notchedOutline': {
+    borderColor: theme.palette.success.main,
+    borderWidth: 2,
+  },
+
+  // Warning state (custom)
+  '&[data-state="warning"] .MuiOutlinedInput-notchedOutline': {
+    borderColor: theme.palette.warning.main,
+    borderWidth: 2,
+  },
+
   // Ensure proper spacing
   '& .MuiSelect-select': {
-    padding: theme.spacing(1.5, 2), // 12px 16px
+    padding: theme.spacing(1.5, 2),
   },
-})) as typeof MuiSelect;
+
+  // Focus-visible for keyboard navigation
+  '&.Mui-focusVisible': {
+    outline: `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: 2,
+  },
+}));
 
 /**
- * CDS FormLabel
- * Accessible form label with CDS typography
- *
- * @example
- * <CDSFormLabel required>
- *   Email Address
- * </CDSFormLabel>
+ * Styled FormControl with CDS tokens
  */
-export const CDSFormLabel = styled(MuiFormLabel)(({ theme }) => ({
+const StyledMuiFormControl = styled(MuiFormControl)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+
+  '& .MuiFormLabel-root': {
+    marginBottom: theme.spacing(1),
+  },
+}));
+
+/**
+ * Styled FormLabel with CDS tokens
+ */
+const StyledMuiFormLabel = styled(MuiFormLabel)(({ theme }) => ({
   marginBottom: theme.spacing(1),
   fontWeight: theme.typography.fontWeightMedium,
+  fontSize: theme.typography.body1.fontSize,
 
   // Required asterisk styling
   '& .MuiFormLabel-asterisk': {
@@ -230,12 +1208,817 @@ export const CDSFormLabel = styled(MuiFormLabel)(({ theme }) => ({
   '&.Mui-error': {
     color: theme.palette.error.main,
   },
+
+  // Disabled state
+  '&.Mui-disabled': {
+    color: theme.palette.text.disabled,
+  },
 }));
 
-// Type exports
-export type CDSTextFieldProps = MuiTextFieldProps;
-export type CDSCheckboxProps = MuiCheckboxProps;
-export type CDSRadioProps = MuiRadioProps;
-export type CDSSwitchProps = MuiSwitchProps;
-export type CDSSelectProps = MuiSelectProps;
-export type CDSFormLabelProps = MuiFormLabelProps;
+/**
+ * Styled FormControlLabel with CDS tokens
+ */
+const StyledMuiFormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
+  marginLeft: 0,
+  marginRight: theme.spacing(2),
+
+  '& .MuiFormControlLabel-label': {
+    fontSize: theme.typography.body1.fontSize,
+    color: theme.palette.text.primary,
+    marginLeft: theme.spacing(1),
+
+    '&.Mui-disabled': {
+      color: theme.palette.text.disabled,
+    },
+  },
+
+  // Ensure proper alignment
+  alignItems: 'center',
+
+  // Touch target
+  minHeight: 48,
+}));
+
+/**
+ * Styled FormHelperText with CDS tokens
+ */
+const StyledMuiFormHelperText = styled(MuiFormHelperText)(({ theme }) => ({
+  marginTop: theme.spacing(0.5),
+  marginLeft: theme.spacing(1.75),
+  fontSize: '0.6875rem', // 11px mobile
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '0.75rem', // 12px tablet+
+  },
+
+  '&.Mui-error': {
+    color: theme.palette.error.main,
+  },
+
+  '&.Mui-disabled': {
+    color: theme.palette.text.disabled,
+  },
+}));
+
+/**
+ * Styled FormGroup with CDS tokens
+ */
+const StyledMuiFormGroup = styled(MuiFormGroup)(({ theme }) => ({
+  gap: theme.spacing(1),
+
+  '& .MuiFormControlLabel-root': {
+    marginLeft: 0,
+    marginBottom: theme.spacing(0.5),
+  },
+}));
+
+/**
+ * Styled InputLabel with CDS tokens
+ */
+const StyledMuiInputLabel = styled(MuiInputLabel)(({ theme }) => ({
+  fontSize: '0.9375rem', // 15px mobile
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '1rem', // 16px tablet+
+  },
+
+  fontWeight: theme.typography.fontWeightMedium,
+
+  '&.Mui-focused': {
+    color: theme.palette.primary.main,
+  },
+
+  '&.Mui-error': {
+    color: theme.palette.error.main,
+  },
+
+  '&.Mui-disabled': {
+    color: theme.palette.text.disabled,
+  },
+
+  // Required asterisk
+  '& .MuiInputLabel-asterisk': {
+    color: theme.palette.error.main,
+  },
+}));
+
+/**
+ * Styled OutlinedInput with CDS tokens
+ */
+const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius,
+
+  '& .MuiOutlinedInput-input': {
+    padding: theme.spacing(1.5, 1.75),
+    fontSize: '0.9375rem',
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(2, 1.75),
+      fontSize: '1rem',
+    },
+  },
+
+  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    borderWidth: 2,
+    borderColor: theme.palette.primary.main,
+  },
+
+  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+    borderColor: theme.palette.error.main,
+    borderWidth: 2,
+  },
+
+  '&.Mui-disabled': {
+    backgroundColor: theme.palette.action.disabledBackground,
+  },
+
+  '&.Mui-focusVisible': {
+    outline: `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: 2,
+  },
+}));
+
+// ============================================================================
+// CDS FORM COMPONENTS
+// ============================================================================
+
+/**
+ * CDS TextField Component
+ *
+ * Use CDS state prop, not error boolean
+ *
+ * @example
+ * // Default state
+ * <CDSTextField label="Email" type="email" />
+ *
+ * // Error state
+ * <CDSTextField
+ *   label="Email"
+ *   state="error"
+ *   helperText="Email is required"
+ * />
+ *
+ * // Success state
+ * <CDSTextField
+ *   label="Email"
+ *   state="success"
+ *   helperText="Email is valid"
+ * />
+ *
+ * // With adornments
+ * <CDSTextField
+ *   label="Password"
+ *   type="password"
+ *   startAdornment={<LockOutlinedIcon />}
+ * />
+ */
+export const CDSTextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
+  (
+    {
+      label,
+      value,
+      defaultValue,
+      placeholder,
+      state = 'default',
+      helperText,
+      required = false,
+      disabled = false,
+      fullWidth = false,
+      type = 'text',
+      multiline = false,
+      rows,
+      maxRows,
+      minRows,
+      onChange,
+      onBlur,
+      onFocus,
+      ariaLabel,
+      ariaDescribedBy,
+      id,
+      name,
+      autoComplete,
+      autoFocus = false,
+      className,
+      sx,
+      inputProps,
+      startAdornment,
+      endAdornment,
+    },
+    ref
+  ) => {
+    const error = getErrorStateFromCDSState(state);
+
+    return (
+      <StyledMuiTextField
+        ref={ref}
+        label={label}
+        value={value}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        error={error}
+        helperText={helperText}
+        required={required}
+        disabled={disabled}
+        fullWidth={fullWidth}
+        type={type}
+        multiline={multiline}
+        rows={rows}
+        maxRows={maxRows}
+        minRows={minRows}
+        onChange={onChange}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        inputProps={{
+          'aria-label': ariaLabel,
+          'aria-describedby': ariaDescribedBy,
+          ...inputProps,
+        }}
+        id={id}
+        name={name}
+        autoComplete={autoComplete}
+        autoFocus={autoFocus}
+        className={className}
+        sx={sx}
+        InputProps={{
+          startAdornment,
+          endAdornment,
+        }}
+        data-state={state}
+      />
+    );
+  }
+);
+
+CDSTextField.displayName = 'CDSTextField';
+
+/**
+ * CDS Checkbox Component
+ *
+ * @example
+ * <CDSCheckbox
+ *   checked={checked}
+ *   onChange={handleChange}
+ *   ariaLabel="Accept terms"
+ * />
+ */
+export const CDSCheckbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
+  (
+    {
+      checked,
+      defaultChecked,
+      indeterminate = false,
+      disabled = false,
+      onChange,
+      ariaLabel,
+      id,
+      name,
+      value,
+      required = false,
+      className,
+      sx,
+      color = 'primary',
+      size = 'medium',
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiCheckbox
+        ref={ref}
+        checked={checked}
+        defaultChecked={defaultChecked}
+        indeterminate={indeterminate}
+        disabled={disabled}
+        onChange={onChange}
+        inputProps={{
+          'aria-label': ariaLabel,
+        }}
+        id={id}
+        name={name}
+        value={value}
+        required={required}
+        className={className}
+        sx={sx}
+        color={color}
+        size={size}
+      />
+    );
+  }
+);
+
+CDSCheckbox.displayName = 'CDSCheckbox';
+
+/**
+ * CDS Radio Component
+ *
+ * @example
+ * <CDSRadio
+ *   checked={value === 'option1'}
+ *   value="option1"
+ *   ariaLabel="Option 1"
+ * />
+ */
+export const CDSRadio = React.forwardRef<HTMLButtonElement, RadioProps>(
+  (
+    {
+      checked,
+      disabled = false,
+      onChange,
+      value,
+      ariaLabel,
+      id,
+      name,
+      required = false,
+      className,
+      sx,
+      color = 'primary',
+      size = 'medium',
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiRadio
+        ref={ref}
+        checked={checked}
+        disabled={disabled}
+        onChange={onChange}
+        value={value}
+        inputProps={{
+          'aria-label': ariaLabel,
+        }}
+        id={id}
+        name={name}
+        required={required}
+        className={className}
+        sx={sx}
+        color={color}
+        size={size}
+      />
+    );
+  }
+);
+
+CDSRadio.displayName = 'CDSRadio';
+
+/**
+ * CDS RadioGroup Component
+ *
+ * @example
+ * <CDSRadioGroup value={value} onChange={handleChange}>
+ *   <CDSFormControlLabel value="option1" control={<CDSRadio />} label="Option 1" />
+ *   <CDSFormControlLabel value="option2" control={<CDSRadio />} label="Option 2" />
+ * </CDSRadioGroup>
+ */
+export const CDSRadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
+  (
+    {
+      value,
+      defaultValue,
+      onChange,
+      name,
+      children,
+      direction = 'column',
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiRadioGroup
+        ref={ref}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        name={name}
+        row={direction === 'row'}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiRadioGroup>
+    );
+  }
+);
+
+CDSRadioGroup.displayName = 'CDSRadioGroup';
+
+/**
+ * CDS Switch Component
+ *
+ * @example
+ * <CDSSwitch
+ *   checked={enabled}
+ *   onChange={handleToggle}
+ *   ariaLabel="Enable notifications"
+ * />
+ */
+export const CDSSwitch = React.forwardRef<HTMLButtonElement, SwitchProps>(
+  (
+    {
+      checked,
+      defaultChecked,
+      disabled = false,
+      onChange,
+      ariaLabel,
+      id,
+      name,
+      value,
+      required = false,
+      className,
+      sx,
+      color = 'primary',
+      size = 'medium',
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiSwitch
+        ref={ref}
+        checked={checked}
+        defaultChecked={defaultChecked}
+        disabled={disabled}
+        onChange={onChange}
+        inputProps={{
+          'aria-label': ariaLabel,
+        }}
+        id={id}
+        name={name}
+        value={value}
+        required={required}
+        className={className}
+        sx={sx}
+        color={color}
+        size={size}
+      />
+    );
+  }
+);
+
+CDSSwitch.displayName = 'CDSSwitch';
+
+/**
+ * CDS Select Component
+ *
+ * @example
+ * <CDSSelect
+ *   value={value}
+ *   onChange={handleChange}
+ *   label="Country"
+ * >
+ *   <MenuItem value="us">United States</MenuItem>
+ *   <MenuItem value="uk">United Kingdom</MenuItem>
+ * </CDSSelect>
+ */
+export const CDSSelect = React.forwardRef<HTMLDivElement, SelectProps>(
+  (
+    {
+      value,
+      defaultValue,
+      onChange,
+      label,
+      disabled = false,
+      fullWidth = false,
+      multiple = false,
+      children,
+      ariaLabel,
+      id,
+      name,
+      required = false,
+      className,
+      sx,
+      state = 'default',
+      autoWidth = false,
+    },
+    ref
+  ) => {
+    const error = getErrorStateFromCDSState(state);
+
+    return (
+      <StyledMuiSelect
+        ref={ref}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        label={label}
+        disabled={disabled}
+        fullWidth={fullWidth}
+        multiple={multiple}
+        error={error}
+        inputProps={{
+          'aria-label': ariaLabel,
+        }}
+        id={id}
+        name={name}
+        required={required}
+        className={className}
+        sx={sx}
+        autoWidth={autoWidth}
+        data-state={state}
+      >
+        {children}
+      </StyledMuiSelect>
+    );
+  }
+);
+
+CDSSelect.displayName = 'CDSSelect';
+
+/**
+ * CDS FormControl Component
+ *
+ * @example
+ * <CDSFormControl fullWidth>
+ *   <CDSFormLabel>Email</CDSFormLabel>
+ *   <CDSTextField />
+ * </CDSFormControl>
+ */
+export const CDSFormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
+  (
+    {
+      children,
+      fullWidth = false,
+      disabled = false,
+      error = false,
+      required = false,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiFormControl
+        ref={ref}
+        fullWidth={fullWidth}
+        disabled={disabled}
+        error={error}
+        required={required}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledMuiFormControl>
+    );
+  }
+);
+
+CDSFormControl.displayName = 'CDSFormControl';
+
+/**
+ * CDS FormLabel Component
+ *
+ * @example
+ * <CDSFormLabel required>Email Address</CDSFormLabel>
+ */
+export const CDSFormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
+  (
+    {
+      children,
+      required = false,
+      disabled = false,
+      error = false,
+      htmlFor,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiFormLabel
+        ref={ref}
+        required={required}
+        disabled={disabled}
+        error={error}
+        htmlFor={htmlFor}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledMuiFormLabel>
+    );
+  }
+);
+
+CDSFormLabel.displayName = 'CDSFormLabel';
+
+/**
+ * CDS FormControlLabel Component
+ *
+ * @example
+ * <CDSFormControlLabel
+ *   control={<CDSCheckbox />}
+ *   label="Accept terms"
+ * />
+ */
+export const CDSFormControlLabel = React.forwardRef<HTMLLabelElement, FormControlLabelProps>(
+  (
+    {
+      control,
+      label,
+      disabled = false,
+      labelPlacement = 'end',
+      className,
+      sx,
+      value,
+      onChange,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiFormControlLabel
+        ref={ref}
+        control={control}
+        label={label}
+        disabled={disabled}
+        labelPlacement={labelPlacement}
+        className={className}
+        sx={sx}
+        value={value}
+        onChange={onChange}
+      />
+    );
+  }
+);
+
+CDSFormControlLabel.displayName = 'CDSFormControlLabel';
+
+/**
+ * CDS FormHelperText Component
+ *
+ * @example
+ * <CDSFormHelperText error>This field is required</CDSFormHelperText>
+ */
+export const CDSFormHelperText = React.forwardRef<HTMLParagraphElement, FormHelperTextProps>(
+  (
+    {
+      children,
+      error = false,
+      disabled = false,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiFormHelperText
+        ref={ref}
+        error={error}
+        disabled={disabled}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledMuiFormHelperText>
+    );
+  }
+);
+
+CDSFormHelperText.displayName = 'CDSFormHelperText';
+
+/**
+ * CDS FormGroup Component
+ *
+ * @example
+ * <CDSFormGroup direction="row">
+ *   <CDSFormControlLabel control={<CDSCheckbox />} label="Option 1" />
+ *   <CDSFormControlLabel control={<CDSCheckbox />} label="Option 2" />
+ * </CDSFormGroup>
+ */
+export const CDSFormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
+  (
+    {
+      children,
+      direction = 'column',
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiFormGroup
+        ref={ref}
+        row={direction === 'row'}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiFormGroup>
+    );
+  }
+);
+
+CDSFormGroup.displayName = 'CDSFormGroup';
+
+/**
+ * CDS InputLabel Component
+ *
+ * @example
+ * <CDSInputLabel htmlFor="email" required>Email</CDSInputLabel>
+ */
+export const CDSInputLabel = React.forwardRef<HTMLLabelElement, InputLabelProps>(
+  (
+    {
+      children,
+      required = false,
+      disabled = false,
+      error = false,
+      htmlFor,
+      shrink,
+      className,
+      sx,
+      id,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiInputLabel
+        ref={ref}
+        required={required}
+        disabled={disabled}
+        error={error}
+        htmlFor={htmlFor}
+        shrink={shrink}
+        className={className}
+        sx={sx}
+        id={id}
+      >
+        {children}
+      </StyledMuiInputLabel>
+    );
+  }
+);
+
+CDSInputLabel.displayName = 'CDSInputLabel';
+
+/**
+ * CDS OutlinedInput Component
+ *
+ * @example
+ * <CDSOutlinedInput
+ *   value={value}
+ *   onChange={handleChange}
+ *   placeholder="Enter text"
+ * />
+ */
+export const CDSOutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputProps>(
+  (
+    {
+      value,
+      defaultValue,
+      placeholder,
+      type = 'text',
+      disabled = false,
+      fullWidth = false,
+      multiline = false,
+      rows,
+      onChange,
+      startAdornment,
+      endAdornment,
+      ariaLabel,
+      id,
+      name,
+      error = false,
+      required = false,
+      className,
+      sx,
+      inputProps,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiOutlinedInput
+        ref={ref}
+        value={value}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        type={type}
+        disabled={disabled}
+        fullWidth={fullWidth}
+        multiline={multiline}
+        rows={rows}
+        onChange={onChange}
+        startAdornment={startAdornment}
+        endAdornment={endAdornment}
+        inputProps={{
+          'aria-label': ariaLabel,
+          ...inputProps,
+        }}
+        id={id}
+        name={name}
+        error={error}
+        required={required}
+        className={className}
+        sx={sx}
+      />
+    );
+  }
+);
+
+CDSOutlinedInput.displayName = 'CDSOutlinedInput';
+
+// ============================================================================
+// EXPORTS
+// ============================================================================
+
+export default CDSTextField;

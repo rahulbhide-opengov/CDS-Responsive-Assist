@@ -1,35 +1,369 @@
 /**
- * CDS Extended Form Components
- * Additional form input components with CDS tokens
+ * CDS Extended Form Components (CDS-First Architecture)
+ * Additional form components with CDS API - MUI is an implementation detail
+ *
+ * Developer uses CDS design language:
+ * - Semantic prop names (value, onChange, disabled, etc.)
+ * - Intuitive naming aligned with CDS design system
  */
 
 import React from 'react';
 import {
   Slider as MuiSlider,
-  SliderProps as MuiSliderProps,
   Rating as MuiRating,
-  RatingProps as MuiRatingProps,
   Autocomplete as MuiAutocomplete,
   AutocompleteProps as MuiAutocompleteProps,
   RadioGroup as MuiRadioGroup,
-  RadioGroupProps as MuiRadioGroupProps,
 } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 
+// ============================================================================
+// CDS-FIRST TYPE DEFINITIONS
+// ============================================================================
+
 /**
- * CDS Slider
- * Range slider with CDS styling
- *
- * @example
- * <CDSSlider
- *   value={value}
- *   onChange={handleChange}
- *   min={0}
- *   max={100}
- *   valueLabelDisplay="auto"
- * />
+ * CDS Slider Props (CDS API)
  */
-export const CDSSlider = styled(MuiSlider)(({ theme }) => ({
+export interface SliderProps {
+  /**
+   * Slider value (number or array for range)
+   */
+  value?: number | number[];
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: number | number[];
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: Event, value: number | number[]) => void;
+
+  /**
+   * Minimum value
+   * @default 0
+   */
+  min?: number;
+
+  /**
+   * Maximum value
+   * @default 100
+   */
+  max?: number;
+
+  /**
+   * Step increment
+   * @default 1
+   */
+  step?: number;
+
+  /**
+   * Show marks at steps
+   * @default false
+   */
+  marks?: boolean | Array<{ value: number; label?: string }>;
+
+  /**
+   * Show value label
+   * @default 'off'
+   */
+  showValueLabel?: 'on' | 'off' | 'auto';
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Slider orientation
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
+
+  /**
+   * Slider color
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary';
+
+  /**
+   * Value label format function
+   */
+  valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Accessible label
+   */
+  ariaLabel?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS Rating Props (CDS API)
+ */
+export interface RatingProps {
+  /**
+   * Rating value
+   */
+  value?: number | null;
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: number;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.SyntheticEvent, value: number | null) => void;
+
+  /**
+   * Maximum rating value
+   * @default 5
+   */
+  max?: number;
+
+  /**
+   * Precision (e.g., 0.5 for half stars)
+   * @default 1
+   */
+  precision?: number;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Read-only state
+   * @default false
+   */
+  readOnly?: boolean;
+
+  /**
+   * Size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+
+  /**
+   * Custom icon
+   */
+  icon?: React.ReactElement;
+
+  /**
+   * Custom empty icon
+   */
+  emptyIcon?: React.ReactElement;
+
+  /**
+   * Highlight selected only
+   * @default false
+   */
+  highlightSelectedOnly?: boolean;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Accessible label
+   */
+  ariaLabel?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS Autocomplete Props (CDS API)
+ */
+export interface AutocompleteProps<T> {
+  /**
+   * Options array
+   */
+  options: T[];
+
+  /**
+   * Selected value(s)
+   */
+  value?: T | T[] | null;
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: T | T[];
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.SyntheticEvent, value: T | T[] | null) => void;
+
+  /**
+   * Input change handler
+   */
+  onInputChange?: (event: React.SyntheticEvent, value: string, reason: string) => void;
+
+  /**
+   * Render input element (required)
+   */
+  renderInput: (params: any) => React.ReactNode;
+
+  /**
+   * Get option label
+   */
+  getOptionLabel?: (option: T) => string;
+
+  /**
+   * Multiple selection
+   * @default false
+   */
+  multiple?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Loading state
+   * @default false
+   */
+  loading?: boolean;
+
+  /**
+   * Free solo (allow custom values)
+   * @default false
+   */
+  freeSolo?: boolean;
+
+  /**
+   * Disable clearable button
+   * @default false
+   */
+  disableClearable?: boolean;
+
+  /**
+   * Filter options function
+   */
+  filterOptions?: (options: T[], state: any) => T[];
+
+  /**
+   * Custom render option
+   */
+  renderOption?: (props: any, option: T) => React.ReactNode;
+
+  /**
+   * Placeholder text
+   */
+  placeholder?: string;
+
+  /**
+   * Component ID
+   */
+  id?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS RadioGroup Props (CDS API)
+ */
+export interface RadioGroupProps {
+  /**
+   * Selected value
+   */
+  value?: any;
+
+  /**
+   * Default value (uncontrolled)
+   */
+  defaultValue?: any;
+
+  /**
+   * Change handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
+
+  /**
+   * Radio group name
+   */
+  name?: string;
+
+  /**
+   * Children (Radio components)
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Layout direction
+   * @default 'column'
+   */
+  direction?: 'row' | 'column';
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+// ============================================================================
+// STYLED COMPONENTS (CDS Styling Priority)
+// ============================================================================
+
+/**
+ * Styled Slider with CDS tokens
+ */
+const StyledMuiSlider = styled(MuiSlider)(({ theme }) => ({
   height: 4,
 
   '& .MuiSlider-thumb': {
@@ -73,17 +407,9 @@ export const CDSSlider = styled(MuiSlider)(({ theme }) => ({
 }));
 
 /**
- * CDS Rating
- * Star rating input with CDS styling
- *
- * @example
- * <CDSRating
- *   value={rating}
- *   onChange={handleChange}
- *   precision={0.5}
- * />
+ * Styled Rating with CDS tokens
  */
-export const CDSRating = styled(MuiRating)(({ theme }) => ({
+const StyledMuiRating = styled(MuiRating)(({ theme }) => ({
   '& .MuiRating-iconFilled': {
     color: theme.palette.warning.main,
   },
@@ -104,29 +430,258 @@ export const CDSRating = styled(MuiRating)(({ theme }) => ({
 }));
 
 /**
- * CDS Autocomplete
- * Autocomplete input with CDS styling
- * Wrapper component that applies CDS tokens
+ * Styled RadioGroup with CDS tokens
+ */
+const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
+  gap: theme.spacing(1), // 4px gap between items
+
+  '& .MuiFormControlLabel-root': {
+    marginLeft: 0,
+    marginRight: theme.spacing(2), // 8px right margin
+    marginBottom: theme.spacing(0.5), // 2px bottom margin
+
+    '& .MuiFormControlLabel-label': {
+      fontSize: theme.typography.body1.fontSize,
+      color: theme.palette.text.primary,
+    },
+  },
+}));
+
+// ============================================================================
+// CDS FORM EXTENDED COMPONENTS
+// ============================================================================
+
+/**
+ * CDS Slider Component
+ *
+ * Range slider for numeric input
  *
  * @example
- * <CDSAutocomplete
- *   options={options}
- *   renderInput={(params) => <CDSTextField {...params} label="Search" />}
+ * // Basic slider
+ * <CDSSlider
+ *   value={value}
+ *   onChange={(e, val) => setValue(val)}
+ *   min={0}
+ *   max={100}
+ * />
+ *
+ * @example
+ * // Slider with marks and value label
+ * <CDSSlider
+ *   value={value}
+ *   onChange={handleChange}
+ *   min={0}
+ *   max={100}
+ *   step={10}
+ *   marks
+ *   showValueLabel="auto"
+ * />
+ *
+ * @example
+ * // Range slider
+ * <CDSSlider
+ *   value={[20, 80]}
+ *   onChange={handleChange}
+ *   min={0}
+ *   max={100}
+ *   showValueLabel="on"
  * />
  */
-export const CDSAutocomplete = <
-  T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
->(
-  props: MuiAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
-) => {
+export const CDSSlider = React.forwardRef<HTMLSpanElement, SliderProps>(
+  (
+    {
+      value,
+      defaultValue,
+      onChange,
+      min = 0,
+      max = 100,
+      step = 1,
+      marks = false,
+      showValueLabel = 'off',
+      disabled = false,
+      orientation = 'horizontal',
+      color = 'primary',
+      valueLabelFormat,
+      id,
+      name,
+      ariaLabel,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiSlider
+        ref={ref}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        min={min}
+        max={max}
+        step={step}
+        marks={marks}
+        valueLabelDisplay={showValueLabel}
+        disabled={disabled}
+        orientation={orientation}
+        color={color}
+        valueLabelFormat={valueLabelFormat}
+        id={id}
+        name={name}
+        aria-label={ariaLabel}
+        className={className}
+        sx={sx}
+      />
+    );
+  }
+);
+
+CDSSlider.displayName = 'CDSSlider';
+
+/**
+ * CDS Rating Component
+ *
+ * Star rating input
+ *
+ * @example
+ * // Basic rating
+ * <CDSRating
+ *   value={rating}
+ *   onChange={(e, val) => setRating(val)}
+ * />
+ *
+ * @example
+ * // Half-star precision
+ * <CDSRating
+ *   value={rating}
+ *   onChange={handleChange}
+ *   precision={0.5}
+ * />
+ *
+ * @example
+ * // Read-only display
+ * <CDSRating value={4.5} readOnly precision={0.5} />
+ */
+export const CDSRating = React.forwardRef<HTMLSpanElement, RatingProps>(
+  (
+    {
+      value,
+      defaultValue,
+      onChange,
+      max = 5,
+      precision = 1,
+      disabled = false,
+      readOnly = false,
+      size = 'medium',
+      icon,
+      emptyIcon,
+      highlightSelectedOnly = false,
+      id,
+      name,
+      ariaLabel,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiRating
+        ref={ref}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        max={max}
+        precision={precision}
+        disabled={disabled}
+        readOnly={readOnly}
+        size={size}
+        icon={icon}
+        emptyIcon={emptyIcon}
+        highlightSelectedOnly={highlightSelectedOnly}
+        id={id}
+        name={name}
+        aria-label={ariaLabel}
+        className={className}
+        sx={sx}
+      />
+    );
+  }
+);
+
+CDSRating.displayName = 'CDSRating';
+
+/**
+ * CDS Autocomplete Component
+ *
+ * Autocomplete input with suggestions
+ *
+ * @example
+ * // Basic autocomplete
+ * <CDSAutocomplete
+ *   options={['Option 1', 'Option 2', 'Option 3']}
+ *   renderInput={(params) => <CDSTextField {...params} label="Search" />}
+ *   onChange={(e, val) => setValue(val)}
+ * />
+ *
+ * @example
+ * // Multiple selection
+ * <CDSAutocomplete
+ *   multiple
+ *   options={countries}
+ *   getOptionLabel={(option) => option.name}
+ *   renderInput={(params) => <CDSTextField {...params} label="Countries" />}
+ * />
+ *
+ * @example
+ * // Free solo (custom values)
+ * <CDSAutocomplete
+ *   freeSolo
+ *   options={suggestions}
+ *   renderInput={(params) => <CDSTextField {...params} label="Tags" />}
+ * />
+ */
+export const CDSAutocomplete = <T,>(props: AutocompleteProps<T>) => {
   const theme = useTheme();
+
+  const {
+    options,
+    value,
+    defaultValue,
+    onChange,
+    onInputChange,
+    renderInput,
+    getOptionLabel,
+    multiple = false,
+    disabled = false,
+    loading = false,
+    freeSolo = false,
+    disableClearable = false,
+    filterOptions,
+    renderOption,
+    placeholder,
+    id,
+    className,
+    sx,
+  } = props;
 
   return (
     <MuiAutocomplete
-      {...props}
+      options={options}
+      value={value}
+      defaultValue={defaultValue}
+      onChange={onChange}
+      onInputChange={onInputChange}
+      renderInput={renderInput}
+      getOptionLabel={getOptionLabel}
+      multiple={multiple as any}
+      disabled={disabled}
+      loading={loading}
+      freeSolo={freeSolo as any}
+      disableClearable={disableClearable as any}
+      filterOptions={filterOptions}
+      renderOption={renderOption}
+      placeholder={placeholder}
+      id={id}
+      className={className}
       sx={{
         '& .MuiOutlinedInput-root': {
           borderRadius: theme.shape.borderRadius,
@@ -165,44 +720,59 @@ export const CDSAutocomplete = <
           boxShadow: theme.shadows[8],
         },
 
-        ...props.sx,
+        ...sx,
       }}
     />
   );
 };
 
 /**
- * CDS RadioGroup
- * Radio button group with CDS spacing
+ * CDS RadioGroup Component
+ *
+ * Radio button group container
  *
  * @example
  * <CDSRadioGroup value={value} onChange={handleChange}>
- *   <FormControlLabel value="option1" control={<CDSRadio />} label="Option 1" />
- *   <FormControlLabel value="option2" control={<CDSRadio />} label="Option 2" />
+ *   <CDSFormControlLabel value="option1" control={<CDSRadio />} label="Option 1" />
+ *   <CDSFormControlLabel value="option2" control={<CDSRadio />} label="Option 2" />
+ * </CDSRadioGroup>
+ *
+ * @example
+ * // Horizontal layout
+ * <CDSRadioGroup value={value} onChange={handleChange} direction="row">
+ *   <CDSFormControlLabel value="yes" control={<CDSRadio />} label="Yes" />
+ *   <CDSFormControlLabel value="no" control={<CDSRadio />} label="No" />
  * </CDSRadioGroup>
  */
-export const CDSRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
-  gap: theme.spacing(1), // 4px gap between items
-
-  '& .MuiFormControlLabel-root': {
-    marginLeft: 0,
-    marginRight: theme.spacing(2), // 8px right margin
-    marginBottom: theme.spacing(0.5), // 2px bottom margin
-
-    '& .MuiFormControlLabel-label': {
-      fontSize: theme.typography.body1.fontSize,
-      color: theme.palette.text.primary,
+export const CDSRadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
+  (
+    {
+      value,
+      defaultValue,
+      onChange,
+      name,
+      children,
+      direction = 'column',
+      className,
+      sx,
     },
-  },
-}));
+    ref
+  ) => {
+    return (
+      <StyledMuiRadioGroup
+        ref={ref}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        name={name}
+        row={direction === 'row'}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiRadioGroup>
+    );
+  }
+);
 
-// Type exports
-export type CDSSliderProps = MuiSliderProps;
-export type CDSRatingProps = MuiRatingProps;
-export type CDSAutocompleteProps<
-  T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
-> = MuiAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>;
-export type CDSRadioGroupProps = MuiRadioGroupProps;
+CDSRadioGroup.displayName = 'CDSRadioGroup';

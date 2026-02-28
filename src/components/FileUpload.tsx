@@ -1,6 +1,12 @@
 /**
- * CDS File Upload Component
- * File input with drag-and-drop, validation, and CDS styling
+ * CDS File Upload Component (CDS-First Architecture)
+ * File input with drag-and-drop, validation, and CDS API
+ *
+ * Developer uses CDS design language:
+ * - accept: file type string (semantic)
+ * - maxSize: number in bytes
+ * - onUpload: async upload handler
+ * - Intuitive prop names aligned with CDS design system
  */
 
 import React, { useState, useCallback, useRef } from 'react';
@@ -17,6 +23,84 @@ import {
   Alert,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+// ============================================================================
+// CDS-FIRST TYPE DEFINITIONS
+// ============================================================================
+
+/**
+ * File Upload File (internal type)
+ */
+export interface FileUploadFile {
+  file: File;
+  id: string;
+  progress?: number;
+  error?: string;
+}
+
+/**
+ * CDS FileUpload Props (CDS API)
+ */
+export interface FileUploadProps {
+  /**
+   * Accepted file types (e.g., "image/*", "application/pdf", ".jpg,.png")
+   */
+  accept?: string;
+
+  /**
+   * Maximum file size in bytes
+   * @default 10485760 (10MB)
+   */
+  maxSize?: number;
+
+  /**
+   * Allow multiple file selection
+   * @default false
+   */
+  multiple?: boolean;
+
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Callback when files are selected
+   */
+  onChange?: (files: File[]) => void;
+
+  /**
+   * Callback when files are uploaded (async upload handler)
+   */
+  onUpload?: (files: File[]) => Promise<void>;
+
+  /**
+   * Custom text for drop zone
+   * @default 'Drag & drop files here, or click to select'
+   */
+  dropZoneText?: string;
+
+  /**
+   * Show file list below drop zone
+   * @default true
+   */
+  showFileList?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+// ============================================================================
+// STYLED COMPONENTS (CDS Styling Priority)
+// ============================================================================
 
 const DropZone = styled(Box)(({ theme }) => ({
   border: `2px dashed ${theme.palette.divider}`,
@@ -48,57 +132,42 @@ const DropZone = styled(Box)(({ theme }) => ({
   },
 }));
 
-export interface FileUploadFile {
-  file: File;
-  id: string;
-  progress?: number;
-  error?: string;
-}
-
-export interface CDSFileUploadProps {
-  /** Accepted file types (e.g., "image/*,application/pdf") */
-  accept?: string;
-  /** Maximum file size in bytes */
-  maxSize?: number;
-  /** Allow multiple file selection */
-  multiple?: boolean;
-  /** Disabled state */
-  disabled?: boolean;
-  /** Callback when files are selected */
-  onChange?: (files: File[]) => void;
-  /** Callback when files are uploaded (for async upload) */
-  onUpload?: (files: File[]) => Promise<void>;
-  /** Custom text for drop zone */
-  dropZoneText?: string;
-  /** Show file list */
-  showFileList?: boolean;
-  /** Optional custom styling */
-  sx?: any;
-}
+// ============================================================================
+// CDS FILE UPLOAD COMPONENT
+// ============================================================================
 
 /**
- * CDS FileUpload
- * File input component with drag-and-drop support, validation, and progress tracking
+ * CDS FileUpload Component
+ *
+ * File input with drag-and-drop, validation, and progress tracking
  *
  * @example
+ * // Basic file upload
  * <CDSFileUpload
  *   accept="image/*"
  *   maxSize={5242880} // 5MB
  *   multiple
  *   onChange={(files) => console.log('Selected:', files)}
- *   dropZoneText="Drag & drop images here, or click to select"
  * />
  *
  * @example
- * // With async upload
+ * // With async upload handler
  * <CDSFileUpload
  *   accept=".pdf,.doc,.docx"
  *   onUpload={async (files) => {
  *     await uploadToServer(files);
  *   }}
  * />
+ *
+ * @example
+ * // Custom drop zone text
+ * <CDSFileUpload
+ *   accept="image/*"
+ *   dropZoneText="Drop your images here"
+ *   showFileList={false}
+ * />
  */
-export const CDSFileUpload: React.FC<CDSFileUploadProps> = ({
+export const CDSFileUpload: React.FC<FileUploadProps> = ({
   accept,
   maxSize = 10485760, // 10MB default
   multiple = false,
@@ -107,6 +176,7 @@ export const CDSFileUpload: React.FC<CDSFileUploadProps> = ({
   onUpload,
   dropZoneText = 'Drag & drop files here, or click to select',
   showFileList = true,
+  className,
   sx,
 }) => {
   const [dragActive, setDragActive] = useState(false);
@@ -230,7 +300,7 @@ export const CDSFileUpload: React.FC<CDSFileUploadProps> = ({
   }, []);
 
   return (
-    <Box sx={sx}>
+    <Box sx={sx} className={className}>
       <DropZone
         className={`${dragActive ? 'drag-active' : ''} ${disabled ? 'disabled' : ''}`}
         onDragEnter={handleDrag}

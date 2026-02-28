@@ -1,39 +1,16 @@
 /**
  * CDS Extended Layout Components
  * Additional layout components with CDS tokens
+ *
+ * NOTE: CDSDivider has been moved to Layout.tsx as part of CDS-first refactor
  */
 
 import React from 'react';
 import {
-  Divider as MuiDivider,
-  DividerProps as MuiDividerProps,
   Link as MuiLink,
   LinkProps as MuiLinkProps,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
-/**
- * CDS Divider
- * Visual separator line with CDS styling
- *
- * @example
- * <CDSDivider />
- * <CDSDivider orientation="vertical" />
- */
-export const CDSDivider = styled(MuiDivider)(({ theme }) => ({
-  borderColor: theme.palette.divider,
-
-  '&.MuiDivider-vertical': {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-  },
-
-  '&.MuiDivider-withChildren': {
-    '&::before, &::after': {
-      borderColor: theme.palette.divider,
-    },
-  },
-}));
 
 /**
  * CDS Link
@@ -69,5 +46,4 @@ export const CDSLink = styled(MuiLink)(({ theme }) => ({
 }));
 
 // Type exports
-export type CDSDividerProps = MuiDividerProps;
 export type CDSLinkProps = MuiLinkProps;

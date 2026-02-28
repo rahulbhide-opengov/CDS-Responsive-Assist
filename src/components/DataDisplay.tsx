@@ -1,51 +1,166 @@
 /**
- * CDS Data Display Components
- * Components for displaying data with CDS styling
+ * CDS Data Display Components (CDS-First Architecture)
+ * Components for displaying data with CDS API - MUI is an implementation detail
+ *
+ * Developer uses: <CDSAvatar size="md" />
+ * NOT: <CDSAvatar sx={{ width: 40, height: 40 }} />
  */
 
 import React from 'react';
 import {
   Avatar as MuiAvatar,
-  AvatarProps as MuiAvatarProps,
   AvatarGroup as MuiAvatarGroup,
-  AvatarGroupProps as MuiAvatarGroupProps,
   Badge as MuiBadge,
-  BadgeProps as MuiBadgeProps,
   List as MuiList,
-  ListProps as MuiListProps,
   ListItem as MuiListItem,
-  ListItemProps as MuiListItemProps,
   ListItemButton as MuiListItemButton,
-  ListItemButtonProps as MuiListItemButtonProps,
   ListItemIcon as MuiListItemIcon,
-  ListItemIconProps as MuiListItemIconProps,
   ListItemText as MuiListItemText,
-  ListItemTextProps as MuiListItemTextProps,
+  ListItemAvatar as MuiListItemAvatar,
   Table as MuiTable,
-  TableProps as MuiTableProps,
   TableBody as MuiTableBody,
   TableCell as MuiTableCell,
   TableHead as MuiTableHead,
   TableRow as MuiTableRow,
   ImageList as MuiImageList,
-  ImageListProps as MuiImageListProps,
   ImageListItem as MuiImageListItem,
-  Accordion as MuiAccordion,
-  AccordionProps as MuiAccordionProps,
-  AccordionSummary as MuiAccordionSummary,
-  AccordionDetails as MuiAccordionDetails,
   Chip as MuiChip,
-  ChipProps as MuiChipProps,
   Tooltip as MuiTooltip,
-  TooltipProps as MuiTooltipProps,
+  Typography as MuiTypography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+// ============================================================================
+// CDS-FIRST TYPE DEFINITIONS
+// ============================================================================
+
 /**
- * CDS Avatar
- * User avatar with CDS sizing and styling
+ * CDS Avatar Sizes (Design Language)
  */
-export const CDSAvatar = styled(MuiAvatar)(({ theme }) => ({
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+/**
+ * CDS Table Cell Density
+ */
+export type TableDensity = 'comfortable' | 'standard' | 'compact';
+
+/**
+ * CDS Badge Variants
+ */
+export type BadgeVariant = 'standard' | 'dot';
+
+/**
+ * CDS Badge Colors
+ */
+export type BadgeColor = 'primary' | 'secondary' | 'error' | 'warning' | 'success' | 'info' | 'default';
+
+/**
+ * CDS Chip Variants
+ */
+export type ChipVariant = 'filled' | 'outlined';
+
+/**
+ * CDS Tooltip Placement
+ */
+export type TooltipPlacement =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left-start'
+  | 'left-end'
+  | 'right-start'
+  | 'right-end';
+
+/**
+ * CDS Typography Variants (Semantic)
+ */
+export type TypographyVariant =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'body1'
+  | 'body2'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'caption'
+  | 'overline';
+
+// ============================================================================
+// CDS AVATAR
+// ============================================================================
+
+export interface AvatarProps {
+  /**
+   * Avatar size using CDS scale
+   * @default 'md'
+   */
+  size?: AvatarSize;
+
+  /**
+   * Image source URL
+   */
+  src?: string;
+
+  /**
+   * Alternative text for image
+   */
+  alt?: string;
+
+  /**
+   * Text to display (initials)
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Background color override
+   */
+  color?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Variant (circular or rounded)
+   */
+  variant?: 'circular' | 'rounded' | 'square';
+}
+
+/**
+ * Maps CDS avatar size to pixel dimensions
+ */
+const getAvatarSizeStyles = (size: AvatarSize) => {
+  switch (size) {
+    case 'xs':
+      return { width: 24, height: 24, fontSize: '0.75rem' }; // 12px
+    case 'sm':
+      return { width: 32, height: 32, fontSize: '0.875rem' }; // 14px
+    case 'md':
+      return { width: 40, height: 40, fontSize: '1rem' }; // 16px
+    case 'lg':
+      return { width: 56, height: 56, fontSize: '1.25rem' }; // 20px
+    case 'xl':
+      return { width: 72, height: 72, fontSize: '1.5rem' }; // 24px
+    default:
+      return { width: 40, height: 40, fontSize: '1rem' };
+  }
+};
+
+const StyledMuiAvatar = styled(MuiAvatar)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
 
   '&.MuiAvatar-colorDefault': {
@@ -53,60 +168,198 @@ export const CDSAvatar = styled(MuiAvatar)(({ theme }) => ({
     color: theme.palette.getContrastText(theme.palette.grey[400]),
   },
 
-  // Responsive sizing
-  '&.MuiAvatar-root': {
-    fontSize: '1rem', // Default size
-  },
-
-  // Small avatar - responsive
-  '&.MuiAvatar-small': {
-    width: 24,
-    height: 24,
-    fontSize: '0.875rem', // 14px
-  },
-
-  // Medium avatar - responsive
-  '&.MuiAvatar-medium': {
-    width: 32, // 32px mobile
-    height: 32,
-    fontSize: '1rem', // 16px mobile
-
-    [theme.breakpoints.up('sm')]: {
-      width: 40, // 40px tablet+
-      height: 40,
-      fontSize: '1.125rem', // 18px tablet+
-    },
-  },
-
-  // Large avatar - responsive
-  '&.MuiAvatar-large': {
-    width: 48, // 48px mobile
-    height: 48,
-    fontSize: '1.5rem', // 24px mobile
-
-    [theme.breakpoints.up('sm')]: {
-      width: 56, // 56px tablet+
-      height: 56,
-      fontSize: '1.75rem', // 28px tablet+
-    },
-  },
+  transition: theme.transitions.create(['transform'], {
+    duration: theme.transitions.duration.short,
+  }),
 }));
 
 /**
- * CDS AvatarGroup
- * Group of avatars with proper spacing
+ * CDS Avatar Component
+ *
+ * @example
+ * // CDS Way (CORRECT)
+ * <CDSAvatar size="md" src="/user.jpg" alt="John Doe" />
+ * <CDSAvatar size="lg">JD</CDSAvatar>
+ * <CDSAvatar size="sm" />
+ *
+ * // NOT: <CDSAvatar sx={{ width: 40, height: 40 }} />
  */
-export const CDSAvatarGroup = styled(MuiAvatarGroup)(({ theme }) => ({
+export const CDSAvatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+  (
+    {
+      size = 'md',
+      src,
+      alt,
+      children,
+      color,
+      className,
+      sx,
+      variant = 'circular',
+    },
+    ref
+  ) => {
+    const sizeStyles = getAvatarSizeStyles(size);
+
+    return (
+      <StyledMuiAvatar
+        ref={ref}
+        src={src}
+        alt={alt}
+        variant={variant}
+        className={className}
+        sx={{
+          ...sizeStyles,
+          ...(color && { backgroundColor: color }),
+          ...sx,
+        }}
+      >
+        {children}
+      </StyledMuiAvatar>
+    );
+  }
+);
+
+CDSAvatar.displayName = 'CDSAvatar';
+
+// ============================================================================
+// CDS AVATAR GROUP
+// ============================================================================
+
+export interface AvatarGroupProps {
+  /**
+   * Avatar components to display
+   */
+  children: React.ReactNode;
+
+  /**
+   * Maximum number of avatars to show before "+N"
+   * @default 5
+   */
+  max?: number;
+
+  /**
+   * Size of avatars in group
+   * @default 'md'
+   */
+  size?: AvatarSize;
+
+  /**
+   * Spacing between avatars (negative for overlap)
+   * @default 'medium'
+   */
+  spacing?: 'small' | 'medium';
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+const StyledMuiAvatarGroup = styled(MuiAvatarGroup)(({ theme }) => ({
   '& .MuiAvatar-root': {
     border: `2px solid ${theme.palette.background.paper}`,
+    fontWeight: theme.typography.fontWeightMedium,
   },
 }));
 
 /**
- * CDS Badge
- * Notification badge with CDS styling
+ * CDS Avatar Group Component
+ *
+ * @example
+ * <CDSAvatarGroup max={3} size="sm">
+ *   <CDSAvatar src="/user1.jpg" />
+ *   <CDSAvatar src="/user2.jpg" />
+ *   <CDSAvatar>AB</CDSAvatar>
+ * </CDSAvatarGroup>
  */
-export const CDSBadge = styled(MuiBadge)(({ theme }) => ({
+export const CDSAvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
+  ({ children, max = 5, size = 'md', spacing, className, sx }, ref) => {
+    return (
+      <StyledMuiAvatarGroup
+        ref={ref}
+        max={max}
+        spacing={spacing}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiAvatarGroup>
+    );
+  }
+);
+
+CDSAvatarGroup.displayName = 'CDSAvatarGroup';
+
+// ============================================================================
+// CDS BADGE
+// ============================================================================
+
+export interface BadgeProps {
+  /**
+   * Badge content (number or text)
+   */
+  content?: React.ReactNode;
+
+  /**
+   * Element to badge
+   */
+  children: React.ReactNode;
+
+  /**
+   * Badge variant
+   * @default 'standard'
+   */
+  variant?: BadgeVariant;
+
+  /**
+   * Badge color
+   * @default 'primary'
+   */
+  color?: BadgeColor;
+
+  /**
+   * Show badge when content is zero
+   * @default false
+   */
+  showZero?: boolean;
+
+  /**
+   * Maximum count to display
+   * @default 99
+   */
+  max?: number;
+
+  /**
+   * Badge position
+   */
+  position?: {
+    vertical?: 'top' | 'bottom';
+    horizontal?: 'left' | 'right';
+  };
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Whether badge is visible
+   * @default true
+   */
+  visible?: boolean;
+}
+
+const StyledMuiBadge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     fontSize: '0.6875rem', // 11px mobile
     fontWeight: theme.typography.fontWeightMedium,
@@ -120,6 +373,10 @@ export const CDSBadge = styled(MuiBadge)(({ theme }) => ({
       height: 20,
       padding: theme.spacing(0, 0.75),
     },
+
+    transition: theme.transitions.create(['transform', 'opacity'], {
+      duration: theme.transitions.duration.short,
+    }),
   },
 
   '& .MuiBadge-dot': {
@@ -135,227 +392,127 @@ export const CDSBadge = styled(MuiBadge)(({ theme }) => ({
 }));
 
 /**
- * CDS List
- * Vertical list with CDS spacing
+ * CDS Badge Component
+ *
+ * @example
+ * <CDSBadge content={4} color="error">
+ *   <MailIcon />
+ * </CDSBadge>
+ *
+ * <CDSBadge variant="dot" color="success">
+ *   <Avatar />
+ * </CDSBadge>
  */
-export const CDSList = styled(MuiList)(({ theme }) => ({
-  padding: theme.spacing(1, 0),
-}));
-
-/**
- * CDS ListItem
- * Individual list item
- */
-export const CDSListItem = styled(MuiListItem)(({ theme }) => ({
-  // Responsive padding
-  padding: theme.spacing(1, 1.5), // 4px 6px mobile
-  minHeight: 48,
-
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(1, 2), // 4px 8px tablet+
-  },
-
-  [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(1.5, 2.5), // 6px 10px desktop
-  },
-}));
-
-/**
- * CDS ListItemButton
- * Clickable list item button
- */
-export const CDSListItemButton = styled(MuiListItemButton)(({ theme }) => ({
-  // Responsive padding
-  padding: theme.spacing(1.5, 1.5), // 12px 6px mobile
-  minHeight: 48,
-  borderRadius: theme.shape.borderRadius,
-
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(1.5, 2), // 12px 8px tablet+
-  },
-
-  [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(2, 2.5), // 16px 10px desktop
-  },
-
-  '&:hover': {
-    backgroundColor: theme.palette.action.hover,
-  },
-
-  '&.Mui-selected': {
-    backgroundColor: theme.palette.action.selected,
-    '&:hover': {
-      backgroundColor: theme.palette.action.selectedHover,
+export const CDSBadge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+  (
+    {
+      content,
+      children,
+      variant = 'standard',
+      color = 'primary',
+      showZero = false,
+      max = 99,
+      position,
+      className,
+      sx,
+      visible = true,
     },
-  },
+    ref
+  ) => {
+    return (
+      <StyledMuiBadge
+        ref={ref}
+        badgeContent={content}
+        variant={variant}
+        color={color}
+        showZero={showZero}
+        max={max}
+        anchorOrigin={
+          position
+            ? {
+                vertical: position.vertical || 'top',
+                horizontal: position.horizontal || 'right',
+              }
+            : undefined
+        }
+        invisible={!visible}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiBadge>
+    );
+  }
+);
 
-  '&:focus-visible': {
-    outline: `2px solid ${theme.palette.primary.main}`,
-    outlineOffset: -2,
-  },
-}));
+CDSBadge.displayName = 'CDSBadge';
 
-/**
- * CDS ListItemIcon
- * Icon in list item with proper sizing
- */
-export const CDSListItemIcon = styled(MuiListItemIcon)(({ theme }) => ({
-  minWidth: 40,
-  color: theme.palette.text.secondary,
-}));
+// ============================================================================
+// CDS CHIP
+// ============================================================================
 
-/**
- * CDS ListItemText
- * Text in list item with CDS typography
- */
-export const CDSListItemText = styled(MuiListItemText)(({ theme }) => ({
-  '& .MuiListItemText-primary': {
-    fontSize: theme.typography.body1.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
-    color: theme.palette.text.primary,
-  },
+export interface ChipProps {
+  /**
+   * Chip label
+   */
+  label: string;
 
-  '& .MuiListItemText-secondary': {
-    fontSize: theme.typography.body2.fontSize,
-    color: theme.palette.text.secondary,
-    marginTop: theme.spacing(0.5),
-  },
-}));
+  /**
+   * Chip variant
+   * @default 'filled'
+   */
+  variant?: ChipVariant;
 
-/**
- * CDS Table
- * Data table with CDS styling
- */
-export const CDSTable = styled(MuiTable)(({ theme }) => ({
-  '& .MuiTableCell-head': {
-    backgroundColor: theme.palette.grey[50],
-    fontWeight: theme.typography.fontWeightBold,
-  },
-}));
+  /**
+   * Chip color
+   * @default 'default'
+   */
+  color?: 'primary' | 'secondary' | 'error' | 'warning' | 'success' | 'info' | 'default';
 
-export const CDSTableHead = styled(MuiTableHead)(({ theme }) => ({
-  '& .MuiTableCell-head': {
-    backgroundColor: theme.palette.grey[50],
-    fontWeight: theme.typography.fontWeightBold,
-    color: theme.palette.text.primary,
-    borderBottom: `2px solid ${theme.palette.divider}`,
-  },
-}));
+  /**
+   * Chip size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium';
 
-export const CDSTableBody = styled(MuiTableBody)(({ theme }) => ({
-  '& .MuiTableRow-root:last-child .MuiTableCell-root': {
-    borderBottom: 'none',
-  },
-}));
+  /**
+   * Icon to display on left
+   */
+  icon?: React.ReactElement;
 
-export const CDSTableRow = styled(MuiTableRow)(({ theme }) => ({
-  '&:hover': {
-    backgroundColor: theme.palette.action.hover,
-  },
+  /**
+   * Enable delete functionality
+   */
+  onDelete?: () => void;
 
-  '&.Mui-selected': {
-    backgroundColor: theme.palette.action.selected,
-  },
-}));
+  /**
+   * Click handler
+   */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 
-export const CDSTableCell = styled(MuiTableCell)(({ theme }) => ({
-  // Responsive padding
-  padding: theme.spacing(1.5, 2), // 12px 8px mobile
-  borderBottom: `1px solid ${theme.palette.divider}`,
+  /**
+   * Avatar to display on left
+   */
+  avatar?: React.ReactElement;
 
-  // Responsive font size
-  fontSize: '0.8125rem', // 13px mobile
+  /**
+   * Disabled state
+   * @default false
+   */
+  disabled?: boolean;
 
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(2), // 16px tablet+
-    fontSize: '0.875rem', // 14px tablet+
-  },
+  /**
+   * Custom CSS class
+   */
+  className?: string;
 
-  [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(2, 2.5), // 16px 20px desktop
-  },
-}));
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
 
-/**
- * CDS ImageList
- * Image gallery grid with CDS spacing
- */
-export const CDSImageList = styled(MuiImageList)(({ theme }) => ({
-  '& .MuiImageListItem-root': {
-    borderRadius: theme.shape.borderRadius,
-    overflow: 'hidden',
-  },
-}));
-
-export const CDSImageListItem = styled(MuiImageListItem)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
-  overflow: 'hidden',
-
-  '& img': {
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.standard,
-    }),
-  },
-
-  '&:hover img': {
-    transform: 'scale(1.05)',
-  },
-
-  '& .MuiImageListItemBar-root': {
-    background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
-
-  '& .MuiImageListItemBar-title': {
-    fontSize: theme.typography.body2.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-
-  '& .MuiImageListItemBar-subtitle': {
-    fontSize: theme.typography.caption.fontSize,
-  },
-}));
-
-/**
- * CDS Accordion
- * Expandable panels with CDS styling
- */
-export const CDSAccordion = styled(MuiAccordion)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
-  '&:before': {
-    display: 'none',
-  },
-
-  '&.Mui-expanded': {
-    margin: theme.spacing(2, 0),
-  },
-}));
-
-export const CDSAccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  minHeight: 64,
-
-  '&.Mui-expanded': {
-    minHeight: 64,
-  },
-
-  '& .MuiAccordionSummary-content': {
-    margin: theme.spacing(1.5, 0),
-
-    '&.Mui-expanded': {
-      margin: theme.spacing(1.5, 0),
-    },
-  },
-}));
-
-export const CDSAccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-}));
-
-/**
- * CDS Chip
- * Compact element with CDS styling
- */
-export const CDSChip = styled(MuiChip)(({ theme }) => ({
+const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   fontWeight: theme.typography.fontWeightMedium,
 
@@ -386,22 +543,141 @@ export const CDSChip = styled(MuiChip)(({ theme }) => ({
     },
   },
 
+  '&.MuiChip-clickable:hover': {
+    transform: 'translateY(-1px)',
+    boxShadow: theme.shadows[2],
+  },
+
   '&.MuiChip-clickable:focus-visible': {
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: 2,
   },
+
+  transition: theme.transitions.create(['transform', 'box-shadow'], {
+    duration: theme.transitions.duration.short,
+  }),
 }));
 
 /**
- * CDS Tooltip
- * Tooltip with CDS styling
+ * CDS Chip Component
+ *
+ * @example
+ * <CDSChip label="New" color="primary" />
+ * <CDSChip label="Delete" variant="outlined" onDelete={handleDelete} />
+ * <CDSChip label="Status" icon={<CheckIcon />} />
  */
-export const CDSTooltip = styled(MuiTooltip)(({ theme }) => ({
+export const CDSChip = React.forwardRef<HTMLDivElement, ChipProps>(
+  (
+    {
+      label,
+      variant = 'filled',
+      color = 'default',
+      size = 'medium',
+      icon,
+      onDelete,
+      onClick,
+      avatar,
+      disabled = false,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiChip
+        ref={ref}
+        label={label}
+        variant={variant}
+        color={color}
+        size={size}
+        icon={icon}
+        onDelete={onDelete}
+        onClick={onClick}
+        avatar={avatar}
+        disabled={disabled}
+        clickable={!!onClick}
+        className={className}
+        sx={sx}
+      />
+    );
+  }
+);
+
+CDSChip.displayName = 'CDSChip';
+
+// ============================================================================
+// CDS TOOLTIP
+// ============================================================================
+
+export interface TooltipProps {
+  /**
+   * Tooltip content
+   */
+  title: React.ReactNode;
+
+  /**
+   * Element to show tooltip on
+   */
+  children: React.ReactElement;
+
+  /**
+   * Tooltip placement
+   * @default 'top'
+   */
+  placement?: TooltipPlacement;
+
+  /**
+   * Show arrow
+   * @default false
+   */
+  arrow?: boolean;
+
+  /**
+   * Open state (controlled)
+   */
+  open?: boolean;
+
+  /**
+   * Open state change handler
+   */
+  onOpen?: () => void;
+
+  /**
+   * Close handler
+   */
+  onClose?: () => void;
+
+  /**
+   * Delay before showing (ms)
+   * @default 100
+   */
+  enterDelay?: number;
+
+  /**
+   * Delay before hiding (ms)
+   * @default 0
+   */
+  leaveDelay?: number;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+const StyledMuiTooltip = styled(MuiTooltip)(({ theme }) => ({
   '& .MuiTooltip-tooltip': {
     backgroundColor: theme.palette.grey[800],
     fontSize: theme.typography.caption.fontSize,
     padding: theme.spacing(0.75, 1.5),
     borderRadius: theme.shape.borderRadius,
+    maxWidth: 300,
+    lineHeight: 1.5,
   },
 
   '& .MuiTooltip-arrow': {
@@ -409,17 +685,849 @@ export const CDSTooltip = styled(MuiTooltip)(({ theme }) => ({
   },
 }));
 
-// Type exports
-export type CDSAvatarProps = MuiAvatarProps;
-export type CDSAvatarGroupProps = MuiAvatarGroupProps;
-export type CDSBadgeProps = MuiBadgeProps;
-export type CDSListProps = MuiListProps;
-export type CDSListItemProps = MuiListItemProps;
-export type CDSListItemButtonProps = MuiListItemButtonProps;
-export type CDSListItemIconProps = MuiListItemIconProps;
-export type CDSListItemTextProps = MuiListItemTextProps;
-export type CDSTableProps = MuiTableProps;
-export type CDSImageListProps = MuiImageListProps;
-export type CDSAccordionProps = MuiAccordionProps;
-export type CDSChipProps = MuiChipProps;
-export type CDSTooltipProps = MuiTooltipProps;
+/**
+ * CDS Tooltip Component
+ *
+ * @example
+ * <CDSTooltip title="Delete item">
+ *   <IconButton>
+ *     <DeleteIcon />
+ *   </IconButton>
+ * </CDSTooltip>
+ *
+ * <CDSTooltip title="Information" placement="right" arrow>
+ *   <Button>Hover me</Button>
+ * </CDSTooltip>
+ */
+export const CDSTooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
+  (
+    {
+      title,
+      children,
+      placement = 'top',
+      arrow = false,
+      open,
+      onOpen,
+      onClose,
+      enterDelay = 100,
+      leaveDelay = 0,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiTooltip
+        title={title}
+        placement={placement}
+        arrow={arrow}
+        open={open}
+        onOpen={onOpen}
+        onClose={onClose}
+        enterDelay={enterDelay}
+        leaveDelay={leaveDelay}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiTooltip>
+    );
+  }
+);
+
+CDSTooltip.displayName = 'CDSTooltip';
+
+// ============================================================================
+// CDS TABLE
+// ============================================================================
+
+export interface TableProps {
+  /**
+   * Table content
+   */
+  children: React.ReactNode;
+
+  /**
+   * Table size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium';
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Sticky header
+   * @default false
+   */
+  stickyHeader?: boolean;
+}
+
+const StyledMuiTable = styled(MuiTable)(({ theme }) => ({
+  '& .MuiTableCell-head': {
+    backgroundColor: theme.palette.grey[50],
+    fontWeight: theme.typography.fontWeightBold,
+  },
+}));
+
+/**
+ * CDS Table Component
+ *
+ * @example
+ * <CDSTable>
+ *   <CDSTableHead>
+ *     <CDSTableRow>
+ *       <CDSTableCell>Name</CDSTableCell>
+ *       <CDSTableCell>Email</CDSTableCell>
+ *     </CDSTableRow>
+ *   </CDSTableHead>
+ *   <CDSTableBody>
+ *     <CDSTableRow>
+ *       <CDSTableCell>John Doe</CDSTableCell>
+ *       <CDSTableCell>john@example.com</CDSTableCell>
+ *     </CDSTableRow>
+ *   </CDSTableBody>
+ * </CDSTable>
+ */
+export const CDSTable = React.forwardRef<HTMLTableElement, TableProps>(
+  ({ children, size = 'medium', className, sx, stickyHeader = false }, ref) => {
+    return (
+      <StyledMuiTable
+        ref={ref}
+        size={size}
+        stickyHeader={stickyHeader}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiTable>
+    );
+  }
+);
+
+CDSTable.displayName = 'CDSTable';
+
+// ============================================================================
+// CDS TABLE HEAD
+// ============================================================================
+
+export interface TableHeadProps {
+  children: React.ReactNode;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiTableHead = styled(MuiTableHead)(({ theme }) => ({
+  '& .MuiTableCell-head': {
+    backgroundColor: theme.palette.grey[50],
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.text.primary,
+    borderBottom: `2px solid ${theme.palette.divider}`,
+  },
+}));
+
+export const CDSTableHead = React.forwardRef<HTMLTableSectionElement, TableHeadProps>(
+  ({ children, className, sx }, ref) => {
+    return (
+      <StyledMuiTableHead ref={ref} className={className} sx={sx}>
+        {children}
+      </StyledMuiTableHead>
+    );
+  }
+);
+
+CDSTableHead.displayName = 'CDSTableHead';
+
+// ============================================================================
+// CDS TABLE BODY
+// ============================================================================
+
+export interface TableBodyProps {
+  children: React.ReactNode;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiTableBody = styled(MuiTableBody)(({ theme }) => ({
+  '& .MuiTableRow-root:last-child .MuiTableCell-root': {
+    borderBottom: 'none',
+  },
+}));
+
+export const CDSTableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
+  ({ children, className, sx }, ref) => {
+    return (
+      <StyledMuiTableBody ref={ref} className={className} sx={sx}>
+        {children}
+      </StyledMuiTableBody>
+    );
+  }
+);
+
+CDSTableBody.displayName = 'CDSTableBody';
+
+// ============================================================================
+// CDS TABLE ROW
+// ============================================================================
+
+export interface TableRowProps {
+  children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
+  selected?: boolean;
+  hover?: boolean;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiTableRow = styled(MuiTableRow)(({ theme }) => ({
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+    cursor: 'pointer',
+  },
+
+  '&.Mui-selected': {
+    backgroundColor: theme.palette.action.selected,
+    '&:hover': {
+      backgroundColor: theme.palette.action.selectedHover,
+    },
+  },
+
+  transition: theme.transitions.create(['background-color'], {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
+export const CDSTableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
+  ({ children, onClick, selected, hover = true, className, sx }, ref) => {
+    return (
+      <StyledMuiTableRow
+        ref={ref}
+        onClick={onClick}
+        selected={selected}
+        hover={hover}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiTableRow>
+    );
+  }
+);
+
+CDSTableRow.displayName = 'CDSTableRow';
+
+// ============================================================================
+// CDS TABLE CELL
+// ============================================================================
+
+export interface TableCellProps {
+  children?: React.ReactNode;
+  /**
+   * Cell density level
+   * @default 'standard'
+   */
+  density?: TableDensity;
+  /**
+   * Alignment
+   * @default 'left'
+   */
+  align?: 'left' | 'center' | 'right' | 'justify';
+  /**
+   * Column width
+   */
+  width?: string | number;
+  className?: string;
+  sx?: any;
+}
+
+/**
+ * Maps CDS density to padding values
+ */
+const getDensityPadding = (density: TableDensity, theme: any) => {
+  switch (density) {
+    case 'comfortable':
+      return {
+        padding: theme.spacing(2, 2.5), // 16px 20px mobile
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(2.5, 3), // 20px 24px tablet+
+        },
+        [theme.breakpoints.up('md')]: {
+          padding: theme.spacing(3, 3.5), // 24px 28px desktop
+        },
+      };
+    case 'standard':
+      return {
+        padding: theme.spacing(1.5, 2), // 12px 16px mobile
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(2), // 16px tablet+
+        },
+        [theme.breakpoints.up('md')]: {
+          padding: theme.spacing(2, 2.5), // 16px 20px desktop
+        },
+      };
+    case 'compact':
+      return {
+        padding: theme.spacing(1, 1.5), // 8px 12px mobile
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(1, 1.5), // 8px 12px tablet+
+        },
+        [theme.breakpoints.up('md')]: {
+          padding: theme.spacing(1.5, 2), // 12px 16px desktop
+        },
+      };
+    default:
+      return {
+        padding: theme.spacing(1.5, 2),
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(2),
+        },
+      };
+  }
+};
+
+const StyledMuiTableCell = styled(MuiTableCell, {
+  shouldForwardProp: (prop) => prop !== 'density',
+})<{ density?: TableDensity }>(({ theme, density = 'standard' }) => ({
+  borderBottom: `1px solid ${theme.palette.divider}`,
+  fontSize: '0.8125rem', // 13px mobile
+
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '0.875rem', // 14px tablet+
+  },
+
+  ...getDensityPadding(density, theme),
+}));
+
+/**
+ * CDS Table Cell Component
+ *
+ * @example
+ * <CDSTableCell density="compact">Compact cell</CDSTableCell>
+ * <CDSTableCell density="comfortable" align="center">Spacious</CDSTableCell>
+ */
+export const CDSTableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
+  (
+    {
+      children,
+      density = 'standard',
+      align = 'left',
+      width,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiTableCell
+        ref={ref}
+        density={density}
+        align={align}
+        className={className}
+        sx={{
+          ...(width && { width }),
+          ...sx,
+        }}
+      >
+        {children}
+      </StyledMuiTableCell>
+    );
+  }
+);
+
+CDSTableCell.displayName = 'CDSTableCell';
+
+// ============================================================================
+// CDS LIST
+// ============================================================================
+
+export interface ListProps {
+  children: React.ReactNode;
+  /**
+   * Dense list spacing
+   * @default false
+   */
+  dense?: boolean;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiList = styled(MuiList)(({ theme }) => ({
+  padding: theme.spacing(1, 0),
+}));
+
+/**
+ * CDS List Component
+ *
+ * @example
+ * <CDSList>
+ *   <CDSListItem>
+ *     <CDSListItemText primary="Item 1" />
+ *   </CDSListItem>
+ * </CDSList>
+ */
+export const CDSList = React.forwardRef<HTMLUListElement, ListProps>(
+  ({ children, dense = false, className, sx }, ref) => {
+    return (
+      <StyledMuiList ref={ref} dense={dense} className={className} sx={sx}>
+        {children}
+      </StyledMuiList>
+    );
+  }
+);
+
+CDSList.displayName = 'CDSList';
+
+// ============================================================================
+// CDS LIST ITEM
+// ============================================================================
+
+export interface ListItemProps {
+  children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
+  selected?: boolean;
+  disabled?: boolean;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiListItem = styled(MuiListItem)(({ theme }) => ({
+  padding: theme.spacing(1, 1.5), // 8px 12px mobile
+  minHeight: 48,
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1, 2), // 8px 16px tablet+
+  },
+
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(1.5, 2.5), // 12px 20px desktop
+  },
+
+  transition: theme.transitions.create(['background-color'], {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
+export const CDSListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
+  ({ children, onClick, selected, disabled, className, sx }, ref) => {
+    return (
+      <StyledMuiListItem
+        ref={ref}
+        onClick={onClick}
+        selected={selected}
+        disabled={disabled}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiListItem>
+    );
+  }
+);
+
+CDSListItem.displayName = 'CDSListItem';
+
+// ============================================================================
+// CDS LIST ITEM BUTTON
+// ============================================================================
+
+export interface ListItemButtonProps {
+  children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  selected?: boolean;
+  disabled?: boolean;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiListItemButton = styled(MuiListItemButton)(({ theme }) => ({
+  padding: theme.spacing(1.5, 1.5), // 12px 12px mobile
+  minHeight: 48,
+  borderRadius: theme.shape.borderRadius,
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5, 2), // 12px 16px tablet+
+  },
+
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(2, 2.5), // 16px 20px desktop
+  },
+
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+  },
+
+  '&.Mui-selected': {
+    backgroundColor: theme.palette.action.selected,
+    '&:hover': {
+      backgroundColor: theme.palette.action.selectedHover,
+    },
+  },
+
+  '&:focus-visible': {
+    outline: `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: -2,
+  },
+
+  transition: theme.transitions.create(['background-color'], {
+    duration: theme.transitions.duration.short,
+  }),
+}));
+
+/**
+ * CDS List Item Button Component
+ *
+ * @example
+ * <CDSListItemButton onClick={handleClick}>
+ *   <CDSListItemIcon>
+ *     <InboxIcon />
+ *   </CDSListItemIcon>
+ *   <CDSListItemText primary="Inbox" />
+ * </CDSListItemButton>
+ */
+export const CDSListItemButton = React.forwardRef<HTMLDivElement, ListItemButtonProps>(
+  ({ children, onClick, selected, disabled, className, sx }, ref) => {
+    return (
+      <StyledMuiListItemButton
+        ref={ref}
+        onClick={onClick}
+        selected={selected}
+        disabled={disabled}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiListItemButton>
+    );
+  }
+);
+
+CDSListItemButton.displayName = 'CDSListItemButton';
+
+// ============================================================================
+// CDS LIST ITEM ICON
+// ============================================================================
+
+export interface ListItemIconProps {
+  children: React.ReactNode;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiListItemIcon = styled(MuiListItemIcon)(({ theme }) => ({
+  minWidth: 40,
+  color: theme.palette.text.secondary,
+}));
+
+export const CDSListItemIcon = React.forwardRef<HTMLDivElement, ListItemIconProps>(
+  ({ children, className, sx }, ref) => {
+    return (
+      <StyledMuiListItemIcon ref={ref} className={className} sx={sx}>
+        {children}
+      </StyledMuiListItemIcon>
+    );
+  }
+);
+
+CDSListItemIcon.displayName = 'CDSListItemIcon';
+
+// ============================================================================
+// CDS LIST ITEM TEXT
+// ============================================================================
+
+export interface ListItemTextProps {
+  /**
+   * Primary text
+   */
+  primary?: React.ReactNode;
+  /**
+   * Secondary text
+   */
+  secondary?: React.ReactNode;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiListItemText = styled(MuiListItemText)(({ theme }) => ({
+  '& .MuiListItemText-primary': {
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.text.primary,
+  },
+
+  '& .MuiListItemText-secondary': {
+    fontSize: theme.typography.body2.fontSize,
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(0.5),
+  },
+}));
+
+/**
+ * CDS List Item Text Component
+ *
+ * @example
+ * <CDSListItemText primary="John Doe" secondary="Software Engineer" />
+ */
+export const CDSListItemText = React.forwardRef<HTMLDivElement, ListItemTextProps>(
+  ({ primary, secondary, className, sx }, ref) => {
+    return (
+      <StyledMuiListItemText
+        ref={ref}
+        primary={primary}
+        secondary={secondary}
+        className={className}
+        sx={sx}
+      />
+    );
+  }
+);
+
+CDSListItemText.displayName = 'CDSListItemText';
+
+// ============================================================================
+// CDS LIST ITEM AVATAR
+// ============================================================================
+
+export interface ListItemAvatarProps {
+  children: React.ReactNode;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiListItemAvatar = styled(MuiListItemAvatar)(({ theme }) => ({
+  minWidth: 56,
+}));
+
+export const CDSListItemAvatar = React.forwardRef<HTMLDivElement, ListItemAvatarProps>(
+  ({ children, className, sx }, ref) => {
+    return (
+      <StyledMuiListItemAvatar ref={ref} className={className} sx={sx}>
+        {children}
+      </StyledMuiListItemAvatar>
+    );
+  }
+);
+
+CDSListItemAvatar.displayName = 'CDSListItemAvatar';
+
+// ============================================================================
+// CDS IMAGE LIST
+// ============================================================================
+
+export interface ImageListProps {
+  children: React.ReactNode;
+  /**
+   * Number of columns
+   * @default 2
+   */
+  cols?: number;
+  /**
+   * Gap between items (px)
+   * @default 8
+   */
+  gap?: number;
+  /**
+   * Row height (px or 'auto')
+   * @default 'auto'
+   */
+  rowHeight?: number | 'auto';
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiImageList = styled(MuiImageList)(({ theme }) => ({
+  '& .MuiImageListItem-root': {
+    borderRadius: theme.shape.borderRadius,
+    overflow: 'hidden',
+  },
+}));
+
+/**
+ * CDS Image List Component
+ *
+ * @example
+ * <CDSImageList cols={3} gap={8}>
+ *   <CDSImageListItem>
+ *     <img src="/photo1.jpg" alt="Photo 1" />
+ *   </CDSImageListItem>
+ * </CDSImageList>
+ */
+export const CDSImageList = React.forwardRef<HTMLUListElement, ImageListProps>(
+  ({ children, cols = 2, gap = 8, rowHeight = 'auto', className, sx }, ref) => {
+    return (
+      <StyledMuiImageList
+        ref={ref}
+        cols={cols}
+        gap={gap}
+        rowHeight={rowHeight}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiImageList>
+    );
+  }
+);
+
+CDSImageList.displayName = 'CDSImageList';
+
+// ============================================================================
+// CDS IMAGE LIST ITEM
+// ============================================================================
+
+export interface ImageListItemProps {
+  children: React.ReactNode;
+  /**
+   * Number of columns this item spans
+   * @default 1
+   */
+  cols?: number;
+  /**
+   * Number of rows this item spans
+   * @default 1
+   */
+  rows?: number;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiImageListItem = styled(MuiImageListItem)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius,
+  overflow: 'hidden',
+
+  '& img': {
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.standard,
+    }),
+  },
+
+  '&:hover img': {
+    transform: 'scale(1.05)',
+  },
+
+  '& .MuiImageListItemBar-root': {
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+
+  '& .MuiImageListItemBar-title': {
+    fontSize: theme.typography.body2.fontSize,
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+
+  '& .MuiImageListItemBar-subtitle': {
+    fontSize: theme.typography.caption.fontSize,
+  },
+}));
+
+export const CDSImageListItem = React.forwardRef<HTMLLIElement, ImageListItemProps>(
+  ({ children, cols = 1, rows = 1, className, sx }, ref) => {
+    return (
+      <StyledMuiImageListItem
+        ref={ref}
+        cols={cols}
+        rows={rows}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiImageListItem>
+    );
+  }
+);
+
+CDSImageListItem.displayName = 'CDSImageListItem';
+
+// ============================================================================
+// CDS TYPOGRAPHY
+// ============================================================================
+
+export interface TypographyProps {
+  /**
+   * Typography variant (semantic)
+   * @default 'body1'
+   */
+  variant?: TypographyVariant;
+  /**
+   * Text content
+   */
+  children: React.ReactNode;
+  /**
+   * Text color
+   */
+  color?: 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error' | 'inherit';
+  /**
+   * Text alignment
+   */
+  align?: 'left' | 'center' | 'right' | 'justify';
+  /**
+   * Disable bottom margin
+   * @default false
+   */
+  noWrap?: boolean;
+  /**
+   * HTML element to render
+   */
+  component?: React.ElementType;
+  className?: string;
+  sx?: any;
+}
+
+const StyledMuiTypography = styled(MuiTypography)(({ theme }) => ({
+  // CDS typography already defined in theme
+}));
+
+/**
+ * CDS Typography Component
+ * Simple, semantic text component
+ *
+ * @example
+ * <CDSTypography variant="h1">Page Title</CDSTypography>
+ * <CDSTypography variant="body1" color="textSecondary">
+ *   Body text
+ * </CDSTypography>
+ */
+export const CDSTypography = React.forwardRef<HTMLElement, TypographyProps>(
+  (
+    {
+      variant = 'body1',
+      children,
+      color,
+      align,
+      noWrap,
+      component,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiTypography
+        ref={ref}
+        variant={variant}
+        color={color}
+        align={align}
+        noWrap={noWrap}
+        component={component}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiTypography>
+    );
+  }
+);
+
+CDSTypography.displayName = 'CDSTypography';
+
+// ============================================================================
+// EXPORTS
+// ============================================================================
+
+export default CDSAvatar;

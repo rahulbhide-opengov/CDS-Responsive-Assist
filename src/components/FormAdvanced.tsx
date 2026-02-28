@@ -1,6 +1,10 @@
 /**
- * CDS Advanced Form Components
- * Complex form components with CDS tokens
+ * CDS Advanced Form Components (CDS-First Architecture)
+ * Complex form components with CDS API - MUI is an implementation detail
+ *
+ * Developer uses CDS design language:
+ * - Semantic prop names (leftItems, rightItems, onChange)
+ * - Intuitive naming aligned with CDS design system
  */
 
 import React, { useState, useCallback } from 'react';
@@ -15,6 +19,65 @@ import {
   Paper,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+// ============================================================================
+// CDS-FIRST TYPE DEFINITIONS
+// ============================================================================
+
+/**
+ * Transfer List Item (internal type)
+ */
+export interface TransferListItem {
+  id: string | number;
+  label: string;
+  disabled?: boolean;
+}
+
+/**
+ * CDS TransferList Props (CDS API)
+ */
+export interface TransferListProps {
+  /**
+   * Left list title
+   * @default 'Available'
+   */
+  leftTitle?: string;
+
+  /**
+   * Right list title
+   * @default 'Selected'
+   */
+  rightTitle?: string;
+
+  /**
+   * Initial items in left list
+   */
+  leftItems: TransferListItem[];
+
+  /**
+   * Initial items in right list
+   */
+  rightItems: TransferListItem[];
+
+  /**
+   * Callback when items are transferred
+   */
+  onChange?: (left: TransferListItem[], right: TransferListItem[]) => void;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+// ============================================================================
+// STYLED COMPONENTS (CDS Styling Priority)
+// ============================================================================
 
 const TransferListContainer = styled(Grid)(({ theme }) => ({
   alignItems: 'center',
@@ -37,33 +100,18 @@ const TransferListControls = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(2, 1),
 }));
 
-export interface TransferListItem {
-  id: string | number;
-  label: string;
-  disabled?: boolean;
-}
-
-export interface CDSTransferListProps {
-  /** Left list title */
-  leftTitle?: string;
-  /** Right list title */
-  rightTitle?: string;
-  /** Initial items in left list */
-  leftItems: TransferListItem[];
-  /** Initial items in right list */
-  rightItems: TransferListItem[];
-  /** Callback when items are transferred */
-  onChange?: (left: TransferListItem[], right: TransferListItem[]) => void;
-  /** Optional custom styling */
-  sx?: any;
-}
+// ============================================================================
+// CDS TRANSFER LIST COMPONENT
+// ============================================================================
 
 /**
- * CDS TransferList
+ * CDS TransferList Component
+ *
  * Dual list selector for moving items between two lists
  * Commonly used for permission assignment, feature selection, bulk transfers
  *
  * @example
+ * // Basic transfer list
  * <CDSTransferList
  *   leftTitle="Available"
  *   rightTitle="Selected"
@@ -76,13 +124,25 @@ export interface CDSTransferListProps {
  *   ]}
  *   onChange={(left, right) => console.log('Updated:', left, right)}
  * />
+ *
+ * @example
+ * // With disabled items
+ * <CDSTransferList
+ *   leftItems={[
+ *     { id: 1, label: 'Item 1' },
+ *     { id: 2, label: 'Item 2', disabled: true }
+ *   ]}
+ *   rightItems={[]}
+ *   onChange={handleChange}
+ * />
  */
-export const CDSTransferList: React.FC<CDSTransferListProps> = ({
+export const CDSTransferList: React.FC<TransferListProps> = ({
   leftTitle = 'Available',
   rightTitle = 'Selected',
   leftItems: initialLeft,
   rightItems: initialRight,
   onChange,
+  className,
   sx,
 }) => {
   const [left, setLeft] = useState<TransferListItem[]>(initialLeft);
@@ -180,7 +240,7 @@ export const CDSTransferList: React.FC<CDSTransferListProps> = ({
   );
 
   return (
-    <TransferListContainer container spacing={2} sx={sx}>
+    <TransferListContainer container spacing={2} sx={sx} className={className}>
       <Grid item xs={12} sm={5}>
         {renderList(leftTitle, left)}
       </Grid>

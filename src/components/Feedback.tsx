@@ -1,35 +1,512 @@
 /**
- * CDS Feedback Components
- * Components for user feedback with CDS styling
+ * CDS Feedback Components (CDS-First Architecture)
+ * Feedback components with CDS API - MUI is an implementation detail
+ *
+ * Developer uses CDS design language:
+ * - severity: 'success' | 'info' | 'warning' | 'error' (semantic)
+ * - size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen' (for Dialog)
+ * - position: object with vertical/horizontal
+ * - Intuitive prop names aligned with CDS design system
  */
 
 import React from 'react';
 import {
   Alert as MuiAlert,
-  AlertProps as MuiAlertProps,
   Snackbar as MuiSnackbar,
-  SnackbarProps as MuiSnackbarProps,
   Dialog as MuiDialog,
-  DialogProps as MuiDialogProps,
   DialogTitle as MuiDialogTitle,
   DialogContent as MuiDialogContent,
   DialogActions as MuiDialogActions,
   CircularProgress as MuiCircularProgress,
-  CircularProgressProps as MuiCircularProgressProps,
   LinearProgress as MuiLinearProgress,
-  LinearProgressProps as MuiLinearProgressProps,
   Skeleton as MuiSkeleton,
-  SkeletonProps as MuiSkeletonProps,
   Backdrop as MuiBackdrop,
-  BackdropProps as MuiBackdropProps,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+// ============================================================================
+// CDS-FIRST TYPE DEFINITIONS
+// ============================================================================
+
 /**
- * CDS Alert
- * Alert message with CDS styling
+ * CDS Alert Severity (Design Language)
  */
-export const CDSAlert = styled(MuiAlert)(({ theme }) => ({
+export type AlertSeverity = 'success' | 'info' | 'warning' | 'error';
+
+/**
+ * CDS Dialog Size (Design Language)
+ */
+export type DialogSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen';
+
+/**
+ * CDS Snackbar Position (Design Language)
+ */
+export interface SnackbarPosition {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'center' | 'right';
+}
+
+/**
+ * CDS Alert Props (CDS API)
+ */
+export interface AlertProps {
+  /**
+   * Alert severity (semantic)
+   * @default 'info'
+   */
+  severity?: AlertSeverity;
+
+  /**
+   * Alert message content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Optional action button/link
+   */
+  action?: React.ReactNode;
+
+  /**
+   * Close handler (shows close button if provided)
+   */
+  onClose?: () => void;
+
+  /**
+   * Alert icon (overrides default)
+   */
+  icon?: React.ReactNode;
+
+  /**
+   * Hide default icon
+   * @default false
+   */
+  hideIcon?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Alert role for accessibility
+   * @default 'alert'
+   */
+  role?: string;
+}
+
+/**
+ * CDS Snackbar Props (CDS API)
+ */
+export interface SnackbarProps {
+  /**
+   * Open/visible state
+   */
+  open: boolean;
+
+  /**
+   * Close handler
+   */
+  onClose?: () => void;
+
+  /**
+   * Auto hide duration in milliseconds
+   * @default 6000
+   */
+  autoHideDuration?: number;
+
+  /**
+   * Snackbar message content
+   */
+  message?: React.ReactNode;
+
+  /**
+   * Children (for custom content like Alert)
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Optional action button
+   */
+  action?: React.ReactNode;
+
+  /**
+   * Position on screen
+   * @default { vertical: 'bottom', horizontal: 'left' }
+   */
+  position?: SnackbarPosition;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS Dialog Props (CDS API)
+ */
+export interface DialogProps {
+  /**
+   * Open/visible state
+   */
+  open: boolean;
+
+  /**
+   * Close handler
+   */
+  onClose?: () => void;
+
+  /**
+   * Dialog size
+   * @default 'md'
+   */
+  size?: DialogSize;
+
+  /**
+   * Dialog content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Full screen on mobile
+   * @default false
+   */
+  fullScreenMobile?: boolean;
+
+  /**
+   * Disable escape key to close
+   * @default false
+   */
+  disableEscapeKey?: boolean;
+
+  /**
+   * Disable backdrop click to close
+   * @default false
+   */
+  disableBackdropClick?: boolean;
+
+  /**
+   * Maximum width
+   * @default based on size prop
+   */
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Accessible label
+   */
+  ariaLabelledBy?: string;
+
+  /**
+   * Accessible description
+   */
+  ariaDescribedBy?: string;
+}
+
+/**
+ * CDS DialogTitle Props (CDS API)
+ */
+export interface DialogTitleProps {
+  /**
+   * Title content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Component ID (for aria-labelledby)
+   */
+  id?: string;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS DialogContent Props (CDS API)
+ */
+export interface DialogContentProps {
+  /**
+   * Content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Component ID (for aria-describedby)
+   */
+  id?: string;
+
+  /**
+   * Dividers above/below content
+   * @default false
+   */
+  dividers?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS DialogActions Props (CDS API)
+ */
+export interface DialogActionsProps {
+  /**
+   * Action buttons
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS CircularProgress Props (CDS API)
+ */
+export interface CircularProgressProps {
+  /**
+   * Progress size
+   * @default 'medium'
+   */
+  size?: number | 'small' | 'medium' | 'large';
+
+  /**
+   * Progress variant
+   * @default 'indeterminate'
+   */
+  variant?: 'determinate' | 'indeterminate';
+
+  /**
+   * Progress value (0-100, for determinate)
+   */
+  value?: number;
+
+  /**
+   * Progress color
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'inherit';
+
+  /**
+   * Thickness of the circle
+   * @default 3.6
+   */
+  thickness?: number;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS LinearProgress Props (CDS API)
+ */
+export interface LinearProgressProps {
+  /**
+   * Progress variant
+   * @default 'indeterminate'
+   */
+  variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
+
+  /**
+   * Progress value (0-100, for determinate)
+   */
+  value?: number;
+
+  /**
+   * Buffer value (for buffer variant)
+   */
+  valueBuffer?: number;
+
+  /**
+   * Progress color
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'inherit';
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+/**
+ * CDS Skeleton Props (CDS API)
+ */
+export interface SkeletonProps {
+  /**
+   * Skeleton variant
+   * @default 'text'
+   */
+  variant?: 'text' | 'rectangular' | 'circular';
+
+  /**
+   * Width (CSS value)
+   */
+  width?: number | string;
+
+  /**
+   * Height (CSS value)
+   */
+  height?: number | string;
+
+  /**
+   * Animation type
+   * @default 'pulse'
+   */
+  animation?: 'pulse' | 'wave' | false;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+
+  /**
+   * Children (for inline skeleton)
+   */
+  children?: React.ReactNode;
+}
+
+/**
+ * CDS Backdrop Props (CDS API)
+ */
+export interface BackdropProps {
+  /**
+   * Open/visible state
+   */
+  open: boolean;
+
+  /**
+   * Click handler
+   */
+  onClick?: () => void;
+
+  /**
+   * Children content
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Invisible (transparent)
+   * @default false
+   */
+  invisible?: boolean;
+
+  /**
+   * Custom CSS class
+   */
+  className?: string;
+
+  /**
+   * MUI sx prop (escape hatch)
+   */
+  sx?: any;
+}
+
+// ============================================================================
+// INTERNAL UTILITIES (Hidden from developers)
+// ============================================================================
+
+/**
+ * Maps CDS Dialog size to maxWidth and custom styling
+ */
+const getDialogSizeConfig = (size: DialogSize) => {
+  switch (size) {
+    case 'xs':
+      return { maxWidth: 'xs' as const, customWidth: 280 };
+    case 'sm':
+      return { maxWidth: 'sm' as const, customWidth: 400 };
+    case 'md':
+      return { maxWidth: 'md' as const, customWidth: 600 };
+    case 'lg':
+      return { maxWidth: 'lg' as const, customWidth: 800 };
+    case 'xl':
+      return { maxWidth: 'xl' as const, customWidth: 1200 };
+    case 'fullscreen':
+      return { maxWidth: false as const, customWidth: '100%' };
+    default:
+      return { maxWidth: 'md' as const, customWidth: 600 };
+  }
+};
+
+/**
+ * Maps CDS CircularProgress size to pixel value
+ */
+const getCircularProgressSize = (size: number | 'small' | 'medium' | 'large'): number => {
+  if (typeof size === 'number') return size;
+  switch (size) {
+    case 'small':
+      return 20;
+    case 'medium':
+      return 40;
+    case 'large':
+      return 60;
+    default:
+      return 40;
+  }
+};
+
+// ============================================================================
+// STYLED COMPONENTS (CDS Styling Priority)
+// ============================================================================
+
+/**
+ * Styled Alert with CDS tokens
+ */
+const StyledMuiAlert = styled(MuiAlert)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
 
   // Responsive padding
@@ -71,10 +548,9 @@ export const CDSAlert = styled(MuiAlert)(({ theme }) => ({
 }));
 
 /**
- * CDS Snackbar
- * Toast notification with CDS styling
+ * Styled Snackbar with CDS tokens
  */
-export const CDSSnackbar = styled(MuiSnackbar)(({ theme }) => ({
+const StyledMuiSnackbar = styled(MuiSnackbar)(({ theme }) => ({
   '& .MuiSnackbarContent-root': {
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
@@ -85,37 +561,35 @@ export const CDSSnackbar = styled(MuiSnackbar)(({ theme }) => ({
 }));
 
 /**
- * CDS Dialog
- * Modal dialog with CDS styling
+ * Styled Dialog with CDS tokens
  */
-export const CDSDialog = styled(MuiDialog)(({ theme }) => ({
+const StyledMuiDialog = styled(MuiDialog)<{ customWidth?: number | string }>(({ theme, customWidth }) => ({
   '& .MuiDialog-paper': {
     borderRadius: theme.shape.borderRadius,
 
     // Responsive padding
     padding: theme.spacing(1.5), // 6px mobile
-    minWidth: 280, // 280px mobile
+    minWidth: customWidth === '100%' ? '100%' : 280, // 280px mobile or fullscreen
     margin: theme.spacing(2), // 8px margin mobile
 
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(2), // 8px tablet
-      minWidth: 320, // 320px tablet
+      minWidth: customWidth === '100%' ? '100%' : typeof customWidth === 'number' ? Math.min(customWidth, 320) : 320,
       margin: theme.spacing(4), // 16px margin tablet
     },
 
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing(3), // 12px desktop
-      minWidth: 400, // 400px desktop
+      minWidth: customWidth === '100%' ? '100%' : customWidth,
       margin: theme.spacing(6), // 24px margin desktop
     },
   },
 }));
 
 /**
- * CDS DialogTitle
- * Dialog title with CDS typography
+ * Styled DialogTitle with CDS tokens
  */
-export const CDSDialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
+const StyledMuiDialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
   // Responsive padding
   padding: theme.spacing(1.5, 2), // 12px 8px mobile
   fontWeight: theme.typography.fontWeightBold,
@@ -135,10 +609,9 @@ export const CDSDialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
 }));
 
 /**
- * CDS DialogContent
- * Dialog content area with CDS spacing
+ * Styled DialogContent with CDS tokens
  */
-export const CDSDialogContent = styled(MuiDialogContent)(({ theme }) => ({
+const StyledMuiDialogContent = styled(MuiDialogContent)(({ theme }) => ({
   // Responsive padding
   padding: theme.spacing(2), // 8px mobile
 
@@ -159,10 +632,9 @@ export const CDSDialogContent = styled(MuiDialogContent)(({ theme }) => ({
 }));
 
 /**
- * CDS DialogActions
- * Dialog action buttons with CDS spacing
+ * Styled DialogActions with CDS tokens
  */
-export const CDSDialogActions = styled(MuiDialogActions)(({ theme }) => ({
+const StyledMuiDialogActions = styled(MuiDialogActions)(({ theme }) => ({
   // Responsive padding and gap
   padding: theme.spacing(1.5, 2), // 12px 8px mobile
   gap: theme.spacing(1), // 4px mobile
@@ -179,18 +651,16 @@ export const CDSDialogActions = styled(MuiDialogActions)(({ theme }) => ({
 }));
 
 /**
- * CDS CircularProgress
- * Circular loading spinner with CDS sizing
+ * Styled CircularProgress with CDS tokens
  */
-export const CDSCircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
+const StyledMuiCircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
   // Default size variants handled by MUI
 }));
 
 /**
- * CDS LinearProgress
- * Linear progress bar with CDS styling
+ * Styled LinearProgress with CDS tokens
  */
-export const CDSLinearProgress = styled(MuiLinearProgress)(({ theme }) => ({
+const StyledMuiLinearProgress = styled(MuiLinearProgress)(({ theme }) => ({
   height: 4,
   borderRadius: theme.shape.borderRadius / 2,
 
@@ -200,10 +670,9 @@ export const CDSLinearProgress = styled(MuiLinearProgress)(({ theme }) => ({
 }));
 
 /**
- * CDS Skeleton
- * Loading placeholder with CDS styling
+ * Styled Skeleton with CDS tokens
  */
-export const CDSSkeleton = styled(MuiSkeleton)(({ theme }) => ({
+const StyledMuiSkeleton = styled(MuiSkeleton)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius / 2,
 
   '&.MuiSkeleton-rectangular': {
@@ -216,10 +685,9 @@ export const CDSSkeleton = styled(MuiSkeleton)(({ theme }) => ({
 }));
 
 /**
- * CDS Backdrop
- * Full-screen overlay with CDS styling
+ * Styled Backdrop with CDS tokens
  */
-export const CDSBackdrop = styled(MuiBackdrop)(({ theme }) => ({
+const StyledMuiBackdrop = styled(MuiBackdrop)(({ theme }) => ({
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
   zIndex: theme.zIndex.drawer + 1,
 
@@ -228,11 +696,428 @@ export const CDSBackdrop = styled(MuiBackdrop)(({ theme }) => ({
   }),
 }));
 
-// Type exports
-export type CDSAlertProps = MuiAlertProps;
-export type CDSSnackbarProps = MuiSnackbarProps;
-export type CDSDialogProps = MuiDialogProps;
-export type CDSCircularProgressProps = MuiCircularProgressProps;
-export type CDSLinearProgressProps = MuiLinearProgressProps;
-export type CDSSkeletonProps = MuiSkeletonProps;
-export type CDSBackdropProps = MuiBackdropProps;
+// ============================================================================
+// CDS FEEDBACK COMPONENTS
+// ============================================================================
+
+/**
+ * CDS Alert Component
+ *
+ * Alert message with semantic severity levels
+ *
+ * @example
+ * // Success alert
+ * <CDSAlert severity="success">
+ *   Operation completed successfully
+ * </CDSAlert>
+ *
+ * @example
+ * // Error alert with close button
+ * <CDSAlert severity="error" onClose={handleClose}>
+ *   An error occurred
+ * </CDSAlert>
+ */
+export const CDSAlert = React.forwardRef<HTMLDivElement, AlertProps>(
+  (
+    {
+      severity = 'info',
+      children,
+      action,
+      onClose,
+      icon,
+      hideIcon = false,
+      className,
+      sx,
+      role = 'alert',
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiAlert
+        ref={ref}
+        severity={severity}
+        action={action}
+        onClose={onClose}
+        icon={icon}
+        iconMapping={hideIcon ? { success: false, info: false, warning: false, error: false } : undefined}
+        className={className}
+        sx={sx}
+        role={role}
+      >
+        {children}
+      </StyledMuiAlert>
+    );
+  }
+);
+
+CDSAlert.displayName = 'CDSAlert';
+
+/**
+ * CDS Snackbar Component
+ *
+ * Toast notification with auto-hide
+ *
+ * @example
+ * <CDSSnackbar
+ *   open={open}
+ *   onClose={handleClose}
+ *   message="Item saved successfully"
+ *   autoHideDuration={3000}
+ * />
+ *
+ * @example
+ * // With custom Alert content
+ * <CDSSnackbar open={open} onClose={handleClose}>
+ *   <CDSAlert severity="success" onClose={handleClose}>
+ *     Operation successful
+ *   </CDSAlert>
+ * </CDSSnackbar>
+ */
+export const CDSSnackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
+  (
+    {
+      open,
+      onClose,
+      autoHideDuration = 6000,
+      message,
+      children,
+      action,
+      position = { vertical: 'bottom', horizontal: 'left' },
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiSnackbar
+        ref={ref}
+        open={open}
+        onClose={onClose}
+        autoHideDuration={autoHideDuration}
+        message={message}
+        action={action}
+        anchorOrigin={position}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiSnackbar>
+    );
+  }
+);
+
+CDSSnackbar.displayName = 'CDSSnackbar';
+
+/**
+ * CDS Dialog Component
+ *
+ * Modal dialog with size variants
+ *
+ * @example
+ * // Medium dialog (default)
+ * <CDSDialog open={open} onClose={handleClose}>
+ *   <CDSDialogTitle>Confirm Action</CDSDialogTitle>
+ *   <CDSDialogContent>Are you sure?</CDSDialogContent>
+ *   <CDSDialogActions>
+ *     <CDSButton onClick={handleClose}>Cancel</CDSButton>
+ *     <CDSButton onClick={handleConfirm}>Confirm</CDSButton>
+ *   </CDSDialogActions>
+ * </CDSDialog>
+ *
+ * @example
+ * // Large dialog
+ * <CDSDialog open={open} onClose={handleClose} size="lg">
+ *   <CDSDialogTitle>Settings</CDSDialogTitle>
+ *   <CDSDialogContent>...</CDSDialogContent>
+ * </CDSDialog>
+ *
+ * @example
+ * // Fullscreen on mobile
+ * <CDSDialog open={open} onClose={handleClose} fullScreenMobile>
+ *   <CDSDialogTitle>Mobile Form</CDSDialogTitle>
+ *   <CDSDialogContent>...</CDSDialogContent>
+ * </CDSDialog>
+ */
+export const CDSDialog = React.forwardRef<HTMLDivElement, DialogProps>(
+  (
+    {
+      open,
+      onClose,
+      size = 'md',
+      children,
+      fullScreenMobile = false,
+      disableEscapeKey = false,
+      disableBackdropClick = false,
+      maxWidth,
+      className,
+      sx,
+      ariaLabelledBy,
+      ariaDescribedBy,
+    },
+    ref
+  ) => {
+    const sizeConfig = getDialogSizeConfig(size);
+
+    return (
+      <StyledMuiDialog
+        ref={ref}
+        open={open}
+        onClose={(event, reason) => {
+          if (disableBackdropClick && reason === 'backdropClick') return;
+          if (disableEscapeKey && reason === 'escapeKeyDown') return;
+          onClose?.();
+        }}
+        maxWidth={maxWidth ?? sizeConfig.maxWidth}
+        fullWidth={size !== 'fullscreen'}
+        fullScreen={size === 'fullscreen' || (fullScreenMobile && window.innerWidth < 600)}
+        customWidth={sizeConfig.customWidth}
+        className={className}
+        sx={sx}
+        aria-labelledby={ariaLabelledBy}
+        aria-describedby={ariaDescribedBy}
+      >
+        {children}
+      </StyledMuiDialog>
+    );
+  }
+);
+
+CDSDialog.displayName = 'CDSDialog';
+
+/**
+ * CDS DialogTitle Component
+ *
+ * @example
+ * <CDSDialogTitle id="dialog-title">Confirm Action</CDSDialogTitle>
+ */
+export const CDSDialogTitle = React.forwardRef<HTMLDivElement, DialogTitleProps>(
+  ({ children, id, className, sx }, ref) => {
+    return (
+      <StyledMuiDialogTitle ref={ref} id={id} className={className} sx={sx}>
+        {children}
+      </StyledMuiDialogTitle>
+    );
+  }
+);
+
+CDSDialogTitle.displayName = 'CDSDialogTitle';
+
+/**
+ * CDS DialogContent Component
+ *
+ * @example
+ * <CDSDialogContent>
+ *   Are you sure you want to proceed?
+ * </CDSDialogContent>
+ */
+export const CDSDialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
+  ({ children, id, dividers = false, className, sx }, ref) => {
+    return (
+      <StyledMuiDialogContent ref={ref} id={id} dividers={dividers} className={className} sx={sx}>
+        {children}
+      </StyledMuiDialogContent>
+    );
+  }
+);
+
+CDSDialogContent.displayName = 'CDSDialogContent';
+
+/**
+ * CDS DialogActions Component
+ *
+ * @example
+ * <CDSDialogActions>
+ *   <CDSButton onClick={handleClose}>Cancel</CDSButton>
+ *   <CDSButton variant="contained" onClick={handleConfirm}>
+ *     Confirm
+ *   </CDSButton>
+ * </CDSDialogActions>
+ */
+export const CDSDialogActions = React.forwardRef<HTMLDivElement, DialogActionsProps>(
+  ({ children, className, sx }, ref) => {
+    return (
+      <StyledMuiDialogActions ref={ref} className={className} sx={sx}>
+        {children}
+      </StyledMuiDialogActions>
+    );
+  }
+);
+
+CDSDialogActions.displayName = 'CDSDialogActions';
+
+/**
+ * CDS CircularProgress Component
+ *
+ * Circular loading spinner
+ *
+ * @example
+ * // Indeterminate spinner
+ * <CDSCircularProgress />
+ *
+ * @example
+ * // Determinate with value
+ * <CDSCircularProgress variant="determinate" value={75} />
+ *
+ * @example
+ * // Custom size
+ * <CDSCircularProgress size="large" />
+ */
+export const CDSCircularProgress = React.forwardRef<HTMLSpanElement, CircularProgressProps>(
+  (
+    {
+      size = 'medium',
+      variant = 'indeterminate',
+      value,
+      color = 'primary',
+      thickness = 3.6,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    const sizeValue = getCircularProgressSize(size);
+
+    return (
+      <StyledMuiCircularProgress
+        ref={ref}
+        size={sizeValue}
+        variant={variant}
+        value={value}
+        color={color}
+        thickness={thickness}
+        className={className}
+        sx={sx}
+      />
+    );
+  }
+);
+
+CDSCircularProgress.displayName = 'CDSCircularProgress';
+
+/**
+ * CDS LinearProgress Component
+ *
+ * Linear progress bar
+ *
+ * @example
+ * // Indeterminate loading bar
+ * <CDSLinearProgress />
+ *
+ * @example
+ * // Determinate with value
+ * <CDSLinearProgress variant="determinate" value={50} />
+ */
+export const CDSLinearProgress = React.forwardRef<HTMLSpanElement, LinearProgressProps>(
+  (
+    {
+      variant = 'indeterminate',
+      value,
+      valueBuffer,
+      color = 'primary',
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiLinearProgress
+        ref={ref}
+        variant={variant}
+        value={value}
+        valueBuffer={valueBuffer}
+        color={color}
+        className={className}
+        sx={sx}
+      />
+    );
+  }
+);
+
+CDSLinearProgress.displayName = 'CDSLinearProgress';
+
+/**
+ * CDS Skeleton Component
+ *
+ * Loading placeholder
+ *
+ * @example
+ * // Text skeleton
+ * <CDSSkeleton variant="text" width={200} />
+ *
+ * @example
+ * // Rectangular skeleton
+ * <CDSSkeleton variant="rectangular" width={300} height={200} />
+ *
+ * @example
+ * // Circular avatar skeleton
+ * <CDSSkeleton variant="circular" width={40} height={40} />
+ */
+export const CDSSkeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(
+  (
+    {
+      variant = 'text',
+      width,
+      height,
+      animation = 'pulse',
+      className,
+      sx,
+      children,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiSkeleton
+        ref={ref}
+        variant={variant}
+        width={width}
+        height={height}
+        animation={animation}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiSkeleton>
+    );
+  }
+);
+
+CDSSkeleton.displayName = 'CDSSkeleton';
+
+/**
+ * CDS Backdrop Component
+ *
+ * Full-screen overlay
+ *
+ * @example
+ * <CDSBackdrop open={loading} onClick={handleClose}>
+ *   <CDSCircularProgress color="inherit" />
+ * </CDSBackdrop>
+ */
+export const CDSBackdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
+  (
+    {
+      open,
+      onClick,
+      children,
+      invisible = false,
+      className,
+      sx,
+    },
+    ref
+  ) => {
+    return (
+      <StyledMuiBackdrop
+        ref={ref}
+        open={open}
+        onClick={onClick}
+        invisible={invisible}
+        className={className}
+        sx={sx}
+      >
+        {children}
+      </StyledMuiBackdrop>
+    );
+  }
+);
+
+CDSBackdrop.displayName = 'CDSBackdrop';
