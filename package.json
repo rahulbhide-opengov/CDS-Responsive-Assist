@@ -1,7 +1,7 @@
 {
   "name": "cds-responsive-assist",
-  "version": "2.0.0",
-  "description": "Component Design System - Material-UI v6.1.0 with complete theme, pre-built components, documentation, and 400+ production-ready code examples",
+  "version": "3.0.0",
+  "description": "CDS Component Design System - True design system with CDS-first architecture. 80+ semantic components with intuitive API, responsive design, and WCAG 2.1 Level AA accessibility. MUI is internal implementation only.",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
@@ -12,17 +12,19 @@
   },
   "keywords": [
     "design-system",
-    "component-library",
-    "material-ui",
-    "mui",
     "cds",
+    "cds-first",
+    "component-library",
+    "semantic-components",
     "accessibility",
     "wcag",
     "react",
     "typescript",
-    "documentation",
     "design-tokens",
-    "responsive"
+    "responsive-design",
+    "material-ui",
+    "mui",
+    "ui-components"
   ],
   "author": "CDS Design System Team",
   "license": "MIT",
@@ -77,18 +79,32 @@
     "total_components": 80,
     "implementation_components": 80,
     "completion_rate": "100%",
+    "architecture": "CDS-first (v3.0.0+)",
     "accessibility_standard": "WCAG 2.1 Level AA",
     "code_examples": "400+",
     "common_patterns": "250+",
-    "mui_version": "6.1.0"
+    "mui_version": "6.1.0 (internal implementation)",
+    "breaking_changes": "v3.0.0 introduces CDS-first API - see migration guide"
   },
   "categories": {
     "buttons": 6,
     "forms": 13,
-    "layout": 9,
-    "navigation": 15,
-    "data_display": 17,
+    "layout": 13,
+    "navigation": 16,
+    "data_display": 19,
     "feedback": 10,
-    "utility": 10
+    "forms_extended": 4,
+    "utility": 8,
+    "special": 3
+  },
+  "features": {
+    "cds_first_architecture": true,
+    "semantic_props": true,
+    "intuitive_api": true,
+    "mui_abstracted": true,
+    "responsive_design": true,
+    "accessibility_wcag_aa": true,
+    "typescript_support": true,
+    "custom_variants": true
   }
 }
