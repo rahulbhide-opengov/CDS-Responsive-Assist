@@ -1,6 +1,8 @@
 /**
- * CDS Design Tokens
- * Complete token definitions for the Component Design System
+ * CDS Design Tokens - FULLY RESPONSIVE
+ * Complete token definitions matching Figma design system
+ * Supports 3 device sizes: Desktop (1440), Tablet (768), Mobile (390)
+ *
  * ALL VALUES ARE CDS BRAND COLORS - NOT MUI DEFAULTS
  *
  * COLOR SYSTEM OVERVIEW:
@@ -8,18 +10,41 @@
  * Primary: Blurple scale (50-900) with main at 700 (#4B3FFF)
  * Secondary: Slate scale (50-900) with main at 700 (#546574)
  *
- * Light Theme:
- * - Primary main: Blurple 700 (#4B3FFF)
- * - Primary contrast text: #FFFFFF
- * - State colors based on Blurple 700 with opacity
- *
- * Dark Theme:
- * - Primary main: Blurple 700 (#4B3FFF) - same as light
- * - Primary contrast text: rgba(0,0,0,0.87)
- * - State colors based on #94A8FF (lighter variant) with increased opacity
- *
- * Secondary follows the same pattern with Slate colors.
+ * RESPONSIVE SYSTEM:
+ * =================
+ * Breakpoints: Desktop (1440+), Tablet (768-1439), Mobile (390-767)
+ * Typography: Device-specific font sizes and line heights
+ * Sizing: Device-specific component dimensions
+ * Spacing: Large spacing values responsive across devices
  */
+
+/**
+ * Device Breakpoint Tokens
+ */
+export const breakpointTokens = {
+  values: {
+    xs: 0,      // Mobile start
+    sm: 600,    // Small tablets
+    md: 900,    // Tablet/Desktop boundary
+    lg: 1200,   // Desktop
+    xl: 1536,   // Large desktop
+  },
+  // Figma design system breakpoints
+  figma: {
+    mobile: 390,   // Mobile design size
+    tablet: 768,   // Tablet design size
+    desktop: 1440, // Desktop design size
+  },
+} as const;
+
+/**
+ * Helper type for responsive values
+ */
+export interface ResponsiveValue<T> {
+  desktop: T;  // >= 900px
+  tablet: T;   // 600-899px
+  mobile: T;   // < 600px
+}
 
 /**
  * Color Tokens
@@ -203,69 +228,65 @@ export const colorTokens = {
     },
   },
 
-  // Blurple 700 Opacity Variants (for backward compatibility)
+  // Opacity Variants (for backward compatibility)
   primaryOpacity: {
-    4: 'rgba(75, 63, 255, 0.04)',   // Blurple 700 @ 4% - Hover background
-    8: 'rgba(75, 63, 255, 0.08)',   // Blurple 700 @ 8% - Selected background
-    12: 'rgba(75, 63, 255, 0.12)',  // Blurple 700 @ 12% - Light background
-    20: 'rgba(75, 63, 255, 0.2)',   // Blurple 700 @ 20% - Medium background
-    30: 'rgba(75, 63, 255, 0.3)',   // Blurple 700 @ 30% - Track/Rail
-    38: 'rgba(75, 63, 255, 0.38)',  // Blurple 700 @ 38% - Disabled
-    50: 'rgba(75, 63, 255, 0.5)',   // Blurple 700 @ 50% - Border
-    70: 'rgba(75, 63, 255, 0.7)',   // Blurple 700 @ 70% - Emphasis
-    100: 'rgba(75, 63, 255, 1)',    // Blurple 700 @ 100% - Full
+    4: 'rgba(75, 63, 255, 0.04)',
+    8: 'rgba(75, 63, 255, 0.08)',
+    12: 'rgba(75, 63, 255, 0.12)',
+    20: 'rgba(75, 63, 255, 0.2)',
+    30: 'rgba(75, 63, 255, 0.3)',
+    38: 'rgba(75, 63, 255, 0.38)',
+    50: 'rgba(75, 63, 255, 0.5)',
+    70: 'rgba(75, 63, 255, 0.7)',
+    100: 'rgba(75, 63, 255, 1)',
   },
 
-  // Secondary Color Opacity Variants (for backward compatibility)
   secondaryOpacity: {
-    4: 'rgba(84, 101, 116, 0.04)',    // Slate 700 @ 4% - Hover background
-    8: 'rgba(84, 101, 116, 0.08)',    // Slate 700 @ 8% - Selected background
-    12: 'rgba(84, 101, 116, 0.12)',   // Slate 700 @ 12% - Focus
-    30: 'rgba(84, 101, 116, 0.3)',    // Slate 700 @ 30% - Track/Rail
-    50: 'rgba(84, 101, 116, 0.5)',    // Slate 700 @ 50% - Border
-    70: 'rgba(84, 101, 116, 0.7)',    // Slate 700 @ 70% - Emphasis
+    4: 'rgba(84, 101, 116, 0.04)',
+    8: 'rgba(84, 101, 116, 0.08)',
+    12: 'rgba(84, 101, 116, 0.12)',
+    30: 'rgba(84, 101, 116, 0.3)',
+    50: 'rgba(84, 101, 116, 0.5)',
+    70: 'rgba(84, 101, 116, 0.7)',
   },
 
-  // Error Color Opacity Variants
   errorOpacity: {
-    4: 'rgba(211, 47, 47, 0.04)',   // Hover background
-    8: 'rgba(211, 47, 47, 0.08)',   // Selected background
-    50: 'rgba(211, 47, 47, 0.5)',   // Border
-    70: 'rgba(211, 47, 47, 0.7)',   // Emphasis
+    4: 'rgba(211, 47, 47, 0.04)',
+    8: 'rgba(211, 47, 47, 0.08)',
+    50: 'rgba(211, 47, 47, 0.5)',
+    70: 'rgba(211, 47, 47, 0.7)',
   },
 
-  // Success Color Opacity Variants
   successOpacity: {
-    4: 'rgba(46, 125, 50, 0.04)',   // Hover background
-    8: 'rgba(46, 125, 50, 0.08)',   // Selected background
-    50: 'rgba(46, 125, 50, 0.5)',   // Border
-    70: 'rgba(46, 125, 50, 0.7)',   // Emphasis
+    4: 'rgba(46, 125, 50, 0.04)',
+    8: 'rgba(46, 125, 50, 0.08)',
+    50: 'rgba(46, 125, 50, 0.5)',
+    70: 'rgba(46, 125, 50, 0.7)',
   },
 
-  // Warning Color Opacity Variants
   warningOpacity: {
-    4: 'rgba(237, 108, 2, 0.04)',   // Hover background
-    8: 'rgba(237, 108, 2, 0.08)',   // Selected background
-    50: 'rgba(237, 108, 2, 0.5)',   // Border
-    70: 'rgba(237, 108, 2, 0.7)',   // Emphasis
+    4: 'rgba(237, 108, 2, 0.04)',
+    8: 'rgba(237, 108, 2, 0.08)',
+    50: 'rgba(237, 108, 2, 0.5)',
+    70: 'rgba(237, 108, 2, 0.7)',
   },
 
-  // Info Color Opacity Variants
   infoOpacity: {
-    4: 'rgba(2, 136, 209, 0.04)',   // Hover background
-    8: 'rgba(2, 136, 209, 0.08)',   // Selected background
-    50: 'rgba(2, 136, 209, 0.5)',   // Border
-    70: 'rgba(2, 136, 209, 0.7)',   // Emphasis
+    4: 'rgba(2, 136, 209, 0.04)',
+    8: 'rgba(2, 136, 209, 0.08)',
+    50: 'rgba(2, 136, 209, 0.5)',
+    70: 'rgba(2, 136, 209, 0.7)',
   },
 } as const;
 
 /**
- * Spacing Tokens
- * 4px base unit spacing scale
+ * Spacing Tokens - RESPONSIVE
+ * 4px base unit spacing scale with responsive large values
  */
 export const spacingTokens = {
   base: 4, // 4px base unit
-  // Spacing values in pixels
+
+  // Fixed spacing values (same across all devices)
   values: {
     0: 0,      // 0px
     0.5: 2,    // 2px
@@ -274,153 +295,352 @@ export const spacingTokens = {
     2: 8,      // 8px
     3: 12,     // 12px
     4: 16,     // 16px
+    4.5: 18,   // 18px
     5: 20,     // 20px
     6: 24,     // 24px
     7: 28,     // 28px
+    7.5: 30,   // 30px
     8: 32,     // 32px
-    9: 36,     // 36px
-    10: 40,    // 40px
-    11: 44,    // 44px
-    12: 48,    // 48px
+  },
+
+  // Responsive spacing values (vary by device)
+  responsive: {
+    40: { desktop: 40, tablet: 40, mobile: 36 },
+    48: { desktop: 48, tablet: 48, mobile: 40 },
+    64: { desktop: 64, tablet: 56, mobile: 44 },
+    72: { desktop: 72, tablet: 64, mobile: 48 },
+    80: { desktop: 80, tablet: 72, mobile: 52 },
+    88: { desktop: 88, tablet: 80, mobile: 56 },
+    96: { desktop: 96, tablet: 88, mobile: 60 },
   },
 } as const;
 
 /**
- * Typography Tokens
- * CDS BRAND TYPOGRAPHY - DM Sans
+ * Typography Tokens - FULLY RESPONSIVE
+ * CDS BRAND TYPOGRAPHY - DM Sans with device-specific sizes
  */
 export const typographyTokens = {
   fontFamily: '"DM Sans", "DM_Sans:Regular", "DM_Sans:Medium", sans-serif',
-
-  // Font sizes
   fontSize: 14, // Base font size in px
 
   // Font weights - DM Sans weights
-  fontWeightLight: 300,     // Light
-  fontWeightRegular: 400,   // Regular
-  fontWeightMedium: 500,    // Medium
-  fontWeightSemiBold: 600,  // SemiBold (CDS standard for headings)
-  fontWeightBold: 700,      // Bold
+  fontWeightLight: 300,
+  fontWeightRegular: 400,
+  fontWeightMedium: 500,
+  fontWeightSemiBold: 600,
+  fontWeightBold: 700,
 
-  // Variants - CDS Typography Scale
+  // ========================================
+  // DISPLAY STYLES (Responsive)
+  // ========================================
+  display1: {
+    desktop: { fontSize: 60, lineHeight: 72, fontWeight: 600, letterSpacing: -0.4 },
+    tablet: { fontSize: 72, lineHeight: 88, fontWeight: 600, letterSpacing: -0.4 },
+    mobile: { fontSize: 64, lineHeight: 76, fontWeight: 600, letterSpacing: -0.4 },
+  },
+
+  display2: {
+    desktop: { fontSize: 56, lineHeight: 68, fontWeight: 600, letterSpacing: -0.4 },
+    tablet: { fontSize: 64, lineHeight: 76, fontWeight: 600, letterSpacing: -0.4 },
+    mobile: { fontSize: 56, lineHeight: 68, fontWeight: 600, letterSpacing: -0.4 },
+  },
+
+  display3: {
+    desktop: { fontSize: 48, lineHeight: 56, fontWeight: 600, letterSpacing: -0.4 },
+    tablet: { fontSize: 56, lineHeight: 68, fontWeight: 600, letterSpacing: -0.4 },
+    mobile: { fontSize: 48, lineHeight: 56, fontWeight: 600, letterSpacing: -0.4 },
+  },
+
+  display4: {
+    desktop: { fontSize: 40, lineHeight: 48, fontWeight: 600, letterSpacing: -0.4 },
+    tablet: { fontSize: 48, lineHeight: 56, fontWeight: 600, letterSpacing: -0.4 },
+    mobile: { fontSize: 40, lineHeight: 48, fontWeight: 600, letterSpacing: -0.4 },
+  },
+
+  display5: {
+    desktop: { fontSize: 32, lineHeight: 40, fontWeight: 600, letterSpacing: -0.4 },
+    tablet: { fontSize: 40, lineHeight: 48, fontWeight: 600, letterSpacing: -0.4 },
+    mobile: { fontSize: 32, lineHeight: 40, fontWeight: 600, letterSpacing: -0.4 },
+  },
+
+  // ========================================
+  // HEADINGS (H1-H6) - Responsive
+  // ========================================
   h1: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 600,      // SemiBold
-    fontSize: '3rem',     // 48px - Display Large
-    lineHeight: 1.2,
-    letterSpacing: '-0.03125em', // -0.5px
+    desktop: { fontSize: 48, lineHeight: 56, fontWeight: 600, letterSpacing: -0.5 },
+    tablet: { fontSize: 48, lineHeight: 56, fontWeight: 600, letterSpacing: -0.5 },
+    mobile: { fontSize: 48, lineHeight: 56, fontWeight: 600, letterSpacing: -0.5 },
   },
 
   h2: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 600,      // SemiBold
-    fontSize: '2.5rem',   // 40px - Display Medium
-    lineHeight: 1.2,
-    letterSpacing: '-0.01875em', // -0.3px
+    desktop: { fontSize: 32, lineHeight: 40, fontWeight: 600, letterSpacing: -0.3 },
+    tablet: { fontSize: 32, lineHeight: 40, fontWeight: 600, letterSpacing: -0.3 },
+    mobile: { fontSize: 32, lineHeight: 40, fontWeight: 600, letterSpacing: -0.3 },
   },
 
   h3: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 600,      // SemiBold
-    fontSize: '2rem',     // 32px - Display Small
-    lineHeight: 1.2,
-    letterSpacing: '-0.0125em', // -0.2px
+    desktop: { fontSize: 24, lineHeight: 32, fontWeight: 600, letterSpacing: -0.2 },
+    tablet: { fontSize: 24, lineHeight: 32, fontWeight: 600, letterSpacing: -0.2 },
+    mobile: { fontSize: 24, lineHeight: 32, fontWeight: 600, letterSpacing: -0.2 },
   },
 
   h4: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 600,      // SemiBold
-    fontSize: '1rem',     // 16px - Title Large
-    lineHeight: 1.25,     // 20px
-    letterSpacing: '-0.0125em', // -0.2px
+    desktop: { fontSize: 20, lineHeight: 28, fontWeight: 600, letterSpacing: -0.2 },
+    tablet: { fontSize: 20, lineHeight: 28, fontWeight: 600, letterSpacing: -0.2 },
+    mobile: { fontSize: 20, lineHeight: 28, fontWeight: 600, letterSpacing: -0.2 },
   },
 
   h5: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 600,      // SemiBold
-    fontSize: '0.875rem', // 14px - Title Medium
-    lineHeight: 1.2857,   // 18px
-    letterSpacing: '0em',
+    desktop: { fontSize: 16, lineHeight: 24, fontWeight: 600, letterSpacing: 0 },
+    tablet: { fontSize: 18, lineHeight: 24, fontWeight: 600, letterSpacing: 0 },
+    mobile: { fontSize: 18, lineHeight: 24, fontWeight: 600, letterSpacing: 0 },
   },
 
   h6: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 600,      // SemiBold
-    fontSize: '0.75rem',  // 12px - Title Small
-    lineHeight: 1.3333,   // 16px
-    letterSpacing: '0em',
+    desktop: { fontSize: 14, lineHeight: 20, fontWeight: 600, letterSpacing: 0 },
+    tablet: { fontSize: 16, lineHeight: 24, fontWeight: 600, letterSpacing: 0 },
+    mobile: { fontSize: 14, lineHeight: 20, fontWeight: 600, letterSpacing: 0 },
   },
 
-  subtitle1: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 400,      // Regular
-    fontSize: '1rem',     // 16px
-    lineHeight: 1.75,
-    letterSpacing: '0.00938em', // 0.15px
-  },
-
-  subtitle2: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 500,      // Medium
-    fontSize: '0.875rem', // 14px
-    lineHeight: 1.57,
-    letterSpacing: '0.00714em', // 0.1px
-  },
-
+  // ========================================
+  // BODY STYLES - Responsive
+  // ========================================
   body1: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 400,      // Regular
-    fontSize: '1rem',     // 16px - Body Large
-    lineHeight: 1.25,     // 20px
-    letterSpacing: '0.00938em', // 0.15px
+    desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+    tablet: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+    mobile: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
   },
 
   body2: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 400,      // Regular
-    fontSize: '0.875rem', // 14px - Body Medium (Default)
-    lineHeight: 1.2857,   // 18px
-    letterSpacing: '0.01214em', // 0.17px
+    desktop: { fontSize: 12, lineHeight: 18, fontWeight: 400, letterSpacing: 0.17 },
+    tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.17 },
+    mobile: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.17 },
   },
 
   body3: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 400,      // Regular
-    fontSize: '0.75rem',  // 12px - Body Small
-    lineHeight: 1.3333,   // 16px
-    letterSpacing: '0.01417em', // 0.17px
+    desktop: { fontSize: 12, lineHeight: 16, fontWeight: 400, letterSpacing: 0.17 },
+    tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.17 },
+    mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.17 },
   },
 
+  body4: {
+    desktop: { fontSize: 12, lineHeight: 16, fontWeight: 400, letterSpacing: 0.17 },
+    tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.17 },
+    mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.17 },
+  },
+
+  // ========================================
+  // SUBTITLES - Responsive
+  // ========================================
+  subtitle1: {
+    desktop: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+    tablet: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+    mobile: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+  },
+
+  subtitle2: {
+    desktop: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0.1 },
+    tablet: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0.1 },
+    mobile: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0.1 },
+  },
+
+  // ========================================
+  // BUTTON TYPOGRAPHY - Responsive
+  // ========================================
   button: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 500,      // Medium
-    fontSize: '0.875rem', // 14px
-    lineHeight: 1.7143,   // 24px
-    letterSpacing: '0.02857em', // 0.4px
-    textTransform: 'uppercase' as const,
+    large: {
+      desktop: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0 },
+      tablet: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0 },
+      mobile: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0 },
+    },
+    medium: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0 },
+      mobile: { fontSize: 14, lineHeight: 14, fontWeight: 500, letterSpacing: 0 },
+    },
+    small: {
+      desktop: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0 },
+    },
   },
 
+  // ========================================
+  // INPUT TYPOGRAPHY - Responsive
+  // ========================================
+  input: {
+    labelSm: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 10, lineHeight: 14, fontWeight: 400, letterSpacing: 0.15 },
+    },
+    labelMd: {
+      desktop: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+    },
+    labelLg: {
+      desktop: { fontSize: 20, lineHeight: 28, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 22, lineHeight: 32, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 24, lineHeight: 32, fontWeight: 400, letterSpacing: 0.15 },
+    },
+    valueSm: {
+      desktop: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0.25 },
+      tablet: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0.25 },
+      mobile: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0.25 },
+    },
+    valueMd: {
+      desktop: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0.25 },
+      tablet: { fontSize: 18, lineHeight: 26, fontWeight: 500, letterSpacing: 0.25 },
+      mobile: { fontSize: 20, lineHeight: 28, fontWeight: 500, letterSpacing: 0.25 },
+    },
+    valueLg: {
+      desktop: { fontSize: 20, lineHeight: 28, fontWeight: 500, letterSpacing: 0.25 },
+      tablet: { fontSize: 22, lineHeight: 32, fontWeight: 500, letterSpacing: 0.25 },
+      mobile: { fontSize: 26, lineHeight: 36, fontWeight: 500, letterSpacing: 0.25 },
+    },
+    helper: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+    },
+    description: {
+      desktop: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+    },
+  },
+
+  // ========================================
+  // CHIP TYPOGRAPHY - Responsive
+  // ========================================
+  chip: {
+    large: {
+      desktop: { fontSize: 16, lineHeight: 20, fontWeight: 500, letterSpacing: 0.16 },
+      tablet: { fontSize: 16, lineHeight: 20, fontWeight: 500, letterSpacing: 0.16 },
+      mobile: { fontSize: 16, lineHeight: 20, fontWeight: 500, letterSpacing: 0.16 },
+    },
+    medium: {
+      desktop: { fontSize: 14, lineHeight: 18, fontWeight: 500, letterSpacing: 0.16 },
+      tablet: { fontSize: 14, lineHeight: 18, fontWeight: 500, letterSpacing: 0.16 },
+      mobile: { fontSize: 14, lineHeight: 18, fontWeight: 500, letterSpacing: 0.16 },
+    },
+    small: {
+      desktop: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.16 },
+      tablet: { fontSize: 14, lineHeight: 18, fontWeight: 500, letterSpacing: 0.16 },
+      mobile: { fontSize: 16, lineHeight: 20, fontWeight: 500, letterSpacing: 0.16 },
+    },
+  },
+
+  // ========================================
+  // AVATAR TYPOGRAPHY - Responsive
+  // ========================================
+  avatar: {
+    initialsLg: {
+      desktop: { fontSize: 20, lineHeight: 28, fontWeight: 400, letterSpacing: 0.16 },
+      tablet: { fontSize: 20, lineHeight: 28, fontWeight: 400, letterSpacing: 0.16 },
+      mobile: { fontSize: 20, lineHeight: 28, fontWeight: 400, letterSpacing: 0.16 },
+    },
+    initialsMd: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      mobile: { fontSize: 18, lineHeight: 24, fontWeight: 400, letterSpacing: 0.16 },
+    },
+    initialsSm: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      mobile: { fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: 0.16 },
+    },
+  },
+
+  // ========================================
+  // TABLE TYPOGRAPHY - Fixed
+  // ========================================
+  table: {
+    header: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 600, letterSpacing: 0.16 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 600, letterSpacing: 0.16 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 600, letterSpacing: 0.16 },
+    },
+    cell: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+    },
+    footer: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.16 },
+    },
+  },
+
+  // ========================================
+  // ALERT TYPOGRAPHY - Fixed
+  // ========================================
+  alert: {
+    title: {
+      desktop: { fontSize: 18, lineHeight: 24, fontWeight: 600, letterSpacing: 0.15 },
+      tablet: { fontSize: 18, lineHeight: 24, fontWeight: 600, letterSpacing: 0.15 },
+      mobile: { fontSize: 18, lineHeight: 24, fontWeight: 600, letterSpacing: 0.15 },
+    },
+    description: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+    },
+  },
+
+  // ========================================
+  // BOTTOM NAVIGATION - Responsive
+  // ========================================
+  bottomNavigation: {
+    actionsLabel: {
+      desktop: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.15 },
+      tablet: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.15 },
+      mobile: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.15 },
+    },
+    defaultLabel: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0.15 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 500, letterSpacing: 0.15 },
+      mobile: { fontSize: 16, lineHeight: 24, fontWeight: 500, letterSpacing: 0.15 },
+    },
+  },
+
+  // ========================================
+  // MENU ITEM - Responsive
+  // ========================================
+  menuItem: {
+    default: {
+      desktop: { fontSize: 24, lineHeight: 32, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 24, lineHeight: 32, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 18, lineHeight: 24, fontWeight: 400, letterSpacing: 0.15 },
+    },
+    dense: {
+      desktop: { fontSize: 20, lineHeight: 28, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 20, lineHeight: 28, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 20, lineHeight: 28, fontWeight: 400, letterSpacing: 0.15 },
+    },
+  },
+
+  // ========================================
+  // LEGACY STYLES (for backward compatibility)
+  // ========================================
   caption: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 500,      // Medium (or 400 for Regular variant)
-    fontSize: '0.75rem',  // 12px
-    lineHeight: 1.3333,   // 16px
-    letterSpacing: '0.03333em', // 0.4px
+    desktop: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.4 },
+    tablet: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.4 },
+    mobile: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.4 },
   },
 
   overline: {
-    fontFamily: '"DM Sans", sans-serif',
-    fontWeight: 400,      // Regular
-    fontSize: '0.75rem',  // 12px
-    lineHeight: 2.66,
-    letterSpacing: '0.08333em', // 1px
-    textTransform: 'uppercase' as const,
+    desktop: { fontSize: 12, lineHeight: 32, fontWeight: 400, letterSpacing: 1 },
+    tablet: { fontSize: 12, lineHeight: 32, fontWeight: 400, letterSpacing: 1 },
+    mobile: { fontSize: 12, lineHeight: 32, fontWeight: 400, letterSpacing: 1 },
   },
 } as const;
 
 /**
- * Sizing Tokens
- * Component sizes and dimensions
+ * Sizing Tokens - FULLY RESPONSIVE
+ * Component sizes and dimensions with device-specific values
  */
 export const sizingTokens = {
   // Touch Targets (WCAG AA)
@@ -428,34 +648,89 @@ export const sizingTokens = {
     min: 48, // Minimum touch target size in px
   },
 
-  // Icon Sizes
+  // ========================================
+  // ICON SIZES - Fixed
+  // ========================================
   icon: {
+    inherit: 16,
     small: 20,
     medium: 24,
     large: 32,
   },
 
-  // Button Heights
+  // ========================================
+  // BUTTON SIZES - Responsive
+  // ========================================
   button: {
-    small: 32,
-    medium: 40,
-    large: 48,
+    small: { desktop: 28, tablet: 32, mobile: 32 },
+    medium: { desktop: 32, tablet: 36, mobile: 36 },
+    large: { desktop: 40, tablet: 44, mobile: 44 },
   },
 
-  // Avatar Sizes
+  // ========================================
+  // FLOATING ACTION BUTTON - Fixed
+  // ========================================
+  fab: {
+    small: 32,
+    medium: 40,
+    large: 50,
+  },
+
+  // ========================================
+  // INPUT SIZES - Responsive
+  // ========================================
+  input: {
+    small: { desktop: 28, tablet: 32, mobile: 32 },
+    medium: { desktop: 32, tablet: 36, mobile: 40 },
+    large: { desktop: 40, tablet: 44, mobile: 48 },
+  },
+
+  // ========================================
+  // TABLE SIZES - Responsive
+  // ========================================
+  table: {
+    header: { desktop: 50, tablet: 56, mobile: 64 },
+    cell: { desktop: 50, tablet: 56, mobile: 64 },
+  },
+
+  // ========================================
+  // CHIP SIZES - Responsive
+  // ========================================
+  chip: {
+    small: { desktop: 28, tablet: 32, mobile: 32 },
+    medium: { desktop: 32, tablet: 36, mobile: 36 },
+    large: { desktop: 40, tablet: 44, mobile: 44 },
+  },
+
+  // ========================================
+  // CHIP IN FIELDS - Responsive
+  // ========================================
+  chipInField: {
+    small: { desktop: 24, tablet: 28, mobile: 28 },
+    medium: { desktop: 28, tablet: 32, mobile: 32 },
+    large: { desktop: 32, tablet: 36, mobile: 36 },
+  },
+
+  // ========================================
+  // AVATAR SIZES - Fixed (from previous implementation)
+  // ========================================
   avatar: {
     small: 24,
     medium: 40,
     large: 56,
   },
 
-  // App Bar Height
+  // ========================================
+  // APP BAR HEIGHT - Responsive
+  // ========================================
   appBar: {
     mobile: 56,
     desktop: 64,
   },
 
-  // Drawer Width
+  // ========================================
+  // DRAWER WIDTH - Fixed
+  // ========================================
   drawer: {
     standard: 240,
     wide: 320,
@@ -546,15 +821,11 @@ export const transitionTokens = {
 } as const;
 
 /**
- * Breakpoint Tokens
- * Responsive breakpoint values
+ * Helper function to get responsive value based on breakpoint
  */
-export const breakpointTokens = {
-  values: {
-    xs: 0,
-    sm: 600,
-    md: 900,
-    lg: 1200,
-    xl: 1536,
-  },
-} as const;
+export const getResponsiveValue = <T,>(
+  responsive: ResponsiveValue<T>,
+  breakpoint: 'desktop' | 'tablet' | 'mobile'
+): T => {
+  return responsive[breakpoint];
+};

@@ -515,7 +515,7 @@ const StyledMuiAlert = styled(MuiAlert)(({ theme }) => ({
   '& .MuiAlert-icon': {
     padding: 0,
     marginRight: theme.spacing(1.5),
-    fontSize: theme.typography.h5.fontSize, // Fixed 14px
+    fontSize: theme.spacing(2.5), // 20px - icon size (sizingTokens.icon.small)
   },
 
   '& .MuiAlert-message': {
