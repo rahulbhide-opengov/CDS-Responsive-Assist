@@ -9,12 +9,12 @@
  * All color values for the CDS system using CDS brand colors
  */
 export const colorTokens = {
-  // Primary Colors - CDS Brand Blue
+  // Primary Colors - Blurple 700
   primary: {
-    main: '#4b3fff',      // CDS Primary Blue
-    light: '#eef1fc',     // CDS Primary Light Surface
-    dark: '#3d32cc',      // CDS Primary Dark (Hover)
-    darker: '#19009b',    // CDS Primary Darker (Selected)
+    main: '#4b3fff',      // Blurple 700 (CDS Primary)
+    light: '#eef1fc',     // Blurple 50 (Light Surface)
+    dark: '#3d32cc',      // Blurple 800 (Hover)
+    darker: '#19009b',    // Blurple 900 (Selected/Pressed)
     contrastText: '#ffffff',
   },
 
@@ -137,17 +137,17 @@ export const colorTokens = {
     active: 'rgba(255, 255, 255, 0.54)',   // White active - 54%
   },
 
-  // Primary Color Opacity Variants
+  // Blurple 700 Opacity Variants
   primaryOpacity: {
-    4: 'rgba(75, 63, 255, 0.04)',   // Hover background
-    8: 'rgba(75, 63, 255, 0.08)',   // Selected background
-    12: 'rgba(75, 63, 255, 0.12)',  // Light background
-    20: 'rgba(75, 63, 255, 0.2)',   // Medium background
-    30: 'rgba(75, 63, 255, 0.3)',   // Track/Rail
-    38: 'rgba(75, 63, 255, 0.38)',  // Disabled
-    50: 'rgba(75, 63, 255, 0.5)',   // Border
-    70: 'rgba(75, 63, 255, 0.7)',   // Emphasis
-    100: 'rgba(75, 63, 255, 1)',    // Full
+    4: 'rgba(75, 63, 255, 0.04)',   // Blurple 700 @ 4% - Hover background
+    8: 'rgba(75, 63, 255, 0.08)',   // Blurple 700 @ 8% - Selected background
+    12: 'rgba(75, 63, 255, 0.12)',  // Blurple 700 @ 12% - Light background
+    20: 'rgba(75, 63, 255, 0.2)',   // Blurple 700 @ 20% - Medium background
+    30: 'rgba(75, 63, 255, 0.3)',   // Blurple 700 @ 30% - Track/Rail
+    38: 'rgba(75, 63, 255, 0.38)',  // Blurple 700 @ 38% - Disabled
+    50: 'rgba(75, 63, 255, 0.5)',   // Blurple 700 @ 50% - Border
+    70: 'rgba(75, 63, 255, 0.7)',   // Blurple 700 @ 70% - Emphasis
+    100: 'rgba(75, 63, 255, 1)',    // Blurple 700 @ 100% - Full
   },
 
   // Secondary Color Opacity Variants
