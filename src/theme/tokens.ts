@@ -2,6 +2,23 @@
  * CDS Design Tokens
  * Complete token definitions for the Component Design System
  * ALL VALUES ARE CDS BRAND COLORS - NOT MUI DEFAULTS
+ *
+ * COLOR SYSTEM OVERVIEW:
+ * =====================
+ * Primary: Blurple scale (50-900) with main at 700 (#4B3FFF)
+ * Secondary: Slate scale (50-900) with main at 700 (#546574)
+ *
+ * Light Theme:
+ * - Primary main: Blurple 700 (#4B3FFF)
+ * - Primary contrast text: #FFFFFF
+ * - State colors based on Blurple 700 with opacity
+ *
+ * Dark Theme:
+ * - Primary main: Blurple 700 (#4B3FFF) - same as light
+ * - Primary contrast text: rgba(0,0,0,0.87)
+ * - State colors based on #94A8FF (lighter variant) with increased opacity
+ *
+ * Secondary follows the same pattern with Slate colors.
  */
 
 /**
@@ -9,24 +26,37 @@
  * All color values for the CDS system using CDS brand colors
  */
 export const colorTokens = {
-  // Primary Colors - Blurple 700
+  // Primary Colors - Blurple Scale
   primary: {
+    50: '#f5f3ff',        // Blurple 50 (Lightest)
+    100: '#eef1fc',       // Blurple 100 (Very Light Surface)
+    200: '#d6d4ff',       // Blurple 200 (Light Surface)
+    400: '#a098ff',       // Blurple 400 (Medium Light)
+    700: '#4b3fff',       // Blurple 700 (CDS Primary Main)
+    900: '#19009b',       // Blurple 900 (Darkest)
     main: '#4b3fff',      // Blurple 700 (CDS Primary)
-    light: '#eef1fc',     // Blurple 50 (Light Surface)
-    dark: '#3d32cc',      // Blurple 800 (Hover)
-    darker: '#19009b',    // Blurple 900 (Selected/Pressed)
-    contrastText: '#ffffff',
+    light: '#eef1fc',     // Blurple 100 (Light Surface)
+    dark: '#19009b',      // Blurple 900 (Dark)
+    contrastText: '#ffffff',  // Light theme
+    contrastTextDark: 'rgba(0, 0, 0, 0.87)',  // Dark theme
   },
 
-  // Secondary Colors - CDS Brand Purple/Pink
+  // Secondary Colors - Slate Scale
   secondary: {
-    main: '#dc004e',      // CDS Secondary Purple/Pink
-    light: '#ff5a8b',     // CDS Secondary Light
-    dark: '#b00040',      // CDS Secondary Dark (Hover)
-    contrastText: '#ffffff',
+    50: '#f8f9fa',        // Slate 50 (Lightest)
+    100: '#e9ecef',       // Slate 100 (Very Light)
+    200: '#cbd2d9',       // Slate 200 (Light)
+    400: '#8e9ba8',       // Slate 400 (Medium)
+    700: '#546574',       // Slate 700 (CDS Secondary Main)
+    900: '#2d3748',       // Slate 900 (Darkest)
+    main: '#546574',      // Slate 700 (CDS Secondary Gray)
+    light: '#e9ecef',     // Slate 100
+    dark: '#2d3748',      // Slate 900
+    contrastText: '#ffffff',  // Light theme
+    contrastTextDark: 'rgba(0, 0, 0, 0.87)',  // Dark theme
   },
 
-  // Secondary Text Gray
+  // Secondary Text Gray (for backward compatibility)
   secondaryGray: {
     main: '#546574',      // CDS Secondary Gray (Descriptive text)
   },
@@ -137,7 +167,43 @@ export const colorTokens = {
     active: 'rgba(255, 255, 255, 0.54)',   // White active - 54%
   },
 
-  // Blurple 700 Opacity Variants
+  // Primary State Colors - Light Theme (Blurple 700 based)
+  primaryStates: {
+    light: {
+      hover: 'rgba(75, 63, 255, 0.04)',        // Blurple 700 @ 4%
+      selected: 'rgba(75, 63, 255, 0.08)',     // Blurple 700 @ 8%
+      focus: 'rgba(75, 63, 255, 0.12)',        // Blurple 700 @ 12%
+      focusVisible: 'rgba(75, 63, 255, 0.30)', // Blurple 700 @ 30%
+      outlinedBorder: 'rgba(75, 63, 255, 0.50)', // Blurple 700 @ 50%
+    },
+    dark: {
+      hover: 'rgba(148, 168, 255, 0.08)',      // #94A8FF @ 8%
+      selected: 'rgba(148, 168, 255, 0.16)',   // #94A8FF @ 16%
+      focus: 'rgba(148, 168, 255, 0.12)',      // #94A8FF @ 12%
+      focusVisible: 'rgba(148, 168, 255, 0.30)', // #94A8FF @ 30%
+      outlinedBorder: 'rgba(148, 168, 255, 0.50)', // #94A8FF @ 50%
+    },
+  },
+
+  // Secondary State Colors - Light Theme (Slate 700 based)
+  secondaryStates: {
+    light: {
+      hover: 'rgba(84, 101, 116, 0.04)',       // #546574 @ 4%
+      selected: 'rgba(84, 101, 116, 0.08)',    // #546574 @ 8%
+      focus: 'rgba(84, 101, 116, 0.12)',       // #546574 @ 12%
+      focusVisible: 'rgba(84, 101, 116, 0.30)', // #546574 @ 30%
+      outlinedBorder: 'rgba(84, 101, 116, 0.50)', // #546574 @ 50%
+    },
+    dark: {
+      hover: 'rgba(156, 177, 195, 0.08)',      // #9CB1C3 @ 8%
+      selected: 'rgba(156, 177, 195, 0.16)',   // #9CB1C3 @ 16%
+      focus: 'rgba(156, 177, 195, 0.12)',      // #9CB1C3 @ 12%
+      focusVisible: 'rgba(156, 177, 195, 0.30)', // #9CB1C3 @ 30%
+      outlinedBorder: 'rgba(156, 177, 195, 0.50)', // #9CB1C3 @ 50%
+    },
+  },
+
+  // Blurple 700 Opacity Variants (for backward compatibility)
   primaryOpacity: {
     4: 'rgba(75, 63, 255, 0.04)',   // Blurple 700 @ 4% - Hover background
     8: 'rgba(75, 63, 255, 0.08)',   // Blurple 700 @ 8% - Selected background
@@ -150,12 +216,14 @@ export const colorTokens = {
     100: 'rgba(75, 63, 255, 1)',    // Blurple 700 @ 100% - Full
   },
 
-  // Secondary Color Opacity Variants
+  // Secondary Color Opacity Variants (for backward compatibility)
   secondaryOpacity: {
-    4: 'rgba(220, 0, 78, 0.04)',    // Hover background
-    30: 'rgba(220, 0, 78, 0.3)',    // Track/Rail
-    50: 'rgba(220, 0, 78, 0.5)',    // Border
-    70: 'rgba(220, 0, 78, 0.7)',    // Emphasis
+    4: 'rgba(84, 101, 116, 0.04)',    // Slate 700 @ 4% - Hover background
+    8: 'rgba(84, 101, 116, 0.08)',    // Slate 700 @ 8% - Selected background
+    12: 'rgba(84, 101, 116, 0.12)',   // Slate 700 @ 12% - Focus
+    30: 'rgba(84, 101, 116, 0.3)',    // Slate 700 @ 30% - Track/Rail
+    50: 'rgba(84, 101, 116, 0.5)',    // Slate 700 @ 50% - Border
+    70: 'rgba(84, 101, 116, 0.7)',    // Slate 700 @ 70% - Emphasis
   },
 
   // Error Color Opacity Variants
