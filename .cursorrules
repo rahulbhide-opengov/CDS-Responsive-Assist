@@ -81,9 +81,9 @@ When user provides Figma URL or screenshot:
 
 ```tsx
 // ❌ WRONG - Hard-coded values
-<div style={{ 
+<div style={{
   padding: '12px',
-  backgroundColor: '#1976d2',
+  backgroundColor: '#4b3fff',
   borderRadius: '4px'
 }}>
 
@@ -303,14 +303,14 @@ import Badge from '@mui/material/Badge';
 
 ## CDS Token Reference (Quick Lookup)
 
-### Colors
+### Colors (CDS Brand)
 ```typescript
-color="primary"              // #1976d2
-color="secondary"            // #9c27b0
-color="error"                // #d32f2f
-color="success"              // #2e7d32
-color="warning"              // #ed6c02
-color="info"                 // #0288d1
+color="primary"              // #4b3fff (CDS Primary Blue)
+color="secondary"            // #dc004e (CDS Secondary Purple/Pink)
+color="error"                // #d32f2f (CDS Error Red)
+color="success"              // #2e7d32 (CDS Success Green)
+color="warning"              // #ed6c02 (CDS Warning Orange)
+color="info"                 // #0288d1 (CDS Info Blue)
 
 sx={{ color: 'text.primary' }}      // rgba(0,0,0,0.87)
 sx={{ color: 'text.secondary' }}    // rgba(0,0,0,0.6)

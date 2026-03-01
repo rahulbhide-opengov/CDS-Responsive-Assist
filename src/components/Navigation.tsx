@@ -409,9 +409,9 @@ const StyledDrawer = styled(MuiDrawer)<{ width?: number }>(({ theme, width }) =>
     }),
   },
 
-  // Backdrop styling
+  // Backdrop styling - CDS brand token
   '& .MuiBackdrop-root': {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: theme.palette.backdrop?.standard || 'rgba(0, 0, 0, 0.5)',
   },
 }));
 

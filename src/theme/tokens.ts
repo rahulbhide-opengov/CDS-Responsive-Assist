@@ -1,71 +1,85 @@
 /**
  * CDS Design Tokens
  * Complete token definitions for the Component Design System
- * Based on Material-UI v6.1.0 specifications
+ * ALL VALUES ARE CDS BRAND COLORS - NOT MUI DEFAULTS
  */
 
 /**
  * Color Tokens
- * All color values for the CDS system
+ * All color values for the CDS system using CDS brand colors
  */
 export const colorTokens = {
-  // Primary Colors
+  // Primary Colors - CDS Brand Blue
   primary: {
-    main: '#1976d2',
-    light: '#42a5f5',
-    dark: '#1565c0',
+    main: '#4b3fff',      // CDS Primary Blue
+    light: '#eef1fc',     // CDS Primary Light Surface
+    dark: '#3d32cc',      // CDS Primary Dark (Hover)
+    darker: '#19009b',    // CDS Primary Darker (Selected)
     contrastText: '#ffffff',
   },
 
-  // Secondary Colors
+  // Secondary Colors - CDS Brand Purple/Pink
   secondary: {
-    main: '#9c27b0',
-    light: '#ba68c8',
-    dark: '#7b1fa2',
+    main: '#dc004e',      // CDS Secondary Purple/Pink
+    light: '#ff5a8b',     // CDS Secondary Light
+    dark: '#b00040',      // CDS Secondary Dark (Hover)
     contrastText: '#ffffff',
+  },
+
+  // Secondary Text Gray
+  secondaryGray: {
+    main: '#546574',      // CDS Secondary Gray (Descriptive text)
   },
 
   // Semantic Colors
   error: {
-    main: '#d32f2f',
-    light: '#ef5350',
-    dark: '#c62828',
+    main: '#d32f2f',      // CDS Error Red
+    alternate: '#d33423', // CDS Error Alternate (Forms)
+    light: '#ef5350',     // CDS Error Light
+    dark: '#b71c1c',      // CDS Error Dark (Hover)
+    darkText: '#5f2120',  // CDS Error Dark Text
     contrastText: '#ffffff',
   },
 
   success: {
-    main: '#2e7d32',
-    light: '#4caf50',
-    dark: '#1b5e20',
+    main: '#2e7d32',      // CDS Success Green
+    light: '#4caf50',     // CDS Success Light
+    dark: '#1b5e20',      // CDS Success Dark (Hover)
+    darkText: '#1e4620',  // CDS Success Dark Text
     contrastText: '#ffffff',
   },
 
   warning: {
-    main: '#ed6c02',
-    light: '#ff9800',
-    dark: '#e65100',
+    main: '#ed6c02',      // CDS Warning Orange
+    alternate: '#f5a300', // CDS Warning Alternate
+    light: '#faaf00',     // CDS Warning Light
+    dark: '#e65100',      // CDS Warning Dark (Hover)
+    darkText: '#663c00',  // CDS Warning Dark Text
     contrastText: '#ffffff',
   },
 
   info: {
-    main: '#0288d1',
-    light: '#03a9f4',
-    dark: '#01579b',
+    main: '#0288d1',      // CDS Info Blue
+    alternate: '#1976d2', // CDS Info Alternate
+    light: '#42a5f5',     // CDS Info Light
+    medium: '#1565c0',    // CDS Info Medium
+    dark: '#01579b',      // CDS Info Dark (Hover)
+    darkText: '#014361',  // CDS Info Dark Text
     contrastText: '#ffffff',
   },
 
   // Grey Scale
   grey: {
-    50: '#fafafa',
-    100: '#f5f5f5',
-    200: '#eeeeee',
-    300: '#e0e0e0',
-    400: '#bdbdbd',
-    500: '#9e9e9e',
-    600: '#757575',
-    700: '#616161',
-    800: '#424242',
-    900: '#212121',
+    50: '#fafafa',        // Light backgrounds
+    100: '#f2f2f2',       // Disabled backgrounds
+    200: '#eeeeee',       // Very light grey
+    300: '#e0e0e0',       // Default button backgrounds
+    400: '#d5d5d5',       // Hover states
+    500: '#bdbdbd',       // Borders
+    600: '#adafb1',       // Secondary borders
+    700: '#616161',       // Dark text/backgrounds
+    800: '#424242',       // Darker backgrounds
+    900: '#212121',       // Darkest backgrounds
     A100: '#f5f5f5',
     A200: '#eeeeee',
     A400: '#bdbdbd',
@@ -74,34 +88,107 @@ export const colorTokens = {
 
   // Text Colors
   text: {
-    primary: 'rgba(0, 0, 0, 0.87)',
-    secondary: 'rgba(0, 0, 0, 0.6)',
-    disabled: 'rgba(0, 0, 0, 0.38)',
+    primary: 'rgba(0, 0, 0, 0.87)',    // 87% opacity - Main text
+    secondary: 'rgba(0, 0, 0, 0.6)',   // 60% opacity - Secondary text
+    tertiary: 'rgba(0, 0, 0, 0.54)',   // 54% opacity - Tertiary text, icons
+    disabled: 'rgba(0, 0, 0, 0.38)',   // 38% opacity - Disabled text
+    hint: 'rgba(0, 0, 0, 0.26)',       // 26% opacity - Placeholder text
   },
 
   // Background Colors
   background: {
-    default: '#fafafa',
-    paper: '#ffffff',
+    default: '#fafafa',   // Page background
+    paper: '#ffffff',     // Component backgrounds
+    tertiary: '#f2f2f2',  // Disabled/inactive backgrounds
   },
 
-  // Action Colors
+  // Action Colors - CDS opacity values
   action: {
-    active: 'rgba(0, 0, 0, 0.54)',
-    hover: 'rgba(0, 0, 0, 0.04)',
+    active: 'rgba(0, 0, 0, 0.54)',           // Active states - 54%
+    hover: 'rgba(0, 0, 0, 0.04)',            // Hover backgrounds - 4%
     hoverOpacity: 0.04,
-    selected: 'rgba(0, 0, 0, 0.08)',
+    subtle: 'rgba(0, 0, 0, 0.02)',           // Subtle interactions - 2%
+    selected: 'rgba(0, 0, 0, 0.08)',         // Selected backgrounds - 8%
     selectedOpacity: 0.08,
-    disabled: 'rgba(0, 0, 0, 0.26)',
-    disabledBackground: 'rgba(0, 0, 0, 0.12)',
+    disabled: 'rgba(0, 0, 0, 0.26)',         // Disabled elements - 26%
+    disabledBackground: 'rgba(0, 0, 0, 0.12)', // Disabled button backgrounds - 12%
     disabledOpacity: 0.38,
-    focus: 'rgba(0, 0, 0, 0.12)',
+    focus: 'rgba(0, 0, 0, 0.12)',            // Focus rings - 12%
     focusOpacity: 0.12,
+    track: 'rgba(0, 0, 0, 0.11)',            // Progress track - 11%
     activatedOpacity: 0.12,
   },
 
   // Divider
-  divider: 'rgba(0, 0, 0, 0.12)',
+  divider: 'rgba(0, 0, 0, 0.12)',  // Borders, dividers - 12%
+
+  // Backdrop/Overlay Colors
+  backdrop: {
+    light: 'rgba(0, 0, 0, 0.3)',   // Light backdrop - 30%
+    standard: 'rgba(0, 0, 0, 0.5)', // Standard backdrop - 50%
+    dark: 'rgba(0, 0, 0, 0.7)',     // Dark backdrop - 70%
+    heavy: 'rgba(0, 0, 0, 0.8)',    // Heavy backdrop - 80%
+  },
+
+  // White Overlays (for dark backgrounds)
+  whiteOverlay: {
+    hover: 'rgba(255, 255, 255, 0.12)',    // White hover - 12%
+    selected: 'rgba(255, 255, 255, 0.15)', // White selected - 15%
+    active: 'rgba(255, 255, 255, 0.54)',   // White active - 54%
+  },
+
+  // Primary Color Opacity Variants
+  primaryOpacity: {
+    4: 'rgba(75, 63, 255, 0.04)',   // Hover background
+    8: 'rgba(75, 63, 255, 0.08)',   // Selected background
+    12: 'rgba(75, 63, 255, 0.12)',  // Light background
+    20: 'rgba(75, 63, 255, 0.2)',   // Medium background
+    30: 'rgba(75, 63, 255, 0.3)',   // Track/Rail
+    38: 'rgba(75, 63, 255, 0.38)',  // Disabled
+    50: 'rgba(75, 63, 255, 0.5)',   // Border
+    70: 'rgba(75, 63, 255, 0.7)',   // Emphasis
+    100: 'rgba(75, 63, 255, 1)',    // Full
+  },
+
+  // Secondary Color Opacity Variants
+  secondaryOpacity: {
+    4: 'rgba(220, 0, 78, 0.04)',    // Hover background
+    30: 'rgba(220, 0, 78, 0.3)',    // Track/Rail
+    50: 'rgba(220, 0, 78, 0.5)',    // Border
+    70: 'rgba(220, 0, 78, 0.7)',    // Emphasis
+  },
+
+  // Error Color Opacity Variants
+  errorOpacity: {
+    4: 'rgba(211, 47, 47, 0.04)',   // Hover background
+    8: 'rgba(211, 47, 47, 0.08)',   // Selected background
+    50: 'rgba(211, 47, 47, 0.5)',   // Border
+    70: 'rgba(211, 47, 47, 0.7)',   // Emphasis
+  },
+
+  // Success Color Opacity Variants
+  successOpacity: {
+    4: 'rgba(46, 125, 50, 0.04)',   // Hover background
+    8: 'rgba(46, 125, 50, 0.08)',   // Selected background
+    50: 'rgba(46, 125, 50, 0.5)',   // Border
+    70: 'rgba(46, 125, 50, 0.7)',   // Emphasis
+  },
+
+  // Warning Color Opacity Variants
+  warningOpacity: {
+    4: 'rgba(237, 108, 2, 0.04)',   // Hover background
+    8: 'rgba(237, 108, 2, 0.08)',   // Selected background
+    50: 'rgba(237, 108, 2, 0.5)',   // Border
+    70: 'rgba(237, 108, 2, 0.7)',   // Emphasis
+  },
+
+  // Info Color Opacity Variants
+  infoOpacity: {
+    4: 'rgba(2, 136, 209, 0.04)',   // Hover background
+    8: 'rgba(2, 136, 209, 0.08)',   // Selected background
+    50: 'rgba(2, 136, 209, 0.5)',   // Border
+    70: 'rgba(2, 136, 209, 0.7)',   // Emphasis
+  },
 } as const;
 
 /**
@@ -132,122 +219,131 @@ export const spacingTokens = {
 
 /**
  * Typography Tokens
- * Font families, sizes, weights, and line heights
+ * CDS BRAND TYPOGRAPHY - DM Sans
  */
 export const typographyTokens = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontFamily: '"DM Sans", "DM_Sans:Regular", "DM_Sans:Medium", sans-serif',
 
   // Font sizes
   fontSize: 14, // Base font size in px
 
-  // Font weights
-  fontWeightLight: 300,
-  fontWeightRegular: 400,
-  fontWeightMedium: 500,
-  fontWeightBold: 700,
+  // Font weights - DM Sans weights
+  fontWeightLight: 300,     // Light
+  fontWeightRegular: 400,   // Regular
+  fontWeightMedium: 500,    // Medium
+  fontWeightSemiBold: 600,  // SemiBold (CDS standard for headings)
+  fontWeightBold: 700,      // Bold
 
-  // Variants
+  // Variants - CDS Typography Scale
   h1: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 300,
-    fontSize: '6rem',      // 96px
-    lineHeight: 1.167,
-    letterSpacing: '-0.01562em', // -1.5px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 600,      // SemiBold
+    fontSize: '3rem',     // 48px - Display Large
+    lineHeight: 1.2,
+    letterSpacing: '-0.03125em', // -0.5px
   },
 
   h2: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 300,
-    fontSize: '3.75rem',   // 60px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 600,      // SemiBold
+    fontSize: '2.5rem',   // 40px - Display Medium
     lineHeight: 1.2,
-    letterSpacing: '-0.00833em', // -0.5px
+    letterSpacing: '-0.01875em', // -0.3px
   },
 
   h3: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '3rem',      // 48px
-    lineHeight: 1.167,
-    letterSpacing: '0em',
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 600,      // SemiBold
+    fontSize: '2rem',     // 32px - Display Small
+    lineHeight: 1.2,
+    letterSpacing: '-0.0125em', // -0.2px
   },
 
   h4: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '2.125rem',  // 34px
-    lineHeight: 1.235,
-    letterSpacing: '0.00735em', // 0.25px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 600,      // SemiBold
+    fontSize: '1rem',     // 16px - Title Large
+    lineHeight: 1.25,     // 20px
+    letterSpacing: '-0.0125em', // -0.2px
   },
 
   h5: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '1.5rem',    // 24px
-    lineHeight: 1.334,
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 600,      // SemiBold
+    fontSize: '0.875rem', // 14px - Title Medium
+    lineHeight: 1.2857,   // 18px
     letterSpacing: '0em',
   },
 
   h6: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 500,
-    fontSize: '1.25rem',   // 20px
-    lineHeight: 1.6,
-    letterSpacing: '0.0075em', // 0.15px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 600,      // SemiBold
+    fontSize: '0.75rem',  // 12px - Title Small
+    lineHeight: 1.3333,   // 16px
+    letterSpacing: '0em',
   },
 
   subtitle1: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '1rem',      // 16px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 400,      // Regular
+    fontSize: '1rem',     // 16px
     lineHeight: 1.75,
     letterSpacing: '0.00938em', // 0.15px
   },
 
   subtitle2: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 500,
-    fontSize: '0.875rem',  // 14px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 500,      // Medium
+    fontSize: '0.875rem', // 14px
     lineHeight: 1.57,
     letterSpacing: '0.00714em', // 0.1px
   },
 
   body1: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '1rem',      // 16px
-    lineHeight: 1.5,
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 400,      // Regular
+    fontSize: '1rem',     // 16px - Body Large
+    lineHeight: 1.25,     // 20px
     letterSpacing: '0.00938em', // 0.15px
   },
 
   body2: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '0.875rem',  // 14px
-    lineHeight: 1.43,
-    letterSpacing: '0.01071em', // 0.15px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 400,      // Regular
+    fontSize: '0.875rem', // 14px - Body Medium (Default)
+    lineHeight: 1.2857,   // 18px
+    letterSpacing: '0.01214em', // 0.17px
+  },
+
+  body3: {
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 400,      // Regular
+    fontSize: '0.75rem',  // 12px - Body Small
+    lineHeight: 1.3333,   // 16px
+    letterSpacing: '0.01417em', // 0.17px
   },
 
   button: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 500,
-    fontSize: '0.875rem',  // 14px
-    lineHeight: 1.75,
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 500,      // Medium
+    fontSize: '0.875rem', // 14px
+    lineHeight: 1.7143,   // 24px
     letterSpacing: '0.02857em', // 0.4px
     textTransform: 'uppercase' as const,
   },
 
   caption: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '0.75rem',   // 12px
-    lineHeight: 1.66,
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 500,      // Medium (or 400 for Regular variant)
+    fontSize: '0.75rem',  // 12px
+    lineHeight: 1.3333,   // 16px
     letterSpacing: '0.03333em', // 0.4px
   },
 
   overline: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 400,
-    fontSize: '0.75rem',   // 12px
+    fontFamily: '"DM Sans", sans-serif',
+    fontWeight: 400,      // Regular
+    fontSize: '0.75rem',  // 12px
     lineHeight: 2.66,
     letterSpacing: '0.08333em', // 1px
     textTransform: 'uppercase' as const,

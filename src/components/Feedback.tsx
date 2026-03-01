@@ -688,7 +688,7 @@ const StyledMuiSkeleton = styled(MuiSkeleton)(({ theme }) => ({
  * Styled Backdrop with CDS tokens
  */
 const StyledMuiBackdrop = styled(MuiBackdrop)(({ theme }) => ({
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  backgroundColor: theme.palette.backdrop?.standard || 'rgba(0, 0, 0, 0.5)',
   zIndex: theme.zIndex.drawer + 1,
 
   transition: theme.transitions.create('opacity', {

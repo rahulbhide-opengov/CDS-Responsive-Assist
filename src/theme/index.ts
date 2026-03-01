@@ -35,6 +35,7 @@ const themeOptions: ThemeOptions = {
     background: colorTokens.background,
     action: colorTokens.action,
     divider: colorTokens.divider,
+    backdrop: colorTokens.backdrop,
   },
 
   // Spacing

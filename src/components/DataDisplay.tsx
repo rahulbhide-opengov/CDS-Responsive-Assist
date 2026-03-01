@@ -1412,8 +1412,7 @@ const StyledMuiImageListItem = styled(MuiImageListItem)(({ theme }) => ({
   },
 
   '& .MuiImageListItemBar-root': {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    background: `linear-gradient(to top, ${theme.palette.backdrop?.dark || 'rgba(0,0,0,0.7)'} 0%, ${theme.palette.backdrop?.light || 'rgba(0,0,0,0.3)'} 70%, rgba(0,0,0,0) 100%)`,
   },
 
   '& .MuiImageListItemBar-title': {

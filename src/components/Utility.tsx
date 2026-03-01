@@ -304,7 +304,7 @@ const StyledMuiModal = styled(MuiModal)(({ theme }) => ({
   padding: theme.spacing(2),
 
   '& .MuiBackdrop-root': {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: theme.palette.backdrop?.standard || 'rgba(0, 0, 0, 0.5)',
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.standard,
     }),
