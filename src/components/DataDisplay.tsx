@@ -143,20 +143,20 @@ export interface AvatarProps {
 /**
  * Maps CDS avatar size to pixel dimensions
  */
-const getAvatarSizeStyles = (size: AvatarSize) => {
+const getAvatarSizeStyles = (size: AvatarSize, theme: any) => {
   switch (size) {
     case 'xs':
-      return { width: 24, height: 24, fontSize: '0.75rem' }; // 12px
+      return { width: theme.spacing(3), height: theme.spacing(3), fontSize: theme.typography.caption.fontSize }; // 24px
     case 'sm':
-      return { width: 32, height: 32, fontSize: '0.875rem' }; // 14px
+      return { width: theme.spacing(4), height: theme.spacing(4), fontSize: theme.typography.body2.fontSize }; // 32px
     case 'md':
-      return { width: 40, height: 40, fontSize: '1rem' }; // 16px
+      return { width: theme.spacing(5), height: theme.spacing(5), fontSize: theme.typography.body1.fontSize }; // 40px
     case 'lg':
-      return { width: 56, height: 56, fontSize: '1.25rem' }; // 20px
+      return { width: theme.spacing(7), height: theme.spacing(7), fontSize: theme.typography.h6.fontSize }; // 56px
     case 'xl':
-      return { width: 72, height: 72, fontSize: '1.5rem' }; // 24px
+      return { width: theme.spacing(9), height: theme.spacing(9), fontSize: theme.typography.h5.fontSize }; // 72px
     default:
-      return { width: 40, height: 40, fontSize: '1rem' };
+      return { width: theme.spacing(5), height: theme.spacing(5), fontSize: theme.typography.body1.fontSize };
   }
 };
 
@@ -171,6 +171,33 @@ const StyledMuiAvatar = styled(MuiAvatar)(({ theme }) => ({
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.short,
   }),
+
+  // Size-specific styles
+  '&[data-size="xs"]': {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+    fontSize: theme.typography.caption.fontSize,
+  },
+  '&[data-size="sm"]': {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    fontSize: theme.typography.body2.fontSize,
+  },
+  '&[data-size="md"]': {
+    width: theme.spacing(5),
+    height: theme.spacing(5),
+    fontSize: theme.typography.body1.fontSize,
+  },
+  '&[data-size="lg"]': {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    fontSize: theme.typography.h6.fontSize,
+  },
+  '&[data-size="xl"]': {
+    width: theme.spacing(9),
+    height: theme.spacing(9),
+    fontSize: theme.typography.h5.fontSize,
+  },
 }));
 
 /**
@@ -198,8 +225,6 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     },
     ref
   ) => {
-    const sizeStyles = getAvatarSizeStyles(size);
-
     return (
       <StyledMuiAvatar
         ref={ref}
@@ -207,8 +232,8 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         alt={alt}
         variant={variant}
         className={className}
+        data-size={size}
         sx={{
-          ...sizeStyles,
           ...(color && { backgroundColor: color }),
           ...sx,
         }}
@@ -361,16 +386,16 @@ export interface BadgeProps {
 
 const StyledMuiBadge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    fontSize: '0.6875rem', // 11px mobile
+    fontSize: theme.typography.caption.fontSize, // Use theme token
     fontWeight: theme.typography.fontWeightMedium,
-    minWidth: 18, // 18px mobile
-    height: 18,
+    minWidth: theme.spacing(2.25), // 18px mobile
+    height: theme.spacing(2.25),
     padding: theme.spacing(0, 0.5),
 
     [theme.breakpoints.up('sm')]: {
       fontSize: theme.typography.caption.fontSize, // 12px tablet+
-      minWidth: 20, // 20px tablet+
-      height: 20,
+      minWidth: theme.spacing(2.5), // 20px tablet+
+      height: theme.spacing(2.5),
       padding: theme.spacing(0, 0.75),
     },
 
@@ -380,13 +405,13 @@ const StyledMuiBadge = styled(MuiBadge)(({ theme }) => ({
   },
 
   '& .MuiBadge-dot': {
-    width: 6, // 6px mobile
-    height: 6,
+    width: theme.spacing(0.75), // 6px mobile
+    height: theme.spacing(0.75),
     borderRadius: '50%',
 
     [theme.breakpoints.up('sm')]: {
-      width: 8, // 8px tablet+
-      height: 8,
+      width: theme.spacing(1), // 8px tablet+
+      height: theme.spacing(1),
     },
   },
 }));
@@ -517,12 +542,12 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
 
   // Responsive sizing
-  height: 28, // 28px mobile
-  fontSize: '0.8125rem', // 13px mobile
+  height: theme.spacing(3.5), // 28px mobile
+  fontSize: theme.typography.button.fontSize, // Use theme token
 
   [theme.breakpoints.up('sm')]: {
-    height: 32, // 32px tablet+
-    fontSize: '0.875rem', // 14px tablet+
+    height: theme.spacing(4), // 32px tablet+
+    fontSize: theme.typography.body2.fontSize, // Use theme token
   },
 
   '& .MuiChip-label': {
@@ -535,11 +560,11 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
   '& .MuiChip-icon': {
     marginLeft: theme.spacing(0.75), // 6px mobile
     marginRight: theme.spacing(-0.5),
-    fontSize: '1.125rem', // 18px mobile
+    fontSize: theme.typography.h6.fontSize, // Use theme token for icons
 
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1), // 8px tablet+
-      fontSize: '1.25rem', // 20px tablet+
+      fontSize: theme.typography.h6.fontSize, // Use theme token
     },
   },
 
@@ -888,14 +913,14 @@ export interface TableRowProps {
 
 const StyledMuiTableRow = styled(MuiTableRow)(({ theme }) => ({
   '&:hover': {
-    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
+    backgroundColor: theme.palette.secondaryStates.light.hover,
     cursor: 'pointer',
   },
 
   '&.Mui-selected': {
-    backgroundColor: theme.palette.secondaryStates?.light.selected || 'rgba(84, 101, 116, 0.08)',
+    backgroundColor: theme.palette.secondaryStates.light.selected,
     '&:hover': {
-      backgroundColor: theme.palette.secondaryStates?.light.focus || 'rgba(84, 101, 116, 0.12)',
+      backgroundColor: theme.palette.secondaryStates.light.focus,
     },
   },
 
@@ -996,10 +1021,10 @@ const StyledMuiTableCell = styled(MuiTableCell, {
   shouldForwardProp: (prop) => prop !== 'density',
 })<{ density?: TableDensity }>(({ theme, density = 'standard' }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
-  fontSize: '0.8125rem', // 13px mobile
+  fontSize: theme.typography.button.fontSize, // Use theme token for mobile
 
   [theme.breakpoints.up('sm')]: {
-    fontSize: '0.875rem', // 14px tablet+
+    fontSize: theme.typography.body2.fontSize, // Use theme token for tablet+
   },
 
   ...getDensityPadding(density, theme),
@@ -1099,7 +1124,7 @@ export interface ListItemProps {
 
 const StyledMuiListItem = styled(MuiListItem)(({ theme }) => ({
   padding: theme.spacing(1, 1.5), // 8px 12px mobile
-  minHeight: 48,
+  minHeight: theme.spacing(6), // 48px
 
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(1, 2), // 8px 16px tablet+
@@ -1148,7 +1173,7 @@ export interface ListItemButtonProps {
 
 const StyledMuiListItemButton = styled(MuiListItemButton)(({ theme }) => ({
   padding: theme.spacing(1.5, 1.5), // 12px 12px mobile
-  minHeight: 48,
+  minHeight: theme.spacing(6), // 48px
   borderRadius: theme.shape.borderRadius,
 
   [theme.breakpoints.up('sm')]: {
@@ -1160,13 +1185,13 @@ const StyledMuiListItemButton = styled(MuiListItemButton)(({ theme }) => ({
   },
 
   '&:hover': {
-    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
+    backgroundColor: theme.palette.secondaryStates.light.hover,
   },
 
   '&.Mui-selected': {
-    backgroundColor: theme.palette.secondaryStates?.light.selected || 'rgba(84, 101, 116, 0.08)',
+    backgroundColor: theme.palette.secondaryStates.light.selected,
     '&:hover': {
-      backgroundColor: theme.palette.secondaryStates?.light.focus || 'rgba(84, 101, 116, 0.12)',
+      backgroundColor: theme.palette.secondaryStates.light.focus,
     },
   },
 
@@ -1221,7 +1246,7 @@ export interface ListItemIconProps {
 }
 
 const StyledMuiListItemIcon = styled(MuiListItemIcon)(({ theme }) => ({
-  minWidth: 40,
+  minWidth: theme.spacing(5), // 40px
   color: theme.palette.text.secondary,
 }));
 
@@ -1301,7 +1326,7 @@ export interface ListItemAvatarProps {
 }
 
 const StyledMuiListItemAvatar = styled(MuiListItemAvatar)(({ theme }) => ({
-  minWidth: 56,
+  minWidth: theme.spacing(7), // 56px
 }));
 
 export const ListItemAvatar = React.forwardRef<HTMLDivElement, ListItemAvatarProps>(
@@ -1412,7 +1437,7 @@ const StyledMuiImageListItem = styled(MuiImageListItem)(({ theme }) => ({
   },
 
   '& .MuiImageListItemBar-root': {
-    background: `linear-gradient(to top, ${theme.palette.backdrop?.dark || 'rgba(0,0,0,0.7)'} 0%, ${theme.palette.backdrop?.light || 'rgba(0,0,0,0.3)'} 70%, rgba(0,0,0,0) 100%)`,
+    background: `linear-gradient(to top, ${theme.palette.backdrop.dark} 0%, ${theme.palette.backdrop.light} 70%, rgba(0,0,0,0) 100%)`,
   },
 
   '& .MuiImageListItemBar-title': {

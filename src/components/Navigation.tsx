@@ -356,12 +356,12 @@ const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
   boxShadow: theme.shadows[4],
 
   // Responsive height (mobile-first)
-  minHeight: 56,
+  minHeight: theme.spacing(7), // 56px
   [theme.breakpoints.up('sm')]: {
-    minHeight: 60,
+    minHeight: theme.spacing(7.5), // 60px
   },
   [theme.breakpoints.up('md')]: {
-    minHeight: 64,
+    minHeight: theme.spacing(8), // 64px
   },
 
   // CDS z-index
@@ -369,25 +369,25 @@ const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
 
   // Toolbar responsive styling
   '& .MuiToolbar-root': {
-    minHeight: 56,
+    minHeight: theme.spacing(7), // 56px
     padding: theme.spacing(0, 2),
 
     [theme.breakpoints.up('sm')]: {
-      minHeight: 60,
+      minHeight: theme.spacing(7.5), // 60px
       padding: theme.spacing(0, 3),
     },
 
     [theme.breakpoints.up('md')]: {
-      minHeight: 64,
+      minHeight: theme.spacing(8), // 64px
       padding: theme.spacing(0, 4),
     },
   },
 
   // Typography responsive sizing
   '& .MuiTypography-h6': {
-    fontSize: '1.125rem',
+    fontSize: theme.typography.h6.fontSize, // Use theme token
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
+      fontSize: theme.typography.h6.fontSize, // Use theme token
     },
   },
 }));
@@ -397,7 +397,7 @@ const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
  */
 const StyledDrawer = styled(MuiDrawer)<{ width?: number }>(({ theme, width }) => ({
   '& .MuiDrawer-paper': {
-    width: width || 240,
+    width: width || theme.spacing(30), // 240px
     boxShadow: theme.shadows[16],
     zIndex: theme.zIndex.drawer,
     overflowY: 'auto',
@@ -411,7 +411,7 @@ const StyledDrawer = styled(MuiDrawer)<{ width?: number }>(({ theme, width }) =>
 
   // Backdrop styling - CDS brand token
   '& .MuiBackdrop-root': {
-    backgroundColor: theme.palette.backdrop?.standard || 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: theme.palette.backdrop.standard,
   },
 }));
 
@@ -430,13 +430,13 @@ const StyledBottomNavigation = styled(MuiBottomNavigation)(({ theme }) => ({
   zIndex: theme.zIndex.appBar,
 
   // Height with proper touch targets
-  height: 56,
+  height: theme.spacing(7), // 56px
 
   // Action styling
   '& .MuiBottomNavigationAction-root': {
-    minWidth: 80,
+    minWidth: theme.spacing(10), // 80px
     padding: theme.spacing(0.5, 1),
-    minHeight: 48,
+    minHeight: theme.spacing(6), // 48px
 
     // Label styling
     '& .MuiBottomNavigationAction-label': {
@@ -454,12 +454,12 @@ const StyledBottomNavigation = styled(MuiBottomNavigation)(({ theme }) => ({
 const StyledTabs = styled(MuiTabs)(({ theme }) => ({
   // Indicator styling
   '& .MuiTabs-indicator': {
-    height: 3,
+    height: theme.spacing(0.375), // 3px
     borderRadius: theme.shape.borderRadius,
   },
 
   // Minimum height for touch targets
-  minHeight: 48,
+  minHeight: theme.spacing(6), // 48px
 
   // Scrollable tabs
   '& .MuiTabs-scroller': {
@@ -476,20 +476,20 @@ const StyledTab = styled(MuiTab)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
 
   // Touch targets (mobile-first)
-  minHeight: 48,
-  minWidth: 80,
+  minHeight: theme.spacing(6), // 48px
+  minWidth: theme.spacing(10), // 80px
   padding: theme.spacing(1.5, 1.5),
-  fontSize: '0.8125rem',
+  fontSize: theme.typography.button.fontSize, // Use theme token
 
   [theme.breakpoints.up('sm')]: {
-    minWidth: 90,
+    minWidth: theme.spacing(11.25), // 90px
     padding: theme.spacing(1.5, 2),
-    fontSize: '0.875rem',
+    fontSize: theme.typography.body2.fontSize, // Use theme token
   },
 
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(2, 3),
-    fontSize: '0.9375rem',
+    fontSize: theme.typography.body1.fontSize, // Use theme token
   },
 
   // CDS transitions
@@ -499,12 +499,12 @@ const StyledTab = styled(MuiTab)(({ theme }) => ({
 
   // Hover state - CDS Primary Blurple @ 4%
   '&:hover': {
-    backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
+    backgroundColor: theme.palette.primaryStates.light.hover,
   },
 
   // Focus state (WCAG compliant) - CDS Primary Focus
   '&.Mui-focusVisible': {
-    backgroundColor: theme.palette.primaryStates?.light.focus || 'rgba(75, 63, 255, 0.12)',
+    backgroundColor: theme.palette.primaryStates.light.focus,
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: 2,
   },
@@ -512,7 +512,7 @@ const StyledTab = styled(MuiTab)(({ theme }) => ({
   // Selected state - CDS Primary Selected
   '&.Mui-selected': {
     fontWeight: theme.typography.fontWeightBold,
-    backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
+    backgroundColor: theme.palette.primaryStates.light.selected,
   },
 }));
 
@@ -530,7 +530,7 @@ const StyledNavLink = styled('a')<{ active?: boolean }>(({ theme, active }) => (
   gap: theme.spacing(1),
 
   // Touch target
-  minHeight: 48,
+  minHeight: theme.spacing(6), // 48px
 
   // Font styling
   fontWeight: theme.typography.fontWeightMedium,
@@ -543,13 +543,13 @@ const StyledNavLink = styled('a')<{ active?: boolean }>(({ theme, active }) => (
 
   // Hover state - CDS Primary Blurple @ 4%
   '&:hover': {
-    backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
+    backgroundColor: theme.palette.primaryStates.light.hover,
     color: theme.palette.primary.main,
   },
 
   // Active state - CDS Primary Selected @ 8%
   ...(active && {
-    backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
+    backgroundColor: theme.palette.primaryStates.light.selected,
     color: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightBold,
   }),
@@ -558,7 +558,7 @@ const StyledNavLink = styled('a')<{ active?: boolean }>(({ theme, active }) => (
   '&:focus-visible': {
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: 2,
-    boxShadow: `0 0 0 3px ${theme.palette.primaryStates?.light.focusVisible || 'rgba(75, 63, 255, 0.30)'}`,
+    boxShadow: `0 0 0 3px ${theme.palette.primaryStates.light.focusVisible}`,
   },
 }));
 

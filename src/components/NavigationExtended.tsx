@@ -594,30 +594,30 @@ const StyledMenu = styled(MuiMenu)(({ theme }) => ({
 const StyledMenuItem = styled(MuiMenuItem)(({ theme }) => ({
   // Responsive padding (mobile-first)
   padding: theme.spacing(1.5, 1.5),
-  minHeight: 48,
-  fontSize: '0.9375rem',
+  minHeight: theme.spacing(6), // 48px
+  fontSize: theme.typography.body1.fontSize, // Use theme token
 
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(1.5, 2),
-    fontSize: '1rem',
+    fontSize: theme.typography.body1.fontSize, // Use theme token
   },
 
   // Hover state
   '&:hover': {
-    backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
+    backgroundColor: theme.palette.primaryStates.light.hover,
   },
 
   // Selected state
   '&.Mui-selected': {
-    backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
+    backgroundColor: theme.palette.primaryStates.light.selected,
     '&:hover': {
-      backgroundColor: theme.palette.primaryStates?.light.focus || 'rgba(75, 63, 255, 0.12)',
+      backgroundColor: theme.palette.primaryStates.light.focus,
     },
   },
 
   // Focus state (WCAG compliant)
   '&:focus-visible': {
-    backgroundColor: theme.palette.primaryStates?.light.focusVisible || 'rgba(75, 63, 255, 0.30)',
+    backgroundColor: theme.palette.primaryStates.light.focusVisible,
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: -2,
   },
@@ -681,7 +681,7 @@ const StyledSpeedDialAction = styled(MuiSpeedDialAction)(({ theme }) => ({
     boxShadow: theme.shadows[2],
 
     '&:hover': {
-      backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
+      backgroundColor: theme.palette.secondaryStates.light.hover,
       boxShadow: theme.shadows[4],
     },
 
@@ -699,7 +699,7 @@ const StyledSpeedDialAction = styled(MuiSpeedDialAction)(({ theme }) => ({
 const StyledTreeView = styled(MuiTreeView)(({ theme }) => ({
   '& .MuiTreeItem-root': {
     '&:focus > .MuiTreeItem-content': {
-      backgroundColor: theme.palette.primaryStates?.light.focusVisible || 'rgba(75, 63, 255, 0.30)',
+      backgroundColor: theme.palette.primaryStates.light.focusVisible,
       outline: `2px solid ${theme.palette.primary.main}`,
       outlineOffset: -2,
     },
@@ -710,14 +710,14 @@ const StyledTreeView = styled(MuiTreeView)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
 
     '&:hover': {
-      backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
+      backgroundColor: theme.palette.primaryStates.light.hover,
     },
 
     '&.Mui-selected': {
-      backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
+      backgroundColor: theme.palette.primaryStates.light.selected,
 
       '&:hover': {
-        backgroundColor: theme.palette.primaryStates?.light.focus || 'rgba(75, 63, 255, 0.12)',
+        backgroundColor: theme.palette.primaryStates.light.focus,
       },
     },
   },
@@ -734,10 +734,10 @@ const StyledTreeView = styled(MuiTreeView)(({ theme }) => ({
 const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
   '& .MuiTreeItem-iconContainer': {
     marginRight: theme.spacing(1),
-    width: 24,
+    width: theme.spacing(3), // 24px
 
     '& svg': {
-      fontSize: 20,
+      fontSize: theme.spacing(2.5), // 20px
       color: theme.palette.text.secondary,
     },
   },
@@ -791,7 +791,7 @@ const StyledStepLabel = styled(MuiStepLabel)(({ theme }) => ({
     paddingRight: theme.spacing(1),
 
     '& .MuiSvgIcon-root': {
-      fontSize: 24,
+      fontSize: theme.spacing(3), // 24px
 
       '&.Mui-active': {
         color: theme.palette.primary.main,

@@ -114,12 +114,12 @@ const DropZone = styled(Box)(({ theme }) => ({
 
   '&:hover': {
     borderColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
+    backgroundColor: theme.palette.primaryStates.light.hover,
   },
 
   '&.drag-active': {
     borderColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
+    backgroundColor: theme.palette.primaryStates.light.selected,
   },
 
   '&.disabled': {

@@ -954,9 +954,9 @@ const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius, // 4px
 
     // Responsive font size
-    fontSize: '0.9375rem', // 15px mobile
+    fontSize: theme.typography.body1.fontSize, // Use theme token
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1rem', // 16px tablet+
+      fontSize: theme.typography.body1.fontSize, // Use theme token
     },
 
     '& .MuiOutlinedInput-input': {
@@ -993,9 +993,9 @@ const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
 
   // Label styling - responsive font size
   '& .MuiInputLabel-root': {
-    fontSize: '0.9375rem', // 15px mobile
+    fontSize: theme.typography.body1.fontSize, // Use theme token
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1rem', // 16px tablet+
+      fontSize: theme.typography.body1.fontSize, // Use theme token
     },
 
     '&.Mui-focused': {
@@ -1015,9 +1015,9 @@ const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
   // Helper text - responsive
   '& .MuiFormHelperText-root': {
     marginTop: theme.spacing(0.5),
-    fontSize: '0.6875rem', // 11px mobile
+    fontSize: theme.typography.caption.fontSize, // Use theme token
     [theme.breakpoints.up('sm')]: {
-      fontSize: '0.75rem', // 12px tablet+
+      fontSize: theme.typography.caption.fontSize, // Use theme token
     },
 
     '&.Mui-error': {
@@ -1042,7 +1042,7 @@ const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
  */
 const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
   // Ensure WCAG touch target minimum (48px)
-  padding: 12,
+  padding: theme.spacing(1.5), // 12px
 
   '&.Mui-focusVisible': {
     outline: `2px solid ${theme.palette.primary.main}`,
@@ -1056,7 +1056,7 @@ const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
 
   // Hover state
   '&:hover': {
-    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
+    backgroundColor: theme.palette.secondaryStates.light.hover,
   },
 }));
 
@@ -1065,7 +1065,7 @@ const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
  */
 const StyledMuiRadio = styled(MuiRadio)(({ theme }) => ({
   // Ensure WCAG touch target minimum (48px)
-  padding: 12,
+  padding: theme.spacing(1.5), // 12px
 
   '&.Mui-focusVisible': {
     outline: `2px solid ${theme.palette.primary.main}`,
@@ -1079,7 +1079,7 @@ const StyledMuiRadio = styled(MuiRadio)(({ theme }) => ({
 
   // Hover state
   '&:hover': {
-    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
+    backgroundColor: theme.palette.secondaryStates.light.hover,
   },
 }));
 
@@ -1106,7 +1106,7 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
  */
 const StyledMuiSwitch = styled(MuiSwitch)(({ theme }) => ({
   // Proper sizing for touch target
-  padding: 12,
+  padding: theme.spacing(1.5), // 12px
 
   '& .MuiSwitch-switchBase': {
     '&.Mui-focusVisible': {
@@ -1116,7 +1116,7 @@ const StyledMuiSwitch = styled(MuiSwitch)(({ theme }) => ({
 
     // Enhanced hover state
     '&:hover': {
-      backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
+      backgroundColor: theme.palette.secondaryStates.light.hover,
     },
   },
 
@@ -1236,7 +1236,7 @@ const StyledMuiFormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
   alignItems: 'center',
 
   // Touch target
-  minHeight: 48,
+  minHeight: theme.spacing(6), // 48px
 }));
 
 /**
@@ -1245,9 +1245,9 @@ const StyledMuiFormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 const StyledMuiFormHelperText = styled(MuiFormHelperText)(({ theme }) => ({
   marginTop: theme.spacing(0.5),
   marginLeft: theme.spacing(1.75),
-  fontSize: '0.6875rem', // 11px mobile
+  fontSize: theme.typography.caption.fontSize, // Use theme token
   [theme.breakpoints.up('sm')]: {
-    fontSize: '0.75rem', // 12px tablet+
+    fontSize: theme.typography.caption.fontSize, // Use theme token
   },
 
   '&.Mui-error': {
@@ -1275,9 +1275,9 @@ const StyledMuiFormGroup = styled(MuiFormGroup)(({ theme }) => ({
  * Styled InputLabel with CDS tokens
  */
 const StyledMuiInputLabel = styled(MuiInputLabel)(({ theme }) => ({
-  fontSize: '0.9375rem', // 15px mobile
+  fontSize: theme.typography.body1.fontSize, // Use theme token
   [theme.breakpoints.up('sm')]: {
-    fontSize: '1rem', // 16px tablet+
+    fontSize: theme.typography.body1.fontSize, // Use theme token
   },
 
   fontWeight: theme.typography.fontWeightMedium,
@@ -1308,10 +1308,10 @@ const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme }) => ({
 
   '& .MuiOutlinedInput-input': {
     padding: theme.spacing(1.5, 1.75),
-    fontSize: '0.9375rem',
+    fontSize: theme.typography.body1.fontSize, // Use theme token
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(2, 1.75),
-      fontSize: '1rem',
+      fontSize: theme.typography.body1.fontSize, // Use theme token
     },
   },
 

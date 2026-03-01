@@ -519,20 +519,20 @@ const StyledMuiAlert = styled(MuiAlert)(({ theme }) => ({
   '& .MuiAlert-icon': {
     padding: 0,
     marginRight: theme.spacing(1), // 4px mobile
-    fontSize: '1.25rem', // 20px mobile
+    fontSize: theme.typography.h6.fontSize, // Use theme token
 
     [theme.breakpoints.up('sm')]: {
       marginRight: theme.spacing(1.5), // 6px tablet+
-      fontSize: '1.5rem', // 24px tablet+
+      fontSize: theme.typography.h5.fontSize, // Use theme token
     },
   },
 
   '& .MuiAlert-message': {
     padding: theme.spacing(1, 0),
-    fontSize: '0.8125rem', // 13px mobile
+    fontSize: theme.typography.button.fontSize, // Use theme token
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '0.875rem', // 14px tablet+
+      fontSize: theme.typography.body2.fontSize, // Use theme token
     },
   },
 
@@ -568,20 +568,20 @@ const StyledMuiDialog = styled(MuiDialog)<{ customWidth?: number | string }>(({ 
     borderRadius: theme.shape.borderRadius,
 
     // Responsive padding
-    padding: theme.spacing(1.5), // 6px mobile
-    minWidth: customWidth === '100%' ? '100%' : 280, // 280px mobile or fullscreen
-    margin: theme.spacing(2), // 8px margin mobile
+    padding: theme.spacing(1.5), // 12px mobile
+    minWidth: customWidth === '100%' ? '100%' : theme.spacing(35), // 280px mobile or fullscreen
+    margin: theme.spacing(2), // 16px margin mobile
 
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(2), // 8px tablet
-      minWidth: customWidth === '100%' ? '100%' : typeof customWidth === 'number' ? Math.min(customWidth, 320) : 320,
-      margin: theme.spacing(4), // 16px margin tablet
+      padding: theme.spacing(2), // 16px tablet
+      minWidth: customWidth === '100%' ? '100%' : typeof customWidth === 'number' ? Math.min(customWidth, theme.spacing(40)) : theme.spacing(40),
+      margin: theme.spacing(4), // 32px margin tablet
     },
 
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(3), // 12px desktop
+      padding: theme.spacing(3), // 24px desktop
       minWidth: customWidth === '100%' ? '100%' : customWidth,
-      margin: theme.spacing(6), // 24px margin desktop
+      margin: theme.spacing(6), // 48px margin desktop
     },
   },
 }));
@@ -591,20 +591,20 @@ const StyledMuiDialog = styled(MuiDialog)<{ customWidth?: number | string }>(({ 
  */
 const StyledMuiDialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
   // Responsive padding
-  padding: theme.spacing(1.5, 2), // 12px 8px mobile
+  padding: theme.spacing(1.5, 2), // 12px 16px mobile
   fontWeight: theme.typography.fontWeightBold,
 
   // Responsive font size
-  fontSize: '1.125rem', // 18px mobile
+  fontSize: theme.typography.h6.fontSize, // Use theme token
 
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(2, 3), // 16px 12px tablet
-    fontSize: '1.25rem', // 20px tablet+
+    padding: theme.spacing(2, 3), // 16px 24px tablet
+    fontSize: theme.typography.h6.fontSize, // Use theme token
   },
 
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(2.5, 3.5), // 20px 14px desktop
-    fontSize: '1.5rem', // 24px desktop
+    padding: theme.spacing(2.5, 3.5), // 20px 28px desktop
+    fontSize: theme.typography.h5.fontSize, // Use theme token
   },
 }));
 
@@ -613,21 +613,21 @@ const StyledMuiDialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
  */
 const StyledMuiDialogContent = styled(MuiDialogContent)(({ theme }) => ({
   // Responsive padding
-  padding: theme.spacing(2), // 8px mobile
+  padding: theme.spacing(2), // 16px mobile
 
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(2, 3), // 8px 12px tablet
+    padding: theme.spacing(2, 3), // 16px 24px tablet
   },
 
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(3, 3.5), // 12px 14px desktop
+    padding: theme.spacing(3, 3.5), // 24px 28px desktop
   },
 
   // Responsive font size
-  fontSize: '0.9375rem', // 15px mobile
+  fontSize: theme.typography.body1.fontSize, // Use theme token
 
   [theme.breakpoints.up('sm')]: {
-    fontSize: '1rem', // 16px tablet+
+    fontSize: theme.typography.body1.fontSize, // Use theme token
   },
 }));
 
@@ -661,7 +661,7 @@ const StyledMuiCircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
  * Styled LinearProgress with CDS tokens
  */
 const StyledMuiLinearProgress = styled(MuiLinearProgress)(({ theme }) => ({
-  height: 4,
+  height: theme.spacing(0.5), // 4px
   borderRadius: theme.shape.borderRadius / 2,
 
   '& .MuiLinearProgress-bar': {
@@ -688,7 +688,7 @@ const StyledMuiSkeleton = styled(MuiSkeleton)(({ theme }) => ({
  * Styled Backdrop with CDS tokens
  */
 const StyledMuiBackdrop = styled(MuiBackdrop)(({ theme }) => ({
-  backgroundColor: theme.palette.backdrop?.standard || 'rgba(0, 0, 0, 0.5)',
+  backgroundColor: theme.palette.backdrop.standard,
   zIndex: theme.zIndex.drawer + 1,
 
   transition: theme.transitions.create('opacity', {

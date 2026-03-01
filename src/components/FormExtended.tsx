@@ -419,7 +419,7 @@ const StyledMuiRating = styled(MuiRating)(({ theme }) => ({
   },
 
   '& .MuiRating-icon': {
-    fontSize: '1.5rem',
+    fontSize: theme.typography.h5.fontSize, // Use theme token
   },
 
   '&:focus-visible': {
@@ -703,14 +703,14 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
 
           '& .MuiAutocomplete-option': {
             padding: theme.spacing(1.5, 2),
-            minHeight: 48,
+            minHeight: theme.spacing(6), // 48px
 
             '&[aria-selected="true"]': {
-              backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
+              backgroundColor: theme.palette.primaryStates.light.selected,
             },
 
             '&.Mui-focused': {
-              backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
+              backgroundColor: theme.palette.primaryStates.light.hover,
             },
           },
         },

@@ -200,13 +200,13 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
 
   // Responsive sizing (mobile-first)
   padding: theme.spacing(1.5, 3),
-  minHeight: 38,
-  fontSize: '0.8125rem',
+  minHeight: theme.spacing(4.75), // 38px
+  fontSize: theme.typography.button.fontSize, // Use theme token
 
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(1.5, 4),
-    minHeight: 40,
-    fontSize: '0.875rem',
+    minHeight: theme.spacing(5), // 40px
+    fontSize: theme.typography.body2.fontSize, // Use theme token
   },
 
   // CDS Transitions
@@ -220,26 +220,26 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
 
   // Small size variant (responsive)
   '&.MuiButton-sizeSmall': {
-    minHeight: 30,
+    minHeight: theme.spacing(3.75), // 30px
     padding: theme.spacing(1, 2),
-    fontSize: '0.75rem',
+    fontSize: theme.typography.caption.fontSize, // Use theme token
 
     [theme.breakpoints.up('sm')]: {
-      minHeight: 32,
-      fontSize: '0.8125rem',
+      minHeight: theme.spacing(4), // 32px
+      fontSize: theme.typography.button.fontSize, // Use theme token
     },
   },
 
   // Large size variant (responsive)
   '&.MuiButton-sizeLarge': {
-    minHeight: 44,
+    minHeight: theme.spacing(5.5), // 44px
     padding: theme.spacing(1.5, 4),
-    fontSize: '0.9375rem',
+    fontSize: theme.typography.body1.fontSize, // Use theme token
 
     [theme.breakpoints.up('sm')]: {
-      minHeight: 48,
+      minHeight: theme.spacing(6), // 48px
       padding: theme.spacing(2, 5),
-      fontSize: '1rem',
+      fontSize: theme.typography.body1.fontSize, // Use theme token
     },
   },
 
@@ -255,7 +255,7 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
   '&[data-cds-variant="ghost"]': {
     color: theme.palette.text.secondary,
     '&:hover': {
-      backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
+      backgroundColor: theme.palette.secondaryStates.light.hover,
       color: theme.palette.text.primary,
     },
   },
@@ -403,9 +403,9 @@ export const IconButton = styled(
   )
 )(({ theme }) => ({
   // WCAG touch target minimum (CDS requirement)
-  minWidth: 48,
-  minHeight: 48,
-  padding: 12,
+  minWidth: theme.spacing(6), // 48px
+  minHeight: theme.spacing(6), // 48px
+  padding: theme.spacing(1.5), // 12px
 
   // CDS transitions
   transition: theme.transitions.create(['background-color', 'transform'], {
@@ -467,8 +467,8 @@ export const FAB = styled(
   )
 )(({ theme }) => ({
   // CDS sizing
-  minWidth: 56,
-  minHeight: 56,
+  minWidth: theme.spacing(7), // 56px
+  minHeight: theme.spacing(7), // 56px
 
   // CDS elevation
   boxShadow: theme.shadows[6],
@@ -483,18 +483,18 @@ export const FAB = styled(
 
   // Size variants (CDS responsive)
   '&.MuiFab-sizeSmall': {
-    minWidth: 40,
-    minHeight: 40,
+    minWidth: theme.spacing(5), // 40px
+    minHeight: theme.spacing(5), // 40px
   },
 
   '&.MuiFab-sizeMedium': {
-    minWidth: 56,
-    minHeight: 56,
+    minWidth: theme.spacing(7), // 56px
+    minHeight: theme.spacing(7), // 56px
   },
 
   '&.MuiFab-sizeLarge': {
-    minWidth: 72,
-    minHeight: 72,
+    minWidth: theme.spacing(9), // 72px
+    minHeight: theme.spacing(9), // 72px
   },
 
   // CDS focus indicator
