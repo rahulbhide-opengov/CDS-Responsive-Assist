@@ -198,16 +198,10 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
   textTransform: 'none',
   fontWeight: theme.typography.fontWeightMedium,
 
-  // Responsive sizing (mobile-first)
+  // Base styling
   padding: theme.spacing(1.5, 3),
-  minHeight: theme.spacing(4.75), // 38px
-  fontSize: theme.typography.button.fontSize, // Use theme token
-
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(1.5, 4),
-    minHeight: theme.spacing(5), // 40px
-    fontSize: theme.typography.body2.fontSize, // Use theme token
-  },
+  minHeight: 40, // sizingTokens.button.medium
+  fontSize: theme.typography.button.fontSize, // Fixed 14px
 
   // CDS Transitions
   transition: theme.transitions.create(
@@ -218,29 +212,18 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
     }
   ),
 
-  // Small size variant (responsive)
+  // Small size variant
   '&.MuiButton-sizeSmall': {
-    minHeight: theme.spacing(3.75), // 30px
+    minHeight: 32, // sizingTokens.button.small
     padding: theme.spacing(1, 2),
-    fontSize: theme.typography.caption.fontSize, // Use theme token
-
-    [theme.breakpoints.up('sm')]: {
-      minHeight: theme.spacing(4), // 32px
-      fontSize: theme.typography.button.fontSize, // Use theme token
-    },
+    fontSize: theme.typography.button.fontSize, // Fixed 14px
   },
 
-  // Large size variant (responsive)
+  // Large size variant
   '&.MuiButton-sizeLarge': {
-    minHeight: theme.spacing(5.5), // 44px
-    padding: theme.spacing(1.5, 4),
-    fontSize: theme.typography.body1.fontSize, // Use theme token
-
-    [theme.breakpoints.up('sm')]: {
-      minHeight: theme.spacing(6), // 48px
-      padding: theme.spacing(2, 5),
-      fontSize: theme.typography.body1.fontSize, // Use theme token
-    },
+    minHeight: 48, // sizingTokens.button.large
+    padding: theme.spacing(2, 5),
+    fontSize: theme.typography.button.fontSize, // Fixed 14px
   },
 
   // CDS-specific variant styles (override MUI defaults)

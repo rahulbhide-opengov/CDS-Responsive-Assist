@@ -386,18 +386,11 @@ export interface BadgeProps {
 
 const StyledMuiBadge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    fontSize: theme.typography.caption.fontSize, // Use theme token
+    fontSize: theme.typography.caption.fontSize, // Fixed 12px
     fontWeight: theme.typography.fontWeightMedium,
-    minWidth: theme.spacing(2.25), // 18px mobile
-    height: theme.spacing(2.25),
-    padding: theme.spacing(0, 0.5),
-
-    [theme.breakpoints.up('sm')]: {
-      fontSize: theme.typography.caption.fontSize, // 12px tablet+
-      minWidth: theme.spacing(2.5), // 20px tablet+
-      height: theme.spacing(2.5),
-      padding: theme.spacing(0, 0.75),
-    },
+    minWidth: 20,
+    height: 20,
+    padding: theme.spacing(0, 0.75),
 
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,
@@ -405,14 +398,9 @@ const StyledMuiBadge = styled(MuiBadge)(({ theme }) => ({
   },
 
   '& .MuiBadge-dot': {
-    width: theme.spacing(0.75), // 6px mobile
-    height: theme.spacing(0.75),
+    width: 8,
+    height: 8,
     borderRadius: '50%',
-
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(1), // 8px tablet+
-      height: theme.spacing(1),
-    },
   },
 }));
 
@@ -541,31 +529,18 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   fontWeight: theme.typography.fontWeightMedium,
 
-  // Responsive sizing
-  height: theme.spacing(3.5), // 28px mobile
-  fontSize: theme.typography.button.fontSize, // Use theme token
-
-  [theme.breakpoints.up('sm')]: {
-    height: theme.spacing(4), // 32px tablet+
-    fontSize: theme.typography.body2.fontSize, // Use theme token
-  },
+  // Fixed sizing
+  height: 32,
+  fontSize: theme.typography.button.fontSize, // Fixed 14px
 
   '& .MuiChip-label': {
-    padding: theme.spacing(0, 1.5), // 0 12px mobile
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(0, 2), // 0 16px tablet+
-    },
+    padding: theme.spacing(0, 2), // 0 16px
   },
 
   '& .MuiChip-icon': {
-    marginLeft: theme.spacing(0.75), // 6px mobile
+    marginLeft: theme.spacing(1),
     marginRight: theme.spacing(-0.5),
-    fontSize: theme.typography.h6.fontSize, // Use theme token for icons
-
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1), // 8px tablet+
-      fontSize: theme.typography.h6.fontSize, // Use theme token
-    },
+    fontSize: theme.typography.h6.fontSize, // Fixed 12px
   },
 
   '&.MuiChip-clickable:hover': {
@@ -1021,11 +996,7 @@ const StyledMuiTableCell = styled(MuiTableCell, {
   shouldForwardProp: (prop) => prop !== 'density',
 })<{ density?: TableDensity }>(({ theme, density = 'standard' }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
-  fontSize: theme.typography.button.fontSize, // Use theme token for mobile
-
-  [theme.breakpoints.up('sm')]: {
-    fontSize: theme.typography.body2.fontSize, // Use theme token for tablet+
-  },
+  fontSize: theme.typography.body2.fontSize, // Fixed 14px
 
   ...getDensityPadding(density, theme),
 }));

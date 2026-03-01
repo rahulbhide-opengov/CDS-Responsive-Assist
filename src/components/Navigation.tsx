@@ -355,13 +355,10 @@ const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
   // CDS elevation
   boxShadow: theme.shadows[4],
 
-  // Responsive height (mobile-first)
-  minHeight: theme.spacing(7), // 56px
-  [theme.breakpoints.up('sm')]: {
-    minHeight: theme.spacing(7.5), // 60px
-  },
+  // Use sizingTokens for height - device variants
+  minHeight: 56, // sizingTokens.appBar.mobile
   [theme.breakpoints.up('md')]: {
-    minHeight: theme.spacing(8), // 64px
+    minHeight: 64, // sizingTokens.appBar.desktop
   },
 
   // CDS z-index
@@ -369,26 +366,18 @@ const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
 
   // Toolbar responsive styling
   '& .MuiToolbar-root': {
-    minHeight: theme.spacing(7), // 56px
+    minHeight: 56, // sizingTokens.appBar.mobile
     padding: theme.spacing(0, 2),
 
-    [theme.breakpoints.up('sm')]: {
-      minHeight: theme.spacing(7.5), // 60px
-      padding: theme.spacing(0, 3),
-    },
-
     [theme.breakpoints.up('md')]: {
-      minHeight: theme.spacing(8), // 64px
+      minHeight: 64, // sizingTokens.appBar.desktop
       padding: theme.spacing(0, 4),
     },
   },
 
-  // Typography responsive sizing
+  // Typography fixed sizing
   '& .MuiTypography-h6': {
-    fontSize: theme.typography.h6.fontSize, // Use theme token
-    [theme.breakpoints.up('sm')]: {
-      fontSize: theme.typography.h6.fontSize, // Use theme token
-    },
+    fontSize: theme.typography.h6.fontSize, // Fixed 12px
   },
 }));
 
@@ -397,7 +386,7 @@ const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
  */
 const StyledDrawer = styled(MuiDrawer)<{ width?: number }>(({ theme, width }) => ({
   '& .MuiDrawer-paper': {
-    width: width || theme.spacing(30), // 240px
+    width: width || 240, // sizingTokens.drawer.standard
     boxShadow: theme.shadows[16],
     zIndex: theme.zIndex.drawer,
     overflowY: 'auto',
@@ -475,22 +464,11 @@ const StyledTab = styled(MuiTab)(({ theme }) => ({
   textTransform: 'none',
   fontWeight: theme.typography.fontWeightMedium,
 
-  // Touch targets (mobile-first)
-  minHeight: theme.spacing(6), // 48px
-  minWidth: theme.spacing(10), // 80px
-  padding: theme.spacing(1.5, 1.5),
-  fontSize: theme.typography.button.fontSize, // Use theme token
-
-  [theme.breakpoints.up('sm')]: {
-    minWidth: theme.spacing(11.25), // 90px
-    padding: theme.spacing(1.5, 2),
-    fontSize: theme.typography.body2.fontSize, // Use theme token
-  },
-
-  [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(2, 3),
-    fontSize: theme.typography.body1.fontSize, // Use theme token
-  },
+  // Touch targets
+  minHeight: 48, // sizingTokens.touchTarget.min
+  minWidth: 80,
+  padding: theme.spacing(1.5, 2),
+  fontSize: theme.typography.button.fontSize, // Fixed 14px
 
   // CDS transitions
   transition: theme.transitions.create(['color', 'background-color'], {

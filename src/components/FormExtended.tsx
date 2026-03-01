@@ -419,7 +419,7 @@ const StyledMuiRating = styled(MuiRating)(({ theme }) => ({
   },
 
   '& .MuiRating-icon': {
-    fontSize: theme.typography.h5.fontSize, // Use theme token
+    fontSize: theme.typography.h5.fontSize, // Fixed 14px
   },
 
   '&:focus-visible': {

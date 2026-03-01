@@ -509,41 +509,24 @@ const getCircularProgressSize = (size: number | 'small' | 'medium' | 'large'): n
 const StyledMuiAlert = styled(MuiAlert)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
 
-  // Responsive padding
-  padding: theme.spacing(1, 1.5), // 4px 6px mobile
-
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(1.5, 2), // 12px 8px tablet+
-  },
+  // Fixed padding
+  padding: theme.spacing(1.5, 2),
 
   '& .MuiAlert-icon': {
     padding: 0,
-    marginRight: theme.spacing(1), // 4px mobile
-    fontSize: theme.typography.h6.fontSize, // Use theme token
-
-    [theme.breakpoints.up('sm')]: {
-      marginRight: theme.spacing(1.5), // 6px tablet+
-      fontSize: theme.typography.h5.fontSize, // Use theme token
-    },
+    marginRight: theme.spacing(1.5),
+    fontSize: theme.typography.h5.fontSize, // Fixed 14px
   },
 
   '& .MuiAlert-message': {
     padding: theme.spacing(1, 0),
-    fontSize: theme.typography.button.fontSize, // Use theme token
-
-    [theme.breakpoints.up('sm')]: {
-      fontSize: theme.typography.body2.fontSize, // Use theme token
-    },
+    fontSize: theme.typography.body2.fontSize, // Fixed 14px
   },
 
   '& .MuiAlert-action': {
     padding: 0,
     marginRight: 0,
-    marginLeft: theme.spacing(1), // 4px mobile
-
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(2), // 8px tablet+
-    },
+    marginLeft: theme.spacing(2),
   },
 }));
 
@@ -594,17 +577,15 @@ const StyledMuiDialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
   padding: theme.spacing(1.5, 2), // 12px 16px mobile
   fontWeight: theme.typography.fontWeightBold,
 
-  // Responsive font size
-  fontSize: theme.typography.h6.fontSize, // Use theme token
+  // Fixed font size
+  fontSize: theme.typography.h5.fontSize, // Fixed 14px
 
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(2, 3), // 16px 24px tablet
-    fontSize: theme.typography.h6.fontSize, // Use theme token
   },
 
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(2.5, 3.5), // 20px 28px desktop
-    fontSize: theme.typography.h5.fontSize, // Use theme token
   },
 }));
 
@@ -623,12 +604,8 @@ const StyledMuiDialogContent = styled(MuiDialogContent)(({ theme }) => ({
     padding: theme.spacing(3, 3.5), // 24px 28px desktop
   },
 
-  // Responsive font size
-  fontSize: theme.typography.body1.fontSize, // Use theme token
-
-  [theme.breakpoints.up('sm')]: {
-    fontSize: theme.typography.body1.fontSize, // Use theme token
-  },
+  // Fixed font size
+  fontSize: theme.typography.body1.fontSize, // Fixed 16px
 }));
 
 /**
