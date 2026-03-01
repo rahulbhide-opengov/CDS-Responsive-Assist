@@ -36,6 +36,9 @@ const themeOptions: ThemeOptions = {
     action: colorTokens.action,
     divider: colorTokens.divider,
     backdrop: colorTokens.backdrop,
+    // CDS State Colors (for direct access)
+    primaryStates: colorTokens.primaryStates,
+    secondaryStates: colorTokens.secondaryStates,
   },
 
   // Spacing
@@ -107,6 +110,85 @@ const themeOptions: ThemeOptions = {
           minHeight: 48,
           padding: '11px 26px',
         },
+        // Primary Color - Contained (Filled) - CDS Blurple states
+        containedPrimary: {
+          '&:hover': {
+            backgroundColor: colorTokens.primary[700], // Blurple 700
+            // Overlay with hover state
+            backgroundImage: `linear-gradient(${colorTokens.primaryStates.light.hover}, ${colorTokens.primaryStates.light.hover})`,
+          },
+          '&:active': {
+            backgroundImage: `linear-gradient(${colorTokens.primaryStates.light.selected}, ${colorTokens.primaryStates.light.selected})`,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+        // Primary Color - Outlined - CDS Blurple states
+        outlinedPrimary: {
+          borderColor: colorTokens.primaryStates.light.outlinedBorder,
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+            borderColor: colorTokens.primary[700],
+          },
+          '&:active': {
+            backgroundColor: colorTokens.primaryStates.light.selected,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+        // Primary Color - Text - CDS Blurple states
+        textPrimary: {
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&:active': {
+            backgroundColor: colorTokens.primaryStates.light.selected,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+        // Secondary Color - Contained (Filled) - CDS Slate states
+        containedSecondary: {
+          '&:hover': {
+            backgroundColor: colorTokens.secondary[700], // Slate 700
+            backgroundImage: `linear-gradient(${colorTokens.secondaryStates.light.hover}, ${colorTokens.secondaryStates.light.hover})`,
+          },
+          '&:active': {
+            backgroundImage: `linear-gradient(${colorTokens.secondaryStates.light.selected}, ${colorTokens.secondaryStates.light.selected})`,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.secondaryStates.light.focusVisible}`,
+          },
+        },
+        // Secondary Color - Outlined - CDS Slate states
+        outlinedSecondary: {
+          borderColor: colorTokens.secondaryStates.light.outlinedBorder,
+          '&:hover': {
+            backgroundColor: colorTokens.secondaryStates.light.hover,
+            borderColor: colorTokens.secondary[700],
+          },
+          '&:active': {
+            backgroundColor: colorTokens.secondaryStates.light.selected,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.secondaryStates.light.focusVisible}`,
+          },
+        },
+        // Secondary Color - Text - CDS Slate states
+        textSecondary: {
+          '&:hover': {
+            backgroundColor: colorTokens.secondaryStates.light.hover,
+          },
+          '&:active': {
+            backgroundColor: colorTokens.secondaryStates.light.selected,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.secondaryStates.light.focusVisible}`,
+          },
+        },
       },
     },
 
@@ -116,6 +198,30 @@ const themeOptions: ThemeOptions = {
           // Ensure minimum touch target
           minWidth: 48,
           minHeight: 48,
+        },
+        // Primary color icon button - CDS Blurple states
+        colorPrimary: {
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&:active': {
+            backgroundColor: colorTokens.primaryStates.light.selected,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+        // Secondary color icon button - CDS Slate states
+        colorSecondary: {
+          '&:hover': {
+            backgroundColor: colorTokens.secondaryStates.light.hover,
+          },
+          '&:active': {
+            backgroundColor: colorTokens.secondaryStates.light.selected,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.secondaryStates.light.focusVisible}`,
+          },
         },
       },
     },
@@ -128,6 +234,17 @@ const themeOptions: ThemeOptions = {
         root: {
           '& .MuiOutlinedInput-root': {
             borderRadius: borderRadiusTokens.small,
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: colorTokens.primary[700],
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: colorTokens.primary[700],
+              borderWidth: '2px',
+            },
+            '&.Mui-focused': {
+              // Focus ring using CDS primary focus state
+              boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+            },
           },
         },
       },
@@ -202,6 +319,25 @@ const themeOptions: ThemeOptions = {
       styleOverrides: {
         root: {
           padding: 12, // Ensures 48px touch target with 24px icon
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+        colorPrimary: {
+          '&.Mui-checked': {
+            color: colorTokens.primary[700],
+          },
+        },
+        colorSecondary: {
+          '&.Mui-checked': {
+            color: colorTokens.secondary[700],
+          },
+          '&:hover': {
+            backgroundColor: colorTokens.secondaryStates.light.hover,
+          },
         },
       },
     },
@@ -210,6 +346,25 @@ const themeOptions: ThemeOptions = {
       styleOverrides: {
         root: {
           padding: 12, // Ensures 48px touch target with 24px icon
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+        colorPrimary: {
+          '&.Mui-checked': {
+            color: colorTokens.primary[700],
+          },
+        },
+        colorSecondary: {
+          '&.Mui-checked': {
+            color: colorTokens.secondary[700],
+          },
+          '&:hover': {
+            backgroundColor: colorTokens.secondaryStates.light.hover,
+          },
         },
       },
     },
@@ -218,6 +373,159 @@ const themeOptions: ThemeOptions = {
       styleOverrides: {
         root: {
           padding: 12,
+        },
+        switchBase: {
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+        colorPrimary: {
+          '&.Mui-checked': {
+            color: colorTokens.primary[700],
+            '& + .MuiSwitch-track': {
+              backgroundColor: colorTokens.primary[700],
+            },
+          },
+        },
+        colorSecondary: {
+          '&.Mui-checked': {
+            color: colorTokens.secondary[700],
+            '& + .MuiSwitch-track': {
+              backgroundColor: colorTokens.secondary[700],
+            },
+          },
+          '&:hover': {
+            backgroundColor: colorTokens.secondaryStates.light.hover,
+          },
+        },
+      },
+    },
+
+    // Tabs - CDS primary state colors
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          fontWeight: typographyTokens.fontWeightMedium,
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&.Mui-selected': {
+            color: colorTokens.primary[700],
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+      },
+    },
+
+    // Chip - CDS state colors
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: borderRadiusTokens.extraSmall,
+        },
+        colorPrimary: {
+          backgroundColor: colorTokens.primary[100],
+          color: colorTokens.primary[700],
+          '&:hover': {
+            backgroundColor: colorTokens.primary[200],
+          },
+        },
+        colorSecondary: {
+          backgroundColor: colorTokens.secondary[100],
+          color: colorTokens.secondary[700],
+          '&:hover': {
+            backgroundColor: colorTokens.secondary[200],
+          },
+        },
+        clickable: {
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&:active': {
+            backgroundColor: colorTokens.primaryStates.light.selected,
+          },
+        },
+      },
+    },
+
+    // List Item - CDS state colors
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: colorTokens.action.hover,
+          },
+          '&.Mui-selected': {
+            backgroundColor: colorTokens.primaryStates.light.selected,
+            '&:hover': {
+              backgroundColor: colorTokens.primaryStates.light.hover,
+            },
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
+        },
+      },
+    },
+
+    // Menu Item - CDS state colors
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: colorTokens.action.hover,
+          },
+          '&.Mui-selected': {
+            backgroundColor: colorTokens.primaryStates.light.selected,
+            '&:hover': {
+              backgroundColor: colorTokens.primaryStates.light.hover,
+            },
+          },
+          '&.Mui-focusVisible': {
+            backgroundColor: colorTokens.primaryStates.light.focus,
+          },
+        },
+      },
+    },
+
+    // Toggle Button - CDS state colors
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          '&:hover': {
+            backgroundColor: colorTokens.primaryStates.light.hover,
+          },
+          '&.Mui-selected': {
+            backgroundColor: colorTokens.primaryStates.light.selected,
+            color: colorTokens.primary[700],
+            '&:hover': {
+              backgroundColor: colorTokens.primaryStates.light.hover,
+            },
+          },
+        },
+      },
+    },
+
+    // Slider - CDS primary colors
+    MuiSlider: {
+      styleOverrides: {
+        root: {
+          color: colorTokens.primary[700],
+        },
+        thumb: {
+          '&:hover': {
+            boxShadow: `0 0 0 8px ${colorTokens.primaryStates.light.hover}`,
+          },
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 8px ${colorTokens.primaryStates.light.focusVisible}`,
+          },
         },
       },
     },

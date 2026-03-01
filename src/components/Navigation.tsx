@@ -497,21 +497,22 @@ const StyledTab = styled(MuiTab)(({ theme }) => ({
     duration: theme.transitions.duration.short,
   }),
 
-  // Hover state
+  // Hover state - CDS Primary Blurple @ 4%
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
   },
 
-  // Focus state (WCAG compliant)
+  // Focus state (WCAG compliant) - CDS Primary Focus
   '&.Mui-focusVisible': {
-    backgroundColor: theme.palette.action.focus,
+    backgroundColor: theme.palette.primaryStates?.light.focus || 'rgba(75, 63, 255, 0.12)',
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: 2,
   },
 
-  // Selected state
+  // Selected state - CDS Primary Selected
   '&.Mui-selected': {
     fontWeight: theme.typography.fontWeightBold,
+    backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
   },
 }));
 
@@ -540,23 +541,24 @@ const StyledNavLink = styled('a')<{ active?: boolean }>(({ theme, active }) => (
     duration: theme.transitions.duration.short,
   }),
 
-  // Hover state
+  // Hover state - CDS Primary Blurple @ 4%
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
     color: theme.palette.primary.main,
   },
 
-  // Active state
+  // Active state - CDS Primary Selected @ 8%
   ...(active && {
-    backgroundColor: theme.palette.action.selected,
+    backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
     color: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightBold,
   }),
 
-  // Focus state (WCAG compliant)
+  // Focus state (WCAG compliant) - CDS Primary Focus
   '&:focus-visible': {
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: 2,
+    boxShadow: `0 0 0 3px ${theme.palette.primaryStates?.light.focusVisible || 'rgba(75, 63, 255, 0.30)'}`,
   },
 }));
 

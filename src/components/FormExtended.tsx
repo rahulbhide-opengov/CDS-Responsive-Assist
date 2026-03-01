@@ -706,11 +706,11 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
             minHeight: 48,
 
             '&[aria-selected="true"]': {
-              backgroundColor: theme.palette.action.selected,
+              backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
             },
 
             '&.Mui-focused': {
-              backgroundColor: theme.palette.action.hover,
+              backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
             },
           },
         },

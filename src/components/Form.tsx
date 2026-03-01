@@ -1056,7 +1056,7 @@ const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
 
   // Hover state
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
   },
 }));
 
@@ -1079,7 +1079,7 @@ const StyledMuiRadio = styled(MuiRadio)(({ theme }) => ({
 
   // Hover state
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
   },
 }));
 
@@ -1116,7 +1116,7 @@ const StyledMuiSwitch = styled(MuiSwitch)(({ theme }) => ({
 
     // Enhanced hover state
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
     },
   },
 

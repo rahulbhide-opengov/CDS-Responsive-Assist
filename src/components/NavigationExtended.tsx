@@ -604,20 +604,20 @@ const StyledMenuItem = styled(MuiMenuItem)(({ theme }) => ({
 
   // Hover state
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
   },
 
   // Selected state
   '&.Mui-selected': {
-    backgroundColor: theme.palette.action.selected,
+    backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
     '&:hover': {
-      backgroundColor: theme.palette.action.selectedHover,
+      backgroundColor: theme.palette.primaryStates?.light.focus || 'rgba(75, 63, 255, 0.12)',
     },
   },
 
   // Focus state (WCAG compliant)
   '&:focus-visible': {
-    backgroundColor: theme.palette.action.focus,
+    backgroundColor: theme.palette.primaryStates?.light.focusVisible || 'rgba(75, 63, 255, 0.30)',
     outline: `2px solid ${theme.palette.primary.main}`,
     outlineOffset: -2,
   },
@@ -681,7 +681,7 @@ const StyledSpeedDialAction = styled(MuiSpeedDialAction)(({ theme }) => ({
     boxShadow: theme.shadows[2],
 
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
       boxShadow: theme.shadows[4],
     },
 
@@ -699,7 +699,7 @@ const StyledSpeedDialAction = styled(MuiSpeedDialAction)(({ theme }) => ({
 const StyledTreeView = styled(MuiTreeView)(({ theme }) => ({
   '& .MuiTreeItem-root': {
     '&:focus > .MuiTreeItem-content': {
-      backgroundColor: theme.palette.action.focus,
+      backgroundColor: theme.palette.primaryStates?.light.focusVisible || 'rgba(75, 63, 255, 0.30)',
       outline: `2px solid ${theme.palette.primary.main}`,
       outlineOffset: -2,
     },
@@ -710,14 +710,14 @@ const StyledTreeView = styled(MuiTreeView)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
 
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.primaryStates?.light.hover || 'rgba(75, 63, 255, 0.04)',
     },
 
     '&.Mui-selected': {
-      backgroundColor: theme.palette.action.selected,
+      backgroundColor: theme.palette.primaryStates?.light.selected || 'rgba(75, 63, 255, 0.08)',
 
       '&:hover': {
-        backgroundColor: theme.palette.action.selectedHover,
+        backgroundColor: theme.palette.primaryStates?.light.focus || 'rgba(75, 63, 255, 0.12)',
       },
     },
   },

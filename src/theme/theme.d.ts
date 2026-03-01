@@ -13,6 +13,38 @@ declare module '@mui/material/styles' {
       dark: string;
       heavy: string;
     };
+    primaryStates?: {
+      light: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
+      dark: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
+    };
+    secondaryStates?: {
+      light: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
+      dark: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
+    };
   }
 
   interface PaletteOptions {
@@ -21,6 +53,38 @@ declare module '@mui/material/styles' {
       standard: string;
       dark: string;
       heavy: string;
+    };
+    primaryStates?: {
+      light: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
+      dark: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
+    };
+    secondaryStates?: {
+      light: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
+      dark: {
+        hover: string;
+        selected: string;
+        focus: string;
+        focusVisible: string;
+        outlinedBorder: string;
+      };
     };
   }
 }

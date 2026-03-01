@@ -888,14 +888,14 @@ export interface TableRowProps {
 
 const StyledMuiTableRow = styled(MuiTableRow)(({ theme }) => ({
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
     cursor: 'pointer',
   },
 
   '&.Mui-selected': {
-    backgroundColor: theme.palette.action.selected,
+    backgroundColor: theme.palette.secondaryStates?.light.selected || 'rgba(84, 101, 116, 0.08)',
     '&:hover': {
-      backgroundColor: theme.palette.action.selectedHover,
+      backgroundColor: theme.palette.secondaryStates?.light.focus || 'rgba(84, 101, 116, 0.12)',
     },
   },
 
@@ -1160,13 +1160,13 @@ const StyledMuiListItemButton = styled(MuiListItemButton)(({ theme }) => ({
   },
 
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
   },
 
   '&.Mui-selected': {
-    backgroundColor: theme.palette.action.selected,
+    backgroundColor: theme.palette.secondaryStates?.light.selected || 'rgba(84, 101, 116, 0.08)',
     '&:hover': {
-      backgroundColor: theme.palette.action.selectedHover,
+      backgroundColor: theme.palette.secondaryStates?.light.focus || 'rgba(84, 101, 116, 0.12)',
     },
   },
 

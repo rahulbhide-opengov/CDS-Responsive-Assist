@@ -255,7 +255,7 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
   '&[data-cds-variant="ghost"]': {
     color: theme.palette.text.secondary,
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.secondaryStates?.light.hover || 'rgba(84, 101, 116, 0.04)',
       color: theme.palette.text.primary,
     },
   },
