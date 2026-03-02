@@ -552,6 +552,12 @@ export interface SelectProps {
    * @default false
    */
   autoWidth?: boolean;
+
+  /**
+   * Select size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
 }
 
 /**
@@ -918,6 +924,12 @@ export interface OutlinedInputProps {
    * Input props
    */
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+
+  /**
+   * Input size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
 }
 
 // ============================================================================
@@ -1126,8 +1138,14 @@ const StyledMuiTextField = styled(MuiTextField, {
  * Styled Checkbox with CDS tokens
  */
 const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
-  // Ensure WCAG touch target minimum (48px)
-  padding: theme.spacing(1.5), // 12px
+  // Medium checkbox (default) - Responsive padding
+  padding: theme.spacing(1.5), // Mobile: 12px
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5), // Tablet: 12px
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(1.25), // Desktop: 10px
+  },
 
   '&.Mui-focusVisible': {
     outline: `2px solid ${theme.palette.primary.main}`,
@@ -1142,6 +1160,28 @@ const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
   // Hover state
   '&:hover': {
     backgroundColor: theme.palette.secondaryStates.light.hover,
+  },
+
+  // Small checkbox - Responsive
+  '&.MuiCheckbox-sizeSmall': {
+    padding: theme.spacing(1.25), // Mobile: 10px
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1.25), // Tablet: 10px
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(1), // Desktop: 8px
+    },
+  },
+
+  // Large checkbox - Responsive
+  '&.MuiCheckbox-sizeLarge': {
+    padding: theme.spacing(1.75), // Mobile: 14px
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1.75), // Tablet: 14px
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(1.5), // Desktop: 12px
+    },
   },
 }));
 
@@ -1149,8 +1189,14 @@ const StyledMuiCheckbox = styled(MuiCheckbox)(({ theme }) => ({
  * Styled Radio with CDS tokens
  */
 const StyledMuiRadio = styled(MuiRadio)(({ theme }) => ({
-  // Ensure WCAG touch target minimum (48px)
-  padding: theme.spacing(1.5), // 12px
+  // Medium radio (default) - Responsive padding
+  padding: theme.spacing(1.5), // Mobile: 12px
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5), // Tablet: 12px
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(1.25), // Desktop: 10px
+  },
 
   '&.Mui-focusVisible': {
     outline: `2px solid ${theme.palette.primary.main}`,
@@ -1165,6 +1211,28 @@ const StyledMuiRadio = styled(MuiRadio)(({ theme }) => ({
   // Hover state
   '&:hover': {
     backgroundColor: theme.palette.secondaryStates.light.hover,
+  },
+
+  // Small radio - Responsive
+  '&.MuiRadio-sizeSmall': {
+    padding: theme.spacing(1.25), // Mobile: 10px
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1.25), // Tablet: 10px
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(1), // Desktop: 8px
+    },
+  },
+
+  // Large radio - Responsive
+  '&.MuiRadio-sizeLarge': {
+    padding: theme.spacing(1.75), // Mobile: 14px
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1.75), // Tablet: 14px
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(1.5), // Desktop: 12px
+    },
   },
 }));
 
@@ -1190,8 +1258,14 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
  * Styled Switch with CDS tokens
  */
 const StyledMuiSwitch = styled(MuiSwitch)(({ theme }) => ({
-  // Proper sizing for touch target
-  padding: theme.spacing(1.5), // 12px
+  // Medium switch (default) - Responsive padding
+  padding: theme.spacing(1.5), // Mobile: 12px
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1.5), // Tablet: 12px
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(1.25), // Desktop: 10px
+  },
 
   '& .MuiSwitch-switchBase': {
     '&.Mui-focusVisible': {
@@ -1217,48 +1291,133 @@ const StyledMuiSwitch = styled(MuiSwitch)(({ theme }) => ({
       duration: theme.transitions.duration.shorter,
     }),
   },
+
+  // Small switch - Responsive
+  '&.MuiSwitch-sizeSmall': {
+    padding: theme.spacing(1.25), // Mobile: 10px
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1.25), // Tablet: 10px
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(1), // Desktop: 8px
+    },
+  },
 }));
 
 /**
  * Styled Select with CDS tokens
  */
-const StyledMuiSelect = styled(MuiSelect)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
+const StyledMuiSelect = styled(MuiSelect, {
+  shouldForwardProp: (prop) => prop !== 'cdsSize',
+})<{ cdsSize?: 'small' | 'medium' | 'large' }>(({ theme, cdsSize = 'medium' }) => {
+  // Get size-specific styles
+  const getSizeStyles = () => {
+    switch (cdsSize) {
+      case 'small':
+        return {
+          minHeight: 32, // Mobile base
+          [theme.breakpoints.up('sm')]: {
+            minHeight: 32, // Tablet
+          },
+          [theme.breakpoints.up('md')]: {
+            minHeight: 28, // Desktop
+          },
 
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderWidth: 2,
-    borderColor: theme.palette.primary.main,
-  },
+          '& .MuiSelect-select': {
+            padding: theme.spacing(1, 1.5), // Mobile: 4px, 12px
+            [theme.breakpoints.up('sm')]: {
+              padding: theme.spacing(1, 1.5), // Tablet: 4px, 12px
+            },
+            [theme.breakpoints.up('md')]: {
+              padding: theme.spacing(0.5, 1.5), // Desktop: 2px, 12px
+            },
+            ...theme.typography.input.valueSm,
+          },
+        };
 
-  // Error state
-  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.error.main,
-    borderWidth: 2,
-  },
+      case 'large':
+        return {
+          minHeight: 48, // Mobile base
+          [theme.breakpoints.up('sm')]: {
+            minHeight: 44, // Tablet
+          },
+          [theme.breakpoints.up('md')]: {
+            minHeight: 40, // Desktop
+          },
 
-  // Success state (custom)
-  '&[data-state="success"] .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.success.main,
-    borderWidth: 2,
-  },
+          '& .MuiSelect-select': {
+            padding: theme.spacing(1.5, 2.5), // Mobile: 6px, 20px
+            [theme.breakpoints.up('sm')]: {
+              padding: theme.spacing(1.5, 2.25), // Tablet: 6px, 18px
+            },
+            [theme.breakpoints.up('md')]: {
+              padding: theme.spacing(1.5, 2), // Desktop: 6px, 16px
+            },
+            ...theme.typography.input.valueLg,
+          },
+        };
 
-  // Warning state (custom)
-  '&[data-state="warning"] .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.warning.main,
-    borderWidth: 2,
-  },
+      case 'medium':
+      default:
+        return {
+          minHeight: 40, // Mobile base
+          [theme.breakpoints.up('sm')]: {
+            minHeight: 36, // Tablet
+          },
+          [theme.breakpoints.up('md')]: {
+            minHeight: 32, // Desktop
+          },
 
-  // Ensure proper spacing
-  '& .MuiSelect-select': {
-    padding: theme.spacing(1.5, 2),
-  },
+          '& .MuiSelect-select': {
+            padding: theme.spacing(1.5, 2), // Mobile: 6px, 16px
+            [theme.breakpoints.up('sm')]: {
+              padding: theme.spacing(1.25, 1.75), // Tablet: 5px, 14px
+            },
+            [theme.breakpoints.up('md')]: {
+              padding: theme.spacing(1, 1.75), // Desktop: 4px, 14px
+            },
+            ...theme.typography.input.valueMd,
+          },
+        };
+    }
+  };
 
-  // Focus-visible for keyboard navigation
-  '&.Mui-focusVisible': {
-    outline: `2px solid ${theme.palette.primary.main}`,
-    outlineOffset: 2,
-  },
-}));
+  return {
+    borderRadius: theme.shape.borderRadius,
+
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderWidth: 2,
+      borderColor: theme.palette.primary.main,
+    },
+
+    // Error state
+    '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+      borderColor: theme.palette.error.main,
+      borderWidth: 2,
+    },
+
+    // Success state (custom)
+    '&[data-state="success"] .MuiOutlinedInput-notchedOutline': {
+      borderColor: theme.palette.success.main,
+      borderWidth: 2,
+    },
+
+    // Warning state (custom)
+    '&[data-state="warning"] .MuiOutlinedInput-notchedOutline': {
+      borderColor: theme.palette.warning.main,
+      borderWidth: 2,
+    },
+
+    // Focus-visible for keyboard navigation
+    '&.Mui-focusVisible': {
+      outline: `2px solid ${theme.palette.primary.main}`,
+      outlineOffset: 2,
+    },
+
+    // Apply size-specific styles
+    ...getSizeStyles(),
+  };
+});
 
 /**
  * Styled FormControl with CDS tokens
@@ -1381,33 +1540,107 @@ const StyledMuiInputLabel = styled(MuiInputLabel)(({ theme }) => ({
 /**
  * Styled OutlinedInput with CDS tokens
  */
-const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
+const StyledMuiOutlinedInput = styled(MuiOutlinedInput, {
+  shouldForwardProp: (prop) => prop !== 'cdsSize',
+})<{ cdsSize?: 'small' | 'medium' | 'large' }>(({ theme, cdsSize = 'medium' }) => {
+  // Get size-specific styles
+  const getSizeStyles = () => {
+    switch (cdsSize) {
+      case 'small':
+        return {
+          minHeight: 32, // Mobile base
+          [theme.breakpoints.up('sm')]: {
+            minHeight: 32, // Tablet
+          },
+          [theme.breakpoints.up('md')]: {
+            minHeight: 28, // Desktop
+          },
 
-  '& .MuiOutlinedInput-input': {
-    padding: theme.spacing(2, 1.75),
-    ...theme.typography.input.valueMd,
-  },
+          '& .MuiOutlinedInput-input': {
+            padding: theme.spacing(1, 1.5), // Mobile: 4px, 12px
+            [theme.breakpoints.up('sm')]: {
+              padding: theme.spacing(1, 1.5), // Tablet: 4px, 12px
+            },
+            [theme.breakpoints.up('md')]: {
+              padding: theme.spacing(0.5, 1.5), // Desktop: 2px, 12px
+            },
+            ...theme.typography.input.valueSm,
+          },
+        };
 
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderWidth: 2,
-    borderColor: theme.palette.primary.main,
-  },
+      case 'large':
+        return {
+          minHeight: 48, // Mobile base
+          [theme.breakpoints.up('sm')]: {
+            minHeight: 44, // Tablet
+          },
+          [theme.breakpoints.up('md')]: {
+            minHeight: 40, // Desktop
+          },
 
-  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.error.main,
-    borderWidth: 2,
-  },
+          '& .MuiOutlinedInput-input': {
+            padding: theme.spacing(1.5, 2.5), // Mobile: 6px, 20px
+            [theme.breakpoints.up('sm')]: {
+              padding: theme.spacing(1.5, 2.25), // Tablet: 6px, 18px
+            },
+            [theme.breakpoints.up('md')]: {
+              padding: theme.spacing(1.5, 2), // Desktop: 6px, 16px
+            },
+            ...theme.typography.input.valueLg,
+          },
+        };
 
-  '&.Mui-disabled': {
-    backgroundColor: theme.palette.action.disabledBackground,
-  },
+      case 'medium':
+      default:
+        return {
+          minHeight: 40, // Mobile base
+          [theme.breakpoints.up('sm')]: {
+            minHeight: 36, // Tablet
+          },
+          [theme.breakpoints.up('md')]: {
+            minHeight: 32, // Desktop
+          },
 
-  '&.Mui-focusVisible': {
-    outline: `2px solid ${theme.palette.primary.main}`,
-    outlineOffset: 2,
-  },
-}));
+          '& .MuiOutlinedInput-input': {
+            padding: theme.spacing(1.5, 2), // Mobile: 6px, 16px
+            [theme.breakpoints.up('sm')]: {
+              padding: theme.spacing(1.25, 1.75), // Tablet: 5px, 14px
+            },
+            [theme.breakpoints.up('md')]: {
+              padding: theme.spacing(1, 1.75), // Desktop: 4px, 14px
+            },
+            ...theme.typography.input.valueMd,
+          },
+        };
+    }
+  };
+
+  return {
+    borderRadius: theme.shape.borderRadius,
+
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderWidth: 2,
+      borderColor: theme.palette.primary.main,
+    },
+
+    '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+      borderColor: theme.palette.error.main,
+      borderWidth: 2,
+    },
+
+    '&.Mui-disabled': {
+      backgroundColor: theme.palette.action.disabledBackground,
+    },
+
+    '&.Mui-focusVisible': {
+      outline: `2px solid ${theme.palette.primary.main}`,
+      outlineOffset: 2,
+    },
+
+    // Apply size-specific styles
+    ...getSizeStyles(),
+  };
+});
 
 // ============================================================================
 // CDS FORM COMPONENTS
@@ -1760,6 +1993,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       sx,
       state = 'default',
       autoWidth = false,
+      size = 'medium',
     },
     ref
   ) => {
@@ -1768,6 +2002,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     return (
       <StyledMuiSelect
         ref={ref}
+        cdsSize={size}
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
@@ -2059,12 +2294,14 @@ export const OutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputProps
       className,
       sx,
       inputProps,
+      size = 'medium',
     },
     ref
   ) => {
     return (
       <StyledMuiOutlinedInput
         ref={ref}
+        cdsSize={size}
         value={value}
         defaultValue={defaultValue}
         placeholder={placeholder}

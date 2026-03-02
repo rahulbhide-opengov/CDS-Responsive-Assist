@@ -308,6 +308,12 @@ export interface AutocompleteProps<T> {
    * MUI sx prop (escape hatch)
    */
   sx?: any;
+
+  /**
+   * Autocomplete size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
 }
 
 /**
@@ -417,8 +423,41 @@ const StyledMuiRating = styled(MuiRating)(({ theme }) => ({
     color: theme.palette.warning.dark,
   },
 
+  // Medium rating (default) - Responsive icon size
   '& .MuiRating-icon': {
-    ...theme.typography.rating.icon,
+    fontSize: '24px', // Mobile: 24px
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '24px', // Tablet: 24px
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '20px', // Desktop: 20px
+    },
+  },
+
+  // Small rating - Responsive icon size
+  '&.MuiRating-sizeSmall': {
+    '& .MuiRating-icon': {
+      fontSize: '20px', // Mobile: 20px
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '20px', // Tablet: 20px
+      },
+      [theme.breakpoints.up('md')]: {
+        fontSize: '18px', // Desktop: 18px
+      },
+    },
+  },
+
+  // Large rating - Responsive icon size
+  '&.MuiRating-sizeLarge': {
+    '& .MuiRating-icon': {
+      fontSize: '32px', // Mobile: 32px
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '32px', // Tablet: 32px
+      },
+      [theme.breakpoints.up('md')]: {
+        fontSize: '28px', // Desktop: 28px
+      },
+    },
   },
 
   '&:focus-visible': {
@@ -660,7 +699,110 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
     id,
     className,
     sx,
+    size = 'medium',
   } = props;
+
+  // Get size-specific styles
+  const getSizeStyles = () => {
+    switch (size) {
+      case 'small':
+        return {
+          '& .MuiOutlinedInput-root': {
+            minHeight: 32, // Mobile
+            [theme.breakpoints.up('sm')]: {
+              minHeight: 32, // Tablet
+            },
+            [theme.breakpoints.up('md')]: {
+              minHeight: 28, // Desktop
+            },
+            padding: theme.spacing(0.25, 0.5), // Compact padding
+
+            '& .MuiAutocomplete-input': {
+              padding: theme.spacing(0.5, 1), // Mobile: 2px, 4px
+              [theme.breakpoints.up('sm')]: {
+                padding: theme.spacing(0.5, 1), // Tablet: 2px, 4px
+              },
+              [theme.breakpoints.up('md')]: {
+                padding: theme.spacing(0.25, 1), // Desktop: 1px, 4px
+              },
+              ...theme.typography.input.valueSm,
+            },
+          },
+
+          '& .MuiAutocomplete-listbox': {
+            '& .MuiAutocomplete-option': {
+              padding: theme.spacing(1, 1.5), // Compact options
+              minHeight: theme.spacing(4.5), // 36px
+            },
+          },
+        };
+
+      case 'large':
+        return {
+          '& .MuiOutlinedInput-root': {
+            minHeight: 48, // Mobile
+            [theme.breakpoints.up('sm')]: {
+              minHeight: 44, // Tablet
+            },
+            [theme.breakpoints.up('md')]: {
+              minHeight: 40, // Desktop
+            },
+            padding: theme.spacing(0.75, 1), // Spacious padding
+
+            '& .MuiAutocomplete-input': {
+              padding: theme.spacing(1, 1.5), // Mobile: 4px, 12px
+              [theme.breakpoints.up('sm')]: {
+                padding: theme.spacing(1, 1.5), // Tablet: 4px, 12px
+              },
+              [theme.breakpoints.up('md')]: {
+                padding: theme.spacing(0.75, 1.5), // Desktop: 3px, 12px
+              },
+              ...theme.typography.input.valueLg,
+            },
+          },
+
+          '& .MuiAutocomplete-listbox': {
+            '& .MuiAutocomplete-option': {
+              padding: theme.spacing(2, 2.5), // Spacious options
+              minHeight: theme.spacing(7), // 56px
+            },
+          },
+        };
+
+      case 'medium':
+      default:
+        return {
+          '& .MuiOutlinedInput-root': {
+            minHeight: 40, // Mobile
+            [theme.breakpoints.up('sm')]: {
+              minHeight: 36, // Tablet
+            },
+            [theme.breakpoints.up('md')]: {
+              minHeight: 32, // Desktop
+            },
+            padding: theme.spacing(0.5),
+
+            '& .MuiAutocomplete-input': {
+              padding: theme.spacing(0.75, 1.25), // Mobile: 3px, 10px
+              [theme.breakpoints.up('sm')]: {
+                padding: theme.spacing(0.625, 1.125), // Tablet: 2.5px, 9px
+              },
+              [theme.breakpoints.up('md')]: {
+                padding: theme.spacing(0.5, 1.125), // Desktop: 2px, 9px
+              },
+              ...theme.typography.input.valueMd,
+            },
+          },
+
+          '& .MuiAutocomplete-listbox': {
+            '& .MuiAutocomplete-option': {
+              padding: theme.spacing(1.5, 2),
+              minHeight: theme.spacing(6), // 48px
+            },
+          },
+        };
+    }
+  };
 
   return (
     <MuiAutocomplete
@@ -684,7 +826,6 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
       sx={{
         '& .MuiOutlinedInput-root': {
           borderRadius: theme.shape.borderRadius,
-          padding: theme.spacing(0.5),
 
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderWidth: 2,
@@ -701,9 +842,6 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
           padding: theme.spacing(1, 0),
 
           '& .MuiAutocomplete-option': {
-            padding: theme.spacing(1.5, 2),
-            minHeight: theme.spacing(6), // 48px
-
             '&[aria-selected="true"]': {
               backgroundColor: theme.palette.primaryStates.light.selected,
             },
@@ -719,6 +857,10 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
           boxShadow: theme.shadows[8],
         },
 
+        // Apply size-specific styles
+        ...getSizeStyles(),
+
+        // Allow user overrides
         ...sx,
       }}
     />
