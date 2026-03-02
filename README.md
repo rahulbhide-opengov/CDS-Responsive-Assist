@@ -32,7 +32,7 @@ import { ThemeProvider } from '@/theme';
 
 ## 📊 What's Inside
 
-### **80 Components** - Production Ready
+### **83 Components** - Production Ready
 
 | Category | Count | Examples |
 |----------|-------|----------|
@@ -43,6 +43,7 @@ import { ThemeProvider } from '@/theme';
 | **Data Display** | 19 | Table, List, Avatar, Chip, Badge, Tooltip, Typography, Alert |
 | **Feedback** | 10 | Progress, Skeleton, Snackbar, Alert, Dialog, Backdrop, Modal |
 | **Utility** | 8 | Portal, ClickAwayListener, Popper, Transitions (Grow, Fade, Slide, Zoom, Collapse) |
+| **Branding** | 3 | Logo, OpenGovLogo, OpenGovWand |
 | **Special** | 3 | TreeView, TreeItem, Timeline |
 
 ### **Complete Documentation**
@@ -119,10 +120,11 @@ All components adapt to screen sizes automatically:
 | Document | Description |
 |----------|-------------|
 | [Quick Start](QUICK-START.md) | Get started in 5 minutes |
-| [Component Index](COMPONENT-INDEX.md) | All 80 components |
+| [Component Index](COMPONENT-INDEX.md) | All 83 components |
 | [Token Reference](TOKEN-REFERENCE.md) | Design tokens |
 | [Pattern Library](PATTERN-LIBRARY.md) | Common patterns |
 | [Icon Guide](ICON-USAGE-GUIDE.md) | Icon usage |
+| [Logo Guide](OPENGOV-LOGO-GUIDE.md) | OpenGov branding & logos |
 | [Project Status](PROJECT-STATUS.md) | Current status |
 | [Changelog](CHANGELOG.md) | Version history |
 
@@ -226,7 +228,25 @@ function App() {
 }
 ```
 
+### **OpenGov Branding**
+```tsx
+import { Logo, OpenGovLogo, OpenGovWand } from '@/components';
+
+// Default logo (full color)
+<Logo />
+
+// White logo for dark backgrounds
+<Logo variant="white" size="large" />
+
+// Wand icon (tri-colored)
+<OpenGovWand size="medium" />
+
+// Clickable logo for navigation
+<Logo onClick={() => navigate('/')} />
+```
+
 **👉 See [examples/](examples/) for complete examples**
+**👉 See [OPENGOV-LOGO-GUIDE.md](OPENGOV-LOGO-GUIDE.md) for logo usage guidelines**
 
 ---
 
