@@ -228,6 +228,18 @@ export {
   type FileUploadFile,
 } from './components/FileUpload';
 
+// ===== BRANDING COMPONENTS (3) =====
+export {
+  Logo,
+  OpenGovLogo,
+  OpenGovWand,
+  type LogoProps,
+  type LogoVariant,
+  type WandVariant,
+  type LogoSize,
+  type LogoType,
+} from './components/Logo';
+
 // ===== MUI COMPONENT RE-EXPORTS (for convenience) =====
 export {
   Typography,
