@@ -149,6 +149,15 @@ const themeOptions: ThemeOptions = {
     slider: { valueLabel: createResponsiveTypography(typographyTokens.slider.valueLabel) },
     rating: { icon: createResponsiveTypography(typographyTokens.rating.icon) },
     stepper: { label: createResponsiveTypography(typographyTokens.stepper.label) },
+    input: {
+      labelSm: createResponsiveTypography(typographyTokens.input.labelSm),
+      labelMd: createResponsiveTypography(typographyTokens.input.labelMd),
+      labelLg: createResponsiveTypography(typographyTokens.input.labelLg),
+      valueSm: createResponsiveTypography(typographyTokens.input.valueSm),
+      valueMd: createResponsiveTypography(typographyTokens.input.valueMd),
+      valueLg: createResponsiveTypography(typographyTokens.input.valueLg),
+      helper: createResponsiveTypography(typographyTokens.input.helper),
+    },
   } as any, // Cast to any to allow custom typography extensions
 
   // Shape (Border Radius)

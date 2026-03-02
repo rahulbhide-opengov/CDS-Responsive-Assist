@@ -186,6 +186,12 @@ export interface TextFieldProps {
    * End adornment (icon/text on right)
    */
   endAdornment?: React.ReactNode;
+
+  /**
+   * TextField size
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
 }
 
 /**
@@ -949,81 +955,172 @@ const getStateColor = (state: InputState, theme: any) => {
 /**
  * Styled TextField with CDS tokens
  */
-const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
-  '& .MuiOutlinedInput-root': {
-    borderRadius: theme.shape.borderRadius, // 4px
+const StyledMuiTextField = styled(MuiTextField, {
+  shouldForwardProp: (prop) => prop !== 'cdsSize',
+})<{ cdsSize?: 'small' | 'medium' | 'large' }>(({ theme, cdsSize = 'medium' }) => {
+  // Get size-specific styles
+  const getSizeStyles = () => {
+    switch (cdsSize) {
+      case 'small':
+        return {
+          '& .MuiOutlinedInput-root': {
+            // Small TextField - Responsive heights
+            minHeight: 32, // Mobile base
+            [theme.breakpoints.up('sm')]: {
+              minHeight: 32, // Tablet
+            },
+            [theme.breakpoints.up('md')]: {
+              minHeight: 28, // Desktop
+            },
+            ...theme.typography.input.valueSm,
 
-    // Input value styling
-    ...theme.typography.input.valueMd,
+            '& .MuiOutlinedInput-input': {
+              // Responsive padding
+              padding: theme.spacing(1, 1.5), // Mobile base (4px, 12px)
+              [theme.breakpoints.up('sm')]: {
+                padding: theme.spacing(1, 1.5), // Tablet (4px, 12px)
+              },
+              [theme.breakpoints.up('md')]: {
+                padding: theme.spacing(0.5, 1.5), // Desktop (2px, 12px)
+              },
+            },
+          },
+          '& .MuiInputLabel-root': {
+            ...theme.typography.input.labelSm,
+          },
+        };
 
-    '& .MuiOutlinedInput-input': {
-      padding: theme.spacing(2, 1.75), // 16px 14px
+      case 'large':
+        return {
+          '& .MuiOutlinedInput-root': {
+            // Large TextField - Responsive heights
+            minHeight: 48, // Mobile base
+            [theme.breakpoints.up('sm')]: {
+              minHeight: 44, // Tablet
+            },
+            [theme.breakpoints.up('md')]: {
+              minHeight: 40, // Desktop
+            },
+            ...theme.typography.input.valueLg,
+
+            '& .MuiOutlinedInput-input': {
+              // Responsive padding
+              padding: theme.spacing(1.5, 2.5), // Mobile base (6px, 20px)
+              [theme.breakpoints.up('sm')]: {
+                padding: theme.spacing(1.5, 2.25), // Tablet (6px, 18px)
+              },
+              [theme.breakpoints.up('md')]: {
+                padding: theme.spacing(1.5, 2), // Desktop (6px, 16px)
+              },
+            },
+          },
+          '& .MuiInputLabel-root': {
+            ...theme.typography.input.labelLg,
+          },
+        };
+
+      case 'medium':
+      default:
+        return {
+          '& .MuiOutlinedInput-root': {
+            // Medium TextField - Responsive heights
+            minHeight: 40, // Mobile base
+            [theme.breakpoints.up('sm')]: {
+              minHeight: 36, // Tablet
+            },
+            [theme.breakpoints.up('md')]: {
+              minHeight: 32, // Desktop
+            },
+            ...theme.typography.input.valueMd,
+
+            '& .MuiOutlinedInput-input': {
+              // Responsive padding
+              padding: theme.spacing(1.5, 2), // Mobile base (6px, 16px)
+              [theme.breakpoints.up('sm')]: {
+                padding: theme.spacing(1.25, 1.75), // Tablet (5px, 14px)
+              },
+              [theme.breakpoints.up('md')]: {
+                padding: theme.spacing(1, 1.75), // Desktop (4px, 14px)
+              },
+            },
+          },
+          '& .MuiInputLabel-root': {
+            ...theme.typography.input.labelMd,
+          },
+        };
+    }
+  };
+
+  return {
+    '& .MuiOutlinedInput-root': {
+      borderRadius: theme.shape.borderRadius, // 4px
+
+      // Focus state
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderWidth: 2,
+        borderColor: theme.palette.primary.main,
+      },
+
+      // Error state - ensure proper contrast
+      '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+        borderColor: theme.palette.error.main,
+        borderWidth: 2,
+      },
+
+      // Success state (custom)
+      '&[data-state="success"] .MuiOutlinedInput-notchedOutline': {
+        borderColor: theme.palette.success.main,
+        borderWidth: 2,
+      },
+
+      // Warning state (custom)
+      '&[data-state="warning"] .MuiOutlinedInput-notchedOutline': {
+        borderColor: theme.palette.warning.main,
+        borderWidth: 2,
+      },
     },
 
-    // Focus state
-    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderWidth: 2,
-      borderColor: theme.palette.primary.main,
+    // Label styling
+    '& .MuiInputLabel-root': {
+      '&.Mui-focused': {
+        color: theme.palette.primary.main,
+      },
+      '&.Mui-error': {
+        color: theme.palette.error.main,
+      },
+      '&[data-state="success"]': {
+        color: theme.palette.success.main,
+      },
+      '&[data-state="warning"]': {
+        color: theme.palette.warning.main,
+      },
     },
 
-    // Error state - ensure proper contrast
-    '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.error.main,
-      borderWidth: 2,
+    // Helper text
+    '& .MuiFormHelperText-root': {
+      marginTop: theme.spacing(0.5),
+      ...theme.typography.input.helper,
+
+      '&.Mui-error': {
+        color: theme.palette.error.main,
+      },
+      '&[data-state="success"]': {
+        color: theme.palette.success.main,
+      },
+      '&[data-state="warning"]': {
+        color: theme.palette.warning.main,
+      },
     },
 
-    // Success state (custom)
-    '&[data-state="success"] .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.success.main,
-      borderWidth: 2,
+    // Focus-visible for keyboard navigation
+    '&:focus-within': {
+      outline: 'none',
     },
 
-    // Warning state (custom)
-    '&[data-state="warning"] .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.warning.main,
-      borderWidth: 2,
-    },
-  },
-
-  // Label styling
-  '& .MuiInputLabel-root': {
-    ...theme.typography.input.labelMd,
-
-    '&.Mui-focused': {
-      color: theme.palette.primary.main,
-    },
-    '&.Mui-error': {
-      color: theme.palette.error.main,
-    },
-    '&[data-state="success"]': {
-      color: theme.palette.success.main,
-    },
-    '&[data-state="warning"]': {
-      color: theme.palette.warning.main,
-    },
-  },
-
-  // Helper text
-  '& .MuiFormHelperText-root': {
-    marginTop: theme.spacing(0.5),
-    ...theme.typography.input.helper,
-
-    '&.Mui-error': {
-      color: theme.palette.error.main,
-    },
-    '&[data-state="success"]': {
-      color: theme.palette.success.main,
-    },
-    '&[data-state="warning"]': {
-      color: theme.palette.warning.main,
-    },
-  },
-
-  // Focus-visible for keyboard navigation
-  '&:focus-within': {
-    outline: 'none',
-  },
-}));
+    // Apply size-specific styles
+    ...getSizeStyles(),
+  };
+});
 
 /**
  * Styled Checkbox with CDS tokens
@@ -1359,6 +1456,7 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       disabled = false,
       fullWidth = false,
       type = 'text',
+      size = 'medium',
       multiline = false,
       rows,
       maxRows,
@@ -1385,6 +1483,7 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     return (
       <StyledMuiTextField
         ref={ref}
+        cdsSize={size}
         label={label}
         value={value}
         defaultValue={defaultValue}
