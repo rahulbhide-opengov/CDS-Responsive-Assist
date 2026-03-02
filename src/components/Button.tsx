@@ -272,6 +272,14 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
     pointerEvents: 'none',
     opacity: 0.7,
   },
+
+  // Disabled state - Explicit Figma styling
+  // Per Figma: All button variants use opacity: 0.6 (60%) when disabled
+  '&.Mui-disabled': {
+    opacity: 0.6,
+    pointerEvents: 'none',
+    cursor: 'not-allowed',
+  },
 }));
 
 // ============================================================================

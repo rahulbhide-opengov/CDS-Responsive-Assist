@@ -84,6 +84,12 @@ export interface TextFieldProps {
   disabled?: boolean;
 
   /**
+   * Read-only state
+   * @default false
+   */
+  readOnly?: boolean;
+
+  /**
    * Full width
    * @default false
    */
@@ -494,6 +500,12 @@ export interface SelectProps {
   disabled?: boolean;
 
   /**
+   * Read-only state
+   * @default false
+   */
+  readOnly?: boolean;
+
+  /**
    * Full width
    * @default false
    */
@@ -852,6 +864,12 @@ export interface OutlinedInputProps {
   disabled?: boolean;
 
   /**
+   * Read-only state
+   * @default false
+   */
+  readOnly?: boolean;
+
+  /**
    * Full width
    * @default false
    */
@@ -1090,6 +1108,41 @@ const StyledMuiTextField = styled(MuiTextField, {
         borderColor: theme.palette.warning.main,
         borderWidth: 2,
       },
+
+      // Disabled state - Explicit Figma styling
+      // Per Figma: background #f2f2f2, border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
+      '&.Mui-disabled': {
+        backgroundColor: theme.palette.background.tertiary, // #f2f2f2
+        cursor: 'not-allowed',
+
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: 'rgba(84, 101, 116, 0.5)',
+          borderWidth: 1,
+        },
+
+        '& .MuiOutlinedInput-input': {
+          color: 'rgba(0, 0, 0, 0.6)', // Disabled text color
+          cursor: 'not-allowed',
+          WebkitTextFillColor: 'rgba(0, 0, 0, 0.6)', // Override browser default
+        },
+      },
+
+      // Read-only state - Explicit Figma styling
+      // Per Figma: background rgba(75,63,255,0.08), border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
+      '&[data-readonly="true"]': {
+        backgroundColor: 'rgba(75, 63, 255, 0.08)', // Primary states selected - purple tint
+        cursor: 'default',
+
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: 'rgba(84, 101, 116, 0.5)',
+          borderWidth: 1,
+        },
+
+        '& .MuiOutlinedInput-input': {
+          color: 'rgba(0, 0, 0, 0.6)', // Read-only text color (same as disabled but background differs)
+          cursor: 'default', // Different from disabled (not-allowed)
+        },
+      },
     },
 
     // Label styling
@@ -1105,6 +1158,12 @@ const StyledMuiTextField = styled(MuiTextField, {
       },
       '&[data-state="warning"]': {
         color: theme.palette.warning.main,
+      },
+      '&.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.6)', // Disabled label color
+      },
+      '&[data-readonly="true"]': {
+        color: 'rgba(0, 0, 0, 0.6)', // Read-only label color
       },
     },
 
@@ -1408,6 +1467,41 @@ const StyledMuiSelect = styled(MuiSelect, {
       borderWidth: 2,
     },
 
+    // Disabled state - Explicit Figma styling
+    // Per Figma: background #f2f2f2, border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
+    '&.Mui-disabled': {
+      backgroundColor: theme.palette.background.tertiary, // #f2f2f2
+      cursor: 'not-allowed',
+
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'rgba(84, 101, 116, 0.5)',
+        borderWidth: 1,
+      },
+
+      '& .MuiSelect-select': {
+        color: 'rgba(0, 0, 0, 0.6)', // Disabled text color
+        cursor: 'not-allowed',
+        WebkitTextFillColor: 'rgba(0, 0, 0, 0.6)', // Override browser default
+      },
+    },
+
+    // Read-only state - Explicit Figma styling
+    // Per Figma: background rgba(75,63,255,0.08), border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
+    '&[data-readonly="true"]': {
+      backgroundColor: 'rgba(75, 63, 255, 0.08)', // Primary states selected - purple tint
+      cursor: 'default',
+
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'rgba(84, 101, 116, 0.5)',
+        borderWidth: 1,
+      },
+
+      '& .MuiSelect-select': {
+        color: 'rgba(0, 0, 0, 0.6)', // Read-only text color
+        cursor: 'default',
+      },
+    },
+
     // Focus-visible for keyboard navigation
     '&.Mui-focusVisible': {
       outline: `2px solid ${theme.palette.primary.main}`,
@@ -1628,8 +1722,39 @@ const StyledMuiOutlinedInput = styled(MuiOutlinedInput, {
       borderWidth: 2,
     },
 
+    // Disabled state - Explicit Figma styling
+    // Per Figma: background #f2f2f2, border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
     '&.Mui-disabled': {
-      backgroundColor: theme.palette.action.disabledBackground,
+      backgroundColor: theme.palette.background.tertiary, // #f2f2f2
+      cursor: 'not-allowed',
+
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'rgba(84, 101, 116, 0.5)',
+        borderWidth: 1,
+      },
+
+      '& .MuiOutlinedInput-input': {
+        color: 'rgba(0, 0, 0, 0.6)', // Disabled text color
+        cursor: 'not-allowed',
+        WebkitTextFillColor: 'rgba(0, 0, 0, 0.6)', // Override browser default
+      },
+    },
+
+    // Read-only state - Explicit Figma styling
+    // Per Figma: background rgba(75,63,255,0.08), border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
+    '&[data-readonly="true"]': {
+      backgroundColor: 'rgba(75, 63, 255, 0.08)', // Primary states selected - purple tint
+      cursor: 'default',
+
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'rgba(84, 101, 116, 0.5)',
+        borderWidth: 1,
+      },
+
+      '& .MuiOutlinedInput-input': {
+        color: 'rgba(0, 0, 0, 0.6)', // Read-only text color
+        cursor: 'default',
+      },
     },
 
     '&.Mui-focusVisible': {
@@ -1687,6 +1812,7 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       helperText,
       required = false,
       disabled = false,
+      readOnly = false,
       fullWidth = false,
       type = 'text',
       size = 'medium',
@@ -1748,8 +1874,10 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
         InputProps={{
           startAdornment,
           endAdornment,
+          readOnly,
         }}
         data-state={state}
+        data-readonly={readOnly ? 'true' : undefined}
       />
     );
   }
@@ -1982,6 +2110,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       onChange,
       label,
       disabled = false,
+      readOnly = false,
       fullWidth = false,
       multiple = false,
       children,
@@ -2013,6 +2142,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         error={error}
         inputProps={{
           'aria-label': ariaLabel,
+          readOnly,
         }}
         id={id}
         name={name}
@@ -2021,6 +2151,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         sx={sx}
         autoWidth={autoWidth}
         data-state={state}
+        data-readonly={readOnly ? 'true' : undefined}
       >
         {children}
       </StyledMuiSelect>
@@ -2280,6 +2411,7 @@ export const OutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputProps
       placeholder,
       type = 'text',
       disabled = false,
+      readOnly = false,
       fullWidth = false,
       multiline = false,
       rows,
@@ -2315,6 +2447,7 @@ export const OutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputProps
         endAdornment={endAdornment}
         inputProps={{
           'aria-label': ariaLabel,
+          readOnly,
           ...inputProps,
         }}
         id={id}
@@ -2323,6 +2456,7 @@ export const OutlinedInput = React.forwardRef<HTMLDivElement, OutlinedInputProps
         required={required}
         className={className}
         sx={sx}
+        data-readonly={readOnly ? 'true' : undefined}
       />
     );
   }

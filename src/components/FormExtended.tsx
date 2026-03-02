@@ -262,6 +262,12 @@ export interface AutocompleteProps<T> {
   disabled?: boolean;
 
   /**
+   * Read-only state
+   * @default false
+   */
+  readOnly?: boolean;
+
+  /**
    * Loading state
    * @default false
    */
@@ -690,6 +696,7 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
     getOptionLabel,
     multiple = false,
     disabled = false,
+    readOnly = false,
     loading = false,
     freeSolo = false,
     disableClearable = false,
@@ -815,6 +822,7 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
       getOptionLabel={getOptionLabel}
       multiple={multiple as any}
       disabled={disabled}
+      readOnly={readOnly}
       loading={loading}
       freeSolo={freeSolo as any}
       disableClearable={disableClearable as any}
@@ -856,6 +864,45 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
           borderRadius: theme.shape.borderRadius,
           boxShadow: theme.shadows[8],
         },
+
+        // Disabled state - Explicit Figma styling
+        // Per Figma: background #f2f2f2, border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
+        ...(disabled && {
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: theme.palette.background.tertiary, // #f2f2f2
+            cursor: 'not-allowed',
+
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(84, 101, 116, 0.5)',
+              borderWidth: 1,
+            },
+
+            '& .MuiAutocomplete-input': {
+              color: 'rgba(0, 0, 0, 0.6)', // Disabled text color
+              cursor: 'not-allowed',
+              WebkitTextFillColor: 'rgba(0, 0, 0, 0.6)', // Override browser default
+            },
+          },
+        }),
+
+        // Read-only state - Explicit Figma styling
+        // Per Figma: background rgba(75,63,255,0.08), border rgba(84,101,116,0.5), text rgba(0,0,0,0.6)
+        ...(readOnly && {
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: 'rgba(75, 63, 255, 0.08)', // Primary states selected - purple tint
+            cursor: 'default',
+
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(84, 101, 116, 0.5)',
+              borderWidth: 1,
+            },
+
+            '& .MuiAutocomplete-input': {
+              color: 'rgba(0, 0, 0, 0.6)', // Read-only text color
+              cursor: 'default',
+            },
+          },
+        }),
 
         // Apply size-specific styles
         ...getSizeStyles(),
