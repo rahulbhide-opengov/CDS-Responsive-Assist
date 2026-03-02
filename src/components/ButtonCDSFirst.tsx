@@ -200,7 +200,7 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
   // Base styling
   padding: theme.spacing(1.5, 3),
   minHeight: 40, // sizingTokens.button.medium
-  fontSize: theme.typography.button.fontSize, // Fixed 14px
+  ...theme.typography.button.medium,
 
   // CDS Transitions
   transition: theme.transitions.create(
@@ -215,14 +215,14 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
   '&.MuiButton-sizeSmall': {
     minHeight: 32, // sizingTokens.button.small
     padding: theme.spacing(1, 2),
-    fontSize: theme.typography.button.fontSize, // Fixed 14px
+    ...theme.typography.button.small,
   },
 
   // Large size variant
   '&.MuiButton-sizeLarge': {
     minHeight: 48, // sizingTokens.button.large
     padding: theme.spacing(2, 5),
-    fontSize: theme.typography.button.fontSize, // Fixed 14px
+    ...theme.typography.button.large,
   },
 
   // CDS-specific variant styles

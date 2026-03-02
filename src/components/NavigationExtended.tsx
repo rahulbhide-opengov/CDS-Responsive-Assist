@@ -595,11 +595,10 @@ const StyledMenuItem = styled(MuiMenuItem)(({ theme }) => ({
   // Responsive padding (mobile-first)
   padding: theme.spacing(1.5, 1.5),
   minHeight: theme.spacing(6), // 48px
-  fontSize: theme.typography.body1.fontSize, // Use theme token
+  ...theme.typography.menuItem.default,
 
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(1.5, 2),
-    fontSize: theme.typography.body1.fontSize, // Use theme token
   },
 
   // Hover state
@@ -723,7 +722,7 @@ const StyledTreeView = styled(MuiTreeView)(({ theme }) => ({
   },
 
   '& .MuiTreeItem-label': {
-    fontSize: theme.typography.body1.fontSize,
+    ...theme.typography.body1,
     padding: theme.spacing(1, 0),
   },
 }));
@@ -772,8 +771,7 @@ const StyledStep = styled(MuiStep)(({ theme }) => ({
  */
 const StyledStepLabel = styled(MuiStepLabel)(({ theme }) => ({
   '& .MuiStepLabel-label': {
-    fontSize: theme.typography.body1.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
+    ...theme.typography.stepper.label,
     color: theme.palette.text.secondary,
 
     '&.Mui-active': {

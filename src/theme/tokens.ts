@@ -623,6 +623,77 @@ export const typographyTokens = {
   },
 
   // ========================================
+  // BADGE TYPOGRAPHY - Fixed
+  // ========================================
+  badge: {
+    default: {
+      desktop: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+      tablet: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+      mobile: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+    },
+  },
+
+  // ========================================
+  // TOOLTIP TYPOGRAPHY - Fixed
+  // ========================================
+  tooltip: {
+    default: {
+      desktop: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+      tablet: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+      mobile: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+    },
+  },
+
+  // ========================================
+  // DIALOG TYPOGRAPHY - Fixed
+  // ========================================
+  dialog: {
+    title: {
+      desktop: { fontSize: 20, lineHeight: 28, fontWeight: 600, letterSpacing: 0.15 },
+      tablet: { fontSize: 20, lineHeight: 28, fontWeight: 600, letterSpacing: 0.15 },
+      mobile: { fontSize: 20, lineHeight: 28, fontWeight: 600, letterSpacing: 0.15 },
+    },
+    content: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+    },
+  },
+
+  // ========================================
+  // SLIDER TYPOGRAPHY - Fixed
+  // ========================================
+  slider: {
+    valueLabel: {
+      desktop: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+      tablet: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+      mobile: { fontSize: 12, lineHeight: 16, fontWeight: 500, letterSpacing: 0.14 },
+    },
+  },
+
+  // ========================================
+  // RATING TYPOGRAPHY - Fixed
+  // ========================================
+  rating: {
+    icon: {
+      desktop: { fontSize: 24, lineHeight: 24, fontWeight: 400, letterSpacing: 0 },
+      tablet: { fontSize: 24, lineHeight: 24, fontWeight: 400, letterSpacing: 0 },
+      mobile: { fontSize: 24, lineHeight: 24, fontWeight: 400, letterSpacing: 0 },
+    },
+  },
+
+  // ========================================
+  // STEPPER TYPOGRAPHY - Fixed
+  // ========================================
+  stepper: {
+    label: {
+      desktop: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      tablet: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+      mobile: { fontSize: 14, lineHeight: 20, fontWeight: 400, letterSpacing: 0.15 },
+    },
+  },
+
+  // ========================================
   // LEGACY STYLES (for backward compatibility)
   // ========================================
   caption: {

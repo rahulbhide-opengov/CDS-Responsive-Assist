@@ -389,8 +389,7 @@ const StyledMuiSlider = styled(MuiSlider)(({ theme }) => ({
   },
 
   '& .MuiSlider-valueLabel': {
-    fontSize: theme.typography.caption.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
+    ...theme.typography.slider.valueLabel,
     backgroundColor: theme.palette.primary.main,
     borderRadius: theme.shape.borderRadius,
   },
@@ -419,7 +418,7 @@ const StyledMuiRating = styled(MuiRating)(({ theme }) => ({
   },
 
   '& .MuiRating-icon': {
-    fontSize: theme.typography.h5.fontSize, // Fixed 14px
+    ...theme.typography.rating.icon,
   },
 
   '&:focus-visible': {
@@ -441,7 +440,7 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
     marginBottom: theme.spacing(0.5), // 2px bottom margin
 
     '& .MuiFormControlLabel-label': {
-      fontSize: theme.typography.body1.fontSize,
+      ...theme.typography.body1,
       color: theme.palette.text.primary,
     },
   },

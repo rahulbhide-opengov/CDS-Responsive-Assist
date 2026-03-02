@@ -953,8 +953,8 @@ const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     borderRadius: theme.shape.borderRadius, // 4px
 
-    // Fixed font size
-    fontSize: theme.typography.body1.fontSize, // Fixed 16px
+    // Input value styling
+    ...theme.typography.input.valueMd,
 
     '& .MuiOutlinedInput-input': {
       padding: theme.spacing(2, 1.75), // 16px 14px
@@ -985,9 +985,9 @@ const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
     },
   },
 
-  // Label styling - fixed font size
+  // Label styling
   '& .MuiInputLabel-root': {
-    fontSize: theme.typography.body1.fontSize, // Fixed 16px
+    ...theme.typography.input.labelMd,
 
     '&.Mui-focused': {
       color: theme.palette.primary.main,
@@ -1003,10 +1003,10 @@ const StyledMuiTextField = styled(MuiTextField)(({ theme }) => ({
     },
   },
 
-  // Helper text - fixed
+  // Helper text
   '& .MuiFormHelperText-root': {
     marginTop: theme.spacing(0.5),
-    fontSize: theme.typography.caption.fontSize, // Fixed 12px
+    ...theme.typography.input.helper,
 
     '&.Mui-error': {
       color: theme.palette.error.main,
@@ -1083,7 +1083,7 @@ const StyledMuiRadioGroup = styled(MuiRadioGroup)(({ theme }) => ({
     marginBottom: theme.spacing(0.5),
 
     '& .MuiFormControlLabel-label': {
-      fontSize: theme.typography.body1.fontSize,
+      ...theme.typography.body1,
       color: theme.palette.text.primary,
     },
   },
@@ -1180,7 +1180,7 @@ const StyledMuiFormControl = styled(MuiFormControl)(({ theme }) => ({
 const StyledMuiFormLabel = styled(MuiFormLabel)(({ theme }) => ({
   marginBottom: theme.spacing(1),
   fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.body1.fontSize,
+  ...theme.typography.body1,
 
   // Required asterisk styling
   '& .MuiFormLabel-asterisk': {
@@ -1211,7 +1211,7 @@ const StyledMuiFormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
   marginRight: theme.spacing(2),
 
   '& .MuiFormControlLabel-label': {
-    fontSize: theme.typography.body1.fontSize,
+    ...theme.typography.body1,
     color: theme.palette.text.primary,
     marginLeft: theme.spacing(1),
 
@@ -1233,7 +1233,7 @@ const StyledMuiFormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 const StyledMuiFormHelperText = styled(MuiFormHelperText)(({ theme }) => ({
   marginTop: theme.spacing(0.5),
   marginLeft: theme.spacing(1.75),
-  fontSize: theme.typography.caption.fontSize, // Fixed 12px
+  ...theme.typography.input.helper,
 
   '&.Mui-error': {
     color: theme.palette.error.main,
@@ -1260,7 +1260,7 @@ const StyledMuiFormGroup = styled(MuiFormGroup)(({ theme }) => ({
  * Styled InputLabel with CDS tokens
  */
 const StyledMuiInputLabel = styled(MuiInputLabel)(({ theme }) => ({
-  fontSize: theme.typography.body1.fontSize, // Fixed 16px
+  ...theme.typography.input.labelMd,
   fontWeight: theme.typography.fontWeightMedium,
 
   '&.Mui-focused': {
@@ -1289,7 +1289,7 @@ const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme }) => ({
 
   '& .MuiOutlinedInput-input': {
     padding: theme.spacing(2, 1.75),
-    fontSize: theme.typography.body1.fontSize, // Fixed 16px
+    ...theme.typography.input.valueMd,
   },
 
   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {

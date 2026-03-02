@@ -375,9 +375,9 @@ const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
     },
   },
 
-  // Typography fixed sizing
+  // Typography styling
   '& .MuiTypography-h6': {
-    fontSize: theme.typography.h6.fontSize, // Fixed 12px
+    ...theme.typography.h6,
   },
 }));
 
@@ -429,9 +429,9 @@ const StyledBottomNavigation = styled(MuiBottomNavigation)(({ theme }) => ({
 
     // Label styling
     '& .MuiBottomNavigationAction-label': {
-      fontSize: theme.typography.caption.fontSize,
+      ...theme.typography.bottomNavigation.defaultLabel,
       '&.Mui-selected': {
-        fontSize: theme.typography.caption.fontSize,
+        ...theme.typography.bottomNavigation.selectedLabel,
       },
     },
   },
@@ -468,7 +468,7 @@ const StyledTab = styled(MuiTab)(({ theme }) => ({
   minHeight: 48, // sizingTokens.touchTarget.min
   minWidth: 80,
   padding: theme.spacing(1.5, 2),
-  fontSize: theme.typography.button.fontSize, // Fixed 14px
+  ...theme.typography.button.medium,
 
   // CDS transitions
   transition: theme.transitions.create(['color', 'background-color'], {
@@ -512,7 +512,7 @@ const StyledNavLink = styled('a')<{ active?: boolean }>(({ theme, active }) => (
 
   // Font styling
   fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.body1.fontSize,
+  ...theme.typography.body1,
 
   // CDS transitions
   transition: theme.transitions.create(['background-color', 'color'], {

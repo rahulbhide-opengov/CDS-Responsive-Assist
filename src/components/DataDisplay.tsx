@@ -176,27 +176,27 @@ const StyledMuiAvatar = styled(MuiAvatar)(({ theme }) => ({
   '&[data-size="xs"]': {
     width: theme.spacing(3),
     height: theme.spacing(3),
-    fontSize: theme.typography.caption.fontSize,
+    ...theme.typography.avatar.initialsXs,
   },
   '&[data-size="sm"]': {
     width: theme.spacing(4),
     height: theme.spacing(4),
-    fontSize: theme.typography.body2.fontSize,
+    ...theme.typography.avatar.initialsSm,
   },
   '&[data-size="md"]': {
     width: theme.spacing(5),
     height: theme.spacing(5),
-    fontSize: theme.typography.body1.fontSize,
+    ...theme.typography.avatar.initialsMd,
   },
   '&[data-size="lg"]': {
     width: theme.spacing(7),
     height: theme.spacing(7),
-    fontSize: theme.typography.h6.fontSize,
+    ...theme.typography.avatar.initialsLg,
   },
   '&[data-size="xl"]': {
     width: theme.spacing(9),
     height: theme.spacing(9),
-    fontSize: theme.typography.h5.fontSize,
+    ...theme.typography.avatar.initialsXl,
   },
 }));
 
@@ -386,8 +386,7 @@ export interface BadgeProps {
 
 const StyledMuiBadge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    fontSize: theme.typography.caption.fontSize, // Fixed 12px
-    fontWeight: theme.typography.fontWeightMedium,
+    ...theme.typography.badge.default,
     minWidth: 20,
     height: 20,
     padding: theme.spacing(0, 0.75),
@@ -531,7 +530,7 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
 
   // Fixed sizing
   height: 32,
-  fontSize: theme.typography.button.fontSize, // Fixed 14px
+  ...theme.typography.chip.medium,
 
   '& .MuiChip-label': {
     padding: theme.spacing(0, 2), // 0 16px
@@ -540,7 +539,7 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
   '& .MuiChip-icon': {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(-0.5),
-    fontSize: theme.typography.h6.fontSize, // Fixed 12px
+    ...theme.typography.chip.icon,
   },
 
   '&.MuiChip-clickable:hover': {
@@ -673,7 +672,7 @@ export interface TooltipProps {
 const StyledMuiTooltip = styled(MuiTooltip)(({ theme }) => ({
   '& .MuiTooltip-tooltip': {
     backgroundColor: theme.palette.grey[800],
-    fontSize: theme.typography.caption.fontSize,
+    ...theme.typography.tooltip.default,
     padding: theme.spacing(0.75, 1.5),
     borderRadius: theme.shape.borderRadius,
     maxWidth: 300,
@@ -996,7 +995,7 @@ const StyledMuiTableCell = styled(MuiTableCell, {
   shouldForwardProp: (prop) => prop !== 'density',
 })<{ density?: TableDensity }>(({ theme, density = 'standard' }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
-  fontSize: theme.typography.body2.fontSize, // Fixed 14px
+  ...theme.typography.table.cell,
 
   ...getDensityPadding(density, theme),
 }));
@@ -1252,13 +1251,13 @@ export interface ListItemTextProps {
 
 const StyledMuiListItemText = styled(MuiListItemText)(({ theme }) => ({
   '& .MuiListItemText-primary': {
-    fontSize: theme.typography.body1.fontSize,
+    ...theme.typography.body1,
     fontWeight: theme.typography.fontWeightMedium,
     color: theme.palette.text.primary,
   },
 
   '& .MuiListItemText-secondary': {
-    fontSize: theme.typography.body2.fontSize,
+    ...theme.typography.body2,
     color: theme.palette.text.secondary,
     marginTop: theme.spacing(0.5),
   },
@@ -1412,12 +1411,12 @@ const StyledMuiImageListItem = styled(MuiImageListItem)(({ theme }) => ({
   },
 
   '& .MuiImageListItemBar-title': {
-    fontSize: theme.typography.body2.fontSize,
+    ...theme.typography.body2,
     fontWeight: theme.typography.fontWeightMedium,
   },
 
   '& .MuiImageListItemBar-subtitle': {
-    fontSize: theme.typography.caption.fontSize,
+    ...theme.typography.caption,
   },
 }));
 

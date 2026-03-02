@@ -520,7 +520,7 @@ const StyledMuiAlert = styled(MuiAlert)(({ theme }) => ({
 
   '& .MuiAlert-message': {
     padding: theme.spacing(1, 0),
-    fontSize: theme.typography.body2.fontSize, // Fixed 14px
+    ...theme.typography.alert.description,
   },
 
   '& .MuiAlert-action': {
@@ -577,8 +577,8 @@ const StyledMuiDialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
   padding: theme.spacing(1.5, 2), // 12px 16px mobile
   fontWeight: theme.typography.fontWeightBold,
 
-  // Fixed font size
-  fontSize: theme.typography.h5.fontSize, // Fixed 14px
+  // Typography
+  ...theme.typography.dialog.title,
 
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(2, 3), // 16px 24px tablet
@@ -604,8 +604,8 @@ const StyledMuiDialogContent = styled(MuiDialogContent)(({ theme }) => ({
     padding: theme.spacing(3, 3.5), // 24px 28px desktop
   },
 
-  // Fixed font size
-  fontSize: theme.typography.body1.fontSize, // Fixed 16px
+  // Typography
+  ...theme.typography.dialog.content,
 }));
 
 /**

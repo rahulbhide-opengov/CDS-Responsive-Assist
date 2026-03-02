@@ -139,7 +139,17 @@ const themeOptions: ThemeOptions = {
     button: createResponsiveTypography(typographyTokens.button.medium),
     caption: createResponsiveTypography(typographyTokens.caption),
     overline: createResponsiveTypography(typographyTokens.overline),
-  },
+    // Component-specific typography (custom extensions)
+    badge: { default: createResponsiveTypography(typographyTokens.badge.default) },
+    tooltip: { default: createResponsiveTypography(typographyTokens.tooltip.default) },
+    dialog: {
+      title: createResponsiveTypography(typographyTokens.dialog.title),
+      content: createResponsiveTypography(typographyTokens.dialog.content),
+    },
+    slider: { valueLabel: createResponsiveTypography(typographyTokens.slider.valueLabel) },
+    rating: { icon: createResponsiveTypography(typographyTokens.rating.icon) },
+    stepper: { label: createResponsiveTypography(typographyTokens.stepper.label) },
+  } as any, // Cast to any to allow custom typography extensions
 
   // Shape (Border Radius)
   shape: {
