@@ -197,9 +197,15 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
   textTransform: 'none',
   fontWeight: theme.typography.fontWeightMedium,
 
-  // Base styling
+  // Base styling - Medium (default)
+  minHeight: 36, // Mobile base
+  [theme.breakpoints.up('sm')]: {
+    minHeight: 36, // Tablet
+  },
+  [theme.breakpoints.up('md')]: {
+    minHeight: 32, // Desktop
+  },
   padding: theme.spacing(1.5, 3),
-  minHeight: 40, // sizingTokens.button.medium
   ...theme.typography.button.medium,
 
   // CDS Transitions
@@ -213,14 +219,26 @@ const StyledMuiButton = styled(MuiButton)(({ theme }) => ({
 
   // Small size variant
   '&.MuiButton-sizeSmall': {
-    minHeight: 32, // sizingTokens.button.small
+    minHeight: 32, // Mobile base
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 32, // Tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      minHeight: 28, // Desktop
+    },
     padding: theme.spacing(1, 2),
     ...theme.typography.button.small,
   },
 
   // Large size variant
   '&.MuiButton-sizeLarge': {
-    minHeight: 48, // sizingTokens.button.large
+    minHeight: 44, // Mobile base
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 44, // Tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      minHeight: 40, // Desktop
+    },
     padding: theme.spacing(2, 5),
     ...theme.typography.button.large,
   },

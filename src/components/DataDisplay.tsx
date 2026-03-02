@@ -528,8 +528,14 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   fontWeight: theme.typography.fontWeightMedium,
 
-  // Fixed sizing
-  height: 32,
+  // Responsive height - Medium chip (default)
+  height: 36, // Mobile base
+  [theme.breakpoints.up('sm')]: {
+    height: 36, // Tablet
+  },
+  [theme.breakpoints.up('md')]: {
+    height: 32, // Desktop
+  },
   ...theme.typography.chip.medium,
 
   '& .MuiChip-label': {
@@ -540,6 +546,27 @@ const StyledMuiChip = styled(MuiChip)(({ theme }) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(-0.5),
     ...theme.typography.chip.icon,
+  },
+
+  // Add size variants
+  '&.MuiChip-sizeSmall': {
+    height: 32, // Mobile base
+    [theme.breakpoints.up('sm')]: {
+      height: 32, // Tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      height: 28, // Desktop
+    },
+  },
+
+  '&.MuiChip-sizeLarge': {
+    height: 44, // Mobile base
+    [theme.breakpoints.up('sm')]: {
+      height: 44, // Tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      height: 40, // Desktop
+    },
   },
 
   '&.MuiChip-clickable:hover': {
@@ -829,6 +856,15 @@ const StyledMuiTableHead = styled(MuiTableHead)(({ theme }) => ({
     fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.text.primary,
     borderBottom: `2px solid ${theme.palette.divider}`,
+
+    // RESPONSIVE HEADER HEIGHTS
+    minHeight: 64, // Mobile base
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 56, // Tablet
+    },
+    [theme.breakpoints.up('md')]: {
+      minHeight: 50, // Desktop
+    },
   },
 }));
 
@@ -996,6 +1032,15 @@ const StyledMuiTableCell = styled(MuiTableCell, {
 })<{ density?: TableDensity }>(({ theme, density = 'standard' }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   ...theme.typography.table.cell,
+
+  // RESPONSIVE HEIGHTS based on Figma spec
+  minHeight: 64, // Mobile base
+  [theme.breakpoints.up('sm')]: {
+    minHeight: 56, // Tablet
+  },
+  [theme.breakpoints.up('md')]: {
+    minHeight: 50, // Desktop
+  },
 
   ...getDensityPadding(density, theme),
 }));
