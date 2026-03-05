@@ -331,7 +331,7 @@ All sizes automatically adjust across breakpoints.
 ## 📦 Project Structure
 
 ```
-CDS-Responsive-Assist/
+CDS-Design-System/
 ├── README.md                      # This file
 ├── QUICK-START.md                 # Quick start guide
 ├── COMPONENT-INDEX.md             # Component reference

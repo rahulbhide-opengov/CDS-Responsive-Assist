@@ -126,7 +126,7 @@ Comprehensive logo usage guide:
 ## 📁 File Structure
 
 ```
-CDS-Responsive-Assist/
+CDS-Design-System/
 ├── assets/
 │   ├── brand/
 │   │   └── OpenGov-Brand-Guidelines.pdf    # Official brand guidelines

@@ -30,7 +30,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/CDS-Responsive-Assist.git"
+    "url": "https://github.com/rahulbhide-opengov/CDS-Design-System.git"
   },
   "dependencies": {
     "@mui/material": "^6.1.0",

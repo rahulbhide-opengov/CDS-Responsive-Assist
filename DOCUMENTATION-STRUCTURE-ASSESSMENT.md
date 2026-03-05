@@ -472,7 +472,7 @@ TB = Toggle Button
 ## 📁 Where to Find Documentation
 
 ```
-CDS-Responsive-Assist/
+CDS-Design-System/
 ├── docs/
 │   ├── components/
 │   │   ├── CDS-BUTTONS.md          ✅ 6 components, 10/10 sections

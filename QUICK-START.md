@@ -10,10 +10,10 @@
 
 ```bash
 # Copy the entire src folder
-cp -r CDS-Responsive-Assist/src ./src/cds
+cp -r CDS-Design-System/src ./src/cds
 
 # Or copy examples too
-cp -r CDS-Responsive-Assist/examples ./examples
+cp -r CDS-Design-System/examples ./examples
 ```
 
 ### 2. Install Dependencies

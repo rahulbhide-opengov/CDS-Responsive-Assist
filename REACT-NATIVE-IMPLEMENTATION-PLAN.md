@@ -40,7 +40,7 @@ Convert the CDS Design System from React Web (MUI-based) to **React Native** for
 ### Directory Structure
 
 ```
-CDS-Responsive-Assist/
+CDS-Design-System/
 ├── src/                          # Web version (existing)
 │   ├── components/
 │   ├── theme/

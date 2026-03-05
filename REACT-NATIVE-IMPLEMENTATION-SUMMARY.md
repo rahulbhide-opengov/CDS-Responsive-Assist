@@ -16,7 +16,7 @@ Created a complete React Native version of the CDS Design System for iOS and And
 ### **1. Complete File Structure**
 
 ```
-CDS-Responsive-Assist/
+CDS-Design-System/
 ├── src-native/                          # React Native implementation
 │   ├── components/
 │   │   ├── Button/
